@@ -1,0 +1,26 @@
+@import 'variables.scss';
+
+.banner {
+    background-image: url('/assets/images/banner.jpg');
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 30px;
+}
+
+.contain-banner {
+    background: #7f7f7f;
+    background: rgba(black, 0.5); 
+    max-width: 70vw;
+    border-radius: 1em;
+    align-self: center;
+    text-align: center;
+    margin: 0px auto;
+    min-height: 25vh;
+    justify-content: center;
+}
+
+.describe-banner {
+    font-size: 1rem;
+}
