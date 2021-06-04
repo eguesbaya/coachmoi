@@ -10,8 +10,8 @@
 }
 
 .contain-banner {
-    background: #7f7f7f;
-    background: rgba(black, 0.5); 
+    background: $secondary;
+    background: rgba($dark, 0.5); 
     max-width: 70vw;
     border-radius: 1em;
     align-self: center;
