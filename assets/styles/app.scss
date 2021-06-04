@@ -11,6 +11,10 @@ body {
     font-family: $text-font;
 }
 
+.card-img-top{
+    object-fit: cover;
+}
+
 h1 {
     font-weight: 800;
 }
