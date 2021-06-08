@@ -16,7 +16,7 @@ class HomeController extends AbstractController
     {
         $activities = $this->getDoctrine()
             ->getRepository(Activity::class)
-            ->findBy(['isFeatured'=> 'true'], 6);
+            ->findBy(['isFeatured' => 'true'], ['name' => 'ASC'], 6);
 
         return $this->render('home/index.html.twig', ['activities' => $activities]);
     }

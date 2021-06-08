@@ -35,7 +35,7 @@ class Activity
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isFeatured;
+    private bool $isFeatured;
 
     public function getId(): ?int
     {
