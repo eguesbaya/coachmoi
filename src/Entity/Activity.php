@@ -32,6 +32,11 @@ class Activity
      */
     private ?string $photo;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isFeatured;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Activity
     public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getIsFeatured(): ?bool
+    {
+        return $this->isFeatured;
+    }
+
+    public function setIsFeatured(bool $isFeatured): self
+    {
+        $this->isFeatured = $isFeatured;
 
         return $this;
     }
