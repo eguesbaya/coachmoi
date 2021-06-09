@@ -6,24 +6,18 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    object-fit:cover;
-
-    height: 400px;
-    padding: 30px;
 }
 
 #carousel-training-space{
-    height:500px;
+    min-height:500px;
 }
    
 .carousel-item img {
     max-width: 100%;
     height:500px!important;
-    object-fit:cover;
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 
 }
-
