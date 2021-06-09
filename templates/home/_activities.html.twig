@@ -2,7 +2,7 @@
     <h1>Les activités</h1>
     <h3>Description de la section ainsi que des instructions expliquant à l'utilisateur comment naviguer.</h2>
 
-    <div class="row g-4">
+    <div class="row g-4 my-4">
         <!--CARD: start-->
         {% for activity in activities %}
         <div class="col-md-6 col-lg-4 card-group">
@@ -23,6 +23,10 @@
         </div>
         {% endfor %}
         <!--CARD: end-->
+    </div>
+
+    <div class="d-grid gap-2 col-sm-6 col-xl-3 mx-auto">
+        <button class="btn btn-primary" type="button">Voir toutes les activités</button>
     </div>
 
 </section>
