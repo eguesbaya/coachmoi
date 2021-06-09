@@ -6,6 +6,7 @@ use App\Entity\Coach;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class CoachFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -14,8 +15,8 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
     {
         $birthday = "1998-01-01";
         for ($i = 1; $i <= self::MAX_COACH; $i++) {
-            $coach = new Coach;
-            $coach->setBirthdate(new \DateTime($birthday));
+            $coach = new Coach();
+            $coach->setBirthdate(new DateTime($birthday));
             $coach->setHasVehicle(true);
             $coach->setQualification('BP');
             $coach->setEquipment('Haltères, Corde à sauter, tapis');

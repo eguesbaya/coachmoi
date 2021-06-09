@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CoachRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass=CoachRepository::class)
@@ -15,48 +16,48 @@ class Coach
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $Birthdate;
+    private \DateTimeInterface $birthdate;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $has_vehicle;
+    private ?bool $hasVehicle;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $qualification;
+    private string $qualification;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $equipment;
+    private ?string $equipment;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $biography;
+    private string $biography;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $hourly_rate;
+    private ?int $hourlyRate;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $photo;
+    private ?string $photo;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private ?User $user;
 
     public function getId(): ?int
     {
@@ -65,24 +66,24 @@ class Coach
 
     public function getBirthdate(): ?\DateTimeInterface
     {
-        return $this->Birthdate;
+        return $this->birthdate;
     }
 
-    public function setBirthdate(\DateTimeInterface $Birthdate): self
+    public function setBirthdate(\DateTimeInterface $birthdate): self
     {
-        $this->Birthdate = $Birthdate;
+        $this->birthdate = $birthdate;
 
         return $this;
     }
 
     public function getHasVehicle(): ?bool
     {
-        return $this->has_vehicle;
+        return $this->hasVehicle;
     }
 
-    public function setHasVehicle(bool $has_vehicle): self
+    public function setHasVehicle(bool $hasVehicle): self
     {
-        $this->has_vehicle = $has_vehicle;
+        $this->hasVehicle = $hasVehicle;
 
         return $this;
     }
@@ -125,12 +126,12 @@ class Coach
 
     public function getHourlyRate(): ?int
     {
-        return $this->hourly_rate;
+        return $this->hourlyRate;
     }
 
-    public function setHourlyRate(int $hourly_rate): self
+    public function setHourlyRate(int $hourlyRate): self
     {
-        $this->hourly_rate = $hourly_rate;
+        $this->hourlyRate = $hourlyRate;
 
         return $this;
     }
