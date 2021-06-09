@@ -10,13 +10,15 @@ use App\Repository\ActivityRepository;
 
 class HomeController extends AbstractController
 {
+
+    private const MAX_ACTIVITY = 6;
     /**
      * @Route("/", name="home")
      */
     public function index(ActivityRepository $activityRepository): Response
     {
         $activities = $activityRepository
-            ->findBy(['isFeatured' => 'true'], ['name' => 'ASC'], 6);
+            ->findBy(['isFeatured' => 'true'], ['name' => 'ASC'], self::MAX_ACTIVITY);
 
         return $this->render('home/index.html.twig', ['activities' => $activities]);
     }
