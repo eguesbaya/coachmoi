@@ -25,7 +25,7 @@ class HomeController extends AbstractController
     ): Response {
         $activities = $activityRepository
             ->findBy(['isFeatured' => 'true'], ['name' => 'ASC'], self::MAX_ACTIVITY);
-       $coachs = $coachRepository->findAll();
+        $coachs = $coachRepository->findAll();
 
         return $this->render('home/index.html.twig', [
             'activities' => $activities,
