@@ -16,11 +16,14 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(ActivityRepository $activityRepository,TrainingSpaceRepository $trainingSpaceRepo): Response
+    public function index(ActivityRepository $activityRepository, TrainingSpaceRepository $trainingSpaceRepo): Response
     {
         $activities = $activityRepository
             ->findBy(['isFeatured' => 'true'], ['name' => 'ASC'], self::MAX_ACTIVITY);
 
-        return $this->render('home/index.html.twig', ['activities' => $activities, 'training_spaces' => $trainingSpaceRepo->findAll()]);
+        return $this->render('home/index.html.twig', [
+            'activities' => $activities,
+            'training_spaces' => $trainingSpaceRepo->findAll()
+            ]);
     }
 }
