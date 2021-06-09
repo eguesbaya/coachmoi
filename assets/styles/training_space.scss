@@ -1,0 +1,16 @@
+@import 'variables.scss';
+
+.salles {
+    background-image: url('../images/background-salles.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.carousel-item img {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
