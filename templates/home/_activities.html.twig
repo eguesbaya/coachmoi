@@ -1,0 +1,32 @@
+<section class="activities container">
+    <h1>LES ACTIVITES</h1>
+    <h3>Description de la section ainsi que des instructions expliquant à l'utilisateur comment naviguer.</h2>
+
+    <div class="row g-4 my-4">
+        <!--CARD: start-->
+        {% for activity in activities %}
+        <div class="col-md-6 col-lg-4 card-group">
+            <div class="card bg-dark">
+                <div class="row g-0">
+                    <div class="col-6 d-flex">
+                        <img src="https://picsum.photos/200" class="card-img-top align-item-center" alt="{{ activity.name }}">
+                    </div>
+                    <div class="col-6">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <h4 class="card-title w-100">{{ activity.name }}</h4>
+                            <p class="card-text text-light w-100">{{ activity.description }}</p>
+                            <a class="btn btn-primary text-light col-12 w-100" href="#" role="button">Choisir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!--CARD: end-->
+    </div>
+
+    <div class="d-grid gap-2 col-sm-6 col-xl-3 mx-auto">
+        <a class="btn btn-primary" href="#" role="button">Voir toutes les activités</a>
+    </div>
+
+</section>
