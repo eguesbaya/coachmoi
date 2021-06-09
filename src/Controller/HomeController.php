@@ -21,8 +21,7 @@ class HomeController extends AbstractController
     public function index(ActivityRepository $activityRepository,
             TrainingSpaceRepository $trainingSpaceRepo,
             CoachRepository $coachRepository
-    ): Response
-    {
+    ): Response {
         $activities = $activityRepository
              ->findBy(['isFeatured' => 'true'], ['name' => 'ASC'], self::MAX_ACTIVITY);
        $coachs = $coachRepository->findAll();
