@@ -18,8 +18,9 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(
-        ActivityRepository $activityRepository, TrainingSpaceRepository $trainingSpaceRepo, CoachRepository $coachRepository): Response
+    public function index(ActivityRepository $activityRepository,
+            TrainingSpaceRepository $trainingSpaceRepo,
+            CoachRepository $coachRepository): Response
     {
         $activities = $activityRepository
             ->findBy(['isFeatured' => 'true'], ['name' => 'ASC'], self::MAX_ACTIVITY);
