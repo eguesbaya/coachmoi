@@ -15,7 +15,9 @@ class HomeController extends AbstractController
      */
     public function index(ActivityRepository $activityRepository): Response
     {
-        $activities = $activityRepository->findAll();
+        $activities = $activityRepository
+            ->findBy(['isFeatured' => 'true'], ['name' => 'ASC'], 6);
+
         return $this->render('home/index.html.twig', ['activities' => $activities]);
     }
 }
