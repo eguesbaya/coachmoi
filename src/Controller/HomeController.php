@@ -20,10 +20,11 @@ class HomeController extends AbstractController
      */
     public function index(ActivityRepository $activityRepository,
             TrainingSpaceRepository $trainingSpaceRepo,
-            CoachRepository $coachRepository): Response
+            CoachRepository $coachRepository
+    ): Response
     {
         $activities = $activityRepository
-            ->findBy(['isFeatured' => 'true'], ['name' => 'ASC'], self::MAX_ACTIVITY);
+             ->findBy(['isFeatured' => 'true'], ['name' => 'ASC'], self::MAX_ACTIVITY);
        $coachs = $coachRepository->findAll();
 
         return $this->render('home/index.html.twig', [
