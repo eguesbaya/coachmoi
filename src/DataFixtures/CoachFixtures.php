@@ -13,10 +13,10 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
     private const MAX_COACH = 4;
     public function load(ObjectManager $manager)
     {
-        $birthday = "1998-01-01";
+        //$birthday = "1998-01-01";
         for ($i = 1; $i <= self::MAX_COACH; $i++) {
             $coach = new Coach();
-            $coach->setBirthdate(new DateTime($birthday));
+            $coach->setBirthdate(\DateTime::createFromFormat('Y-m-d', "1998-01-01"));
             $coach->setHasVehicle(true);
             $coach->setQualification('BP');
             $coach->setEquipment('Haltères, Corde à sauter, tapis');
