@@ -53,8 +53,7 @@ class Contact
     private $phone;
 
     /**
-     * @var null
-     * @Assert\Type(type={"alpha", "digit"})
+     * @var string
      * @Assert\NotBlank(message="Veuillez remplir ce champ s'il vous plait.")
      */
     private $message;
