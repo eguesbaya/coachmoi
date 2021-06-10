@@ -31,10 +31,11 @@ class Contact
      private $firstname;
 
     /**
-     * @Assert\NotBlank(message="Veuillez remplir ce champ s'il vous plait.")
+     * @var string
      * @Assert\Email(
      *     message = "L'email '{{ value }}' n'est pas valide."
      * )
+     * @Assert\NotBlank(message="Veuillez remplir ce champ s'il vous plait.")
      */
     private $email;
 
@@ -52,7 +53,8 @@ class Contact
     private $phone;
 
     /**
-     * @var text
+     * @var null
+     * @Assert\Type(type={"alpha", "digit"})
      * @Assert\NotBlank(message="Veuillez remplir ce champ s'il vous plait.")
      */
     private $message;
