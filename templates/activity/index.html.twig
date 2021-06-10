@@ -6,7 +6,6 @@
     <h1>
       TOUTES LES ACTIVITÉS
     </h1>
-    <div class="filter">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle"
           type="button"
@@ -16,12 +15,11 @@
           Trier
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">de A à Z</a></li>
-          <li><a class="dropdown-item" href="#">de Z à A</a></li>
+          <li><a class="dropdown-item" href="{{ path('activity_AtoZ') }}">A à Z</a></li>
+          <li><a class="dropdown-item" href="{{ path('activity_ZtoA') }}">Z à A</a></li>
         </ul>
       </div>
-    </div>
+    {% include 'home/_activities.html.twig' %}
   </section>
 
-  {% include 'home/_activities.html.twig' %}
 {% endblock %}
