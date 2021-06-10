@@ -1,11 +1,11 @@
 <div class="container my-2">
-  <div class="row">
+  <div class="row my-4">
     {% for coach in coachs %}
     <div class="col-md-3 col-sm-6">
       <div class="card border-dark">
         <img src="https://picsum.photos/id/237/200/" class="card-img-top m-3 w-auto" alt="coach">
         <div class="card-body">
-          <h4 class="card-title text-success text-uppercase fw-bold fst-italic">{{ coach.user.firstname }}</h4>
+          <h4 class="card-title text-success">{{ coach.user.firstname }}</h4>
           <p class="card-text text-uppercase fw-bold fst-italic">Running</p>
           <p class="card-text">{{ coach.biography }}</p>
         </div>
