@@ -4,6 +4,25 @@ $light: #FFFFFF;
 $success: #6bd736;
 $dark:#000000;
 
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "light":      $light,
+  "dark":       $dark
+);
+
+$display-font-sizes: (
+  1: 5rem,
+  2: 4.5rem,
+  3: 4rem,
+  4: 3.5rem,
+  5: 3rem,
+  6: 2.5rem
+);
+
+$display-font-weight: 300;
+
 $text-font: 'Poppins', 'sans-serif';
 $title-weight: 800; 
 
