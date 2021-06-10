@@ -22,4 +22,24 @@ class ActivityController extends AbstractController
             ['activities' => $activities]
         );
     }
+
+    public function alphabetical(ActivityRepository $activityRepository): Response
+    {
+        $activities = $activityRepository->findAll(); //sort A to Z
+
+        return $this->render(
+            'activity/index.html.twig',
+            ['activities' => $activities]
+        );
+    }
+
+    public function alphabeticalReverse(ActivityRepository $activityRepository): Response
+    {
+        $activities = $activityRepository->findAll(); // Z to A
+
+        return $this->render(
+            'activity/index.html.twig',
+            ['activities' => $activities]
+        );
+    }
 }
