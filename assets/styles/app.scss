@@ -15,7 +15,7 @@ body {
     object-fit: cover;
 }
 
-h1, h2 {
+h1, .h1, h2, .h2 {
     font-weight: 700;
     font-style: italic;
     margin: 2rem 1rem;
@@ -24,13 +24,21 @@ h1, h2 {
     font-size: 42;
 }
 
-h3 {
+.card-title {
     font-size: 28;
     font-style: italic;
     font-weight: bold;
     color: $primary;
+    text-transform: uppercase;
 }
 
 p {
     font-size: 1.2rem;
+}
+
+.btn {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-style: italic;
 }
