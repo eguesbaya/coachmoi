@@ -33,7 +33,7 @@ class ActivityController extends AbstractController
     */
     public function aToZ(ActivityRepository $activityRepository): Response
     {
-        $activities = $activityRepository->findBy([], ['name' =>'ASC']); //sort A to Z
+        $activities = $activityRepository->findBy([], ['name' => 'ASC']); //sort A to Z
 
         return $this->render(
             'activity/index.html.twig',
@@ -46,7 +46,7 @@ class ActivityController extends AbstractController
     */
     public function zToA(ActivityRepository $activityRepository): Response
     {
-        $activities = $activityRepository->findBy([], ['name' =>'DESC']); //sort Z to A
+        $activities = $activityRepository->findBy([], ['name' => 'DESC']); //sort Z to A
 
         return $this->render(
             'activity/index.html.twig',
