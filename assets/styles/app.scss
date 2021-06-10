@@ -20,4 +20,17 @@ h1, h2 {
     font-style: italic;
     margin: 2rem 1rem;
     text-align: center;
+    text-transform: uppercase;
+    font-size: 42;
+}
+
+h3 {
+    font-size: 28;
+    font-style: italic;
+    font-weight: bold;
+    color: $primary;
+}
+
+p {
+    font-size: 1.2rem;
 }
