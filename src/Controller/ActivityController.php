@@ -20,33 +20,7 @@ class ActivityController extends AbstractController
      */
     public function index(ActivityRepository $activityRepository): Response
     {
-        $activities = $activityRepository->findAll();
-
-        return $this->render(
-            'activity/index.html.twig',
-            ['activities' => $activities]
-        );
-    }
-
-    /**
-    * @Route("/az", name="_AtoZ")
-    */
-    public function aToZ(ActivityRepository $activityRepository): Response
-    {
-        $activities = $activityRepository->findBy([], ['name' => 'ASC']); //sort A to Z
-
-        return $this->render(
-            'activity/index.html.twig',
-            ['activities' => $activities]
-        );
-    }
-
-    /**
-    * @Route("/za", name="_ZtoA")
-    */
-    public function zToA(ActivityRepository $activityRepository): Response
-    {
-        $activities = $activityRepository->findBy([], ['name' => 'DESC']); //sort Z to A
+        $activities = $activityRepository->findBy([], ['name' => 'ASC']);
 
         return $this->render(
             'activity/index.html.twig',

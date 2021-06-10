@@ -6,21 +6,6 @@
     <h1 class="text-center">
       TOUTES LES ACTIVITÉS
     </h1>
-    <div class="d-grid gap-2 col-sm-4 col-xl-3 mx-auto">
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle w-100"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Trier
-          </button>
-          <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="{{ path('activity_AtoZ') }}">A à Z</a></li>
-            <li><a class="dropdown-item" href="{{ path('activity_ZtoA') }}">Z à A</a></li>
-          </ul>
-        </div>
-      </div>
     {% include 'home/_activities.html.twig' %}
   </section>
 
