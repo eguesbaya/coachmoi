@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+  {% include 'includes/_activitybanner.html.twig' %}
+  <section class="container">
+    <h2>
+      Toutes les activités
+    </h2>
+    {% include 'home/_activities.html.twig' %}
+  </section>
+
+{% endblock %}
