@@ -1,0 +1,43 @@
+<section class="py-5">
+    <h2 class="text-center text-dark my-5 px-5 fst-italic"> LES ESPACES D'ENTRAINEMENT </h2>
+    <div class="salles container-fluid mb-5 py-5">
+        <div class="row col-11 mx-auto my-5">
+            <div class="col-lg-6 d-flex flex-column justify-content-center align-center">
+                <!--Carousel-->
+                <div id="carousel-training-space" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                    <div class="carousel-inner">
+                        {% for training_space in training_spaces %}
+                        <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+                            <img src="{{ training_space.photo }}"
+                                class="d-block mw-100 border border-success border-3 rounded"
+                                alt="{{ training_space.name }}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!--Carousel-->
+            </div>
+            <div class="col-lg-1">
+                <p class="my-5"></p>
+            </div>
+            <div class="col-lg-5 py-3 d-flex flex-column justify-content-center align-center">
+                <!--Training space: description -->
+                {% for training_space in training_spaces %}
+
+                <div class="card text-center my-3 bg-dark ">
+
+                    <div class="card-body btn border border-light rounded" data-bs-target="#carousel-training-space"
+                        data-bs-slide-to="{{ loop.index - 1 }}" class="{{ loop.first ? 'active' : '' }}"
+                        aria-current="{{ loop.first ? 'true' : '' }}" aria-label="Slide {{ loop.index }}">
+                        <h3 class="card-title text-light"> {{ training_space.name }}</h3>
+                        <p class="card-text text-light fst-italic"> {{ training_space.description }} </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row col-11 text-center mx-auto mb-4 d-grid gap-2 col-sm-6 col-xl-3">
+            <a class="btn bg-success text-dark" href="#">VOIR PLUS DE SALLES</a>
+        </div>
+    </div>
+</section>
