@@ -10,9 +10,7 @@ class Contact
      * @var string
      * @Assert\NotBlank(message="Veuillez remplir ce champ s'il vous plait")
      * @Assert\Length(
-     *      min = 3,
      *      max = 255,
-     *      minMessage = "Votre nom doit faire minimum {{ limit }} caractères",
      *      maxMessage = "Votre nom ne peut pas dépasser {{ limit }} caractères"
      * )
      */
@@ -22,9 +20,7 @@ class Contact
      * @var string
      * @Assert\NotBlank(message="Veuillez remplir ce champ s'il vous plait.")
      * @Assert\Length(
-     *      min = 3,
      *      max = 255,
-     *      minMessage = "Votre prénom doit faire minimum {{ limit }} caractères",
      *      maxMessage = "Votre prénom ne peut pas dépasser {{ limit }} caractères"
      * )
      */
@@ -43,9 +39,7 @@ class Contact
      * @var string
      * @Assert\NotBlank(message="Veuillez remplir ce champ s'il vous plait.")
      * @Assert\Length(
-     *      min = 8,
      *      max = 20,
-     *      minMessage = "Saisissez un minimum de 8 chiffres",
      *      maxMessage = "Saisissez un maximum de 20 chiffres"
      * )
      *  @Assert\Regex(pattern="/^[0-9]*$/", message="Veuillez saisir seulement des chiffres")
