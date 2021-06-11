@@ -5,9 +5,11 @@
     {% include 'includes/_banner.html.twig' %}
     {% include 'home/_activities.html.twig' %}
     {% include 'home/_training_space.html.twig' %}
-    <h2>Les coachs</h2>
-    {% include "home/_coach.html.twig" %}
-    <div class="row col-11 text-center mx-auto mb-4 d-grid gap-2 col-sm-6 col-xl-3">
-        <a class="btn btn-primary" href="#" role="button">Voir plus de coachs</a>
-    </div>
+    <section>
+        <h2>Les coachs</h2>
+        {% include "home/_coach.html.twig" %}
+        <div class="row col-11 text-center mx-auto my-5 d-grid gap-2 col-sm-6 col-xl-3">
+            <a class="btn btn-primary" href="#" role="button">Voir plus de coachs</a>
+        </div>
+    </section>
 {% endblock %}
