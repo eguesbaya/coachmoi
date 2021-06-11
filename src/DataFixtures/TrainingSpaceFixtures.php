@@ -26,7 +26,7 @@ class TrainingSpaceFixtures extends Fixture
             'name' => 'CLUB MAGIC FORM ORLÉANS',
             'address' => '30 Boulevard Rocheplatte',
             'description' => 'Votre salle de sport tout compris',
-            'photo' => ''
+            'photo' => 'https://bit.ly/3gbrz7O',
         ],
     ];
 
