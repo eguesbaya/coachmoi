@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\TrainingSpaceRepository;
+use App\Entity\Availability;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TrainingSpaceRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=TrainingSpaceRepository::class)
@@ -36,6 +39,16 @@ class TrainingSpace
      * @ORM\Column(type="string", length=255)
      */
     private string $address;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="trainingSpace", orphanRemoval=true)
+     */
+    private Collection $availabilities;
+
+    public function __construct()
+    {
+        $this->availabilities = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +99,36 @@ class TrainingSpace
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Availability[]
+     */
+    public function getAvailabilities(): Collection
+    {
+        return $this->availabilities;
+    }
+
+    public function addAvailability(Availability $availability): self
+    {
+        if (!$this->availabilities->contains($availability)) {
+            $this->availabilities[] = $availability;
+            $availability->setTrainingSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvailability(Availability $availability): self
+    {
+        if ($this->availabilities->removeElement($availability)) {
+            // set the owning side to null (unless already changed)
+            if ($availability->getTrainingSpace() === $this) {
+                $availability->setTrainingSpace(null);
+            }
+        }
 
         return $this;
     }

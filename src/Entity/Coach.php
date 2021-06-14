@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CoachRepository;
-use Doctrine\ORM\Mapping as ORM;
 use App\Entity\User;
+use App\Entity\Availability;
+use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CoachRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=CoachRepository::class)
@@ -58,6 +61,16 @@ class Coach
      * @ORM\JoinColumn(nullable=false)
      */
     private ?User $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="coach", orphanRemoval=true)
+     */
+    private Collection $availabilities;
+
+    public function __construct()
+    {
+        $this->availabilities = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -156,6 +169,36 @@ class Coach
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Availability[]
+     */
+    public function getAvailabilities(): Collection
+    {
+        return $this->availabilities;
+    }
+
+    public function addAvailability(Availability $availability): self
+    {
+        if (!$this->availabilities->contains($availability)) {
+            $this->availabilities[] = $availability;
+            $availability->setCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvailability(Availability $availability): self
+    {
+        if ($this->availabilities->removeElement($availability)) {
+            // set the owning side to null (unless already changed)
+            if ($availability->getCoach() === $this) {
+                $availability->setCoach(null);
+            }
+        }
 
         return $this;
     }
