@@ -14,3 +14,14 @@
     background-attachment: fixed;
     background-size: cover;
 }
+
+// Hover effect for the cards of training spaces
+.space-card {
+    transition: transform .5s;
+}
+
+.space-card {  
+    &:hover {
+        transform: scale(1.1);
+    }
+}

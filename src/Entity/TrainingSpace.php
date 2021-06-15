@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\TrainingSpaceRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use App\Entity\SpaceCategory;
 
 /**
  * @ORM\Entity(repositoryClass=TrainingSpaceRepository::class)
@@ -50,6 +51,12 @@ class TrainingSpace
         $this->availabilities = new ArrayCollection();
     }
 
+    /*
+     * @ORM\ManyToOne(targetEntity=SpaceCategory::class, inversedBy="trainingSpaces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private ?SpaceCategory $spaceCategory;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -67,16 +74,16 @@ class TrainingSpace
         return $this;
     }
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
     public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
 
         return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
     }
 
     public function getDescription(): ?string
@@ -129,6 +136,18 @@ class TrainingSpace
                 $availability->setTrainingSpace(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSpaceCategory(): ?SpaceCategory
+    {
+        return $this->spaceCategory;
+    }
+
+    public function setSpaceCategory(?SpaceCategory $spaceCategory): self
+    {
+        $this->spaceCategory = $spaceCategory;
 
         return $this;
     }
