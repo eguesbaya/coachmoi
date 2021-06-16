@@ -9,7 +9,7 @@ use App\Entity\Coach;
 use App\Repository\CoachRepository;
 use App\Entity\Activity;
 use App\Repository\ActivityRepository;
-use App\Repository\TrainingSpaceRepository;
+use App\Repository\SpaceCategoryRepository;
 
 class HomeController extends AbstractController
 {
@@ -21,7 +21,7 @@ class HomeController extends AbstractController
      */
     public function index(
         ActivityRepository $activityRepository,
-        TrainingSpaceRepository $trainingSpaceRepo,
+        SpaceCategoryRepository $spaceCategoryRepo,
         CoachRepository $coachRepository
     ): Response {
         $activities = $activityRepository
@@ -31,7 +31,7 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'activities' => $activities,
-            'training_spaces' => $trainingSpaceRepo->findAll(),
+            'space_categories' => $spaceCategoryRepo->findAll(),
             'coachs' => $coachs,
             ]);
     }

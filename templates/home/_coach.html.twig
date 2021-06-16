@@ -1,12 +1,12 @@
   <div class="row my-4 g-4">
     {% for coach in coachs %}
     <div class="col col-md-6 col-lg-3">
-      <div class="card border-dark">
-        <img src="https://picsum.photos/id/237/200/" class="card-img-top m-3 w-auto" alt="coach">
+      <div class="card bg-dark">
+        <img src="https://cdn.pixabay.com/photo/2018/01/01/01/57/woman-3053492_960_720.jpg" class="card-img-top" alt="coach">
         <div class="card-body">
           <h4 class="card-title text-success">{{ coach.user.firstname }}</h4>
-          <p class="card-text text-uppercase fw-bold fst-italic">Running</p>
-          <p class="card-text">{{ coach.biography }}</p>
+          <p class="card-text text-light text-uppercase fw-bold">Running</p>
+          <p class="card-text text-light">{{ coach.biography }}</p>
         </div>
       </div>
     </div>
