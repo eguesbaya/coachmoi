@@ -25,7 +25,7 @@ class ActivityFixtures extends Fixture
             $activity->setName('Activité ' . $i);
             $activity->setIsFeatured(false);
             $activity->setDescription('Une description de l\'activité ' . $i);
-            $activity->setPhoto('https: //bit.ly/3gwemH4');
+            $activity->setPhoto('https://bit.ly/3gwemH4');
 
             $manager->persist($activity);
         }
