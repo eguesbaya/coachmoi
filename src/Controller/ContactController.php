@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,8 +25,7 @@ class ContactController extends AbstractController
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
             $email = (new Email())
-            ->from('your_email@example.com')
-            ->from($this->getParameter('mailer_from'))
+            ->from(new Address('no-reply@coachmoi.com'))
             ->to('serdar45000@gmail.com')
             ->subject('Nouveau message du site COACH MOI')
             ->html($this->renderView('contact/emailSendMessage.html.twig', ['contact' => $contact]));
