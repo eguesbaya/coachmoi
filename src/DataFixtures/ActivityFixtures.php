@@ -20,13 +20,14 @@ class ActivityFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i <= self::MAX_ACTIVITY; $i++) {
+        for ($i = 0; $i < self::MAX_ACTIVITY; $i++) {
             $activity = new Activity();
             $activity->setName('Activité ' . $i);
             $activity->setIsFeatured(false);
             $activity->setDescription('Une description de l\'activité ' . $i);
 
             $manager->persist($activity);
+            $this->addReference('activity_' . rand(0, self::MAX_ACTIVITY - 1));
         }
 
         foreach (self::FEATURED_ACTIVITY as $activityName) {
@@ -34,6 +35,7 @@ class ActivityFixtures extends Fixture
             $activity->setName($activityName);
             $activity->setIsFeatured(true);
             $manager->persist($activity);
+            $this->addReference('activity_' .  $activityName);
         }
 
         $manager->flush();
