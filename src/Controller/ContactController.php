@@ -28,7 +28,7 @@ class ContactController extends AbstractController
             ->from(new Address('no-reply@coachmoi.com'))
             ->to('serdar45000@gmail.com')
             ->subject('Nouveau message du site COACH MOI')
-            ->html($this->renderView('contact/emailSendMessage.html.twig', ['contact' => $contact]));
+            ->html($this->renderView('contact/newMessageEmail.html.twig', ['contact' => $contact]));
             $mailer->send($email);
             return $this->render('contact/messageSent.html.twig');
         }
