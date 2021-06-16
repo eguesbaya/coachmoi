@@ -30,7 +30,7 @@ class ContactController extends AbstractController
             ->subject('Nouveau message du site COACH MOI')
             ->html($this->renderView('contact/newMessageEmail.html.twig', ['contact' => $contact]));
             $mailer->send($email);
-            return $this->render('contact/messageSent.html.twig');
+            return $this->render('contact/messageSentConfirmed.html.twig');
         }
         return $this->render('contact/index.html.twig', [
             'contact' => $contactForm->createView()
