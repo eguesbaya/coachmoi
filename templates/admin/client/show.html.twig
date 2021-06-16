@@ -1,0 +1,174 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Admin - Client{% endblock %}
+
+{% block information %}
+    <h2>Mes informations</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ client.id }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{{ client.birthdate ? client.birthdate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ client.address }}</td>
+            </tr>
+            <tr>
+                <th>Goal</th>
+                <td>{{ client.goal }}</td>
+            </tr>
+            <tr>
+                <th>Budget</th>
+                <td>{{ client.budget }}</td>
+            </tr>
+            <tr>
+                <th>GroupSize</th>
+                <td>{{ client.groupSize }}</td>
+            </tr>
+            <tr>
+                <th>IsApt</th>
+                <td>{{ client.isApt ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('client_index') }}">back to list</a>
+
+    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
+
+    {{ include('admin/client/_delete_form.html.twig') }}
+{% endblock %}
+{% block preferences %}
+    <h2>Mes préférences</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ client.id }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{{ client.birthdate ? client.birthdate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ client.address }}</td>
+            </tr>
+            <tr>
+                <th>Goal</th>
+                <td>{{ client.goal }}</td>
+            </tr>
+            <tr>
+                <th>Budget</th>
+                <td>{{ client.budget }}</td>
+            </tr>
+            <tr>
+                <th>GroupSize</th>
+                <td>{{ client.groupSize }}</td>
+            </tr>
+            <tr>
+                <th>IsApt</th>
+                <td>{{ client.isApt ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('client_index') }}">back to list</a>
+
+    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
+
+    {{ include('admin/client/_delete_form.html.twig') }}
+{% endblock %}
+{% block planning %}
+    <h2>Mon planning</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ client.id }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{{ client.birthdate ? client.birthdate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ client.address }}</td>
+            </tr>
+            <tr>
+                <th>Goal</th>
+                <td>{{ client.goal }}</td>
+            </tr>
+            <tr>
+                <th>Budget</th>
+                <td>{{ client.budget }}</td>
+            </tr>
+            <tr>
+                <th>GroupSize</th>
+                <td>{{ client.groupSize }}</td>
+            </tr>
+            <tr>
+                <th>IsApt</th>
+                <td>{{ client.isApt ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('client_index') }}">back to list</a>
+
+    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
+
+    {{ include('admin/client/_delete_form.html.twig') }}
+{% endblock %}
+
+{% block documents %}
+    <h2>Mes documents</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ client.id }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{{ client.birthdate ? client.birthdate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ client.address }}</td>
+            </tr>
+            <tr>
+                <th>Goal</th>
+                <td>{{ client.goal }}</td>
+            </tr>
+            <tr>
+                <th>Budget</th>
+                <td>{{ client.budget }}</td>
+            </tr>
+            <tr>
+                <th>GroupSize</th>
+                <td>{{ client.groupSize }}</td>
+            </tr>
+            <tr>
+                <th>IsApt</th>
+                <td>{{ client.isApt ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('client_index') }}">back to list</a>
+
+    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
+
+    {{ include('admin/client/_delete_form.html.twig') }}
+{% endblock %}
+
