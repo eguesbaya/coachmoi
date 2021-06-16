@@ -49,7 +49,7 @@ class Client
     /**
      * @ORM\Column(type="boolean")
      */
-    private bool $isApt;
+    private bool $isApt = true;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})

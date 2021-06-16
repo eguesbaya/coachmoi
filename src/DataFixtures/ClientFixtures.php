@@ -4,9 +4,11 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use App\Entity\Client;
+use App\Entity\PracticeLevel;
 use App\DataFixtures\UserFixtures;
 use App\DataFixtures\ActivityFixtures;
 use Doctrine\Persistence\ObjectManager;
+use App\DataFixtures\PracticeLevelFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -29,6 +31,10 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface, Fixtu
             foreach (ActivityFixtures::FEATURED_ACTIVITY as $activityName) {
                 $client->setActivity($this->getReference('activity_' . strtolower($activityName)));
             }
+            for ($i = 0; $i < count(PracticeLevelFixtures::LEVELS) - 1; $i++) {
+                $client->setPracticeLevel($this->getReference('level_' . $i));
+            }
+
 
             $manager->persist($client);
             $this->addReference('client_' . $i, $client);
@@ -41,7 +47,8 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface, Fixtu
     {
         return [
             UserFixtures::class,
-            ActivityFixtures::class
+            ActivityFixtures::class,
+            PracticeLevelFixtures::class
         ];
     }
 
