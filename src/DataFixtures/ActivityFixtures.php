@@ -2,14 +2,15 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use App\Entity\Activity;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
-class ActivityFixtures extends Fixture
+class ActivityFixtures extends Fixture implements FixtureGroupInterface
 {
-    private const MAX_ACTIVITY = 10;
-    private const FEATURED_ACTIVITY = [
+    public const MAX_ACTIVITY = 10;
+    public const FEATURED_ACTIVITY = [
         'Yoga',
         'Boxe',
         'Judo',
@@ -27,7 +28,7 @@ class ActivityFixtures extends Fixture
             $activity->setDescription('Une description de l\'activité ' . $i);
 
             $manager->persist($activity);
-            $this->addReference('activity_' . rand(0, self::MAX_ACTIVITY - 1));
+            $this->addReference('activity_' . $i, $activity);
         }
 
         foreach (self::FEATURED_ACTIVITY as $activityName) {
@@ -35,9 +36,14 @@ class ActivityFixtures extends Fixture
             $activity->setName($activityName);
             $activity->setIsFeatured(true);
             $manager->persist($activity);
-            $this->addReference('activity_' .  $activityName);
+            $this->addReference('activity_' .  strtolower($activityName), $activity);
         }
 
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['group1'];
     }
 }
