@@ -2,9 +2,10 @@
 
 namespace App\DataFixtures;
 
+use Faker\Factory;
 use App\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class UserFixtures extends Fixture
 {
@@ -12,14 +13,17 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i <= self::MAX_USERS; $i++) {
+        $faker = Factory::create();
+
+        for ($i = 0; $i < self::MAX_USERS; $i++) {
             $user = new User();
-            $user->setFirstname('Prénom ' . $i);
-            $user->setLastname('Nom ' . $i);
-            $user->setTelephone('020304050' . $i);
-            $user->setEmail('emailn' . $i . '@gmail.com');
-            $this->addReference('user' . $i, $user);
+            $user->setFirstname($faker->firstName());
+            $user->setLastname($faker->lastName());
+            $user->setTelephone($faker->phoneNumber());
+            $user->setEmail($faker->email());
+
             $manager->persist($user);
+            $this->addReference('user_' . $i, $user);
         }
         $manager->flush();
     }
