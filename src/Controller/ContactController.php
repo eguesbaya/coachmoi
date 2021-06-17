@@ -24,8 +24,9 @@ class ContactController extends AbstractController
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+            $formData = $contactForm->getData();
             $email = (new Email())
-            ->from(new Address('no-reply@coachmoi.com'))
+            ->from(new Address($formData->getEmail('email')))
             ->to('serdar45000@gmail.com')
             ->subject('Nouveau message du site COACH MOI')
             ->html($this->renderView('contact/newMessageEmail.html.twig', ['contact' => $contact]));
