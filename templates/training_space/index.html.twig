@@ -2,110 +2,133 @@
 
 {% block body %}
 
-<section class="container-fluid col-11 my-5">
+<section class="container-fluid my-5">
     <h2>
         Tous les espaces d'entrainement
     </h2>
-    {# Button toggle -select 3 options #}
-    <div id="training-space">
-        <div class="container text-center">
-            <button class="btn col-lg-3 col-10 dropdown bg-success text-light border rounded-pill px-5 mx-3"
-                data-bs-toggle="collapse" data-bs-target="#indoor">En salle </button>
-            <button class="btn col-lg-3 col-10 dropdown bg-success text-light border rounded-pill px-5 m-3"
-                data-bs-toggle="collapse" data-bs-target="#outdoor">En extérieur</button>
-            <button class="btn col-lg-3 col-10 dropdown bg-success text-light border rounded-pill px-5 mx-3"
-                data-bs-toggle="collapse" data-bs-target="#visio">En visio</button>
+
+    <div class="accordion" id="training-space">
+        {# Button toggle -select 3 options #}
+        <div class="container">
+            <div class="row d-flex flex-row align-center justify-content-center">
+                <div class="col-lg-3 col-10 text-center my-3" id="btn-indoor">
+                    <button class="accordion-button border rounded-pill px-5 mx-3" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#indoor" aria-expanded="true" aria-controls="indoor">
+                        En salle
+                    </button>
+                </div>
+                <div class="col-lg-3 col-10 text-center my-3" id="btn-outdoor">
+                    <button class="accordion-button collapsed border rounded-pill px-5 mx-3" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#outdoor" aria-expanded="false"
+                        aria-controls="outdoor">
+                        En extérieur
+                    </button>
+                </div>
+                <div class="col-lg-3 col-10 text-center my-3" id="btn-visio">
+                    <button class="accordion-button collapsed border rounded-pill px-5 mx-3" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#visio" aria-expanded="false"
+                        aria-controls="outdoor">
+                        En visio
+                    </button>
+                </div>
+            </div>
         </div>
+        {# Elements show according to selected option #}
         <div class="accordion-group">
-            {# Option: Indoor: Display the map + list of cards: show par default #}
-            <div class="collapse show" id="indoor" data-bs-parent="#training-space">
-                <div class="container-fluid">
-                    <div class="row col-lg-11 mb-5 mx-auto">
-                        <div class="col-lg-6 m-auto d-flex flex-column justify-content-center align-center d-none d-lg-block">
-                            {# Display a map - for now , it only shows the position of the first room => TODO: affiche the position of selected room #}
-                            <iframe class="container-fluid p-0" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=1.9287925958633425%2C47.823166638534445%2C1.9321399927139284%2C47.824764004685505&amp;layer=mapnik&amp;marker=47.82396532775434%2C1.9304662942886353" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=47.82397&amp;mlon=1.93047#map=19/47.82397/1.93047">Afficher une carte plus grande</a></small>
+            {# Option 1: Indoor: Display the map + list of cards: show by default #}
+            <div class="accordion-collapse collapse show container-fluid" id="indoor" aria-labelledby="btn-indoor"
+                data-bs-parent="#training-space">
+                <div class="row col-lg-11 mx-auto">
+                    <div
+                        class="col-lg-6 m-auto d-flex flex-column justify-content-center align-center d-none d-lg-block">
+                        {# Display a map - for now , it only shows the position of the first room => TODO: affiche the
+                        position of selected room #}
+                        <iframe class="container-fluid p-0" height="500" frameborder="0" scrolling="no" marginheight="0"
+                            marginwidth="0"
+                            src="https://www.openstreetmap.org/export/embed.html?bbox=1.9287925958633425%2C47.823166638534445%2C1.9321399927139284%2C47.824764004685505&amp;layer=mapnik&amp;marker=47.82396532775434%2C1.9304662942886353"
+                            style="border: 1px solid black"></iframe><br /><small><a
+                                href="https://www.openstreetmap.org/?mlat=47.82397&amp;mlon=1.93047#map=19/47.82397/1.93047">Afficher
+                                une carte plus grande</a></small>
+                    </div>
+                    <div class="col-lg-1">
+                        <p class="my-5"></p>
+                    </div>
+                    {# section cards #}
+                    <div class="cards-indoor col-lg-5 mb-5 rounded overflow-auto">
+                        {% for training_space in training_spaces %}
+                        <div class="card text-center my-3 m-auto bg-dark rounded">
+                            <div class="card-body btn border border-light rounded">
+                                <h3 class="card-title text-light"> {{ training_space.name }}</h3>
+                                <p class="card-text text-center text-light"> {{ training_space.address }} </p>
+                            </div>
                         </div>
-                        <div class="col-lg-1 d-none d-md-block">
-                            <p class="my-5"></p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {# Option: Outdoor: Display a carousel of 3 photos with captions #}
+            <div class="accordion-collapse collapse container mt-5" id="outdoor" aria-labelledby="btn-outdoor"
+                data-bs-parent="#training-space">
+                <div id="carousel-outdoor-space" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carousel-outdoor-space" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carousel-outdoor-space" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carousel-outdoor-space" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{ asset('build/images/exercise-outdoor.jpg') }}" class="d-block w-100"
+                                alt="fitness outdoor">
+                            <div class="carousel-caption text-light fw-bold d-none d-md-block">
+                                <p>Vous avez envie de faire du sport en plein air tout en profitant de la beauté des
+                                    paysages? Optez pour le coaching en extérieur.</p>
+                            </div>
                         </div>
-                        {# section cards #}
-                        <div class="col-lg-5 py-3 d-flex flex-column justify-content-center align-center">
-                            {# <div class="text-center space-card-scroll overflow-auto" data-spy="scroll"
-                                data-offset="20">#}
-                                {% for training_space in training_spaces %}
-                                <div class="card text-center my-3 bg-dark">
-                                    <div class="card-body btn border border-light rounded">
-                                        <h3 class="card-title text-light"> {{ training_space.name }}</h3>
-                                        <p class="card-text text-center text-light"> {{ training_space.address }} </p>
-                                    </div>
-                                </div>
-                                {% endfor %}
+                        <div class="carousel-item">
+                            <img src="{{ asset('build/images/yoga-outdoor1.jpg') }}" class="d-block w-100"
+                                alt="yoga on the beach">
+                            <div class="carousel-caption text-light fw-bold d-none d-md-block">
+                                <p>Que ce soit pour de la perte de poids, de la course et même du yoga, tout est
+                                    possible et réalisable en extérieur.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('build/images/yoga-outdoor2.jpg') }}" class="d-block w-100"
+                                alt="morning exercise on the beach">
+                            <div class="carousel-caption text-light fw-bold d-none d-md-block">
+                                <p>N’hésitez pas et profitez vite d’un coaching en extérieur !</p>
                             </div>
                         </div>
                     </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-outdoor-space"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-outdoor-space"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                {# Option: Indoor: Display a carousel of 3 photos #}
-                <div class="collapse container mt-5" id="outdoor" data-bs-parent="#training-space">
-                    <div id="carousel-outdoor-space" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carousel-outdoor-space" data-bs-slide-to="0"
-                                class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carousel-outdoor-space" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carousel-outdoor-space" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="{{ asset('build/images/fitness-outdoor.webp') }}" class="d-block w-100"
-                                    alt="fitness outdoor">
-                                <div class="carousel-caption text-light fw-bold d-none d-md-block">
-                                    <p>Vous avez envie de faire du sport en plein air tout en profitant de la beauté des
-                                        paysages? Optez pour le coaching en extérieur.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('build/images/yoga-beach.webp') }}" class="d-block w-100"
-                                    alt="yoga on the beach">
-                                <div class="carousel-caption text-light fw-bold d-none d-md-block">
-                                    <p>Que ce soit pour de la perte de poids, de la course et même du yoga, tout est
-                                        possible et réalisable en extérieur.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('build/images/gym-beach.webp') }}" class="d-block w-100"
-                                    alt="morning exercise on the beach">
-                                <div class="carousel-caption text-light fw-bold d-none d-md-block">
-                                    <p>N’hésitez pas et profitez vite d’un coaching en extérieur !</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-outdoor-space"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-outdoor-space"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-                {# Option: Visio: Display a photo #}
-                <div class="collapse col-lg-9 container mt-5 text-center position-relative" id="visio"
-                    data-bs-parent="#training-space">
-                    <img src="{{ asset('build/images/visio-coach.webp') }}" alt=""
-                        class="position-relative p-0 d-block w-100">
-                    <p class="text-center text-light fw-bold position-absolute top-50 start-50 translate-middle d-none d-md-block">
-                        Rapprochez-vous de votre coach pour définir les modalités de votre séance en vidéo conférence.
-                    </p>
-                </div>
+            </div>
+            {# Option: Visio: Display a photo with description #}
+            <div class="accordion-collapse collapse container mt-5 text-center" id="visio" aria-labelledby="btn-visio"
+                data-bs-parent="#training-space">
+                <img src="{{ asset('build/images/visio-coach2.jpg') }}" alt=""
+                    class="position-relative p-0 d-block w-100">
+                <p
+                    class="text-center text-light fw-bold position-absolute top-50 start-50 translate-middle d-none d-md-block">
+                    Rapprochez-vous de votre coach pour définir les modalités de votre séance en vidéo conférence.
+                </p>
             </div>
         </div>
     </div>
     {# Le lien pour retouner à la page accueil #}
-    <div class="d-flex align-items-baseline mt-5">
+    <div class="container d-flex align-items-baseline mt-5">
         <i class="bi bi-caret-left-fill text-primary"></i>
         <p class="text-uppercase fw-bold fst-italic"><a href="{{ path('home') }}">Retour à la page d'accueil</a></p>
     </div>
