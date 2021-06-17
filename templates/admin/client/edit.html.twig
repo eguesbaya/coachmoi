@@ -1,13 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 
 {% block title %}Edit Client{% endblock %}
 
-{% block body %}
-    <h1>Edit Client</h1>
+{% block information %}
+    <div class ="d-flex align-items-baseline">
+        <h2>Mes informations</h2>
+    </div>
+    {{ include('admin/client/_form.html.twig', {'button_label': 'Update'}) }}
 
-    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('client_index') }}">back to list</a>
-
-    {{ include('client/_delete_form.html.twig') }}
+   <div class="d-flex align-items-baseline my-5">
+      <i class="bi bi-caret-left-fill text-primary"></i>
+      <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('client_show', {'id': client.id}) }}">Retour à la page d'accueil</a></p>
+    </div>
 {% endblock %}

@@ -10,9 +10,11 @@
             <div class="w-100 w-lg-25">{% block information %}{% endblock %}</div>
             <div class="w-100 w-lg-75">{% block preferences %}{% endblock %}</div>
         </section>
-
-        {% block planning %}{% endblock %}
-        {% block documents %}{% endblock %}
+        <section>
+            {% block planning %}{% endblock %}
+        </section>
+        <section>
+            {% block documents %}{% endblock %}
         </section>
     </main>
 {% endblock %}
