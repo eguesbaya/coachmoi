@@ -6,8 +6,8 @@
 @import "training_space.scss";
 
 body {
-    background-color: #fffafa;
-    background-image: url("https://transparenttextures.com/patterns/clean-gray-paper.png");
+    background-color: $light;
+    background-image: url("/assets/images/clean-gray-paper.png");
     font-family: $text-font;
     color: $dark;
 }
