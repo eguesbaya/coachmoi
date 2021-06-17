@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ActivityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Activity
      * @ORM\Column(type="boolean")
      */
     private bool $isFeatured;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Coach::class, mappedBy="Activity")
+     */
+    private $coaches;
+
+    public function __construct()
+    {
+        $this->coaches = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +98,33 @@ class Activity
     public function setIsFeatured(bool $isFeatured): self
     {
         $this->isFeatured = $isFeatured;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Coach[]
+     */
+    public function getCoaches(): Collection
+    {
+        return $this->coaches;
+    }
+
+    public function addCoach(Coach $coach): self
+    {
+        if (!$this->coaches->contains($coach)) {
+            $this->coaches[] = $coach;
+            $coach->addActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCoach(Coach $coach): self
+    {
+        if ($this->coaches->removeElement($coach)) {
+            $coach->removeActivity($this);
+        }
 
         return $this;
     }
