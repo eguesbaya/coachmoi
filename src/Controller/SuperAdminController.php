@@ -14,7 +14,7 @@ class SuperAdminController extends AbstractController
     public function index(): Response
     {
         return $this->render('super_admin/index.html.twig', [
-            'superadmin' => 'Franck ;) ',
+            'app_controller' => 'SuperAdminController',
         ]);
     }
 }
