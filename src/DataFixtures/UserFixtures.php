@@ -10,7 +10,7 @@ use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
 class UserFixtures extends Fixture implements FixtureGroupInterface
 {
-    public const MAX_USERS = 10;
+    public const MAX_USERS = 12;
 
     public function load(ObjectManager $manager)
     {
