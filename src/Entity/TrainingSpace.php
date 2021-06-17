@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TrainingSpaceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\SpaceCategory;
 
 /**
  * @ORM\Entity(repositoryClass=TrainingSpaceRepository::class)
@@ -37,6 +38,12 @@ class TrainingSpace
      */
     private string $address;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=SpaceCategory::class, inversedBy="trainingSpaces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private ?SpaceCategory $spaceCategory;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,16 +61,16 @@ class TrainingSpace
         return $this;
     }
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
     public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
 
         return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
     }
 
     public function getDescription(): ?string
@@ -86,6 +93,18 @@ class TrainingSpace
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getSpaceCategory(): ?SpaceCategory
+    {
+        return $this->spaceCategory;
+    }
+
+    public function setSpaceCategory(?SpaceCategory $spaceCategory): self
+    {
+        $this->spaceCategory = $spaceCategory;
 
         return $this;
     }

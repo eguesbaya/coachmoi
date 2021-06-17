@@ -8,11 +8,11 @@
                 <!--Carousel-->
                 <div id="carousel-training-space" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
                     <div class="carousel-inner">
-                        {% for training_space in training_spaces %}
+                        {% for space_category in space_categories %}
                         <div class="carousel-item {{ loop.first ? 'active' : '' }}">
-                            <img src="{{ training_space.photo }}"
+                            <img src="{{ space_category.photo }}"
                                 class="d-block mw-100 border border-success border-3 rounded"
-                                alt="{{ training_space.name }}">
+                                alt="{{ space_category.name }}">
                         </div>
                         {% endfor %}
                     </div>
@@ -24,23 +24,22 @@
             </div>
             <div class="col-lg-5 py-3 d-flex flex-column justify-content-center align-center">
                 <!--Training space: description -->
-                {% for training_space in training_spaces %}
+                {% for space_category in space_categories %}
 
-                <div class="card text-center my-3 bg-dark ">
+                <div class="card text-center my-3 bg-dark space-card">
 
                     <div class="card-body btn border border-light rounded" data-bs-target="#carousel-training-space"
                         data-bs-slide-to="{{ loop.index - 1 }}" class="{{ loop.first ? 'active' : '' }}"
                         aria-current="{{ loop.first ? 'true' : '' }}" aria-label="Slide {{ loop.index }}">
-                        <h3 class="card-title text-light"> {{ training_space.name }}</h3>
-                        <p class="card-text text-light fst-italic"> {{ training_space.description }} </p>
+                        <h3 class="card-title text-light"> {{ space_category.name }}</h3>
+                        <p class="card-text text-center text-light d-none d-lg-block"> {{ space_category.description }} </p>
                     </div>
                 </div>
                 {% endfor %}
             </div>
         </div>
-        <div class="row d-grid gap-2 col-sm-6 col-xl-3 mx-auto">
-            <a class="btn bg-success text-dark" href="#">VOIR PLUS DE SALLES</a>
-
+        <div class="row col-11 text-center mx-auto my-5 d-grid gap-2 col-sm-6 col-xl-3">
+            <a class="btn btn-primary" href="{{ path('training_space') }}" role="button">Voir plus de salles</a>
         </div>
     </div>
 </section>
