@@ -19,7 +19,7 @@ class ContactController extends AbstractController
      */
     public function contact(Request $request, MailerInterface $mailer): Response
     {
-        $contactRecipe = "serdar45000@gmail.com";
+        $contactRecipe = "contact@coachmoi.com";
         $contact = new Contact();
         $contactForm = $this->createForm(ContactType::class, $contact);
         $contactForm->handleRequest($request);
