@@ -6,6 +6,7 @@ use App\Repository\ActivityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Coach;
 
 /**
  * @ORM\Entity(repositoryClass=ActivityRepository::class)
@@ -40,9 +41,9 @@ class Activity
     private bool $isFeatured;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Coach::class, mappedBy="Activity")
+     * @ORM\ManyToMany(targetEntity=Coach::class, mappedBy="activities")
      */
-    private $coaches;
+    private Collection $coaches;
 
     public function __construct()
     {

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\User;
+use App\Entity\Activity;
 
 /**
  * @ORM\Entity(repositoryClass=CoachRepository::class)
@@ -64,7 +65,7 @@ class Coach
     /**
      * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="coaches")
      */
-    private $activities;
+    private Collection $activities;
 
     public function __construct()
     {
@@ -182,8 +183,8 @@ class Coach
 
     public function addActivity(Activity $activity): self
     {
-        if (!$this->Activity->contains($activity)) {
-            $this->Activity[] = $activity;
+        if (!$this->activities->contains($activity)) {
+            $this->activities[] = $activity;
         }
 
         return $this;
@@ -191,7 +192,7 @@ class Coach
 
     public function removeActivity(Activity $activity): self
     {
-        $this->Activity->removeElement($activity);
+        $this->activities->removeElement($activity);
 
         return $this;
     }
