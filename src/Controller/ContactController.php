@@ -19,6 +19,7 @@ class ContactController extends AbstractController
      */
     public function contact(Request $request, MailerInterface $mailer): Response
     {
+        $contactRecipe = "serdar45000@gmail.com";
         $contact = new Contact();
         $contactForm = $this->createForm(ContactType::class, $contact);
         $contactForm->handleRequest($request);
@@ -27,7 +28,7 @@ class ContactController extends AbstractController
             $contactForm = $contactForm->getData();
             $email = (new Email())
             ->from(new Address($contactForm->getEmail()))
-            ->to('serdar45000@gmail.com')
+            ->to($contactRecipe)
             ->subject('Nouveau message du site COACH MOI')
             ->html($this->renderView('contact/newMessageEmail.html.twig', ['contact' => $contact]));
             $mailer->send($email);
