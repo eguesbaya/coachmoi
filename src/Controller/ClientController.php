@@ -75,7 +75,7 @@ class ClientController extends AbstractController
             return $this->redirectToRoute('client_index');
         }
 
-        return $this->render('admin/client/show.html.twig', [
+        return $this->render('admin/client/edit.html.twig', [
             'client' => $client,
             'form' => $form->createView(),
         ]);
