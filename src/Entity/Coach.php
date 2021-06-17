@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\CoachRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\User;
+use App\Entity\Activity;
 
 /**
  * @ORM\Entity(repositoryClass=CoachRepository::class)
@@ -58,6 +61,16 @@ class Coach
      * @ORM\JoinColumn(nullable=false)
      */
     private ?User $user;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="coaches")
+     */
+    private Collection $activities;
+
+    public function __construct()
+    {
+        $this->activities = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -156,6 +169,30 @@ class Coach
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Activity[]
+     */
+    public function getActivities(): Collection
+    {
+        return $this->activities;
+    }
+
+    public function addActivity(Activity $activity): self
+    {
+        if (!$this->activities->contains($activity)) {
+            $this->activities[] = $activity;
+        }
+
+        return $this;
+    }
+
+    public function removeActivity(Activity $activity): self
+    {
+        $this->activities->removeElement($activity);
 
         return $this;
     }

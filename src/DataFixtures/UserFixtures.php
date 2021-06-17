@@ -12,7 +12,7 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i <= self::MAX_USERS; $i++) {
+        for ($i = 0; $i <= self::MAX_USERS; $i++) {
             $user = new User();
             $user->setFirstname('Prénom ' . $i);
             $user->setLastname('Nom ' . $i);
