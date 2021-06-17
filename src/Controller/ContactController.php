@@ -14,12 +14,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
 {
+    public const MAILER_FROM = "contact@coachmoi.com";
     /**
      * @Route("/contact", name="contact")
      */
     public function contact(Request $request, MailerInterface $mailer): Response
     {
-        $contactRecipe = "contact@coachmoi.com";
         $contact = new Contact();
         $contactForm = $this->createForm(ContactType::class, $contact);
         $contactForm->handleRequest($request);
@@ -28,7 +28,7 @@ class ContactController extends AbstractController
             $contactForm = $contactForm->getData();
             $email = (new Email())
             ->from(new Address($contactForm->getEmail()))
-            ->to($contactRecipe)
+            ->to(self::MAILER_FROM)
             ->subject('Nouveau message du site COACH MOI')
             ->html($this->renderView('contact/newMessageEmail.html.twig', ['contact' => $contact]));
             $mailer->send($email);
