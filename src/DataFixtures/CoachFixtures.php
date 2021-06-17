@@ -13,7 +13,6 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
     private const MAX_COACH = 4;
     public function load(ObjectManager $manager)
     {
-        //$birthday = "1998-01-01";
         for ($i = 1; $i <= self::MAX_COACH; $i++) {
             $coach = new Coach();
             $coach->setBirthdate(\DateTime::createFromFormat('Y-m-d', "1998-01-01"));
@@ -22,7 +21,8 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
             $coach->setEquipment('Haltères, Corde à sauter, tapis');
             $coach->setBiography('Jeune coach spécialiste en remise en forme');
             $coach->setHourlyRate(50);
-            $coach->setUser($this->getReference('user' . rand(1, UserFixtures::MAX_USERS)));
+            // Replaced the function rand() by the id of the user to avoid the error of duplicated user ids
+            $coach->setUser($this->getReference('user' . $i));
             $manager->persist($coach);
         }
         $manager->flush();

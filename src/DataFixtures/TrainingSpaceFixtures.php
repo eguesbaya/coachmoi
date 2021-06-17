@@ -5,8 +5,9 @@ namespace App\DataFixtures;
 use App\Entity\TrainingSpace;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class TrainingSpaceFixtures extends Fixture
+class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
 {
     private const TRAINING_SPACE = [
         [
@@ -39,7 +40,17 @@ class TrainingSpaceFixtures extends Fixture
             $trainingSpaces->setPhoto($trainingSpaceDetails['photo']);
             $trainingSpaces->setAddress($trainingSpaceDetails['address']);
             $manager->persist($trainingSpaces);
+            $spaceCategoryIndex = rand(0, count(SpaceCategoryFixtures::SPACE_CATEGORIES) - 1);
+            $spaceCategoryRef = $this->getReference('space_category' . $spaceCategoryIndex);
+            $trainingSpaces->setSpaceCategory($spaceCategoryRef);
         }
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            SpaceCategoryFixtures::class,
+        ];
     }
 }
