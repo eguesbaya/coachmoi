@@ -14,7 +14,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
 {
-    public const MAILER_FROM = "contact@coachmoi.com";
+    public const MAILER_TO = "contact@coachmoi.com";
+    public const MAILER_SUBJECT = "Nouveau message du site COACH MOI";
     /**
      * @Route("/contact", name="contact")
      */
@@ -28,8 +29,8 @@ class ContactController extends AbstractController
             $contactForm = $contactForm->getData();
             $email = (new Email())
             ->from(new Address($contactForm->getEmail()))
-            ->to(self::MAILER_FROM)
-            ->subject('Nouveau message du site COACH MOI')
+            ->to(self::MAILER_TO)
+            ->subject(self::MAILER_SUBJECT)
             ->html($this->renderView('contact/newMessageEmail.html.twig', ['contact' => $contact]));
             $mailer->send($email);
             return $this->render('contact/messageSentConfirmed.html.twig');
