@@ -4,11 +4,11 @@
         <div class="col-md-6 col-lg-4">
             <div class="card bg-dark h-100">
                 <div class="row g-0">
-                    <div class="col-6">
-                        <img src="https://bit.ly/3veb8Mm" class="card-img-top" alt="{{ activity.name }}">
+                    <div class="col-sm-6 d-flex">
+                        <img src="{{ activity.photo }}" class="card-img-top h-100" alt="{{ activity.name }}">
                     </div>
-                    <div class="col-6">
-                        <div class="card-body">
+                    <div class="col-sm-6">
+                        <div class="card-body d-flex flex-column align-items-center">
                             <h4 class="card-title w-100">{{ activity.name }}</h4>
                             <p class="card-text text-light w-100">{{ activity.description }}</p>
                             <a class="btn btn-primary text-light col-12 w-100" href="#" role="button">Choisir</a>
