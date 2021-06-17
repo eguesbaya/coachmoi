@@ -53,8 +53,11 @@ class ClientController extends AbstractController
      */
     public function show(Client $client): Response
     {
+        //$form = $this->createForm(ClientType::class, $client);
+
         return $this->render('admin/client/show.html.twig', [
             'client' => $client,
+            //'form' => $form->createView(),
         ]);
     }
 
@@ -72,7 +75,7 @@ class ClientController extends AbstractController
             return $this->redirectToRoute('client_index');
         }
 
-        return $this->render('client/edit.html.twig', [
+        return $this->render('admin/client/show.html.twig', [
             'client' => $client,
             'form' => $form->createView(),
         ]);

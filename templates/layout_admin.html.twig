@@ -6,9 +6,9 @@
     <main class="container-fluid col-11">
         <h1> Mon espace {{ parent() }} </h1>
 
-        <section class="d-flex justify-content-between align-items-stretch">
-            <div>{% block information %}{% endblock %}</div>
-            <div>{% block preferences %}{% endblock %}</div>
+        <section class="d-flex flex-column flex-lg-row justify-content-between align-items-stretch">
+            <div class="w-100 w-lg-25">{% block information %}{% endblock %}</div>
+            <div class="w-100 w-lg-75">{% block preferences %}{% endblock %}</div>
         </section>
 
         {% block planning %}{% endblock %}

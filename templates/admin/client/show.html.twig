@@ -5,7 +5,61 @@
 {% block information %}
     <h2>Mes informations</h2>
 
-    <table class="table">
+    <div class="row row-cols g-4">
+        <div class="col">
+            <p>Prénom:</p>
+            <div class ="d-flex align-items-baseline">
+                <p class="fw-bold">{{ client.user.firstname }}</p>
+                <a href="{{ path('client_edit', {'id': client.id}) }}"><i class="bi bi-pencil-square m-2"></i></a>
+            </div>
+        </div>
+        <div class="col">
+            <p>Nom:</p>
+            <div class ="d-flex align-items-baseline">
+                <p class="fw-bold">{{ client.user.lastname }}</p>
+                <a href="{{ path('client_edit', {'id': client.id}) }}"><i class="bi bi-pencil-square m-2"></i></a>
+            </div>
+        </div>
+        <div class="col">
+            <p>Date de naissance:</p>
+            <div class ="d-flex align-items-baseline">
+                <p class="fw-bold">{{ client.birthdate ? client.birthdate|date('d/m/Y') : '' }}</p>
+                <a href="{{ path('client_edit', {'id': client.id}) }}"><i class="bi bi-pencil-square m-2"></i></a>
+            </div>
+        </div>
+        <div class="col">
+            <p>Téléphone:</p>
+            <div class ="d-flex align-items-baseline">
+                <p class="fw-bold">{{ client.user.telephone }}</p>
+                <a href="{{ path('client_edit', {'id': client.id}) }}"><i class="bi bi-pencil-square m-2"></i></a>
+            </div>
+        </div>
+        <div class="col">
+            <p>Email:</p>
+            <div class ="d-flex align-items-baseline">
+                <p class="fw-bold">{{ client.user.email }}</p>
+                <a href="{{ path('client_edit', {'id': client.id}) }}"><i class="bi bi-pencil-square m-2"></i></a>
+            </div>
+        </div>
+        <div class="col">
+            <p>Adresse:</p>
+            <div class ="d-flex align-items-baseline">
+                <p class="fw-bold">{{ client.address }}</p>
+                <a href="{{ path('client_edit', {'id': client.id}) }}"><i class="bi bi-pencil-square m-2"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-check">
+        <label class="form-check-label" for="flexCheckChecked">
+            Apte à la pratique sportive ?
+        </label>
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" {{ client.isApt ? 'checked' : '' }}>
+    </div>
+
+
+
+    <!--<table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -36,14 +90,9 @@
                 <td>{{ client.isApt ? 'Yes' : 'No' }}</td>
             </tr>
         </tbody>
-    </table>
-
-    <a href="{{ path('client_index') }}">back to list</a>
-
-    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
-
-    {{ include('admin/client/_delete_form.html.twig') }}
+    </table>-->
 {% endblock %}
+
 {% block preferences %}
     <h2>Mes préférences</h2>
 
@@ -86,6 +135,7 @@
 
     {{ include('admin/client/_delete_form.html.twig') }}
 {% endblock %}
+
 {% block planning %}
     <h2>Mon planning</h2>
 
