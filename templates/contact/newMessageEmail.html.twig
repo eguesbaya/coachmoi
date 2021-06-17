@@ -1,0 +1,33 @@
+{% extends 'contact/layoutEmail.html.twig' %}
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+{% block body %}
+  <div style="background:black">
+    <h1 style="color:#6bd736; padding-left:5px; height:50px; display:flex; align-items: center">
+      Nouveau message
+    </h1>
+  </div>
+
+  <div style="margin-left:5px;">
+    <h2>
+      <p>
+        De : {{ contact.firstname }} {{ contact.lastname }}
+      </p>
+      <p>
+        Téléphone :
+        {{ contact.phone }}
+      </p>
+      <p>
+        E-mail : {{ contact.email }}
+      </p>
+      <p>
+        Message :
+        {{ contact.message }}
+      </p>
+    </h2>
+  </div>
+  <div style="background:black; color:#6bd736; padding-left:5px; height:30px; display:flex; align-items: center;">
+    wwww.coach-moi.com
+  </div>
+{% endblock %}
