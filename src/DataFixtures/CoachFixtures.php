@@ -10,10 +10,10 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class CoachFixtures extends Fixture implements DependentFixtureInterface
 {
-    private const MAX_COACH = 4;
+    public const MAX_COACH = 8;
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i <= self::MAX_COACH; $i++) {
+        for ($i = 0; $i < self::MAX_COACH; $i++) {
             $coach = new Coach();
             $coach->setBirthdate(\DateTime::createFromFormat('Y-m-d', "1998-01-01"));
             $coach->setHasVehicle(true);
@@ -23,6 +23,9 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
             $coach->setHourlyRate(50);
             // Replaced the function rand() by the id of the user to avoid the error of duplicated user ids
             $coach->setUser($this->getReference('user' . $i));
+            $coach->addActivity($this->getReference('activity_' .
+                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
+
             $manager->persist($coach);
         }
         $manager->flush();
@@ -32,6 +35,7 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class,
+            ActivityFixtures::class
         ];
     }
 }

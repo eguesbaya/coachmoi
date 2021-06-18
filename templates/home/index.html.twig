@@ -16,7 +16,7 @@
         <h2>Les coachs</h2>
         {% include "home/_coach.html.twig" %}
         <div class="row col-11 text-center mx-auto my-5 d-grid gap-2 col-sm-6 col-xl-3">
-            <a class="btn btn-primary" href="#" role="button">Voir plus de coachs</a>
+            <a class="btn btn-primary" href="{{ path('coachs_index') }}" role="button">Voir plus de coachs</a>
         </div>
     </section>
 {% endblock %}
