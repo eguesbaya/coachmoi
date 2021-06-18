@@ -1,20 +1,14 @@
-    <div class="row g-4 my-4">
+    <div class="row row-cols-md-3 g-4 my-4">
         <!--CARD: start-->
         {% for activity in activities %}
         <div class="col-md-6 col-lg-4">
-            <div class="card bg-dark h-100">
-                <div class="row g-0">
-                    <div class="col-sm-6 d-flex">
-                        <img src="{{ activity.photo }}" class="card-img-top h-100" alt="{{ activity.name }}">
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="card-body d-flex flex-column align-items-center">
+            <div class="card bg-dark h-100 d-md-flex flex-row">
+                        <img src="{{ activity.photo }}" class="card-img-top rounded w-50" alt="{{ activity.name }}">
+                        <div class="card-body d-flex flex-column justify-content-between w-50">
                             <h4 class="card-title w-100">{{ activity.name }}</h4>
                             <p class="card-text text-light w-100">{{ activity.description }}</p>
-                            <a class="btn btn-primary text-light col-12 w-100" href="#" role="button">Choisir</a>
+                            <a class="btn btn-primary text-light col-12" href="#" role="button">Choisir</a>
                         </div>
-                    </div>
-                </div>
             </div>
         </div>
         {% endfor %}
