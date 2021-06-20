@@ -20,8 +20,13 @@
 				</li>
 			</ul>
 			<div class="d-flex justify-content-center align-items-center">
-				<a class="btn btn-success mx-1 button-login text-light" href="#">S'inscrire</a>
-				<a class="btn btn-success mx-1 button-login text-light" href="#">Se connecter</a>
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<a class="btn btn-success mx-1 button-login text-light" href="#">Mon profil</a>
+					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_logout') }}">Déconnexion</a>
+				{% else %}
+					<a class="btn btn-success mx-1 button-login text-light" href="#">S'inscrire</a>
+					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_login') }}">Se connecter</a>
+				{% endif %}
 			</div>
 		</div>
 	</div>
