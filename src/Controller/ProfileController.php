@@ -21,6 +21,9 @@ class ProfileController extends AbstractController
         return $this->render('profile/index_coach.html.twig');
     }
 
+    /**
+     * @Route("/coach/edit", name="coach_edit")
+     */
     public function editCoach(CoachRepository $coachRepository): Response
     {
         return $this->render('profile/edit_coach.html.twig');
