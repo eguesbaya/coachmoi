@@ -17,10 +17,6 @@ class Client
      */
     private int $id;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-
     private User $user;
 
     public function getId(): ?int
