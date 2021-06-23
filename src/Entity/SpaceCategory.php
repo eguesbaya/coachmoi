@@ -36,7 +36,7 @@ class SpaceCategory
     private ?string $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=TrainingSpace::class, mappedBy="SpaceCategory", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=TrainingSpace::class, mappedBy="spaceCategory", orphanRemoval=true)
      */
     private Collection $trainingSpaces;
 

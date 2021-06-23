@@ -21,22 +21,23 @@ class ActivityFixtures extends Fixture implements FixtureGroupInterface
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < self::MAX_ACTIVITY; $i++) {
+        for ($i = 0; $i <= self::MAX_ACTIVITY; $i++) {
             $activity = new Activity();
             $activity->setName('Activité ' . $i);
             $activity->setIsFeatured(false);
             $activity->setDescription('Une description de l\'activité ' . $i);
+            $activity->setPhoto('https://bit.ly/3gwemH4');
 
             $manager->persist($activity);
             $this->addReference('activity_' . $i, $activity);
         }
 
-        foreach (self::FEATURED_ACTIVITY as $activityName) {
+        foreach (self::FEATURED_ACTIVITY as $key => $activityName) {
             $activity = new Activity();
             $activity->setName($activityName);
             $activity->setIsFeatured(true);
             $manager->persist($activity);
-            $this->addReference('activity_' .  strtolower($activityName), $activity);
+            $this->addReference('activity_' . $key, $activity);
         }
 
         $manager->flush();

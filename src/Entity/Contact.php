@@ -4,6 +4,10 @@ namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @var string
+ */
+
 class Contact
 {
     /**
