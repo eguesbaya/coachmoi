@@ -6,6 +6,7 @@ use App\Repository\TrainingSpaceRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Entity\SpaceCategory;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=TrainingSpaceRepository::class)
