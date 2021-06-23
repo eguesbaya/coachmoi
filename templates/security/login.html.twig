@@ -1,9 +1,9 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Ce connecter{% endblock %}
+{% block title %}Se connecter{% endblock %}
 
 {% block body %}
-	<main class='container'>
+	<main class='container min-vh-100'>
 		<form method="post">
 			{% if error %}
 				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
