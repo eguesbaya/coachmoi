@@ -22,7 +22,7 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
             $coach->setBiography('Jeune coach spécialiste en remise en forme');
             $coach->setHourlyRate(50);
             // Replaced the function rand() by the id of the user to avoid the error of duplicated user ids
-            $coach->setUser($this->getReference('user' . $i));
+            $coach->setUser($this->getReference('user_' . $i));
             $manager->persist($coach);
         }
         $manager->flush();
