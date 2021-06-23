@@ -19,7 +19,7 @@ class ContactType extends AbstractType
             ->add('last_name', TextType::class, [
                 'label' => 'Nom :',
                 'label_attr' => [
-                    'class' => 'h4',
+                    'class' => 'h5',
                 ],
                 'attr' => [
                     'placeholder' => 'Votre nom',
@@ -28,7 +28,7 @@ class ContactType extends AbstractType
             ->add('first_name', TextType::class, [
                 'label' => 'Prénom :',
                 'label_attr' => [
-                    'class' => 'h4',
+                    'class' => 'h5',
                 ],
                 'attr' => [
                     'placeholder' => 'Votre prénom',
@@ -37,7 +37,7 @@ class ContactType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'E-mail :',
                 'label_attr' => [
-                    'class' => 'h4',
+                    'class' => 'h5',
                 ],
                 'attr' => [
                     'placeholder' => 'Votre e-mail',
@@ -46,7 +46,7 @@ class ContactType extends AbstractType
             ->add('phone', TelType::class, [
                 'label' => 'Téléphone :',
                 'label_attr' => [
-                    'class' => 'h4',
+                    'class' => 'h5',
                 ],
                 'attr' => [
                     'placeholder' => 'Votre téléphone',
@@ -55,7 +55,7 @@ class ContactType extends AbstractType
             ->add('message', TextareaType::class, [
                 'label' => 'Message :',
                 'label_attr' => [
-                    'class' => 'h4',
+                    'class' => 'h5',
                 ],
                 'attr' => [
                     'placeholder' => 'Votre message',
