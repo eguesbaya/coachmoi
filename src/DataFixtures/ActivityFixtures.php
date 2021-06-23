@@ -12,7 +12,7 @@ class ActivityFixtures extends Fixture
     public const FEATURED_ACTIVITY = [
         ['name' => 'Yoga', 'photo' => 'https://bit.ly/3gxCuJg'],
         ['name' => 'Boxe', 'photo' => 'https://bit.ly/3iQ76az'],
-        ['name' => 'Judo', 'photo' => 'https://bit.ly/3gwemH4'],
+        ['name' => 'Judo', 'photo' => 'https://bit.ly/3qm4l2w'],
         ['name' => 'Escalade', 'photo' => 'https://bit.ly/2SIqI5F'],
         ['name' => 'Remise en forme','photo' => 'https://bit.ly/3wEnA9M']
     ];
