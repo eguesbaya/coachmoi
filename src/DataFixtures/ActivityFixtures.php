@@ -32,12 +32,12 @@ class ActivityFixtures extends Fixture implements FixtureGroupInterface
             $this->addReference('activity_' . $i, $activity);
         }
 
-        foreach (self::FEATURED_ACTIVITY as $key => $activityName) {
+        foreach (self::FEATURED_ACTIVITY as $activityName) {
             $activity = new Activity();
             $activity->setName($activityName);
             $activity->setIsFeatured(true);
             $manager->persist($activity);
-            $this->addReference('activity_' . $key, $activity);
+            $this->addReference('activity_' . $activityName, $activity);
         }
 
         $manager->flush();
