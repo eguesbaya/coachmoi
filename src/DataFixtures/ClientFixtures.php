@@ -29,7 +29,7 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface, Fixtu
             $client->setGroupSize(rand(1, 5));
             $client->isApt(boolval(rand(0, 1)));
             $client->setGoal($faker->sentences(3, true));
-            $client->setActivity($this->getReference('activity_' . 'yoga')); // TODO attribute random activity
+            $client->setActivity($this->getReference('activity_' . 'Yoga')); // TODO attribute random activity
             $client->setPracticeLevel(
                 $this->getReference('level_' . rand(0, count(PracticeLevelFixtures::LEVELS) - 1))
             );
