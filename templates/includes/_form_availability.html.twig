@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+
+    <div class="row mt-5">
+        <div class="col-lg-4">
+        {{ form_row(form.weekday) }} 
+        </div>
+        <div class="col-6 col-lg-4">
+        {{ form_row(form.startTime) }}
+        </div>
+        <div class="col-6 col-lg-4">
+        {{ form_row(form.endTime) }}
+        </div>
+    </div>
+    <div class="row col-md-6 col-lg-4 mx-auto">
+        <button class="btn bg-success text-light my-5" type="submit">Indiquer une disponibilité</button>
+    </div>
+
+{{ form_end(form) }}
