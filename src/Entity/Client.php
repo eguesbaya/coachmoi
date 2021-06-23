@@ -3,11 +3,8 @@
 namespace App\Entity;
 
 use DateTimeInterface;
-use App\Entity\Availability;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ClientRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
@@ -68,16 +65,6 @@ class Client
      * @ORM\JoinColumn(nullable=false)
      */
     private PracticeLevel $practiceLevel;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="client", orphanRemoval=true)
-     */
-    private Collection $availabilities;
-
-    public function __construct()
-    {
-        $this->availabilities = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -188,36 +175,6 @@ class Client
     public function setPracticeLevel(PracticeLevel $practiceLevel): self
     {
         $this->practiceLevel = $practiceLevel;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Availability[]
-     */
-    public function getAvailabilities(): Collection
-    {
-        return $this->availabilities;
-    }
-
-    public function addAvailability(Availability $availability): self
-    {
-        if (!$this->availabilities->contains($availability)) {
-            $this->availabilities[] = $availability;
-            $availability->setClient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAvailability(Availability $availability): self
-    {
-        if ($this->availabilities->removeElement($availability)) {
-            // set the owning side to null (unless already changed)
-            if ($availability->getClient() === $this) {
-                $availability->setClient(null);
-            }
-        }
 
         return $this;
     }
