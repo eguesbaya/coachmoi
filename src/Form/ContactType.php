@@ -18,37 +18,47 @@ class ContactType extends AbstractType
         $builder
             ->add('last_name', TextType::class, [
                 'label' => 'Nom :',
+                'label_attr' => [
+                    'class' => 'h4',
+                ],
                 'attr' => [
-                    'class' => 'H3',
-                    'placeholder' => 'Votre nom'
+                    'placeholder' => 'Votre nom',
                 ]
             ])
             ->add('first_name', TextType::class, [
                 'label' => 'Prénom :',
+                'label_attr' => [
+                    'class' => 'h4',
+                ],
                 'attr' => [
-                    'class' => 'H3',
-                    'placeholder' => 'Votre prénom'
+                    'placeholder' => 'Votre prénom',
                 ]
             ])
             ->add('email', EmailType::class, [
                 'label' => 'E-mail :',
+                'label_attr' => [
+                    'class' => 'h4',
+                ],
                 'attr' => [
-                    'class' => 'H3',
-                    'placeholder' => 'email@email.com'
+                    'placeholder' => 'Votre e-mail',
                 ]
             ])
             ->add('phone', TelType::class, [
                 'label' => 'Téléphone :',
+                'label_attr' => [
+                    'class' => 'h4',
+                ],
                 'attr' => [
-                    'class' => 'H3',
-                    'placeholder' => '0102030405'
+                    'placeholder' => 'Votre téléphone',
                 ]
             ])
             ->add('message', TextareaType::class, [
-                'label' => 'Votre message :',
+                'label' => 'Message :',
+                'label_attr' => [
+                    'class' => 'h4',
+                ],
                 'attr' => [
-                   'class' => 'H3',
-                   'placeholder' => 'Votre message'
+                    'placeholder' => 'Votre message',
                 ]
             ])
         ;
