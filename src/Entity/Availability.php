@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeInterface;
 
 /**
  * @ORM\Entity(repositoryClass=AvailabilityRepository::class)
@@ -15,19 +16,19 @@ class Availability
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=Weekday::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $weekday;
+    private ?Weekday $weekday;
 
     /**
     * @ORM\Column(type="time")
     * A "H:i" formatted value
     */
-    private $startTime;
+    private ?DateTimeInterface $startTime;
 
     /**
     * @ORM\Column(type="time")
@@ -37,7 +38,7 @@ class Availability
     * message="L'heure de fin ne doit pas être antérieure à l'heure début"
     * )
     */
-    private $endTime;
+    private ?DateTimeInterface $endTime;
 
     public function getId(): ?int
     {
