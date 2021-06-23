@@ -29,8 +29,8 @@ class UserFixtures extends Fixture
                 $user,
                 'usercoachmoi'
             ));
-            $this->addReference('user' . $i, $user);
             $manager->persist($user);
+            $this->addReference('user_' . $i, $user);
         }
 
         $admin = new User();
