@@ -18,18 +18,38 @@ class ContactType extends AbstractType
         $builder
             ->add('last_name', TextType::class, [
                 'label' => 'Nom :',
+                'attr' => [
+                    'class' => 'H3',
+                    'placeholder' => 'Votre nom'
+                ]
             ])
             ->add('first_name', TextType::class, [
-                  'label' => 'Prénom :',
+                'label' => 'Prénom :',
+                'attr' => [
+                    'class' => 'H3',
+                    'placeholder' => 'Votre prénom'
+                ]
             ])
             ->add('email', EmailType::class, [
-                  'label' => 'E-mail :'
+                'label' => 'E-mail :',
+                'attr' => [
+                    'class' => 'H3',
+                    'placeholder' => 'email@email.com'
+                ]
             ])
             ->add('phone', TelType::class, [
-                   'label' => 'Téléphone :',
+                'label' => 'Téléphone :',
+                'attr' => [
+                    'class' => 'H3',
+                    'placeholder' => '0102030405'
+                ]
             ])
             ->add('message', TextareaType::class, [
-                   'label' => 'Votre message :'
+                'label' => 'Votre message :',
+                'attr' => [
+                   'class' => 'H3',
+                   'placeholder' => 'Votre message'
+                ]
             ])
         ;
     }
