@@ -33,7 +33,9 @@ class ContactController extends AbstractController
             ->subject(self::MAILER_SUBJECT)
             ->html($this->renderView('contact/newMessageEmail.html.twig', ['contact' => $contact]));
             $mailer->send($email);
-            return $this->render('contact/messageSentConfirmed.html.twig');
+            $this->addFlash('success', 'Votre message est en cours de traitement,
+                nous vous contacterons ultérieurement !');
+            return $this->redirectToRoute('contact');
         }
         return $this->render('contact/index.html.twig', [
             'contact' => $contactForm->createView()

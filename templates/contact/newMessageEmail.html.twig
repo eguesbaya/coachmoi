@@ -4,30 +4,17 @@
 {% endblock %}
 {% block body %}
   <div style="background:black">
-    <h1 style="color:#6bd736; padding-left:5px; height:50px; display:flex; align-items: center">
+    <h3 style="color:white; padding-left:5px; height:50px; display:flex; align-items: center;">
+      <img src="https://orleans-202103-coachmoi.phprover.wilders.dev/build/images/coachmoi.74a1fc14.png" style="float:top right" width="200">
       Nouveau message
-    </h1>
+    </h3>
   </div>
-
   <div style="margin-left:5px;">
-    <h2>
-      <p>
-        De : {{ contact.firstname }} {{ contact.lastname }}
-      </p>
-      <p>
-        Téléphone :
-        {{ contact.phone }}
-      </p>
-      <p>
-        E-mail : {{ contact.email }}
-      </p>
-      <p>
-        Message :
-        {{ contact.message }}
-      </p>
-    </h2>
-  </div>
-  <div style="background:black; color:#6bd736; padding-left:5px; height:30px; display:flex; align-items: center;">
-    wwww.coach-moi.com
+    <h4>
+      <p> De : {{ contact.firstname }} {{ contact.lastname }} </p>
+      <p> Téléphone : {{ contact.phone }} </p>
+      <p> E-mail : {{ contact.email }} </p>
+      <p> Message : {{ contact.message }} </p>
+    </h4>
   </div>
 {% endblock %}

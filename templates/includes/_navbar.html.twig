@@ -6,22 +6,27 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<ul class="navbar-nav me-auto my-2 my-lg-0 mx-auto">
-				<li class="nav-item mx-5">
-					<a class="nav-link text-center mx-5 fw-bold fst-italic" aria-current="page" href="{{ path('home') }}">Accueil</a>
+				<li class="nav-item mx-3">
+					<a class="nav-link text-center mx-3 fw-bold fst-italic" aria-current="page" href="{{ path('home') }}">Accueil</a>
 				</li>
-				<li class="nav-item text-center mx-5 fw-bold fst-italic">
+				<li class="nav-item text-center mx-3 fw-bold fst-italic">
 					<a class="nav-link" href="{{ path('activity') }}">Activités</a>
 				</li>
-				<li class="nav-item text-center mx-5 fw-bold fst-italic">
+				<li class="nav-item text-center mx-3 fw-bold fst-italic">
 					<a class="nav-link" href="{{ path('training_space') }}">Espaces d'entrainements</a>
 				</li>
-				<li class="nav-item text-center mx-5 fw-bold fst-italic">
+				<li class="nav-item text-center mx-3 fw-bold fst-italic">
 					<a class="nav-link" href="{{ path('coachs_index') }}">Coachs</a>
 				</li>
 			</ul>
 			<div class="d-flex justify-content-center align-items-center">
-				<a class="btn btn-success mx-1 button-login text-light" href="#">S'inscrire</a>
-				<a class="btn btn-success mx-1 button-login text-light" href="#">Se connecter</a>
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<a class="btn btn-success mx-1 button-login text-light" href="#">Mon profil</a>
+					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_logout') }}">Déconnexion</a>
+				{% else %}
+					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_register') }}">S'inscrire</a>
+					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_login') }}">Se connecter</a>
+				{% endif %}
 			</div>
 		</div>
 	</div>

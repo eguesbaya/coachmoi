@@ -18,6 +18,8 @@
 	</head>
 	<body>
 		{% block navbar %}{% endblock %}
+		{% block flash %}
+		{% include 'includes/_flash.html.twig' %}{% endblock %}
 		{% block body %}{% endblock %}
 		{% block footer %}
 		{% include 'includes/_footer.html.twig' %}

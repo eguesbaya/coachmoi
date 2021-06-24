@@ -4,6 +4,7 @@
 @import "banner.scss";
 @import "navbar.scss";
 @import "training_space.scss";
+@import "profiles.scss";
 
 body {
     background-color: $light;
@@ -19,11 +20,26 @@ body {
 h1,
 .h1,
 h2,
-.h2 {
+.h2,
+h3,
+.h3 {
     font-weight: 700;
     font-style: italic;
     margin: 2rem 1rem;
+    text-transform: uppercase;
+}
+
+h1,
+.h1,
+h2,
+.h2 {
     text-align: center;
+}
+
+h5 {
+    font-weight: 700;
+    font-style: italic;
+    margin:  0.5rem;
     text-transform: uppercase;
 }
 
