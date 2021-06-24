@@ -33,6 +33,19 @@ class UserFixtures extends Fixture
             $this->addReference('user_' . $i, $user);
         }
 
+        $client = new User();
+        $client->setFirstname('client');
+        $client->setLastname('CLIENT');
+        $client->setRoles(['ROLE_ADMIN']);
+        $client->setTelephone('020304099');
+        $client->setEmail('client@gmail.com');
+        $client->setPassword($this->passwordEncoder->encodePassword(
+            $client,
+            'admincoachmoi'
+        ));
+        $manager->persist($client);
+        $this->addReference('client', $client);
+
         $admin = new User();
         $admin->setFirstname('PrénomAdmin');
         $admin->setLastname('NomAdmin');
@@ -44,7 +57,7 @@ class UserFixtures extends Fixture
             'admincoachmoi'
         ));
         $manager->persist($admin);
-
+        $this->addReference('admin', $admin);
 
         $superAdmin = new User();
         $superAdmin->setFirstname('PrénomSuperAdmin');
