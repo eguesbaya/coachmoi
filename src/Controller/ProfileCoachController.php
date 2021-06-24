@@ -13,13 +13,6 @@ class ProfileCoachController extends AbstractController
      */
     public function index(): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-        $user = $this->getUser();
-
-        return $this->render('profile_coach/index.html.twig', [
-            'controller_name' => 'ProfileCoachController',
-            'user' => $user,
-        ]);
+        return $this->render('profile_coach/index.html.twig');
     }
 }
