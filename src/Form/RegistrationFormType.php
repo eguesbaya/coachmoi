@@ -26,7 +26,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'h5',
                 ],
                 'attr' => [
-                    'placeholder' => 'Votre prénom',
+                    'placeholder' => 'Jason',
                 ]
             ])
             ->add('lastname', TextType::class, [
@@ -35,7 +35,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'h5',
                 ],
                 'attr' => [
-                    'placeholder' => 'Votre nom',
+                    'placeholder' => 'Statham',
                 ]
             ])
             ->add('telephone', TelType::class, [
@@ -44,7 +44,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'h5',
                 ],
                 'attr' => [
-                    'placeholder' => 'Téléphone',
+                    'placeholder' => '0607080910',
                 ]
             ])
             ->add('email', EmailType::class, [
@@ -53,7 +53,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'h5',
                 ],
                 'attr' => [
-                    'placeholder' => 'Votre e-mail',
+                    'placeholder' => 'coachmoi@gmail.com',
                 ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
@@ -61,7 +61,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Veuillez accepter les conditions d\'utilisation',
                     ]),
                 ],
             ])
@@ -71,14 +71,14 @@ class RegistrationFormType extends AbstractType
                     'class' => 'h5',
                 ],
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password', 'placeholder' => 'Votre mot de passe'],
+                'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez indiquer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit comporter au moins {{ limit }} caractères',
                         'max' => 4096,
                     ]),
                 ],
