@@ -92,7 +92,7 @@ class Client
         return $this;
     }
 
-    public function getIsApt(): ?bool
+    public function isApt(): ?bool
     {
         return $this->isApt;
     }
