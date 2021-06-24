@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ user.firstname }}!{% endblock %}
+{% block title %}Hello {{ app.user.firstname }}!{% endblock %}
 
 {% block body %}
 <main class="container-fluid col-11 profile">
@@ -15,19 +15,19 @@
 
         <div class="bg-light my-2 px-3 py-2">
             <p>Nom</p>
-            <h3>{{ user.lastname }}</h3>
+            <h3>{{ app.user.lastname }}</h3>
         </div>
         <div class="bg-light my-2 px-3 py-2">
             <p>Prénom</p>
-            <h3>{{ user.firstname }}</h3>
+            <h3>{{ app.user.firstname }}</h3>
         </div>
         <div class="bg-light my-2 px-3 py-2">
             <p>Téléphone</p>
-            <h3>{{ user.telephone }}</h3>
+            <h3>{{ app.user.telephone }}</h3>
         </div>
         <div class="bg-light my-2 px-3 py-2">
             <p>Email</p>
-            <h3>{{ user.email }}</h3>
+            <h3>{{ app.user.email }}</h3>
         </div>
     </section>
 </main>

@@ -12,12 +12,8 @@ class ProfileClientController extends AbstractController
     /**
      * @Route("/profile/client", name="profile_client")
      */
-    public function index(UserRepository $userRepository): Response
+    public function index(): Response
     {
-        $user = $this->getUser();
-
-        return $this->render('profile_client/index.html.twig', [
-            'user' => $user,
-        ]);
+        return $this->render('profile_client/index.html.twig');
     }
 }
