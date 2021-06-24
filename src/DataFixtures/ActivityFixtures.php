@@ -10,12 +10,11 @@ class ActivityFixtures extends Fixture
 {
     public const MAX_ACTIVITY = 10;
     public const FEATURED_ACTIVITY = [
-        'Yoga',
-        'Boxe',
-        'Judo',
-        'Salsa',
-        'Escalade',
-        'Remise en forme',
+        ['name' => 'Yoga', 'photo' => 'https://bit.ly/3gxCuJg'],
+        ['name' => 'Boxe', 'photo' => 'https://bit.ly/3iQ76az'],
+        ['name' => 'Judo', 'photo' => 'https://bit.ly/3qm4l2w'],
+        ['name' => 'Escalade', 'photo' => 'https://bit.ly/2SIqI5F'],
+        ['name' => 'Remise en forme','photo' => 'https://bit.ly/3wEnA9M']
     ];
 
     public function load(ObjectManager $manager)
@@ -30,9 +29,10 @@ class ActivityFixtures extends Fixture
             $manager->persist($activity);
         }
 
-        foreach (self::FEATURED_ACTIVITY as $key => $activityName) {
+        foreach (self::FEATURED_ACTIVITY as $key => $data) {
             $activity = new Activity();
-            $activity->setName($activityName);
+            $activity->setName($data['name']);
+            $activity->setPhoto($data['photo']);
             $activity->setIsFeatured(true);
             $manager->persist($activity);
             $this->addReference('activity_' . $key, $activity);
