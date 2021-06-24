@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ app.user.firstname }}!{% endblock %}
+
+{% block body %}
+<main class="container-fluid col-11 profile">
+
+    <h1>Mon espace client</h1>
+
+    <section class="mes-informations border border border-dark container-fluid col-11">
+        <div class="d-flex align-items-center border border-dark title bg-light col-md-8 col-lg-6">
+            <h2 class="m-2">Mes informations</h2>
+            <i class="bi bi-pencil-square"></i>
+        </div>
+
+        <div class="bg-light my-2 px-3 py-2">
+            <p>Nom</p>
+            <h3>{{ app.user.lastname }}</h3>
+        </div>
+        <div class="bg-light my-2 px-3 py-2">
+            <p>Prénom</p>
+            <h3>{{ app.user.firstname }}</h3>
+        </div>
+        <div class="bg-light my-2 px-3 py-2">
+            <p>Téléphone</p>
+            <h3>{{ app.user.telephone }}</h3>
+        </div>
+        <div class="bg-light my-2 px-3 py-2">
+            <p>Email</p>
+            <h3>{{ app.user.email }}</h3>
+        </div>
+    </section>
+</main>
+{% endblock %}
