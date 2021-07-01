@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTimeInterface;
+use App\Entity\PracticeLevel;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ClientRepository;
 
@@ -58,7 +59,7 @@ class Client
     /**
      * @ORM\ManyToOne(targetEntity=PracticeLevel::class, inversedBy="clients")
      */
-    private $practiceLevel;
+    private ?PracticeLevel $practiceLevel;
 
     public function getId(): ?int
     {

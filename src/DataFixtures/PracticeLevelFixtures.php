@@ -18,12 +18,11 @@ class PracticeLevelFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         foreach (self::LEVELS as $key => $level) {
-           $practiceLevel = new PracticeLevel();
-           $practiceLevel->setLevel($level);
-           $manager->persist($practiceLevel);
-           $this->addReference($key, $practiceLevel);
+            $practiceLevel = new PracticeLevel();
+            $practiceLevel->setLevel($level);
+            $manager->persist($practiceLevel);
+            $this->addReference($key, $practiceLevel);
         }
-        
-        $manager->flush();
+            $manager->flush();
     }
 }
