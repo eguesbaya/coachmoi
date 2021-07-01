@@ -55,6 +55,11 @@ class Client
      */
     private string $address;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=PracticeLevel::class, inversedBy="clients")
+     */
+    private $practiceLevel;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -134,6 +139,18 @@ class Client
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getPracticeLevel(): ?PracticeLevel
+    {
+        return $this->practiceLevel;
+    }
+
+    public function setPracticeLevel(?PracticeLevel $practiceLevel): self
+    {
+        $this->practiceLevel = $practiceLevel;
 
         return $this;
     }

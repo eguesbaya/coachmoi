@@ -1,0 +1,21 @@
+<div class="d-flex align-items-center border border-dark title bg-light col-md-8 col-lg-6">
+    <h2 class="m-2">Mes préférences</h2>
+    <i class="bi bi-pencil-square"></i>
+</div>
+
+<div class="bg-light my-2 px-3 py-2">
+    <p>Niveau</p>
+    <h3>{{ app.user.client.practicelevel.level }}</h3>
+</div>
+<div class="bg-light my-2 px-3 py-2">
+    <p>Budget</p>
+    <h3>{{ app.user.client.budget }} €/mois</h3>
+</div>
+<div class="bg-light my-2 px-3 py-2">
+    <p>Groupe</p>
+    <h3>{{ app.user.client.groupsize }}</h3>
+</div>
+<div class="bg-light my-2 px-3 py-2">
+    <p>Objectif sportif</p>
+    <h3>{{ app.user.client.goal }}</h3>
+</div>

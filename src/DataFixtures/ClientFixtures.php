@@ -27,6 +27,9 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
             $client->setBudget($faker->numberBetween(50, 200));
             $client->setGroupSize($faker->randomDigit());
             $client->setIsApt(rand(0, 1));
+            $client->setPracticeLevel($this->getReference(
+                rand(0, count(PracticeLevelFixtures::LEVELS) - 1)
+            ));
             $manager->persist($client);
             $this->addReference('client_' . $i, $client);
         }
@@ -39,6 +42,10 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
         $client->setBudget($faker->numberBetween(50, 200));
         $client->setGroupSize($faker->randomDigit());
         $client->setIsApt(rand(0, 1));
+        $client->setPracticeLevel($this->getReference(
+            rand(0, count(PracticeLevelFixtures::LEVELS) - 1)
+        ));
+
         $manager->persist($client);
         $this->addReference('client_admin', $client);
 
