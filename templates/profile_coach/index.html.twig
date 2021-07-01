@@ -3,47 +3,13 @@
 {% block title %}Hello {{ app.user.firstname }}!{% endblock %}
 
 {% block body %}
-<div class="row p-5 m-0">
-    <h1>Mon espace Coach</h1>
-    <div class="mes-informations container-fluid col-5 border border-dark">
-        <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-            <h2 class="m-2">Mes informations</h2>
-            <i class="bi bi-pencil-square"></i>
-        </div>
-        <div>
-            <div class="bg-light my-1 px-1 py-1">
-                <h3>Nom :</h3>
-                <p class="client mx-3">{{ app.user.lastname }}</p>
-            </div>
-            <div class="bg-light my-1 px-1 py-1">
-                <h3>Prénom :</h3>
-                <p class="client mx-3">{{ app.user.firstname }}</p>
-            </div>
-            <div class="bg-light my-1 px-1 py-1">
-                <h3>Email :</h3>
-                <p class="client mx-3">{{ app.user.email }}</p>
-            </div>
-        </div>
+    <div class="row p-5 m-0">
+        <h1>Mon espace Coach</h1>
+        {% block information %}
+            {% include 'profile_coach/_information.html.twig' %}
+        {% endblock %}
+        {% block preferences %}
+            {% include 'profile_coach/_preferences.html.twig' %}
+        {% endblock %} 
     </div>
-    <div class="mes-preferences container-fluid col-5 border border-dark">
-        <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-            <h2 class="m-2">Mes préférences</h2>
-            <i class="bi bi-pencil-square"></i>
-        </div>
-        <div>
-            <div class="bg-light my-1 px-1 py-1">
-                <h3>Activité :</h3>
-                <p class="client">
-                 {% for activity in app.user.coach.activities %}
-                    {{ activity.name }}
-                {% endfor %}
-            </p>
-            </div>
-             <div class="bg-light my-1 px-1 py-1">
-                <h3>Tarif Horaire :</h3>
-                <p class="client">{{ app.user.coach.hourlyRate }}</p>
-            </div>
-        </div>
-    </div>
-</div>
 {% endblock %}
