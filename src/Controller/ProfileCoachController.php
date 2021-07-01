@@ -13,6 +13,7 @@ class ProfileCoachController extends AbstractController
      */
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('profile_coach/index.html.twig');
     }
 }
