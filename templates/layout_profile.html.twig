@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Hello {{ app.user.firstname }}!{% endblock %}
+
+{% block body %}
+    <main class="container-fluid col-11 profile">
+
+        <h1>Mon espace client</h1>
+
+        <section class="mes-informations border border border-dark container-fluid col-11">
+            {% block information %}{% endblock %}
+        </section>
+
+        <section class="mes-informations border border border-dark container-fluid col-11">
+            {% block preferences %}{% endblock %}
+        </section>
+
+        <section class="mes-informations border border border-dark container-fluid col-11">
+            {% block coachmoi %}{% endblock %}
+        </section>
+
+        <section class="mes-informations border border border-dark container-fluid col-11">
+            {% block availabilities %}{% endblock %}
+        </section>
+    </main>
+{% endblock %}

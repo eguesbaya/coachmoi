@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ClientRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ClientRepository;
 
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
@@ -16,6 +17,11 @@ class Client
      * @ORM\Column(type="integer")
      */
     private int $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="client", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
 
     private User $user;
 
@@ -39,6 +45,16 @@ class Client
      */
     private bool $isApt;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private \DateTimeInterface $birthdate;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $address;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,11 +65,9 @@ class Client
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(User $user): void
     {
         $this->user = $user;
-
-        return $this;
     }
 
     public function getGoal(): ?string
@@ -61,9 +75,19 @@ class Client
         return $this->goal;
     }
 
-    public function setGoal(string $goal): self
+    public function setGoal(string $goal): void
     {
         $this->goal = $goal;
+    }
+
+    public function getBirthdate(): ?\DateTimeInterface
+    {
+        return $this->birthdate;
+    }
+
+    public function setBirthdate(\DateTimeInterface $birthdate): self
+    {
+        $this->birthdate = $birthdate;
 
         return $this;
     }
@@ -97,9 +121,19 @@ class Client
         return $this->isApt;
     }
 
-    public function setIsApt(bool $isApt): self
+    public function setIsApt(bool $isApt): void
     {
         $this->isApt = $isApt;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
 
         return $this;
     }
