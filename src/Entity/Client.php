@@ -27,37 +27,38 @@ class Client
     private User $user;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
-    private string $goal;
+    private ?string $goal;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private int $budget;
+    private ?int $budget;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private int $groupSize;
+    private ?int $groupSize;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    private bool $isApt;
+    private ?bool $isApt;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
-    private \DateTimeInterface $birthdate;
+    private ?\DateTimeInterface $birthdate = null;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $address;
+    private ?string $address = null;
 
     /**
      * @ORM\ManyToOne(targetEntity=PracticeLevel::class, inversedBy="clients")
+     * @ORM\JoinColumn(nullable=true)
      */
     private ?PracticeLevel $practiceLevel;
 

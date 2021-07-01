@@ -5,7 +5,9 @@
 
 <div class="bg-light my-2 px-3 py-2">
     <p>Niveau</p>
-    <h3>{{ app.user.client.practicelevel.level }}</h3>
+    {% if app.user.client.practicelevel.level is defined %}
+        <h3>{{ app.user.client.practicelevel.level }}</h3>
+    {% endif %}
 </div>
 <div class="bg-light my-2 px-3 py-2">
     <p>Budget</p>
