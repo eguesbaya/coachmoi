@@ -56,7 +56,7 @@ class Coach
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $photo;
-  
+ 
     /**
      * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="coaches")
      */
