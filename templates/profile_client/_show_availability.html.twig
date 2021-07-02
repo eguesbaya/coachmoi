@@ -1,0 +1,27 @@
+ {# Section: Mes disponibilités: afficher tous les disponibilités du client #}
+        <div class="d-flex align-items-center border border-dark title bg-light col-md-8 col-lg-6">
+            <h2 class="m-2">Mes disponibilités</h2>
+            <i class="bi bi-pencil-square"></i>
+        </div>
+        <div class="bg-light my-2 px-3 py-2">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Jour</th>
+                        <th scope="col">L'heure de début</th>
+                        <th scope="col">L'heure de fin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for availability in app.user.client.availabilities %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ availability.weekday.name }}</td>
+                        <td>{{ availability.startTime|format_time() }}</td>
+                        <td>{{ availability.endTime|format_time() }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>

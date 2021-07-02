@@ -57,19 +57,25 @@ class Coach
     private ?string $photo;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private ?User $user;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="coaches")
      */
     private Collection $activities;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="coach")
+     */
+    private Collection $availabilities;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="coach", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private ?User $user;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
+        $this->availabilities = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,18 +167,6 @@ class Coach
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Activity[]
      */
@@ -193,6 +187,48 @@ class Coach
     public function removeActivity(Activity $activity): self
     {
         $this->activities->removeElement($activity);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Availability[]
+     */
+    public function getAvailabilities(): Collection
+    {
+        return $this->availabilities;
+    }
+
+    public function addAvailability(Availability $availability): self
+    {
+        if (!$this->availabilities->contains($availability)) {
+            $this->availabilities[] = $availability;
+            $availability->setCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvailability(Availability $availability): self
+    {
+        if ($this->availabilities->removeElement($availability)) {
+            // set the owning side to null (unless already changed)
+            if ($availability->getCoach() === $this) {
+                $availability->setCoach(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

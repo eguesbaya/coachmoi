@@ -46,6 +46,20 @@ class UserFixtures extends Fixture
         $manager->persist($client);
         $this->addReference('client', $client);
 
+        // Fixture for coach's demo account
+        $coach = new User();
+        $coach->setFirstname('COACH');
+        $coach->setLastname('MOI');
+        $coach->setRoles(['ROLE_ADMIN']);
+        $coach->setTelephone('020304099');
+        $coach->setEmail('coach@gmail.com');
+        $coach->setPassword($this->passwordEncoder->encodePassword(
+            $coach,
+            'admincoachmoi'
+        ));
+        $manager->persist($coach);
+        $this->addReference('coach', $coach);
+
         $admin = new User();
         $admin->setFirstname('PrénomAdmin');
         $admin->setLastname('NomAdmin');
