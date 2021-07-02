@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
+use App\Entity\Activity;
+use App\Repository\UserRepository;
 use App\Repository\CoachRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\User;
-use App\Entity\Activity;
 
 /**
  * @ORM\Entity(repositoryClass=CoachRepository::class)
@@ -57,10 +58,11 @@ class Coach
     private ?string $photo;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="coach", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?User $user;
+
+    private User $user;
 
     /**
      * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="coaches")
