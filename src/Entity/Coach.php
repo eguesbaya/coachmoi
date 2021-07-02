@@ -73,12 +73,6 @@ class Coach
      */
     private Collection $availabilities;
 
-    /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="coach", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private ?User $user;
-
     public function __construct()
     {
         $this->activities = new ArrayCollection();
