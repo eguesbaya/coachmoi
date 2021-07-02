@@ -184,7 +184,8 @@ class Client
                 $availability->setClient(null);
             }
         }
-
+    }
+    
     public function getPracticeLevel(): ?PracticeLevel
     {
         return $this->practiceLevel;
