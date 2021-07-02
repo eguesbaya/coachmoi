@@ -184,7 +184,7 @@ class Client
             }
         }
     }
-    
+
     public function getPracticeLevel(): ?PracticeLevel
     {
         return $this->practiceLevel;
