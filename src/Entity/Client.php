@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTimeInterface;
+use App\Entity\PracticeLevel;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ClientRepository;
 
@@ -26,14 +27,40 @@ class Client
     private User $user;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="text", nullable=true)
      */
-    private \DateTimeInterface $birthdate;
+    private ?string $goal;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private string $address;
+    private ?int $budget;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private ?int $groupSize;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private ?bool $isApt;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private ?\DateTimeInterface $birthdate = null;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $address = null;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=PracticeLevel::class, inversedBy="clients")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private ?PracticeLevel $practiceLevel;
 
     public function getId(): ?int
     {
@@ -45,11 +72,19 @@ class Client
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(User $user): void
     {
         $this->user = $user;
+    }
 
-        return $this;
+    public function getGoal(): ?string
+    {
+        return $this->goal;
+    }
+
+    public function setGoal(string $goal): void
+    {
+        $this->goal = $goal;
     }
 
     public function getBirthdate(): ?\DateTimeInterface
@@ -64,6 +99,40 @@ class Client
         return $this;
     }
 
+    public function getBudget(): ?int
+    {
+        return $this->budget;
+    }
+
+    public function setBudget(int $budget): self
+    {
+        $this->budget = $budget;
+
+        return $this;
+    }
+
+    public function getGroupSize(): ?int
+    {
+        return $this->groupSize;
+    }
+
+    public function setGroupSize(int $groupSize): self
+    {
+        $this->groupSize = $groupSize;
+
+        return $this;
+    }
+
+    public function isApt(): ?bool
+    {
+        return $this->isApt;
+    }
+
+    public function setIsApt(bool $isApt): void
+    {
+        $this->isApt = $isApt;
+    }
+
     public function getAddress(): ?string
     {
         return $this->address;
@@ -72,6 +141,18 @@ class Client
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getPracticeLevel(): ?PracticeLevel
+    {
+        return $this->practiceLevel;
+    }
+
+    public function setPracticeLevel(?PracticeLevel $practiceLevel): self
+    {
+        $this->practiceLevel = $practiceLevel;
 
         return $this;
     }
