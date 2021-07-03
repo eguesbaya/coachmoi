@@ -1,27 +1,31 @@
- {# Section: Mes disponibilités: afficher tous les disponibilités du client #}
-        <div class="d-flex align-items-center border border-dark title bg-light col-md-8 col-lg-6">
-            <h2 class="m-2">Mes disponibilités</h2>
-            <i class="bi bi-pencil-square"></i>
-        </div>
-        <div class="bg-light my-2 px-3 py-2">
-            <table class="table">
+{# Section: Mes disponibilités: afficher tous les disponibilités du client #}
+<div class="mes-availabilities container-fluid border col-md-11 border-dark mt-5 rounded">
+    <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+        <h2 class="m-2">Mes disponibilités</h2>
+        <i class="bi bi-pencil-square"></i>
+    </div>
+    <div>
+        <div class="bg-light my-2">
+            <table class="table text-center">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Jour</th>
-                        <th scope="col">L'heure de début</th>
-                        <th scope="col">L'heure de fin</th>
+                        <th scope="col"><p>#</p></th>
+                        <th scope="col"><p>Jour</p></th>
+                        <th scope="col"><p>L'heure de début<p></th>
+                        <th scope="col"><p>L'heure de fin<p></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for availability in app.user.client.availabilities %}
                     <tr>
-                        <th scope="row">{{ loop.index }}</th>
-                        <td>{{ availability.weekday.name }}</td>
-                        <td>{{ availability.startTime|format_time() }}</td>
-                        <td>{{ availability.endTime|format_time() }}</td>
+                        <th scope="row"><p>{{ loop.index }}</p></th>
+                        <td><p>{{ availability.weekday.name }}</p></td>
+                        <td><p>{{ availability.startTime|format_time() }}</p></td>
+                        <td><p>{{ availability.endTime|format_time() }}</p></td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
+    </div>
+</div>

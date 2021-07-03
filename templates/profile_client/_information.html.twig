@@ -1,41 +1,45 @@
-<div class="d-flex align-items-center border border-dark title bg-light col-md-8 col-lg-6">
-    <h2 class="m-2 text-truncate">Mes informations</h2>
-    <i class="bi bi-pencil-square"></i>
-</div>
-<div class="bg-light my-2 px-3 py-2">
-    <p>Nom</p>
-    <h3>{{ app.user.lastname }}</h3>
-</div>
-<div class="bg-light my-2 px-3 py-2">
-    <p>Prénom</p>
-    <h3>{{ app.user.firstname }}</h3>
-</div>
-<div class="bg-light my-2 px-3 py-2">
-    <p>Téléphone</p>
-    <h3>{{ app.user.telephone }}</h3>
-</div>
-<div class="bg-light my-2 px-3 py-2">
-    <p>Email</p>
-    <h3 class="text-truncate">{{ app.user.email }}</h3>
-</div>
-<div class="bg-light my-2 px-3 py-2">
-    <p>Adresse</p>
-    <h3>{{ app.user.client.address }}</h3>
-</div>
-<div class="bg-light my-2 px-3 py-2">
-    <p>Date de naissance</p>
-    <h3>{{ app.user.client.birthdate|date("d/m/Y") }}</h3>
-</div>
-<div class="bg-light my-2 px-3 py-2">
-    <p>Mes documents</p>
-    <div class= "documents d-flex flex-row">
-        <div class= "d-flex flex-column align-items-center">
-            <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>
-            <p>CGU</p>
+<div class="mes-informations container-fluid col-md-5 border border-dark rounded">
+    <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+        <h2 class="m-2 text-truncate">Mes informations</h2>
+        <i class="bi bi-pencil-square"></i>
+    </div>
+    <div>
+        <div class="bg-light my-2">
+            <p>Nom</p>
+            <h3>{{ app.user.lastname }}</h3>
         </div>
-        <div class= "d-flex flex-column align-items-center">
-            <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>
-            <p>Contrat</p>
+        <div class="bg-light my-2">
+            <p>Prénom</p>
+            <h3>{{ app.user.firstname }}</h3>
+        </div>
+        <div class="bg-light my-2">
+            <p>Téléphone</p>
+            <h3>{{ app.user.telephone }}</h3>
+        </div>
+        <div class="bg-light my-2">
+            <p>Email</p>
+            <h3 class="text-truncate">{{ app.user.email }}</h3>
+        </div>
+        <div class="bg-light my-2">
+            <p>Adresse</p>
+            <h3>{{ app.user.client.address }}</h3>
+        </div>
+        <div class="bg-light my-2">
+            <p>Date de naissance</p>
+            <h3>{{ app.user.client.birthdate|date("d/m/Y") }}</h3>
+        </div>
+        <div class="bg-light my-2">
+            <p>Mes documents</p>
+            <div class= "documents d-flex flex-row">
+                <div class= "d-flex flex-column align-items-center">
+                    <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>
+                    <p>CGU</p>
+                </div>
+                <div class= "d-flex flex-column align-items-center">
+                    <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>
+                    <p>Contrat</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

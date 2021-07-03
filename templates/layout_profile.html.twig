@@ -4,23 +4,13 @@
 
 {% block body %}
     <main class="container-fluid col-11 profile">
-
-        <h1>Mon espace client</h1>
-
-        <section class="mes-informations border border border-dark container-fluid col-11 my-5">
-            {% block information %}{% endblock %}
-        </section>
-
-        <section class="mes-informations border border border-dark container-fluid col-11 my-5">
-            {% block preferences %}{% endblock %}
-        </section>
-
-        <section class="mes-informations border border border-dark container-fluid col-11 my-5">
-            {% block coachmoi %}{% endblock %}
-        </section>
-
-        <section class="mes-informations border border border-dark container-fluid col-11 my-5">
-            {% block availabilities %}{% endblock %}
-        </section>
+        {% block information %}
+        {% endblock %}
+        {% block preferences %}
+        {% endblock %}
+        {% block coachmoi %}
+        {% endblock %}
+        {% block availabilities %}
+        {% endblock %}
     </main>
 {% endblock %}
