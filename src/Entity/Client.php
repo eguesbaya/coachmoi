@@ -69,6 +69,12 @@ class Client
      */
     private Collection $availabilities;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Activity::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private Activity $activity;
+
     public function __construct()
     {
         $this->availabilities = new ArrayCollection();
@@ -195,6 +201,18 @@ class Client
                 $availability->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getActivity(): Activity
+    {
+        return $this->activity;
+    }
+
+    public function setActivity(Activity $activity): self
+    {
+        $this->activity = $activity;
 
         return $this;
     }

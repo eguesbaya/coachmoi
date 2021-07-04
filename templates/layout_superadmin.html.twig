@@ -3,3 +3,10 @@
 {% block navbar %}
 {% include 'includes/_navbarSuperAdmin.html.twig' %}
 {% endblock %}
+
+{% block body %}
+    <main class="container-fluid col-11">
+        {% block content %}
+        {% endblock %}
+    </main>
+{% endblock %}

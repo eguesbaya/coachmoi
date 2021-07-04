@@ -22,8 +22,8 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < self::MAX_CLIENTS; $i++) {
             $client = new Client();
             $client->setUser($this->getReference('user_' . $i, $client));
-            $client->setBirthdate($faker->dateTimeThisCentury());
             $client->setAddress($faker->address());
+            $client->setBirthdate($faker->dateTimeThisCentury());
             $client->setGoal($faker->sentence(3));
             $client->setBudget($faker->numberBetween(50, 200));
             $client->setGroupSize($faker->randomDigit());
@@ -31,6 +31,9 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
             $client->setPracticeLevel($this->getReference(
                 rand(0, count(PracticeLevelFixtures::LEVELS) - 1)
             ));
+            $client->setActivity($this->getReference('activity_' .
+                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
+
             $manager->persist($client);
             $this->addReference('client_' . $i, $client);
         }
@@ -47,12 +50,16 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
         $client->setPracticeLevel($this->getReference(
             rand(0, count(PracticeLevelFixtures::LEVELS) - 1)
         ));
+        $client->setActivity($this->getReference('activity_' .
+                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
         $manager->persist($client);
         $this->addReference('client_admin', $client);
 
         // New client test
         $client = new Client();
         $client->setUser($this->getReference('client_new', $client));
+        $client->setActivity($this->getReference('activity_' .
+                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
         $manager->persist($client);
         $this->addReference('new_client', $client);
 
@@ -63,6 +70,7 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class,
+            ActivityFixtures::class,
         ];
     }
 }
