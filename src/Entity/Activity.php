@@ -28,6 +28,7 @@ class Activity
     /**
      * @ORM\Column(type="text", nullable=true)
      */
+
     private ?string $description;
 
     /**
@@ -48,6 +49,11 @@ class Activity
     public function __construct()
     {
         $this->coaches = new ArrayCollection();
+    }
+
+    public function __serialize(): array
+    {
+        return [];
     }
 
     public function getId(): ?int

@@ -69,6 +69,18 @@ class Client
      */
     private Collection $availabilities;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Activity::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+
+    private Activity $activity;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private ?\DateTimeInterface $createdAt = null;
+
     public function __construct()
     {
         $this->availabilities = new ArrayCollection();
@@ -195,6 +207,30 @@ class Client
                 $availability->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getActivity(): Activity
+    {
+        return $this->activity;
+    }
+
+    public function setActivity(Activity $activity): self
+    {
+        $this->activity = $activity;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
