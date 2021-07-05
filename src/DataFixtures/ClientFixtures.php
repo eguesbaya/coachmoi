@@ -23,9 +23,9 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
             $client = new Client();
             $client->setUser($this->getReference('user_' . $i, $client));
             $client->setAddress($faker->address());
+            $client->setCreatedAt($faker->dateTimeThisCentury());
             $client->setBirthdate($faker->dateTimeThisCentury());
             $client->setGoal($faker->sentence(3));
-            $client->setCreatedAt($faker->dateTimeThisCentury());
             $client->setBudget($faker->numberBetween(50, 200));
             $client->setGroupSize($faker->randomDigit());
             $client->setIsApt(rand(0, 1));
@@ -43,6 +43,7 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
         $client->setUser($this->getReference('client'));
         $client->setBirthdate($faker->dateTimeThisCentury());
         $client->setAddress($faker->address());
+        $client->setCreatedAt($faker->dateTimeThisCentury());
         $client->setGoal($faker->sentence(3));
         $client->setBudget($faker->numberBetween(50, 200));
         $client->setGroupSize($faker->randomDigit());
@@ -52,7 +53,6 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
         ));
         $client->setActivity($this->getReference('activity_' .
                 rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
-        $client->setCreatedAt($faker->dateTimeThisCentury());
         $manager->persist($client);
         $this->addReference('client_admin', $client);
 

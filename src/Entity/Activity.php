@@ -28,6 +28,7 @@ class Activity
     /**
      * @ORM\Column(type="text", nullable=true)
      */
+
     private ?string $description;
 
     /**

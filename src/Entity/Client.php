@@ -73,6 +73,7 @@ class Client
      * @ORM\ManyToOne(targetEntity=Activity::class)
      * @ORM\JoinColumn(nullable=false)
      */
+
     private Activity $activity;
 
     /**
