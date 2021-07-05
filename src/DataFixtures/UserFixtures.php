@@ -53,7 +53,7 @@ class UserFixtures extends Fixture
         ));
         $manager->persist($client);
         $this->addReference('client', $client);
-        
+
         //New client
         $newClient = new User();
         $newClient->setFirstname('New');
