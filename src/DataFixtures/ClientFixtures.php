@@ -33,7 +33,7 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
             ));
             $client->setActivity($this->getReference('activity_' .
                 rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
-
+            $client->setCreatedAt($faker->dateTimeThisCentury());
             $manager->persist($client);
             $this->addReference('client_' . $i, $client);
         }
@@ -52,6 +52,7 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
         ));
         $client->setActivity($this->getReference('activity_' .
                 rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
+        $client->setCreatedAt($faker->dateTimeThisCentury());
         $manager->persist($client);
         $this->addReference('client_admin', $client);
 

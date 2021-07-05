@@ -24,39 +24,4 @@ class CoachBookingController extends AbstractController
             'coach_bookings' => $coachBookingRepo->findAll(),
         ]);
     }
-
-
-    /**
-     * @Route("/{id}/edit", name="coach_booking_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, CoachBooking $coachBooking): Response
-    {
-        $form = $this->createForm(CoachBookingType::class, $coachBooking);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('coach_booking_index');
-        }
-
-        return $this->render('coach_booking/edit.html.twig', [
-            'coach_booking' => $coachBooking,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="coach_booking_delete", methods={"POST"})
-     */
-    public function delete(Request $request, CoachBooking $coachBooking): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $coachBooking->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($coachBooking);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('coach_booking_index');
-    }
 }

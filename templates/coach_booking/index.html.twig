@@ -11,12 +11,10 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Client</th>
+                <th scope="col">Date</th>
                 <th scope="col">Activité</th>
                 <th scope="col">Budget</th>
-                <th scope="col">Disponibilités</th>
                 <th scope="col">Contact</th>
-                <th scope="col">Coach</th>
-                <th scope="col">Salle</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -25,34 +23,17 @@
             <tr>
                 <td scope="row">{{ coach_booking.id }}</td>
                 <td>{{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</td>
+                 <td>{{ coach_booking.client.createdAt|date("d/m/Y") }}</td>
                 <td>{{ coach_booking.client.activity.name }}</td>
                 <td>{{ coach_booking.client.budget }}</td>
-                <td>
-                    <ul class="list-group list-group-flush">
-                    {% for availability in coach_booking.client.availabilities %}
-                        <li class="list-group-item">{{ availability.weekday.name }} {{ availability.startTime|format_time() }} - {{ availability.endTime|format_time() }} </li>
-                    {% endfor %}
-                    </ul>
-                </td>
                 <td>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">{{ coach_booking.client.user.email }} </li>
                         <li class="list-group-item">{{ coach_booking.client.user.telephone }} </li>
                 </td>
                 <td>
-                    <a href="{{ path('profile_client') }}" class="btn bg-success text-light fs-6">Trouver un coach</a>
+                    <a href="#" class="btn bg-success text-light fs-6">Voir le détail</a>
                 </td>
-                <td>
-                    <a href="#" class="btn bg-success text-light fs-6">Trouver une salle</a>
-                </td>
-                <td>
-                    <a href="{{ path('coach_booking_delete', {'id': coach_booking.id}) }}" class="btn bg-success text-light fs-6">Supprimer</a>
-                    <a href="{{ path('coach_booking_edit', {'id': coach_booking.id}) }}" class="btn bg-success text-light fs-6">Éditer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="2">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

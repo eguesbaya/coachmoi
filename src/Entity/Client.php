@@ -75,6 +75,11 @@ class Client
      */
     private Activity $activity;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private ?\DateTimeInterface $createdAt = null;
+
     public function __construct()
     {
         $this->availabilities = new ArrayCollection();
@@ -213,6 +218,18 @@ class Client
     public function setActivity(Activity $activity): self
     {
         $this->activity = $activity;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
