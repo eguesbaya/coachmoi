@@ -5,36 +5,36 @@
     </div>
     <div>
         <div class="bg-light my-2">
-            <p>Nom :</h3>
-            <h3>{{ app.user.lastname }}</h3>
+            <h3>Nom :</h3>
+            <p>{{ app.user.lastname }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Prénom :</p>
-            <h3>{{ app.user.firstname }}</h3>
+            <h3>Prénom :</h3>
+            <p>{{ app.user.firstname }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Téléphone :</p>
-            <h3>{{ app.user.telephone }}</h3>
+            <h3>Téléphone :</h3>
+            <p>{{ app.user.telephone }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Email :</p>
-            <h3>{{ app.user.email }}</h3>
+            <h3>Email :</h3>
+            <p>{{ app.user.email }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Date de naissance :</p>
-            <h3>{{ app.user.coach.birthDate|date("d/m/Y") }}</h3>
+            <h3>Date de naissance :</h3>
+            <p>{{ app.user.coach.birthDate|date("d/m/Y") }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Diplôme :</p>
-            <h3>{{ app.user.coach.qualification }}</h3>
+            <h3>Diplôme :</h3>
+            <p>{{ app.user.coach.qualification }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Equipement :</p>
-            <h3>{{ app.user.coach.equipment }}</h3>
+            <h3>Equipement :</h3>
+            <p>{{ app.user.coach.equipment }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Biographie :</p>
-            <h3>{{ app.user.coach.biography }}</h3>
+            <h3>Biographie :</h3>
+            <p>{{ app.user.coach.biography }}</p>
         </div>
             <p class="d-flex justify-content-end mx-5">Possède un véhicule ?
                 {% if app.user.coach.hasVehicle %}
