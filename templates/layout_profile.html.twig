@@ -3,23 +3,23 @@
 {% block title %}Hello {{ app.user.firstname }}!{% endblock %}
 
 {% block body %}
-    <main class="container-fluid col-11 profile">
+    <main class="container-fluid profile row">
 
         <h1>Mon espace client</h1>
 
-        <section class="mes-informations border border border-dark container-fluid col-11 my-5">
+        <section class="mes-informations border border border-dark container-fluid col-6 my-5">
             {% block information %}{% endblock %}
         </section>
 
-        <section class="mes-informations border border border-dark container-fluid col-11 my-5">
+        <section class="mes-preferences border border border-dark container-fluid col-5 my-5">
             {% block preferences %}{% endblock %}
         </section>
 
-        <section class="mes-informations border border border-dark container-fluid col-11 my-5">
+        <section class="coach-moi border border border-dark container-fluid col-11 my-5">
             {% block coachmoi %}{% endblock %}
         </section>
 
-        <section class="mes-informations border border border-dark container-fluid col-11">
+        <section class="mes-disponibilites border border border-dark container-fluid col-11">
             {% block availabilities %}{% endblock %}
         </section>
     </main>
