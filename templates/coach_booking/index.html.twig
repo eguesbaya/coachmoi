@@ -32,7 +32,7 @@
                         <li class="list-group-item">{{ coach_booking.client.user.telephone }} </li>
                 </td>
                 <td>
-                    <a href="#" class="btn bg-success text-light fs-6">Voir le détail</a>
+                    <a href="{{ path("coach_booking_show", {"coach_booking_id": coach_booking.id}) }}" class="btn bg-success text-light fs-6">Voir le détail</a>
                 </td>
             </tr>
         {% endfor %}
