@@ -1,23 +1,26 @@
-<div class="d-flex align-items-center border border-dark title bg-light col-md-8 col-lg-6">
-    <h2 class="m-2">Mes préférences</h2>
-    <i class="bi bi-pencil-square"></i>
-</div>
-
-<div class="bg-light my-2 px-3 py-2">
-    <p>Niveau</p>
-    {% if app.user.client.practicelevel.level is defined %}
-        <h3>{{ app.user.client.practicelevel.level }}</h3>
-    {% endif %}
-</div>
-<div class="bg-light my-2 px-3 py-2">
-    <p>Budget</p>
-    <h3>{{ app.user.client.budget }} €/mois</h3>
-</div>
-<div class="bg-light my-2 px-3 py-2">
-    <p>Groupe</p>
-    <h3>{{ app.user.client.groupsize }}</h3>
-</div>
-<div class="bg-light my-2 px-3 py-2">
-    <p>Objectif sportif</p>
-    <h3>{{ app.user.client.goal }}</h3>
+<div class="mes-preferences container-fluid col-md-5 border border-dark rounded">
+    <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+        <h2 class="m-2 text-truncate">Mes préférences</h2>
+        <i class="bi bi-pencil-square"></i>
+    </div>
+    <div>
+        <div class="bg-light my-2">
+            <h3>Niveau</h3>
+            {% if app.user.client.practicelevel.level is defined %}
+            <p>{{ app.user.client.practicelevel.level }}</p>
+            {% endif %}
+        </div>
+        <div class="bg-light my-2">
+            <h3>Budget</h3>
+            <p>{{ app.user.client.budget }} €/mois</p>
+        </div>
+        <div class="bg-light my-2">
+            <h3>Groupe</h3>
+            <p>{{ app.user.client.groupsize }}</p>
+        </div>
+        <div class="bg-light my-2">
+            <h3>Objectif sportif</h3>
+            <p>{{ app.user.client.goal }}</p>
+        </div>
+    </div>
 </div>
