@@ -5,31 +5,31 @@
     </div>
     <div>
         <div class="bg-light my-2">
-            <p>Nom</p>
-            <h3>{{ app.user.lastname }}</h3>
+            <h3>Nom</h3>
+            <p>{{ app.user.lastname }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Prénom</p>
-            <h3>{{ app.user.firstname }}</h3>
+            <h3>Prénom</h3>
+            <p>{{ app.user.firstname }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Téléphone</p>
-            <h3>{{ app.user.telephone }}</h3>
+            <h3>Téléphone</h3>
+            <p>{{ app.user.telephone }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Email</p>
-            <h3 class="text-truncate">{{ app.user.email }}</h3>
+            <h3>Email</h3>
+            <p class="text-truncate">{{ app.user.email }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Adresse</p>
-            <h3>{{ app.user.client.address }}</h3>
+            <h3>Adresse</h3>
+            <p>{{ app.user.client.address }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Date de naissance</p>
-            <h3>{{ app.user.client.birthdate|date("d/m/Y") }}</h3>
+            <h3>Date de naissance</h3>
+            <p>{{ app.user.client.birthdate|date("d/m/Y") }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Mes documents</p>
+            <h3>Mes documents</h3>
             <div class= "documents d-flex flex-row">
                 <div class= "d-flex flex-column align-items-center">
                     <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>

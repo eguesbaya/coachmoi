@@ -5,22 +5,22 @@
     </div>
     <div>
         <div class="bg-light my-2">
-            <p>Niveau</p>
+            <h3>Niveau</h3>
             {% if app.user.client.practicelevel.level is defined %}
-            <h3>{{ app.user.client.practicelevel.level }}</h3>
+            <p>{{ app.user.client.practicelevel.level }}</p>
             {% endif %}
         </div>
         <div class="bg-light my-2">
-            <p>Budget</p>
-            <h3>{{ app.user.client.budget }} €/mois</h3>
+            <h3>Budget</h3>
+            <p>{{ app.user.client.budget }} €/mois</p>
         </div>
         <div class="bg-light my-2">
-            <p>Groupe</p>
-            <h3>{{ app.user.client.groupsize }}</h3>
+            <h3>Groupe</h3>
+            <p>{{ app.user.client.groupsize }}</p>
         </div>
         <div class="bg-light my-2">
-            <p>Objectif sportif</p>
-            <h3>{{ app.user.client.goal }}</h3>
+            <h3>Objectif sportif</h3>
+            <p>{{ app.user.client.goal }}</p>
         </div>
     </div>
 </div>
