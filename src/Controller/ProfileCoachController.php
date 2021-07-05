@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
-* @IsGranted("ROLE_ADMIN")
+* @IsGranted("ROLE_COACH")
 */
 
 class ProfileCoachController extends AbstractController
