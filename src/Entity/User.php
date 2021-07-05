@@ -54,7 +54,13 @@ class User implements UserInterface
     /**
      * @ORM\OneToOne(targetEntity=Client::class, mappedBy="user", cascade={"persist", "remove"})
      */
+
     private ?Client $client;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Coach::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private ?Coach $coach;
 
     public function getId(): ?int
     {
@@ -181,6 +187,18 @@ class User implements UserInterface
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getCoach(): ?Coach
+    {
+        return $this->coach;
+    }
+
+    public function setCoach(?Coach $coach): self
+    {
+        $this->coach = $coach;
 
         return $this;
     }

@@ -1,0 +1,47 @@
+<div class="mes-informations container-fluid col-md-5 border border-dark rounded">
+    <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+        <h2 class="m-2">Mes informations</h2>
+        <i class="bi bi-pencil-square"></i>
+    </div>
+    <div>
+        <div class="bg-light my-2">
+            <h3>Nom :</h3>
+            <p>{{ app.user.lastname }}</p>
+        </div>
+        <div class="bg-light my-2">
+            <h3>Prénom :</h3>
+            <p>{{ app.user.firstname }}</p>
+        </div>
+        <div class="bg-light my-2">
+            <h3>Téléphone :</h3>
+            <p>{{ app.user.telephone }}</p>
+        </div>
+        <div class="bg-light my-2">
+            <h3>Email :</h3>
+            <p>{{ app.user.email }}</p>
+        </div>
+        <div class="bg-light my-2">
+            <h3>Date de naissance :</h3>
+            <p>{{ app.user.coach.birthDate|date("d/m/Y") }}</p>
+        </div>
+        <div class="bg-light my-2">
+            <h3>Diplôme :</h3>
+            <p>{{ app.user.coach.qualification }}</p>
+        </div>
+        <div class="bg-light my-2">
+            <h3>Equipement :</h3>
+            <p>{{ app.user.coach.equipment }}</p>
+        </div>
+        <div class="bg-light my-2">
+            <h3>Biographie :</h3>
+            <p>{{ app.user.coach.biography }}</p>
+        </div>
+            <p class="d-flex justify-content-end mx-5">Possède un véhicule ?
+                {% if app.user.coach.hasVehicle %}
+                    &nbsp; <i class="bi bi-check-circle-fill"></i>
+                {% else %}
+                    &nbsp; <i class="bi bi-x-circle-fill"></i>
+                {% endif %}
+            </p>
+    </div>
+</div>

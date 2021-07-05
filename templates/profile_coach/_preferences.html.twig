@@ -1,0 +1,20 @@
+<div class="mes-preferences container-fluid col-md-5 border border-dark rounded">
+    <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+        <h2 class="m-2 text-truncate">Mes préférences</h2>
+        <i class="bi bi-pencil-square"></i>
+    </div>
+    <div>
+        <div class="bg-light my-2">
+            <h3>Activité :</h3>
+            <p class="client d-flex justify-content-end mx-5">
+                {% for activity in app.user.coach.activities %}
+                {{ activity.name }}
+            {% endfor %}
+            </p>
+        </div>
+            <div class="bg-light my-2">
+            <h3>Tarif Horaire :</h3>
+            <p class="client d-flex justify-content-end mx-5">{{ app.user.coach.hourlyRate }}</p>
+        </div>
+    </div>
+</div>
