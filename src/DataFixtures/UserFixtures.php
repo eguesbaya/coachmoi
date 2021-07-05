@@ -53,20 +53,34 @@ class UserFixtures extends Fixture
         ));
         $manager->persist($client);
         $this->addReference('client', $client);
+        
+        //New client
+        $newClient = new User();
+        $newClient->setFirstname('New');
+        $newClient->setLastname('Client');
+        $newClient->setRoles(['ROLE_ADMIN']);
+        $newClient->setTelephone('020304099');
+        $newClient->setEmail('client.new@gmail.com');
+        $newClient->setPassword($this->passwordEncoder->encodePassword(
+            $newClient,
+            'new'
+        ));
+        $manager->persist($newClient);
+        $this->addReference('client_new', $newClient);
 
-        //Coach?
-        $admin = new User();
-        $admin->setFirstname('PrénomAdmin');
-        $admin->setLastname('NomAdmin');
-        $admin->setRoles([self::ROLES[1]]);
-        $admin->setTelephone('020304099');
-        $admin->setEmail('emailadmin@gmail.com');
-        $admin->setPassword($this->passwordEncoder->encodePassword(
-            $admin,
+        // Fixture for coach's demo account
+        $coach = new User();
+        $coach->setFirstname('COACH');
+        $coach->setLastname('MOI');
+        $coach->setRoles(['ROLE_ADMIN']);
+        $coach->setTelephone('020304099');
+        $coach->setEmail('coach@gmail.com');
+        $coach->setPassword($this->passwordEncoder->encodePassword(
+            $coach,
             'admincoachmoi'
         ));
-        $manager->persist($admin);
-        $this->addReference('admin', $admin);
+        $manager->persist($coach);
+        $this->addReference('coach', $coach);
 
         //Superadmin
         $superAdmin = new User();
