@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
+use App\Entity\Activity;
+use App\Repository\UserRepository;
 use App\Repository\CoachRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\User;
-use App\Entity\Activity;
 
 /**
  * @ORM\Entity(repositoryClass=CoachRepository::class)
@@ -57,19 +58,26 @@ class Coach
     private ?string $photo;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="coach", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?User $user;
+
+    private User $user;
 
     /**
      * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="coaches")
      */
     private Collection $activities;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="coach")
+     */
+    private Collection $availabilities;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
+        $this->availabilities = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -193,6 +201,36 @@ class Coach
     public function removeActivity(Activity $activity): self
     {
         $this->activities->removeElement($activity);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Availability[]
+     */
+    public function getAvailabilities(): Collection
+    {
+        return $this->availabilities;
+    }
+
+    public function addAvailability(Availability $availability): self
+    {
+        if (!$this->availabilities->contains($availability)) {
+            $this->availabilities[] = $availability;
+            $availability->setCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvailability(Availability $availability): self
+    {
+        if ($this->availabilities->removeElement($availability)) {
+            // set the owning side to null (unless already changed)
+            if ($availability->getCoach() === $this) {
+                $availability->setCoach(null);
+            }
+        }
 
         return $this;
     }

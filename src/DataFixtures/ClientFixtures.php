@@ -14,25 +14,47 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class ClientFixtures extends Fixture implements DependentFixtureInterface
 {
 
+    public const MAX_CLIENTS = 10;
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
 
-        for ($i = 0; $i < UserFixtures::MAX_USERS / 3; $i++) {
+        for ($i = 0; $i < self::MAX_CLIENTS; $i++) {
             $client = new Client();
             $client->setUser($this->getReference('user_' . $i, $client));
             $client->setBirthdate($faker->dateTimeThisCentury());
             $client->setAddress($faker->address());
+            $client->setGoal($faker->sentence(3));
+            $client->setBudget($faker->numberBetween(50, 200));
+            $client->setGroupSize($faker->randomDigit());
+            $client->setIsApt(rand(0, 1));
+            $client->setPracticeLevel($this->getReference(
+                rand(0, count(PracticeLevelFixtures::LEVELS) - 1)
+            ));
             $manager->persist($client);
             $this->addReference('client_' . $i, $client);
         }
 
+        // Client admin
         $client = new Client();
         $client->setUser($this->getReference('client'));
         $client->setBirthdate($faker->dateTimeThisCentury());
         $client->setAddress($faker->address());
+        $client->setGoal($faker->sentence(3));
+        $client->setBudget($faker->numberBetween(50, 200));
+        $client->setGroupSize($faker->randomDigit());
+        $client->setIsApt(rand(0, 1));
+        $client->setPracticeLevel($this->getReference(
+            rand(0, count(PracticeLevelFixtures::LEVELS) - 1)
+        ));
         $manager->persist($client);
         $this->addReference('client_admin', $client);
+
+        // New client test
+        $client = new Client();
+        $client->setUser($this->getReference('client_new', $client));
+        $manager->persist($client);
+        $this->addReference('new_client', $client);
 
         $manager->flush();
     }
