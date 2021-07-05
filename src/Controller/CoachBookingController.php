@@ -18,10 +18,10 @@ class CoachBookingController extends AbstractController
     /**
      * @Route("/", name="coach_booking_index", methods={"GET"})
      */
-    public function index(CoachBookingRepository $coachBookingRepo): Response
+    public function index(CoachBookingRepository $coachBooking): Response
     {
         return $this->render('coach_booking/index.html.twig', [
-            'coach_bookings' => $coachBookingRepo->findAll(),
+            'coach_bookings' => $coachBooking->findAll(),
         ]);
     }
 }
