@@ -89,8 +89,8 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        // guarantee every user at least has ROLE_CLIENT
+        $roles[] = 'ROLE_CLIENT';
 
         return array_unique($roles);
     }
