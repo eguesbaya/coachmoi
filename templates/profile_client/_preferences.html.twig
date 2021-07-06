@@ -5,6 +5,10 @@
     </div>
     <div>
         <div class="bg-light my-2">
+            <h3>Activité</h3>
+            <p>{{ app.user.client.activity.name }}</p>
+        </div>
+        <div class="bg-light my-2">
             <h3>Niveau</h3>
             {% if app.user.client.practicelevel.level is defined %}
             <p>{{ app.user.client.practicelevel.level }}</p>
@@ -16,7 +20,7 @@
         </div>
         <div class="bg-light my-2">
             <h3>Groupe</h3>
-            <p>{{ app.user.client.groupsize }}</p>
+            <p>{{ app.user.client.groupsize }} personnes</p>
         </div>
         <div class="bg-light my-2">
             <h3>Objectif sportif</h3>
