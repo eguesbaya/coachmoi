@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Coach;
+use App\Entity\Activity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,17 @@ class CoachRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Coach::class);
+    }
+
+    public function myFindByActivity(Activity $activity): array
+    {
+        return $this->createQueryBuilder('c')
+           ->leftJoin('c.activities', 'a')
+           ->andWhere('a.id = :id')
+           ->setParameter('id', $activity)
+           ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**

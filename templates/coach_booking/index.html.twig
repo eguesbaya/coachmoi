@@ -1,3 +1,4 @@
+
 {% extends 'layout_superadmin.html.twig' %}
 
 {% block title %}Gérer les demandes{% endblock %}
@@ -30,6 +31,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">{{ coach_booking.client.user.email }} </li>
                         <li class="list-group-item">{{ coach_booking.client.user.telephone }} </li>
+                    </ul>
                 </td>
                 <td>
                     <a href="{{ path("coach_booking_show", {"id": coach_booking.id}) }}" class="btn bg-success text-light fs-6">Voir le détail</a>
