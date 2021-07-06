@@ -1,16 +1,27 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <div class="row p-5 m-0">
+    <main class="container-fluid col-11">
         <h1>Mon espace Client</h1>
-        {% block information %}
-            {% include 'profile_client/_information.html.twig' %}
-        {% endblock %}
-        {% block preferences %}
-            {% include 'profile_client/_preferences.html.twig' %}
-        {% endblock %}
-        {% block availabilitites %}
-            {% include 'profile_client/_availability.html.twig' %}
-        {% endblock %}
-    </div>
+        <section class="row">
+            <div class="col-6">
+                {% block information %}
+                    {% include 'profile_client/_information.html.twig' %}
+                {% endblock %}
+            </div>
+            <div class="col-6">
+                {% block preferences %}
+                    {% include 'profile_client/_preferences.html.twig' %}
+                {% endblock %}
+                {% block coachmoi %}
+                    {% include 'profile_client/_coachmoi.html.twig' %}
+                {% endblock %}
+            </div>
+        </section>
+        <section>
+            {% block availabilitites %}
+                {% include 'profile_client/_availability.html.twig' %}
+            {% endblock %}
+        </section>
+    </main>
 {% endblock %}

@@ -74,6 +74,11 @@ class Coach
      */
     private Collection $availabilities;
 
+    public function __sleep(): array
+    {
+        return [];
+    }
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();

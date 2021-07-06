@@ -39,12 +39,13 @@ class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        foreach (self::TRAINING_SPACE as $trainingSpaceDetails) {
+        foreach (self::TRAINING_SPACE as $key => $trainingSpaceDetails) {
             $trainingSpaces = new TrainingSpace();
             $trainingSpaces->setName($trainingSpaceDetails['name']);
             $trainingSpaces->setAddress($trainingSpaceDetails['address']);
-            $manager->persist($trainingSpaces);
             $trainingSpaces->setSpaceCategory($this->getReference('space_category0'));
+            $manager->persist($trainingSpaces);
+            $this->addReference('training_space_' . $key, $trainingSpaces);
         }
         $manager->flush();
     }
