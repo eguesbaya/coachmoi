@@ -2,10 +2,11 @@
 
 {% block title %} Détail de la réservation {% endblock %}
 {% block content %}
-    <div class="row p-5 m-0">
-        <h1>Réservation {{ coach_booking.id }}</h1>
-        {# Section Informations #}
-        <div class="mes-informations container-fluid col-md-5 border border-dark rounded">
+    <h1>Réservation {{ coach_booking.id }}</h1>
+    {# ROW 1 - Section Infos + Préférence + coach-moi #}
+    <div class="row d-flex justify-content-around">
+        {# COLUMN 1 - Section Informations #}
+        <div class="mes-informations col-md-5 border border-dark rounded">
             <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
                 <h2 class="m-2 text-truncate">Informations client</h2>
             </div>
@@ -49,37 +50,58 @@
                 </div>
             </div>
         </div>
-        {# Section préférences #}
-        <div class="mes-preferences container-fluid col-md-5 border border-dark rounded">
-            <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-                <h2 class="m-2 text-truncate">Préférences client</h2>
+        {# COLUMN 2 - Section préférences + coach-moi #}
+        <div class="container-fluid col-md-5 row">
+            {# Section préférences #}
+            <div class="mes-preferences container-fluid border border-dark rounded">
+                <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+                    <h2 class="m-2 text-truncate">Préférences client</h2>
+                </div>
+                <div>
+                    <div class="bg-light my-2">
+                        <h3>Activité</h3>
+                        <p>{{ coach_booking.client.activity.name }}</p>
+                    </div>
+                    <div class="bg-light my-2">
+                        <h3>Niveau</h3>
+                        {% if coach_booking.client.practicelevel.level is defined %}
+                        <p>{{ coach_booking.client.practicelevel.level }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="bg-light my-2">
+                        <h3>Budget</h3>
+                        <p>{{ coach_booking.client.budget }} €/mois</p>
+                    </div>
+                    <div class="bg-light my-2">
+                        <h3>Groupe</h3>
+                        <p>{{ coach_booking.client.groupsize }}</p>
+                    </div>
+                    <div class="bg-light my-2">
+                        <h3>Objectif sportif</h3>
+                        <p>{{ coach_booking.client.goal }}</p>
+                    </div>
+                </div>
             </div>
-            <div>
-                <div class="bg-light my-2">
-                    <h3>Activité</h3>
-                    <p>{{ coach_booking.client.activity.name }}</p>
+            {# Section coach-moi: Matching coach & training space #}
+            <div class="coach-moi container-fluid border border-dark rounded mt-5">
+                <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+                    <h2 class="m-2 text-truncate">Coach moi</h2>
                 </div>
-                <div class="bg-light my-2">
-                    <h3>Niveau</h3>
-                    {% if coach_booking.client.practicelevel.level is defined %}
-                    <p>{{ coach_booking.client.practicelevel.level }}</p>
-                    {% endif %}
-                </div>
-                <div class="bg-light my-2">
-                    <h3>Budget</h3>
-                    <p>{{ coach_booking.client.budget }} €/mois</p>
-                </div>
-                <div class="bg-light my-2">
-                    <h3>Groupe</h3>
-                    <p>{{ coach_booking.client.groupsize }}</p>
-                </div>
-                <div class="bg-light my-2">
-                    <h3>Objectif sportif</h3>
-                    <p>{{ coach_booking.client.goal }}</p>
+                <div>
+                    <div class="bg-light my-2 p-2">
+                        <h3>Coach</h3>
+                        <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="">Coach dipsonible</a></p>
+                    </div>
+                    <div class="bg-light my-2 p-2">
+                        <h3>Salle</h3>
+                        <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="">Espace dipsonible</a></p>
+                    </div>
                 </div>
             </div>
         </div>
-        {# Section availabilities #}
+    </div>
+    {# ROW 2 - Section availabilities #}
+    <div class="row">
         <div class="mes-availabilities container-fluid border col-md-11 border-dark mt-5 rounded">
             <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
                 <h2 class="m-2">Disponibilités</h2>
@@ -110,7 +132,7 @@
             </div>
         </div>
         {# Link return the page of booking list #}
-        <div class="container d-flex align-items-baseline mt-5">
+        <div class="container-fluid border col-md-11 d-flex align-items-baseline mt-5">
             <i class="bi bi-caret-left-fill text-primary"></i>
             <p class="text-uppercase fw-bold fst-italic"><a href="{{ path('coach_booking_index') }}">Retour à la liste des demandes</a></p>
         </div>
