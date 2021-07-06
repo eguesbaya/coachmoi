@@ -17,11 +17,6 @@ class CoachBooking
      */
     private int $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Client::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private Client $client;
 
     /**
      * @ORM\ManyToOne(targetEntity=Coach::class)
@@ -33,12 +28,18 @@ class CoachBooking
      */
     private ?TrainingSpace $trainingSpace;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Client::class, inversedBy="coachBooking", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private ?Client $client;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getClient(): Client
+    public function getClient(): ?Client
     {
         return $this->client;
     }

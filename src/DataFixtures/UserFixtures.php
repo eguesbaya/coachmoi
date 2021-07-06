@@ -42,8 +42,8 @@ class UserFixtures extends Fixture
 
         //Client
         $client = new User();
-        $client->setFirstname('client');
-        $client->setLastname('CLIENT');
+        $client->setFirstname('Mystère');
+        $client->setLastname('Client');
         $client->setRoles([self::ROLES[2]]);
         $client->setTelephone('020304099');
         $client->setEmail('client@gmail.com');
@@ -58,7 +58,7 @@ class UserFixtures extends Fixture
         $newClient = new User();
         $newClient->setFirstname('New');
         $newClient->setLastname('Client');
-        $newClient->setRoles(['ROLE_ADMIN']);
+        $newClient->setRoles([self::ROLES[2]]);
         $newClient->setTelephone('020304099');
         $newClient->setEmail('client.new@gmail.com');
         $newClient->setPassword($this->passwordEncoder->encodePassword(
