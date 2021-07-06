@@ -74,18 +74,18 @@ class UserFixtures extends Fixture
 
         // Fixture for coach's demo account
         for ($i = 0; $i <= CoachFixtures::MAX_COACH; $i++) {
-        $coach = new User();
-        $coach->setFirstname($faker->firstName());
-        $coach->setLastname($faker->lastName());
-        $coach->setRoles([self::ROLES[1]]);
-        $coach->setTelephone($faker->mobileNumber());
-        $coach->setEmail('coach' . $i . '@gmail.com');
-        $coach->setPassword($this->passwordEncoder->encodePassword(
-            $coach,
-            'admincoachmoi'
-        ));
-        $manager->persist($coach);
-        $this->addReference('usercoach_' . $i, $coach);
+            $coach = new User();
+            $coach->setFirstname($faker->firstName());
+            $coach->setLastname($faker->lastName());
+            $coach->setRoles([self::ROLES[1]]);
+            $coach->setTelephone($faker->mobileNumber());
+            $coach->setEmail('coach' . $i . '@gmail.com');
+            $coach->setPassword($this->passwordEncoder->encodePassword(
+                $coach,
+                'admincoachmoi'
+            ));
+            $manager->persist($coach);
+            $this->addReference('usercoach_' . $i, $coach);
         }
 
         //Superadmin
