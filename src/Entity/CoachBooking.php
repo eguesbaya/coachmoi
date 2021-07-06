@@ -36,7 +36,7 @@ class CoachBooking
      */
     private ?TrainingSpace $trainingSpace;
 
-       public function __sleep(): array
+    public function __sleep(): array
     {
         return [];
     }

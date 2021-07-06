@@ -45,8 +45,7 @@ class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
             $trainingSpaces->setAddress($trainingSpaceDetails['address']);
             $trainingSpaces->setSpaceCategory($this->getReference('space_category0'));
             $manager->persist($trainingSpaces);
-            $this->addReference('training_space_' . $key , $trainingSpaces);
-            
+            $this->addReference('training_space_' . $key, $trainingSpaces);
         }
         $manager->flush();
     }
