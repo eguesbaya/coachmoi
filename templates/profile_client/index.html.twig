@@ -3,6 +3,9 @@
 {% block body %}
     <div class="row p-5 m-0">
         <h1>Mon espace Client</h1>
+        <div class="col-11">
+            <a class="btn btn-primary m-2" href="#" role="button">Mettre à jour</a>
+        </div>
         {% block information %}
             {% include 'profile_client/_information.html.twig' %}
         {% endblock %}
