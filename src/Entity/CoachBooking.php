@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CoachBookingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -24,15 +26,21 @@ class CoachBooking
     private ?Coach $coach;
 
     /**
-     * @ORM\ManyToOne(targetEntity=TrainingSpace::class)
-     */
-    private ?TrainingSpace $trainingSpace;
-
-    /**
      * @ORM\OneToOne(targetEntity=Client::class, inversedBy="coachBooking", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private ?Client $client;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TrainingSpace::class)
+     */
+    private ?TrainingSpace $trainingSpace;
+
+       public function __sleep(): array
+    {
+        return [];
+    }
+
 
     public function getId(): ?int
     {
