@@ -64,9 +64,7 @@
                     </div>
                     <div class="bg-light my-2">
                         <h3>Niveau</h3>
-                        {% if coach_booking.client.practicelevel.level is defined %}
-                        <p>{{ coach_booking.client.practicelevel.level }}</p>
-                        {% endif %}
+                        <p>{{ coach_booking.client.practicelevel.level ?? 'Non défini' }}</p>
                     </div>
                     <div class="bg-light my-2">
                         <h3>Budget</h3>
@@ -113,8 +111,8 @@
                             <tr class="fs-4">
                                 <th scope="col">#</th>
                                 <th scope="col">Jour</th>
-                                <th scope="col">L'heure de début</th>
-                                <th scope="col">L'heure de fin</th>
+                                <th scope="col">Heure de début</th>
+                                <th scope="col">Heure de fin</th>
                             </tr>
                         </thead>
                         <tbody>

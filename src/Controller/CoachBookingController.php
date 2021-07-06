@@ -13,12 +13,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/demandes")
- * @isGranted("ROLE_SUPER_ADMIN")
+ * @isGranted("ROLE_SUPERADMIN")
  */
 class CoachBookingController extends AbstractController
 {
     /**
      * @Route("/", name="coach_booking_index", methods={"GET"})
+     * @isGranted("ROLE_SUPERADMIN")
      */
     public function index(CoachBookingRepository $coachBookingRepo): Response
     {
@@ -28,8 +29,7 @@ class CoachBookingController extends AbstractController
     }
 
     /**
-     * @Route("/{coach_booking_id}", name="coach_booking_show", methods={"GET", "POST"})
-     * @ParamConverter("coachBooking", class="App\Entity\CoachBooking", options={"mapping": {"coach_booking_id": "id"}})
+     * @Route("/{id}", name="coach_booking_show", methods={"GET", "POST"})
      */
     public function show(CoachBooking $coachBooking): Response
     {
