@@ -6,6 +6,8 @@
         <p>Coach</p>
             {% if app.user.client.coachbooking.coach is defined %}
                 <h3>{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
+            {% else %}
+                <h3>Vous n'avez pas encore de coach</h3>
             {% endif %}
     </div>
 
