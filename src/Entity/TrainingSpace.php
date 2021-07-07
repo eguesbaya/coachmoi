@@ -51,9 +51,15 @@ class TrainingSpace
      */
     private Collection $availabilities;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="trainingSpaces")
+     */
+    private Collection $activity;
+
     public function __construct()
     {
         $this->availabilities = new ArrayCollection();
+        $this->activity = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -147,6 +153,30 @@ class TrainingSpace
                 $availability->setTrainingSpace(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Activity[]
+     */
+    public function getActivity(): Collection
+    {
+        return $this->activity;
+    }
+
+    public function addActivity(Activity $activity): self
+    {
+        if (!$this->activity->contains($activity)) {
+            $this->activity[] = $activity;
+        }
+
+        return $this;
+    }
+
+    public function removeActivity(Activity $activity): self
+    {
+        $this->activity->removeElement($activity);
 
         return $this;
     }

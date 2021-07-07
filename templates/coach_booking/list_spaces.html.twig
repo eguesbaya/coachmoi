@@ -1,0 +1,33 @@
+{% extends 'layout_superadmin.html.twig' %}
+
+{% block title %} Spaces for {{ activity.name }} {% endblock %}
+
+{% block content %}
+    <h1 class="mt-5 mb-3"> LISTE DES ESPACES TROUVÉS </h1>
+    <p class="text-center text-success fw-bold">Liste des espaces pour l'activité {{ activity.name }} de la Réservation No {{ coach_booking.id }} </h2>
+    <h3 class="text-left">Client : {{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</h3>
+    <table class="table text-center bg-light border border-4">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Espace</th>
+                <th scope="col">Type d'espace</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for space in spaces %}
+            <tr>
+                <td scope="row">{{ loop.index }}</td>
+                <td>{{ space.name }}</td>
+                <td>{{ space.spaceCategory.name }}</td>
+                <td>{{ space.address }}</td>
+                <td>
+                    <button class="btn bg-success text-light fs-6" type="submit">Choisir</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

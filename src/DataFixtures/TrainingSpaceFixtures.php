@@ -44,6 +44,8 @@ class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
             $trainingSpaces->setName($trainingSpaceDetails['name']);
             $trainingSpaces->setAddress($trainingSpaceDetails['address']);
             $trainingSpaces->setSpaceCategory($this->getReference('space_category0'));
+            $trainingSpaces->addActivity($this->getReference('activity_' .
+                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
             $manager->persist($trainingSpaces);
             $this->addReference('training_space_' . $key, $trainingSpaces);
         }
@@ -54,6 +56,7 @@ class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             SpaceCategoryFixtures::class,
+            ActivityFixtures::class
         ];
     }
 }
