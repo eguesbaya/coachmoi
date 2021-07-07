@@ -3,20 +3,22 @@
         <h2 class="m-2 text-truncate">Coach Moi</h2>
     </div>
     <div class="bg-light my-2 px-3 py-2">
-        <p>Clients</p>
-        <ul>
-        {% for booking in app.user.coach.coachbookings %}
-        <li><h3>{{ booking.client.user.firstname }} {{ booking.client.user.lastname }} </h3></li>
-        {% endfor %}
-        </ul>
-    </div>
-
-    <div class="bg-light my-2 px-3 py-2">
-        <p>Espace d'entrainement</p>
-        <ul>
-        {% for booking in app.user.coach.coachbookings %}
-        <li><h3>{{ booking.trainingSpace.name }}</h3></li>
-        {% endfor %}
-        </ul>
-    </div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Clients</td>
+                    <td>Salles</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for booking in app.user.coach.coachbookings %}
+                        <td>{{ booking.client.user.firstname }} {{ booking.client.user.lastname }}</td>
+                    {% endfor %}
+                    {% for booking in app.user.coach.coachbookings %}
+                        <td>{{ booking.trainingSpace.name }}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
 </div>
