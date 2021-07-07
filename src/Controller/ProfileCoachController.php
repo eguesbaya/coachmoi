@@ -46,7 +46,6 @@ class ProfileCoachController extends AbstractController
         }
 
         return $this->render('profile_coach/new.html.twig', [
-            'coach' => $coach,
             'form' => $form->createView(),
         ]);
     }
