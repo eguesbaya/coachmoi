@@ -11,7 +11,7 @@ class ActivityFixtures extends Fixture
     public const FEATURED_ACTIVITY = [
         [
             'name' => 'Perte de poids',
-            'photo' => 'https://bit.ly/3jTANbj',
+            'photo' => 'https://bit.ly/2VanXLb',
             'description' => 'Ton objectif est la perte de poids, C’est ici !'
         ],
         [
@@ -33,13 +33,13 @@ class ActivityFixtures extends Fixture
         ],
         [
             'name' => 'Remise en forme',
-            'photo' => 'https://bit.ly/3wEnA9M',
+            'photo' => 'https://bit.ly/3dTj7Zw',
             'description' => 'Tu souhaites reprendre une activité physique avec un accompagnement
              sur mesure ! C’est ici !'
         ],
         [
             'name' => 'Boxe thaï',
-            'photo' => 'https://bit.ly/3wmyno7',
+            'photo' => 'https://bit.ly/3wpo2rr',
             'description' => 'Tu veux apprendre ou améliorer ta boxe thaï, c’est ici !'
         ],
         [
@@ -48,7 +48,7 @@ class ActivityFixtures extends Fixture
             'description' => 'Tu veux apprendre ou améliorer ta boxe anglaise, c’est ici !'
         ],
         [
-            'name' => 'jiu jitsu/Grappling',
+            'name' => 'jiu jitsu Grappling',
             'photo' => 'https://bit.ly/3wg5Q3j',
             'description' => 'Tu veux apprendre ou améliorer ton JJB ou ton Grappling, c’est ici !'
         ],
