@@ -9,7 +9,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
 {
-    private const TRAINING_SPACE = [
+    public const TRAINING_SPACE = [
         [
             'name' => 'GIGAFIT ORLEANS SUD',
             'address' => '30 Rue Gustave Flaubert 45100 Orléans',

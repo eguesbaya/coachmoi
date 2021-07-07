@@ -21,11 +21,6 @@ class CoachBooking
 
 
     /**
-     * @ORM\ManyToOne(targetEntity=Coach::class)
-     */
-    private ?Coach $coach;
-
-    /**
      * @ORM\OneToOne(targetEntity=Client::class, inversedBy="coachBooking", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
@@ -35,6 +30,11 @@ class CoachBooking
      * @ORM\ManyToOne(targetEntity=TrainingSpace::class)
      */
     private ?TrainingSpace $trainingSpace;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Coach::class, inversedBy="coachBookings")
+     */
+    private ?Coach $coach;
 
     public function __sleep(): array
     {
@@ -59,18 +59,6 @@ class CoachBooking
         return $this;
     }
 
-    public function getCoach(): ?Coach
-    {
-        return $this->coach;
-    }
-
-    public function setCoach(?Coach $coach): self
-    {
-        $this->coach = $coach;
-
-        return $this;
-    }
-
     public function getTrainingSpace(): ?TrainingSpace
     {
         return $this->trainingSpace;
@@ -79,6 +67,18 @@ class CoachBooking
     public function setTrainingSpace(?TrainingSpace $trainingSpace): self
     {
         $this->trainingSpace = $trainingSpace;
+
+        return $this;
+    }
+
+    public function getCoach(): ?Coach
+    {
+        return $this->coach;
+    }
+
+    public function setCoach(?Coach $coach): self
+    {
+        $this->coach = $coach;
 
         return $this;
     }

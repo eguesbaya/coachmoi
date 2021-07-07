@@ -30,20 +30,22 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
             $this->addReference('coach_' . $i, $coach);
         }
 
-           /* // Fixture for coach's demo account
-            $coach = new Coach();
-            $coach->setBirthdate(\DateTime::createFromFormat('Y-m-d', "1988-07-01"));
-            $coach->setHasVehicle(true);
-            $coach->setQualification('BP');
-            $coach->setEquipment('tapis');
-            $coach->setBiography('Jeune coach spécialiste en yoga');
-            $coach->setHourlyRate(50);
-            // Replaced the function rand() by the id of the user to avoid the error of duplicated user ids
-            $coach->setUser($this->getReference('coach'));
-            $coach->addActivity($this->getReference('activity_0'));
-
-            $manager->persist($coach);
-            $this->addReference('coach_demo', $coach);*/
+        // Fixture for coach's demo account
+        $coach = new Coach();
+        $coach->setBirthdate(\DateTime::createFromFormat('Y-m-d', "1988-07-01"));
+        $coach->setHasVehicle(true);
+        $coach->setQualification('BP');
+        $coach->setEquipment('tapis');
+        $coach->setHourlyRate(50);
+        // Replaced the function rand() by the id of the user to avoid the error of duplicated user ids
+        $coach->setUser($this->getReference('coach'));
+        $coach->addActivity($this->getReference('activity_0'));
+        $coach->setBiography('Jeune coach spécialiste en yoga');
+        for ($i = 0; $i < CoachBookingFixtures::MAX_BOOKINGS; $i++) {
+            $coach->addCoachBooking($this->getReference('booking_' . $i));
+        }
+        $manager->persist($coach);
+        $this->addReference('coach_demo', $coach);
         $manager->flush();
     }
 
@@ -51,6 +53,7 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class,
+            CoachBookingFixtures::class,
             ActivityFixtures::class
         ];
     }
