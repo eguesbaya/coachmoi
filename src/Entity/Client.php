@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use DateTimeInterface;
+use App\Entity\CoachBooking;
 use App\Entity\PracticeLevel;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ClientRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
@@ -69,6 +70,7 @@ class Client
      */
     private Collection $availabilities;
 
+
     /**
      * @ORM\ManyToOne(targetEntity=Activity::class)
      * @ORM\JoinColumn(nullable=false)
@@ -80,6 +82,11 @@ class Client
      * @ORM\Column(type="date", nullable=true)
      */
     private ?\DateTimeInterface $createdAt = null;
+
+    /**
+     * @ORM\OneToOne(targetEntity=CoachBooking::class, mappedBy="client", cascade={"persist", "remove"})
+     */
+    private ?CoachBooking $coachBooking;
 
     public function __construct()
     {
@@ -231,6 +238,23 @@ class Client
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCoachBooking(): ?CoachBooking
+    {
+        return $this->coachBooking;
+    }
+
+    public function setCoachBooking(CoachBooking $coachBooking): self
+    {
+        // set the owning side of the relation if necessary
+        if ($coachBooking->getClient() !== $this) {
+            $coachBooking->setClient($this);
+        }
+
+        $this->coachBooking = $coachBooking;
 
         return $this;
     }
