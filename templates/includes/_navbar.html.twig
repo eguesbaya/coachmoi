@@ -21,13 +21,17 @@
 			</ul>
 			<div class="d-flex justify-content-center align-items-center">
 				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-					<a class="btn btn-success mx-1 button-login text-light" href="#">Mon profil</a>
-					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_logout') }}">Déconnexion</a>
+					{% if is_granted('ROLE_COACH') %}
+						<a class="btn btn-success mx-1 button-login text-light" href="{{ path('profile_coach') }}">Mon profil</a>
+					{% else %}
+						<a class="btn btn-success mx-1 button-login text-light" href="{{ path('profile_client') }}">Mon profil</a>
+					{% endif %}
+						<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_logout') }}">Déconnexion</a>
 				{% else %}
-					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_register') }}">S'inscrire</a>
-					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_login') }}">Se connecter</a>
+						<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_register') }}">S'inscrire</a>
+						<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_login') }}">Se connecter</a>
 				{% endif %}
+				</div>
 			</div>
 		</div>
-	</div>
-</nav>
+	</nav>
