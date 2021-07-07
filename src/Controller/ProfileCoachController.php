@@ -56,8 +56,7 @@ class ProfileCoachController extends AbstractController
      */
     public function edit(Request $request): Response
     {
-        $coach = $this->getUser()->getCoach();
-        $form = $this->createForm(CoachType::class, $coach);
+        $form = $this->createForm(CoachType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
