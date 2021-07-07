@@ -3,22 +3,20 @@
         <h2 class="m-2 text-truncate">Coach Moi</h2>
     </div>
     <div class="bg-light my-2 px-3 py-2">
-        <table>
+        <table class="table">
             <thead>
                 <tr>
-                    <td>Clients</td>
-                    <td>Salles</td>
+                    <th scope="col">Clients</th>
+                    <th scope="col">Salles</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    {% for booking in app.user.coach.coachbookings %}
-                        <td>{{ booking.client.user.firstname }} {{ booking.client.user.lastname }}</td>
-                    {% endfor %}
-                    {% for booking in app.user.coach.coachbookings %}
-                        <td>{{ booking.trainingSpace.name }}</td>
-                    {% endfor %}
+            {% for booking in app.user.coach.coachbookings %}
+                <tr scope="row">
+                    <td>{{ booking.client.user.firstname }} {{ booking.client.user.lastname }}</td>
+                    <td>{{ booking.trainingSpace.name }}</td>
                 </tr>
+            {% endfor %}
             </tbody>
         </table>
 </div>
