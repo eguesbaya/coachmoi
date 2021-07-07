@@ -7,6 +7,7 @@ use App\Entity\Client;
 use App\Entity\Activity;
 use App\Entity\Coach;
 use App\Repository\CoachBookingRepository;
+use App\Repository\TrainingSpaceRepository;
 use App\Repository\CoachRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,7 +44,7 @@ class CoachBookingController extends AbstractController
     }
 
     /**
-    * @Route("/demandes/{id}/{activity_id}/coachs", name="show_coachs_byActivity", methods={"GET", "POST"}))
+    * @Route("/{id}/{activity_id}/coachs", name="show_coachs_byActivity", methods={"GET", "POST"}))
     * @ParamConverter("activity", class="App\Entity\Activity", options={"mapping": {"activity_id": "id"}})
     */
     public function showCoachByAct(CoachBooking $booking, Activity $activity, CoachRepository $coachRepo): Response
@@ -54,6 +55,21 @@ class CoachBookingController extends AbstractController
             'coachs' => $coachs,
             'activity' => $activity,
             'coach_booking' => $booking,
+        ]);
+    }
+
+    /**
+    * @Route("/{id}/{activity_id}/espaces", name="show_spaces_byActivity", methods={"GET", "POST"}))
+    * @ParamConverter("activity", class="App\Entity\Activity", options={"mapping": {"activity_id": "id"}})
+    */
+    public function showSpaceByAct(CoachBooking $book, Activity $activity, TrainingSpaceRepository $spaceRepo): Response
+    {
+        $spaces = $spaceRepo->myFindByActivity($activity);
+
+        return $this->render('coach_booking/list_spaces.html.twig', [
+            'spaces' => $spaces,
+            'activity' => $activity,
+            'coach_booking' => $book,
         ]);
     }
 }

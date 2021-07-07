@@ -46,9 +46,15 @@ class Activity
      */
     private Collection $coaches;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=TrainingSpace::class, mappedBy="activity")
+     */
+    private Collection $trainingSpaces;
+
     public function __construct()
     {
         $this->coaches = new ArrayCollection();
+        $this->trainingSpaces = new ArrayCollection();
     }
 
     public function __serialize(): array
@@ -131,6 +137,33 @@ class Activity
     {
         if ($this->coaches->removeElement($coach)) {
             $coach->removeActivity($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TrainingSpace[]
+     */
+    public function getTrainingSpaces(): Collection
+    {
+        return $this->trainingSpaces;
+    }
+
+    public function addTrainingSpace(TrainingSpace $trainingSpace): self
+    {
+        if (!$this->trainingSpaces->contains($trainingSpace)) {
+            $this->trainingSpaces[] = $trainingSpace;
+            $trainingSpace->addActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrainingSpace(TrainingSpace $trainingSpace): self
+    {
+        if ($this->trainingSpaces->removeElement($trainingSpace)) {
+            $trainingSpace->removeActivity($this);
         }
 
         return $this;

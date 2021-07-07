@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\TrainingSpace;
+use App\Entity\Activity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -12,6 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method TrainingSpace[]    findAll()
  * @method TrainingSpace[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
 class TrainingSpaceRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -19,6 +21,16 @@ class TrainingSpaceRepository extends ServiceEntityRepository
         parent::__construct($registry, TrainingSpace::class);
     }
 
+    public function myFindByActivity(Activity $activity): array
+    {
+        return $this->createQueryBuilder('t')
+           ->leftJoin('t.activity', 'a')
+           ->andWhere('a.id = :id')
+           ->setParameter('id', $activity)
+           ->getQuery()
+           ->getResult()
+        ;
+    }
     // /**
     //  * @return TrainingSpace[] Returns an array of TrainingSpace objects
     //  */
