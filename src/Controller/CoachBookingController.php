@@ -62,13 +62,13 @@ class CoachBookingController extends AbstractController
     * @Route("/{id}/{activity_id}/espaces", name="show_spaces_byActivity", methods={"GET", "POST"}))
     * @ParamConverter("activity", class="App\Entity\Activity", options={"mapping": {"activity_id": "id"}})
     */
-    public function showSpaceByAct(CoachBooking $book, Activity $act, TrainingSpaceRepository $spaceRp): Response
+    public function showSpaceByAct(CoachBooking $book, Activity $activity, TrainingSpaceRepository $spaceRepo): Response
     {
-        $spaces = $spaceRp->myFindByActivity($act);
+        $spaces = $spaceRepo->myFindByActivity($activity);
 
         return $this->render('coach_booking/list_spaces.html.twig', [
             'spaces' => $spaces,
-            'activity' => $act,
+            'activity' => $activity,
             'coach_booking' => $book,
         ]);
     }
