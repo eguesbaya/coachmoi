@@ -52,10 +52,11 @@ class ProfileCoachController extends AbstractController
 
 
     /**
-     * @Route("/profile/coach/{id}/edit", name="coach_edit", methods={"GET","POST"})
+     * @Route("/profile/coach/edit", name="coach_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Coach $coach): Response
+    public function edit(Request $request): Response
     {
+        $coach = $this->getUser()->getCoach();
         $form = $this->createForm(CoachType::class, $coach);
         $form->handleRequest($request);
 

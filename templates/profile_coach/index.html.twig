@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="row p-5 m-0">
-        <h1>Mon espace Coach</h1> <a href="{{ path('coach_edit', {'id': app.user.coach.id}) }}" class="btn btn-success m-2">Changer informations</a>
+        <h1>Mon espace Coach</h1> <a href="{{ path('coach_edit') }}" class="btn btn-success m-2">Changer informations</a>
         {% block information %}
             {% include 'profile_coach/_information.html.twig' %}
         {% endblock %}
