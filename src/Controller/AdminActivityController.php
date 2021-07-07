@@ -83,7 +83,7 @@ class AdminActivityController extends AbstractController
      */
     public function delete(Request $request, Activity $activity): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$activity->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $activity->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($activity);
             $entityManager->flush();
