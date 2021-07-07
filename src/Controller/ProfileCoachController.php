@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\Coach;
+use App\Entity\User;
 use App\Form\CoachType;
 use App\Repository\CoachRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -54,9 +55,11 @@ class ProfileCoachController extends AbstractController
     /**
      * @Route("/profile/coach/edit", name="coach_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Coach $coach): ?Response
+    public function edit(Request $request): Response
     {
-        $coach = $this->getUser()->getCoach();
+        /** @var User */
+        $user = $this->getUser();
+        $coach = $user->getCoach();
         $form = $this->createForm(CoachType::class, $coach);
         $form->handleRequest($request);
 
