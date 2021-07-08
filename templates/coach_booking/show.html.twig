@@ -88,6 +88,9 @@
                 <div>
                     <div class="bg-light my-2 p-2">
                         <h3>Coach</h3>
+                        {% if coach_booking.coach %}
+                            <p class="text-center"> {{ coach_booking.coach.user.firstname }} {{ coach_booking.coach.user.lastname }}</p>
+                        {% endif %}
                         <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_coachs_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}">Coach dipsonible</a></p>
                     </div>
                     <div class="bg-light my-2 p-2">
