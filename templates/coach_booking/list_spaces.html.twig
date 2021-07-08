@@ -32,10 +32,14 @@
                     </ul>
                 </td>
                 <td>
-                    <button class="btn bg-success text-light fs-6" type="submit">Choisir</button>
+                    <form method="post" action="{{ path("cb_update_space", {"id": coach_booking.id}) }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token('cb_update_space' ~ coach_booking.id) }}">
+                        <input type="hidden" name="trainingSpace" value="{{ space.id }}">
+                        <button class="btn bg-success text-light fs-6">Choisir</button>
+                        </form>
                 </td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}

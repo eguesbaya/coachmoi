@@ -88,4 +88,20 @@ class CoachBookingController extends AbstractController
         'id' => $booking->getId(),
         ]);
     }
+
+    /**
+     * @Route("/add-space/{id}/", name="cb_update_space", methods={"POST"})
+     */
+    public function updateSpace(Request $request, CoachBooking $booking, TrainingSpaceRepository $spaceRepo): Response
+    {
+        if ($this->isCsrfTokenValid('cb_update_space' . $booking->getId(), $request->request->get('_token'))) {
+            $space = $spaceRepo->find($request->request->get('trainingSpace'));
+            $booking->setTrainingSpace($space);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        return $this->redirectToRoute('coach_booking_show', [
+        'id' => $booking->getId(),
+        ]);
+    }
 }
