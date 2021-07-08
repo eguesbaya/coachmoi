@@ -8,30 +8,20 @@
     </div>
     <section class="row">
         <div class="col-lg-6 col-md-12 mt-4">
-            {% block information %}
             {% include 'profile_coach/_information.html.twig' %}
-            {% endblock %}
         </div>
         <div class="col-lg-6 col-md-12">
-            {% block photo %}
                 {% include "profile_coach/_photo.html.twig" %}
-            {% endblock %}
             <div class="pt-4">
-                {% block preferences %}
                     {% include 'profile_coach/_preferences.html.twig' %}
-                {% endblock %}
             </div>
             <div class="pt-4">
-                {% block coachmoi %}
                     {% include 'profile_coach/_coachmoi.html.twig' %}
-                {% endblock %}
             </div>
         </div>
     </section>
     <section>
-        {% block availabilitites %}
             {% include 'profile_coach/_availability.html.twig' %}
-        {% endblock %}
     </section>
 </main>
 {% endblock %}
