@@ -16,7 +16,13 @@
 					<a class="nav-link" href="#">Espaces d'entrainements</a>
 				</li>
 				<li class="nav-item text-center mx-5 fw-bold fst-italic">
-					<a class="nav-link" href="#">Coachs</a>
+					<a class="nav-link" href="{{ path('superadmin_show_coachs') }}">Coachs</a>
+				</li>
+				<li class="nav-item text-center mx-5 fw-bold fst-italic">
+					<a class="nav-link" href="{{ path('coach_booking_index') }}">Réservations</a>
+				</li>
+				<li class="nav-item text-center mx-5 fw-bold fst-italic">
+					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_logout') }}">Déconnexion</a>
 				</li>
 			</ul>
 		</div>

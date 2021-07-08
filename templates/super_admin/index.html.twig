@@ -5,8 +5,10 @@
 {% block body %}
 
 
-<div class="example-wrapper">
+<main class="container-fluid col-md-11">
     <h1>✅ Hello {{ app.user.firstname }} !</h1>
 
-</div>
+    <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('home') }}">Retour au site</a></p>
+
+</main>
 {% endblock %}

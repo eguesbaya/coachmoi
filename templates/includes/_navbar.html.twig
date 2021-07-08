@@ -20,13 +20,67 @@
 				</li>
 			</ul>
 			<div class="d-flex justify-content-center align-items-center">
-				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-					<a class="btn btn-success mx-1 button-login text-light" href="#">Mon profil</a>
-					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_logout') }}">Déconnexion</a>
-				{% else %}
-					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_register') }}">S'inscrire</a>
+				<div class="navbar-nav">
+                {% if not app.user %}
+                    <a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_register') }}">S'inscrire</a>
 					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_login') }}">Se connecter</a>
-				{% endif %}
+                {% endif %}
+				{% if app.user %}
+				<div class="dropdown btn btn-success">
+                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                           Bienvenu
+                            <span class="text-warning">{{ app.user.firstname }}</span>
+                        </a>
+                        <ul class="dropdown-menu shadow-lg w-100" aria-labelledby="dropdownMenuLink">
+                            {% if is_granted('ROLE_SUPERADMIN') %}
+								<li>
+							    	<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_index') }}">
+									Mon espace admin</a>
+								</li>
+                                <li>
+                                    <a class="dropdown-item text-wrap text-warning py-2" href="{{ path('coach_booking_index') }}">
+                                        Gérer les demandes</a>
+                                </li>
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="">
+                                    	Nos clients</a>
+                            	</li>
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_show_coachs') }}">
+                                    	Nos coachs</a>
+                            	</li>
+
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="">
+                                    	Nos salles</a>
+                            	</li>
+                            {% elseif is_granted('ROLE_COACH') %}
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('profile_coach') }}">
+                                    	Voir mon profile</a>
+                            	</li>
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('coach_edit') }}">
+                                    	Éditer mon profile</a>
+                            	</li>
+							{% elseif is_granted('ROLE_CLIENT') %}
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('profile_client') }}">
+                                    	Voir mon profile</a>
+                            	</li>
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="">
+                                    	Éditer mon profile</a>
+                            	</li>
+								{% endif %}
+                            <li>
+                                <a class="dropdown-item text-wrap text-danger py-2" href="{{ path('app_logout') }}">
+                                    Déconnexion
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
 			</div>
 		</div>
 	</div>
