@@ -22,17 +22,22 @@ class Activity
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
      */
     private ?string $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="700")
      */
 
     private ?string $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(max="255")
      */
     private ?string $photo;
 
