@@ -16,7 +16,7 @@ class CoachBookingFixtures extends Fixture implements DependentFixtureInterface
             $booking = new CoachBooking();
             $booking->setClient($this->getReference('client_' . $i));
             $booking->setTrainingSpace($this->getReference(
-                'training_space_' . rand(0, count(TrainingSpaceFixtures::TRAINING_SPACE))
+                'training_space_' . rand(0, count(TrainingSpaceFixtures::TRAINING_SPACE) - 1)
             ));
             $manager->persist($booking);
             $this->addReference('booking_' . $i, $booking);

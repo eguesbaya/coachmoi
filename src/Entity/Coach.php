@@ -63,7 +63,7 @@ class Coach
     *      mimeTypes = {
     *              "image/jpg", "image/jpg",
     *              "image/jpeg", "image/jpeg",
-    *              "imaes/png", "image/webp"},
+    *              "image/png", "image/webp"},
     * )
     * @var File|null
     */
