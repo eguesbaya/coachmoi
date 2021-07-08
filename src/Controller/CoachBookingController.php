@@ -17,7 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
- * @Route("/demandes")
+ * @Route("/superadmin/demandes")
  * @isGranted("ROLE_SUPERADMIN")
  */
 class CoachBookingController extends AbstractController

@@ -74,6 +74,11 @@ class Coach
      */
     private Collection $availabilities;
 
+    /**
+     * @ORM\OneToMany(targetEntity=CoachBooking::class, mappedBy="coach")
+     */
+    private Collection $coachBookings;
+
     public function __sleep(): array
     {
         return [];
@@ -83,6 +88,7 @@ class Coach
     {
         $this->activities = new ArrayCollection();
         $this->availabilities = new ArrayCollection();
+        $this->coachBookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -234,6 +240,36 @@ class Coach
             // set the owning side to null (unless already changed)
             if ($availability->getCoach() === $this) {
                 $availability->setCoach(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CoachBooking[]
+     */
+    public function getCoachBookings(): Collection
+    {
+        return $this->coachBookings;
+    }
+
+    public function addCoachBooking(CoachBooking $coachBooking): self
+    {
+        if (!$this->coachBookings->contains($coachBooking)) {
+            $this->coachBookings[] = $coachBooking;
+            $coachBooking->setCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCoachBooking(CoachBooking $coachBooking): self
+    {
+        if ($this->coachBookings->removeElement($coachBooking)) {
+            // set the owning side to null (unless already changed)
+            if ($coachBooking->getCoach() === $this) {
+                $coachBooking->setCoach(null);
             }
         }
 

@@ -88,6 +88,22 @@ class UserFixtures extends Fixture
             $this->addReference('usercoach_' . $i, $coach);
         }
 
+        //Coach with several clients
+        $coach = new User();
+        $coach->setFirstname($faker->firstName());
+        $coach->setLastname($faker->lastName());
+        $coach->setRoles([self::ROLES[1]]);
+        $coach->setTelephone($faker->mobileNumber());
+        $coach->setEmail('coach@gmail.com');
+        $coach->setPassword($this->passwordEncoder->encodePassword(
+            $coach,
+            'coach'
+        ));
+        $manager->persist($coach);
+        $this->addReference('coach', $coach);
+
+
+
         //Superadmin
         $superAdmin = new User();
         $superAdmin->setFirstname('Franck');

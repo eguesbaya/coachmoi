@@ -1,8 +1,8 @@
-{% extends 'layout.html.twig' %}
+{% extends 'layout_profile.html.twig' %}
 
 {% block body %}
     <div class="row p-5 m-0">
-        <h1>Mon espace Coach</h1>
+        <h1>Mon espace Coach</h1> <a href="{{ path('coach_edit') }}" class="btn btn-success m-2">Changer informations</a>
         {% block information %}
             {% include 'profile_coach/_information.html.twig' %}
         {% endblock %}
@@ -11,6 +11,9 @@
         {% endblock %}
         {% block preferences %}
             {% include 'profile_coach/_preferences.html.twig' %}
+        {% endblock %}
+        {% block coachmoi %}
+            {% include 'profile_coach/_coachmoi.html.twig' %}
         {% endblock %}
         {% block availabilitites %}
             {% include 'profile_coach/_availability.html.twig' %}
