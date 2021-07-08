@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1 class="mt-5 mb-3"> LISTE DE COACHS TROUVÉS </h1>
-    <p class="text-center text-success fw-bold">Liste des coachs pour l'activité {{ activity.name }} de la Réservation No {{ coach_booking.id }} </h2>
+    <p class="text-center text-success fw-bold">Liste des coachs pour l'activité {{ activity.name }} de la Réservation No {{ coach_booking.id }} </p>
     <h3 class="text-left">Client : {{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</h3>
     <table class="table text-center bg-light border border-4">
         <thead>
@@ -37,7 +37,11 @@
                     </ul>
                 </td>
                 <td>
-                    <a href="#" class="btn bg-success text-light fs-6">Choisir</a>
+                 <form method="post" action="{{ path("cb_update_coach", {"id": coach_booking.id}) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('cb_update_coach' ~ coach_booking.id) }}">
+                   <input type="hidden" name="coach" value="{{ coach.id }}">
+                    <button class="btn bg-success text-light fs-6">Choisir</button>
+                </form>
                 </td>
             </tr>
         {% else %}
