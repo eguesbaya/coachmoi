@@ -92,7 +92,6 @@
                         {% if coach_booking.coach %}
                             <p class="text-center"> {{ coach_booking.coach.user.firstname }} {{ coach_booking.coach.user.lastname }}</p>
                         {% endif %}
-                 
                         <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_coachs_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}">Coach disponible</a></p>
 
                     </div>
@@ -102,7 +101,6 @@
                         {% if coach_booking.trainingSpace %}
                               <p class="text-center"> {{ coach_booking.trainingSpace.name }}</p>
                         {% endif %}
-                       
                         <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_spaces_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}">Espace disponible</a></p>
 
                     </div>
