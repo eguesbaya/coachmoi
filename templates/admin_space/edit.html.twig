@@ -1,0 +1,13 @@
+{% extends 'layout_superadmin.html.twig' %}
+
+{% block title %}Liste d'espaces {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Editer</h1>
+    {{ include('admin_space/_form.html.twig', {'button_label': 'Valider'}) }}
+    {{ include('admin_space/_delete_form.html.twig') }}
+    </br>
+    <a class="fw-bold fs-5" href="{{ path('admin_space_index') }}">Retour à la liste des espaces</a>
+</div>
+{% endblock %}
