@@ -1,0 +1,38 @@
+{% extends 'layout_superadmin.html.twig' %}
+
+{% block title %}Tous les Clients{% endblock %}
+
+{% block content %}
+
+    <h1 class="my-5">Tous les Clients</h1>
+
+    <table class="table text-center bg-light">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Clients</th>
+                <th scope="col">Activité</th>
+                <th scope="col">Budget</th>
+                <th scope="col">Disponibilités</th>
+                <th scope="col">Coachs</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+                <tr>
+                    <td scope="row">{{ client.id }}</td>
+                    <td>{{ client.user.firstname }} {{ client.user.lastname }}</td>
+                    <td>{{ client.activity.name }}</td>
+                    <td>{{ client.budget }} €</td>
+                    <td>
+                        {% for availability in client.availabilities %}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{ availability.weekday.name }} {{ availability.startTime|format_time() }} - {{ availability.endTime|format_time() }} </li>
+                        </ul>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
