@@ -42,7 +42,7 @@
                                         Gérer les demandes</a>
                                 </li>
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="">
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_show_clients') }}">
                                     	Nos clients</a>
                             	</li>
 								<li>
@@ -51,7 +51,7 @@
                             	</li>
 
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="">
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('admin_space_index') }}">
                                     	Nos salles</a>
                             	</li>
                             {% elseif is_granted('ROLE_COACH') %}
