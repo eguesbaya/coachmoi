@@ -3,30 +3,29 @@
 {% block title %}Activity index{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Activity index</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Photo</th>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Photo</th>
                 <th>IsFeatured</th>
-                <th>actions</th>
+                <th class="text-center">actions</th>
             </tr>
         </thead>
         <tbody>
         {% for activity in activities %}
             <tr>
-                <td>{{ activity.id }}</td>
+                <td><img src="{{ vich_uploader_asset(activity) }}" width="100vh"></td>
                 <td>{{ activity.name }}</td>
                 <td>{{ activity.description }}</td>
-                <td>{{ activity.photo }}</td>
                 <td>{{ activity.isFeatured ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('admin_activity_show', {'id': activity.id}) }}">show</a>
-                    <a href="{{ path('admin_activity_edit', {'id': activity.id}) }}">edit</a>
+                <td class="d-flex">
+                    <a href="{{ path('admin_activity_show', {'id': activity.id}) }}" class="btn btn-success text-light me-3">show</a>
+                    <a href="{{ path('admin_activity_edit', {'id': activity.id}) }}" class="btn btn-success text-light">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -36,6 +35,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
     <a href="{{ path('admin_activity_new') }}">Create new</a>
 {% endblock %}
