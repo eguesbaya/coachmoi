@@ -35,7 +35,8 @@ class ActivityType extends AbstractType
                 ],
                 'label_attr' => [
                     'class' => 'form-label'
-                ]
+                ],
+                'required' => false,
             ])
         ;
     }
