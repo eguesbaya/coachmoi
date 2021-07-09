@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ActivityRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+use DateTimeImmutable;
 use App\Entity\Coach;
+use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ActivityRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -41,7 +45,24 @@ class Activity
      * @Assert\Length(max="255")
      */
     private ?string $photo;
+    /**
+    * @Vich\UploadableField(mapping="coaches", fileNameProperty="photo")
+    * @Assert\File(
+    *      maxSize = "2M",
+    *      mimeTypes = {
+    *              "image/jpg", "image/jpg",
+    *              "image/jpeg", "image/jpeg",
+    *              "imaes/png", "image/webp"},
+    * )
+    * @var File|null
+    */
+    private $photoFile;
 
+   /**
+    * @ORM\Column(type="datetime", nullable="true")
+    * @var \DateTimeInterface|null
+    */
+    private $updatedAt;
     /**
      * @ORM\Column(type="boolean")
      */
@@ -93,18 +114,6 @@ class Activity
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
 
         return $this;
     }
@@ -171,6 +180,40 @@ class Activity
         if ($this->trainingSpaces->removeElement($trainingSpace)) {
             $trainingSpace->removeActivity($this);
         }
+
+        return $this;
+    }
+    public function setPhotoFile(?File $photo): self
+    {
+        $this->photoFile = $photo;
+        $this->updatedAt = new DateTimeImmutable('now');
+        return $this;
+    }
+
+    public function getPhotoFile(): ?File
+    {
+        return $this->photoFile;
+    }
+
+
+    public function setPhoto(?string $photo): void
+    {
+        $this->photo = $photo;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTime $updatedAt = null): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
