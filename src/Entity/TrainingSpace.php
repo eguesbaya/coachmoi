@@ -39,7 +39,7 @@ class TrainingSpace
     private ?string $photo = null;
 
     /**
-    * @Vich\UploadableField(mapping="spacetraining", fileNameProperty="photo")
+    * @Vich\UploadableField(mapping="coaches", fileNameProperty="photo")
     * @Assert\File(
     *      maxSize = "2M",
     *      mimeTypes = {
