@@ -1,29 +1,27 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Hello {{ app.user.firstname }}!{% endblock %}
-
 {% block body %}
-<div class="example-wrapper">
+<main class="container-fluid col-11">
     <h1>Mon espace Coach</h1>
-    <section class="mes-informations container-fluid col-11 border border-dark">
-        <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-            <h2>Mes informations</h2>
-            <i class="bi bi-pencil-square"></i>
+    <div class="d-flex justify-content-end">
+        <a href="{{ path('coach_edit') }}" class="btn btn-success m-2">Changer informations</a>
+    </div>
+    <section class="row">
+        <div class="col-lg-6 col-md-12 mt-4">
+            {% include 'profile_coach/_information.html.twig' %}
         </div>
-        <div>
-            <div>
-                <h3>Nom :</h3>
-                <p class="client">{{ app.user.lastname }}</p>
+        <div class="col-lg-6 col-md-12">
+                {% include "profile_coach/_photo.html.twig" %}
+            <div class="pt-4">
+                    {% include 'profile_coach/_preferences.html.twig' %}
             </div>
-            <div>
-                <h3>Prénom :</h3>
-                <p class="client">{{ app.user.firstname }}</p>
-            </div>
-            <div>
-                <h3>Email :</h3>
-                <p class="client">{{ app.user.email }}</p>
+            <div class="pt-4">
+                    {% include 'profile_coach/_coachmoi.html.twig' %}
             </div>
         </div>
     </section>
-</div>
+    <section>
+            {% include 'profile_coach/_availability.html.twig' %}
+    </section>
+</main>
 {% endblock %}

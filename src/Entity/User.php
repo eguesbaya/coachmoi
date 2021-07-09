@@ -51,6 +51,17 @@ class User implements UserInterface
      */
     private ?array $roles = [];
 
+    /**
+     * @ORM\OneToOne(targetEntity=Client::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+
+    private ?Client $client;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Coach::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private ?Coach $coach;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -84,8 +95,8 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        // guarantee every user at least has ROLE_CLIENT
+        $roles[] = 'ROLE_CLIENT';
 
         return array_unique($roles);
     }
@@ -164,6 +175,30 @@ class User implements UserInterface
     public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    public function getCoach(): ?Coach
+    {
+        return $this->coach;
+    }
+
+    public function setCoach(?Coach $coach): self
+    {
+        $this->coach = $coach;
 
         return $this;
     }

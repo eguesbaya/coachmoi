@@ -1,0 +1,148 @@
+{% extends 'layout_superadmin.html.twig' %}
+
+{% block title %} Détail de la réservation {% endblock %}
+{% block content %}
+    <h1>Réservation {{ coach_booking.id }}</h1>
+    {# ROW 1 - Section Infos + Préférence + coach-moi #}
+    <div class="row d-flex justify-content-around">
+        {# COLUMN 1 - Section Informations #}
+        <div class="mes-informations col-md-5 border border-dark rounded">
+            <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+                <h2 class="m-2 text-truncate">Informations client</h2>
+            </div>
+            <div>
+                <div class="bg-light my-2">
+                    <h3>Nom</h3>
+                    <p>{{ coach_booking.client.user.lastname }}</p>
+                </div>
+                <div class="bg-light my-2">
+                    <h3>Prénom</h3>
+                    <p>{{ coach_booking.client.user.firstname }}</p>
+                </div>
+                <div class="bg-light my-2">
+                    <h3>Téléphone</h3>
+                    <p>{{ coach_booking.client.user.telephone }}</p>
+                </div>
+                <div class="bg-light my-2">
+                    <h3>Email</h3>
+                    <p class="text-truncate">{{ coach_booking.client.user.email }}</p>
+                </div>
+                <div class="bg-light my-2">
+                    <h3>Adresse</h3>
+                    <p>{{ coach_booking.client.address }}</p>
+                </div>
+                <div class="bg-light my-2">
+                    <h3>Date de naissance</h3>
+                    <p>{{ coach_booking.client.birthdate|date("d/m/Y") }}</p>
+                </div>
+                <div class="bg-light my-2">
+                    <h3>Documents</h3>
+                    <div class= "documents d-flex flex-row">
+                        <div class= "d-flex flex-column align-items-center">
+                            <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>
+                            <p>CGU</p>
+                        </div>
+                        <div class= "d-flex flex-column align-items-center">
+                            <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>
+                            <p>Contrat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {# COLUMN 2 - Section préférences + coach-moi #}
+        <div class="container-fluid col-md-5 row">
+            {# Section préférences #}
+            <div class="mes-preferences container-fluid border border-dark rounded">
+                <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+                    <h2 class="m-2 text-truncate">Préférences client</h2>
+                </div>
+                <div>
+                    <div class="bg-light my-2">
+                        <h3>Activité</h3>
+                        <p>{{ coach_booking.client.activity.name }}</p>
+                    </div>
+                    <div class="bg-light my-2">
+                        <h3>Niveau</h3>
+                        <p>{{ coach_booking.client.practicelevel.level ?? 'Non défini' }}</p>
+                    </div>
+                    <div class="bg-light my-2">
+                        <h3>Budget</h3>
+                        <p>{{ coach_booking.client.budget }} €/mois</p>
+                    </div>
+                    <div class="bg-light my-2">
+                        <h3>Groupe</h3>
+                        <p>{{ coach_booking.client.groupsize }}</p>
+                    </div>
+                    <div class="bg-light my-2">
+                        <h3>Objectif sportif</h3>
+                        <p>{{ coach_booking.client.goal }}</p>
+                    </div>
+                </div>
+            </div>
+            {# Section coach-moi: Matching coach & training space #}
+            <div class="coach-moi container-fluid border border-dark rounded mt-5">
+                <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+                    <h2 class="m-2 text-truncate">Coach moi</h2>
+                </div>
+                <div>
+                    <div class="bg-light my-2 p-2">
+                        <h3>Coach</h3>
+
+                        {% if coach_booking.coach %}
+                            <p class="text-center"> {{ coach_booking.coach.user.firstname }} {{ coach_booking.coach.user.lastname }}</p>
+                        {% endif %}
+                        <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_coachs_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}">Coach disponible</a></p>
+
+                    </div>
+                    <div class="bg-light my-2 p-2">
+                        <h3>Salle</h3>
+
+                        {% if coach_booking.trainingSpace %}
+                              <p class="text-center"> {{ coach_booking.trainingSpace.name }}</p>
+                        {% endif %}
+                        <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_spaces_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}">Espace disponible</a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {# ROW 2 - Section availabilities #}
+    <div class="row">
+        <div class="mes-availabilities container-fluid border col-md-11 border-dark mt-5 rounded">
+            <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+                <h2 class="m-2">Disponibilités</h2>
+            </div>
+            <div>
+                <div class="bg-light my-2">
+                    <table class="table text-center">
+                        <thead>
+                            <tr class="fs-4">
+                                <th scope="col">#</th>
+                                <th scope="col">Jour</th>
+                                <th scope="col">Heure de début</th>
+                                <th scope="col">Heure de fin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for availability in coach_booking.client.availabilities %}
+                            <tr class="fs-5">
+                                <th scope="row">{{ loop.index }}</th>
+                                <td>{{ availability.weekday.name }}</td>
+                                <td>{{ availability.startTime|format_time() }}</td>
+                                <td>{{ availability.endTime|format_time() }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {# Link return the page of booking list #}
+        <div class="container-fluid border col-md-11 d-flex align-items-baseline mt-5">
+            <i class="bi bi-caret-left-fill text-primary"></i>
+            <p class="text-uppercase fw-bold fst-italic"><a href="{{ path('coach_booking_index') }}">Retour à la liste des demandes</a></p>
+        </div>
+    </div>
+{% endblock %}

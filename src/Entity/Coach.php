@@ -2,15 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\CoachRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 use App\Entity\User;
+use DateTimeImmutable;
 use App\Entity\Activity;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CoachRepository::class)
+ *  @Vich\Uploadable
  */
 class Coach
 {
@@ -52,24 +57,62 @@ class Coach
     private ?int $hourlyRate;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $photo;
+    * @Vich\UploadableField(mapping="coaches", fileNameProperty="photo")
+    * @Assert\File(
+    *      maxSize = "2M",
+    *      mimeTypes = {
+    *              "image/jpg", "image/jpg",
+    *              "image/jpeg", "image/jpeg",
+    *              "image/png", "image/webp"},
+    * )
+    * @var File|null
+    */
+    private $photoFile;
+
+   /**
+    * @ORM\Column(type="string", length=255)
+    * @var string
+    */
+    private ?string $photo = "";
+
+   /**
+    * @ORM\Column(type="datetime", nullable="true")
+    * @var \DateTimeInterface|null
+    */
+    private $updatedAt;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="coach", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?User $user;
+
+    private User $user;
 
     /**
      * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="coaches")
      */
     private Collection $activities;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="coach")
+     */
+    private Collection $availabilities;
+
+    /**
+     * @ORM\OneToMany(targetEntity=CoachBooking::class, mappedBy="coach")
+     */
+    private Collection $coachBookings;
+
+    public function __sleep(): array
+    {
+        return [];
+    }
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
+        $this->availabilities = new ArrayCollection();
+        $this->coachBookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,18 +192,6 @@ class Coach
         return $this;
     }
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -193,6 +224,101 @@ class Coach
     public function removeActivity(Activity $activity): self
     {
         $this->activities->removeElement($activity);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Availability[]
+     */
+    public function getAvailabilities(): Collection
+    {
+        return $this->availabilities;
+    }
+
+    public function addAvailability(Availability $availability): self
+    {
+        if (!$this->availabilities->contains($availability)) {
+            $this->availabilities[] = $availability;
+            $availability->setCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvailability(Availability $availability): self
+    {
+        if ($this->availabilities->removeElement($availability)) {
+            // set the owning side to null (unless already changed)
+            if ($availability->getCoach() === $this) {
+                $availability->setCoach(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CoachBooking[]
+     */
+    public function getCoachBookings(): Collection
+    {
+        return $this->coachBookings;
+    }
+
+    public function addCoachBooking(CoachBooking $coachBooking): self
+    {
+        if (!$this->coachBookings->contains($coachBooking)) {
+            $this->coachBookings[] = $coachBooking;
+            $coachBooking->setCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCoachBooking(CoachBooking $coachBooking): self
+    {
+        if ($this->coachBookings->removeElement($coachBooking)) {
+            // set the owning side to null (unless already changed)
+            if ($coachBooking->getCoach() === $this) {
+                $coachBooking->setCoach(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function setPhotoFile(?File $photo): self
+    {
+        $this->photoFile = $photo;
+        $this->updatedAt = new DateTimeImmutable('now');
+        return $this;
+    }
+
+    public function getPhotoFile(): ?File
+    {
+        return $this->photoFile;
+    }
+
+
+    public function setPhoto(?string $photo): void
+    {
+        $this->photo = $photo;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTime $updatedAt = null): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

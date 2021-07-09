@@ -1,34 +1,27 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello {{ app.user.firstname }}!{% endblock %}
+{% extends 'layout.html.twig' %}
 
 {% block body %}
-<main class="container-fluid col-11 profile">
-
-    <h1>Mon espace client</h1>
-
-    <section class="mes-informations border border border-dark container-fluid col-11">
-        <div class="d-flex align-items-center border border-dark title bg-light col-md-8 col-lg-6">
-            <h2 class="m-2">Mes informations</h2>
-            <i class="bi bi-pencil-square"></i>
-        </div>
-
-        <div class="bg-light my-2 px-3 py-2">
-            <p>Nom</p>
-            <h3>{{ app.user.lastname }}</h3>
-        </div>
-        <div class="bg-light my-2 px-3 py-2">
-            <p>Prénom</p>
-            <h3>{{ app.user.firstname }}</h3>
-        </div>
-        <div class="bg-light my-2 px-3 py-2">
-            <p>Téléphone</p>
-            <h3>{{ app.user.telephone }}</h3>
-        </div>
-        <div class="bg-light my-2 px-3 py-2">
-            <p>Email</p>
-            <h3>{{ app.user.email }}</h3>
-        </div>
-    </section>
-</main>
+    <main class="container-fluid col-11">
+        <h1>Mon espace Client</h1>
+        <section class="row">
+            <div class="col-6">
+                {% block information %}
+                    {% include 'profile_client/_information.html.twig' %}
+                {% endblock %}
+            </div>
+            <div class="col-6">
+                {% block preferences %}
+                    {% include 'profile_client/_preferences.html.twig' %}
+                {% endblock %}
+                {% block coachmoi %}
+                    {% include 'profile_client/_coachmoi.html.twig' %}
+                {% endblock %}
+            </div>
+        </section>
+        <section>
+            {% block availabilitites %}
+                {% include 'profile_client/_availability.html.twig' %}
+            {% endblock %}
+        </section>
+    </main>
 {% endblock %}

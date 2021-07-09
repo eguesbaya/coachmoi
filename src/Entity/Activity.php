@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Coach;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ActivityRepository::class)
@@ -22,16 +23,22 @@ class Activity
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
      */
     private ?string $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="700")
      */
+
     private ?string $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(max="255")
      */
     private ?string $photo;
 
@@ -45,9 +52,20 @@ class Activity
      */
     private Collection $coaches;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=TrainingSpace::class, mappedBy="activity")
+     */
+    private Collection $trainingSpaces;
+
     public function __construct()
     {
         $this->coaches = new ArrayCollection();
+        $this->trainingSpaces = new ArrayCollection();
+    }
+
+    public function __serialize(): array
+    {
+        return [];
     }
 
     public function getId(): ?int
@@ -125,6 +143,33 @@ class Activity
     {
         if ($this->coaches->removeElement($coach)) {
             $coach->removeActivity($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TrainingSpace[]
+     */
+    public function getTrainingSpaces(): Collection
+    {
+        return $this->trainingSpaces;
+    }
+
+    public function addTrainingSpace(TrainingSpace $trainingSpace): self
+    {
+        if (!$this->trainingSpaces->contains($trainingSpace)) {
+            $this->trainingSpaces[] = $trainingSpace;
+            $trainingSpace->addActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrainingSpace(TrainingSpace $trainingSpace): self
+    {
+        if ($this->trainingSpaces->removeElement($trainingSpace)) {
+            $trainingSpace->removeActivity($this);
         }
 
         return $this;

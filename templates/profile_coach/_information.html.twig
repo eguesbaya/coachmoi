@@ -1,0 +1,62 @@
+<div class="mes-informations border border-dark rounded m-1">
+    <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+        <h2 class="m-2">Mes informations</h2>
+    </div>
+    <div>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Nom :</p>
+                <h3 class="mx-3">{{ app.user.lastname }}</h3>
+            </div>
+        </div>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Prénom :</p>
+                <h3 class="mx-3">{{ app.user.firstname }}</h3>
+            </div>
+        </div>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Téléphone :</p>
+                <h3 class="mx-3">{{ app.user.telephone }}</h3>
+            </div>
+        </div>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Email :</p>
+                <h3 class="mx-3">{{ app.user.email }}</h3>
+            </div>
+        </div>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Date de naissance :</p>
+                <h3 class="mx-3">{{ app.user.coach.birthDate|date("d/m/Y") }}</h3>
+            </div>
+        </div>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Diplôme :</p>
+                <h3 class="mx-3">{{ app.user.coach.qualification }}</h3>
+            </div>
+        </div>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Équipement :</p>
+                <h3 class="mx-3">{{ app.user.coach.equipment }}</h3>
+            </div>
+        </div>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Biographie :</p>
+                <h3 class="mx-3">{{ app.user.coach.biography }}</h3>
+            </div>
+        </div>
+            <p class="d-flex justify-content-end mx-5">Possède un véhicule ?
+                {% if app.user.coach.hasVehicle %}
+                    &nbsp; <i class="bi bi-check-circle-fill"></i>
+                {% else %}
+                    &nbsp; <i class="bi bi-x-circle-fill"></i>
+                {% endif %}
+            </p>
+    </div>
+</div>

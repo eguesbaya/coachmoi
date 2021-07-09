@@ -1,0 +1,13 @@
+{% extends 'layout_profile.html.twig' %}
+
+{% block title %}Edit Coach{% endblock %}
+
+{% block body %}
+    <h1>Edit Coach</h1>
+        <div class="container border border-dark p-2 mx-auto m-2">
+            {{ include('profile_coach/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+        <div class=" d-flex justify-content-end">
+            <a href="{{ path('profile_coach') }}" class="btn btn-success m-2">Retour</a>
+        </div>
+    </div>
+{% endblock %}

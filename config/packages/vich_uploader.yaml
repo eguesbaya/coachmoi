@@ -1,0 +1,8 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        coaches:
+            uri_prefix: /uploads/coaches
+            upload_destination: '%kernel.project_dir%/public/uploads/coaches'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

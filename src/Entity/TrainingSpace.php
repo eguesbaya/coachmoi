@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TrainingSpaceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\SpaceCategory;
 
@@ -43,6 +45,22 @@ class TrainingSpace
      * @ORM\JoinColumn(nullable=false)
      */
     private ?SpaceCategory $spaceCategory;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="trainingSpace")
+     */
+    private Collection $availabilities;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="trainingSpaces")
+     */
+    private Collection $activity;
+
+    public function __construct()
+    {
+        $this->availabilities = new ArrayCollection();
+        $this->activity = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +123,60 @@ class TrainingSpace
     public function setSpaceCategory(?SpaceCategory $spaceCategory): self
     {
         $this->spaceCategory = $spaceCategory;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Availability[]
+     */
+    public function getAvailabilities(): Collection
+    {
+        return $this->availabilities;
+    }
+
+    public function addAvailability(Availability $availability): self
+    {
+        if (!$this->availabilities->contains($availability)) {
+            $this->availabilities[] = $availability;
+            $availability->setTrainingSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvailability(Availability $availability): self
+    {
+        if ($this->availabilities->removeElement($availability)) {
+            // set the owning side to null (unless already changed)
+            if ($availability->getTrainingSpace() === $this) {
+                $availability->setTrainingSpace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Activity[]
+     */
+    public function getActivity(): Collection
+    {
+        return $this->activity;
+    }
+
+    public function addActivity(Activity $activity): self
+    {
+        if (!$this->activity->contains($activity)) {
+            $this->activity[] = $activity;
+        }
+
+        return $this;
+    }
+
+    public function removeActivity(Activity $activity): self
+    {
+        $this->activity->removeElement($activity);
 
         return $this;
     }

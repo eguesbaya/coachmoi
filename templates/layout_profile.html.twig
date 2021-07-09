@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block navbar %}
+{% include 'includes/_navbar.html.twig' %}
+{% endblock %}
+
+{% block title %}Hello {{ app.user.firstname }}!{% endblock %}
+
+{% block body %}
+    <main class="container-fluid col-11 profile">
+        {% block information %}
+        {% endblock %}
+        {% block preferences %}
+        {% endblock %}
+        {% block coachmoi %}
+        {% endblock %}
+        {% block availabilities %}
+        {% endblock %}
+    </main>
+{% endblock %}

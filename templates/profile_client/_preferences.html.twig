@@ -1,0 +1,29 @@
+<div class="mes-preferences border border-dark rounded m-1">
+    <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
+        <h2 class="m-2 text-truncate">Mes préférences</h2>
+    </div>
+    <div>
+        <div class="bg-light my-2">
+            <h3>Activité</h3>
+            <p>{{ app.user.client.activity.name }}</p>
+        </div>
+        <div class="bg-light my-2">
+            <h3>Niveau</h3>
+            {% if app.user.client.practicelevel.level is defined %}
+            <p>{{ app.user.client.practicelevel.level }}</p>
+            {% endif %}
+        </div>
+        <div class="bg-light my-2">
+            <h3>Budget</h3>
+            <p>{{ app.user.client.budget }} €/mois</p>
+        </div>
+        <div class="bg-light my-2">
+            <h3>Groupe</h3>
+            <p>{{ app.user.client.groupsize }} personnes</p>
+        </div>
+        <div class="bg-light my-2">
+            <h3>Objectif sportif</h3>
+            <p>{{ app.user.client.goal }}</p>
+        </div>
+    </div>
+</div>

@@ -1,12 +1,14 @@
 {% extends 'layout_superadmin.html.twig' %}
 
-{% block title %}Hello Admin !{% endblock %}
+{% block title %}Hello {{ app.user.firstname }} !{% endblock %}
 
 {% block body %}
 
 
-<div class="example-wrapper">
-    <h1>✅ Page {{ app_controller }} </h1>
+<main class="container-fluid col-md-11">
+    <h1>✅ Hello {{ app.user.firstname }} !</h1>
 
-</div>
+    <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('home') }}">Retour au site</a></p>
+
+</main>
 {% endblock %}

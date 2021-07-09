@@ -40,6 +40,21 @@ class Availability
     */
     private ?DateTimeInterface $endTime;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="availabilities")
+     */
+    private ?Client $client;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Coach::class, inversedBy="availabilities")
+     */
+    private ?Coach $coach;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TrainingSpace::class, inversedBy="availabilities")
+     */
+    private ?TrainingSpace $trainingSpace;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +92,42 @@ class Availability
     public function setEndTime(\DateTimeInterface $endTime): self
     {
         $this->endTime = $endTime;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    public function getCoach(): ?Coach
+    {
+        return $this->coach;
+    }
+
+    public function setCoach(?Coach $coach): self
+    {
+        $this->coach = $coach;
+
+        return $this;
+    }
+
+    public function getTrainingSpace(): ?TrainingSpace
+    {
+        return $this->trainingSpace;
+    }
+
+    public function setTrainingSpace(?TrainingSpace $trainingSpace): self
+    {
+        $this->trainingSpace = $trainingSpace;
 
         return $this;
     }

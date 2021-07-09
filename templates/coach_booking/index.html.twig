@@ -1,0 +1,43 @@
+
+{% extends 'layout_superadmin.html.twig' %}
+
+{% block title %}Gérer les demandes{% endblock %}
+
+{% block content %}
+
+    <h1 class="my-5">GÉRER LES DEMANDES</h1>
+
+    <table class="table text-center bg-light">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Client</th>
+                <th scope="col">Date</th>
+                <th scope="col">Activité</th>
+                <th scope="col">Budget</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coach_booking in coach_bookings %}
+            <tr>
+                <td scope="row">{{ coach_booking.id }}</td>
+                <td>{{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</td>
+                 <td>{{ coach_booking.client.createdAt|date("d/m/Y") }}</td>
+                <td>{{ coach_booking.client.activity.name }}</td>
+                <td>{{ coach_booking.client.budget }}</td>
+                <td>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ coach_booking.client.user.email }} </li>
+                        <li class="list-group-item">{{ coach_booking.client.user.telephone }} </li>
+                    </ul>
+                </td>
+                <td>
+                    <a href="{{ path("coach_booking_show", {"id": coach_booking.id}) }}" class="btn bg-success text-light fs-6">Voir le détail</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
