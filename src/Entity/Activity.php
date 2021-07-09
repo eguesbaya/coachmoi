@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ActivityRepository::class)
+ * @Vich\Uploadable
  */
 class Activity
 {
@@ -44,7 +45,8 @@ class Activity
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(max="255")
      */
-    private ?string $photo;
+    private ?string $photo = null;
+
     /**
     * @Vich\UploadableField(mapping="coaches", fileNameProperty="photo")
     * @Assert\File(
@@ -63,6 +65,7 @@ class Activity
     * @var \DateTimeInterface|null
     */
     private $updatedAt;
+
     /**
      * @ORM\Column(type="boolean")
      */
