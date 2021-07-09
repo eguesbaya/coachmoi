@@ -24,7 +24,6 @@ class AdminSpaceController extends AbstractController
             'training_spaces' => $trainingSpaceRepo->findAll(),
         ]);
     }
-
     /**
      * @Route("/new", name="admin_space_new", methods={"GET","POST"})
      */
