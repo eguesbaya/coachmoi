@@ -28,7 +28,7 @@
 				{% if app.user %}
 				<div class="dropdown btn btn-success">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                           Bienvenu
+                           Bienvenue
                             <span class="text-warning">{{ app.user.firstname }}</span>
                         </a>
                         <ul class="dropdown-menu shadow-lg w-100" aria-labelledby="dropdownMenuLink">
@@ -57,20 +57,20 @@
                             {% elseif is_granted('ROLE_COACH') %}
 								<li>
 							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('profile_coach') }}">
-                                    	Voir mon profile</a>
+                                    	Voir mon profil</a>
                             	</li>
 								<li>
 							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('coach_edit') }}">
-                                    	Éditer mon profile</a>
+                                    	Éditer mon profil</a>
                             	</li>
 							{% elseif is_granted('ROLE_CLIENT') %}
 								<li>
 							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('profile_client') }}">
-                                    	Voir mon profile</a>
+                                    	Voir mon profil</a>
                             	</li>
 								<li>
 							   		<a class="dropdown-item text-wrap text-dark py-2" href="">
-                                    	Éditer mon profile</a>
+                                    	Éditer mon profil</a>
                             	</li>
 								{% endif %}
                             <li>
