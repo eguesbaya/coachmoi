@@ -2,18 +2,15 @@
 
 namespace App\Entity;
 
-
-class SearchClient {
-
-
+class SearchClient
+{
     private ?string $user;
 
- 
     private ?string $lastname = '';
 
     /**
      * Get the value of user
-     */ 
+     */
     public function getUser(): ?string
     {
         return $this->user;
@@ -21,7 +18,7 @@ class SearchClient {
 
     /**
      * Set the value of lastname
-     */ 
+     */
     public function setUser(?string $user): self
     {
         $this->user = $user;
@@ -29,9 +26,9 @@ class SearchClient {
         return $this;
     }
 
-        /**
+    /**
      * Get the value of user
-     */ 
+     */
     public function getLastname(): ?string
     {
         return $this->lastname;
@@ -39,7 +36,7 @@ class SearchClient {
 
     /**
      * Set the value of lastname
-     */ 
+     */
     public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
