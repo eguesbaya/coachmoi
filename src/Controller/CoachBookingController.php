@@ -29,7 +29,7 @@ class CoachBookingController extends AbstractController
     public function index(CoachBookingRepository $coachBookingRepo): Response
     {
         return $this->render('coach_booking/index.html.twig', [
-            'coach_bookings' => $coachBookingRepo->findAll(),
+            'coach_bookings' => $coachBookingRepo->findBy([], ['createdAt' => 'DESC']),
         ]);
     }
 
