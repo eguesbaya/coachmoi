@@ -35,11 +35,14 @@ class CoachRepository extends ServiceEntityRepository
     public function findBySearch(SearchCoach $searchCoach): array
     {
         return $this->createQueryBuilder('c')
-            ->leftJoin('c.user', 'u')
+            ->innerJoin('c.user', 'u')
             ->andWhere('u.lastname LIKE :lastname')
             ->setParameter('lastname', '%' . $searchCoach->getUser() . '%')
             ->orWhere('u.firstname LIKE :firstname')
             ->setParameter('firstname', '%' . $searchCoach->getUser() . '%')
+            ->leftJoin('c.activities', 'a')
+            ->andWhere('a.id = :id')
+            ->setParameter('id', $searchCoach->getActivity())
             ->getQuery()
             ->getResult()
         ;

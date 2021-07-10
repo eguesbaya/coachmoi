@@ -6,6 +6,8 @@ class SearchCoach
 {
     private ?string $user = '';
 
+    private ?Activity $activity = null;
+
     /**
      * Get the value of user
      */
@@ -20,6 +22,26 @@ class SearchCoach
     public function setUser(?string $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of activity
+     */
+    public function getActivity(): ?Activity
+    {
+        return $this->activity;
+    }
+
+    /**
+     * Set the value of activity
+     *
+     * @return  self
+     */
+    public function setActivity(?Activity $activity): self
+    {
+        $this->activity = $activity;
 
         return $this;
     }
