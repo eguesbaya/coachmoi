@@ -27,6 +27,8 @@ class ClientRepository extends ServiceEntityRepository
             ->leftJoin('c.user', 'u')
             ->andWhere('u.lastname LIKE :lastname')
             ->setParameter('lastname', '%' . $searchClient->getUser() . '%')
+            ->orWhere('u.firstname LIKE :firstname')
+            ->setParameter('firstname', '%' . $searchClient->getUser() . '%')
             ->getQuery()
             ->getResult()
         ;

@@ -4,7 +4,7 @@ namespace App\Entity;
 
 class SearchClient
 {
-    private ?string $user;
+    private ?string $user = '';
 
     private ?string $lastname = '';
 
