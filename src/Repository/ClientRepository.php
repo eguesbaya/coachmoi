@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Client;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\SearchClient;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Client|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,18 @@ class ClientRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Client::class);
+    }
+
+
+    public function findBySearch(SearchClient $searchClient): array
+    {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.user', 'u')
+            ->andWhere('u.lastname LIKE :lastname')
+            ->setParameter('lastname', '%' . $searchClient->getUser() . '%')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**
