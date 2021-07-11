@@ -9,6 +9,7 @@ use App\Entity\Coach;
 use App\Repository\CoachBookingRepository;
 use App\Repository\TrainingSpaceRepository;
 use App\Repository\CoachRepository;
+use App\Repository\BookingStatusRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,10 +27,11 @@ class CoachBookingController extends AbstractController
      * @Route("/", name="coach_booking_index", methods={"GET"})
      * @isGranted("ROLE_SUPERADMIN")
      */
-    public function index(CoachBookingRepository $coachBookingRepo): Response
+    public function index(CoachBookingRepository $coachBookingRepo, BookingStatusRepository $statusRepo): Response
     {
         return $this->render('coach_booking/index.html.twig', [
-            'coach_bookings' => $coachBookingRepo->findBy([], ['createdAt' => 'DESC']),
+            'coach_bookings' => $coachBookingRepo->findAll(),
+            'bookingStatus' => $statusRepo->findAll(),
         ]);
     }
 
@@ -103,5 +105,19 @@ class CoachBookingController extends AbstractController
         return $this->redirectToRoute('coach_booking_show', [
         'id' => $booking->getId(),
         ]);
+    }
+
+    /**
+     * @Route("/update-status/{id}", name="cb_update_status", methods={"POST"})
+     */
+    public function updateStatus(Request $request, CoachBooking $booking, BookingStatusRepository $statusRepo): Response
+    {
+        if ($this->isCsrfTokenValid('cb_update_status' . $booking->getId(), $request->request->get('_token'))) {
+            $status = $statusRepo->find($request->request->get('bookingStatus'));
+            $booking->setBookingStatus($status);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        return $this->redirectToRoute('coach_booking_index');
     }
 }

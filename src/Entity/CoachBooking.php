@@ -40,18 +40,14 @@ class CoachBooking
     private ?Coach $coach;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\ManyToOne(targetEntity=BookingStatus::class, inversedBy="coachBookings")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private ?DateTimeInterface $createdAt;
+    private ?BookingStatus $bookingStatus;
 
     public function __sleep(): array
     {
         return [];
-    }
-
-    public function __construct()
-    {
-        $this->setCreatedAt(new DateTime());
     }
 
     public function getId(): ?int
@@ -95,14 +91,14 @@ class CoachBooking
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getBookingStatus(): ?BookingStatus
     {
-        return $this->createdAt;
+        return $this->bookingStatus;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setBookingStatus(?BookingStatus $bookingStatus): self
     {
-        $this->createdAt = $createdAt;
+        $this->bookingStatus = $bookingStatus;
 
         return $this;
     }
