@@ -2,15 +2,18 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\User;
+use App\Entity\Coach;
+use App\Form\CoachType;
+use App\Entity\Availability;
+use App\Form\CoachAvailabilityType;
+use App\Repository\CoachRepository;
+use App\Repository\AvailabilityRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use App\Entity\Coach;
-use App\Entity\User;
-use App\Form\CoachType;
-use App\Repository\CoachRepository;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
 * @IsGranted("ROLE_COACH")
@@ -72,5 +75,85 @@ class ProfileCoachController extends AbstractController
         return $this->render('profile_coach/edit.html.twig', [
             'formCoach' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/availability", name="coach_availability_index", methods={"GET"})
+     */
+    public function indexAvailability(AvailabilityRepository $availabilites): Response
+    {
+        return $this->render('profile_coach_availability/index.html.twig', [
+            'availabilites' => $availabilites,
+        ]);
+    }
+
+    /**
+     * @Route("/profile/coach/availability/new", name="coach_availability_new", methods={"GET","POST"})
+     */
+    public function newAvailability(Request $request): Response
+    {
+        $availability = new Availability();
+
+        $form = $this->createForm(CoachAvailabilityType::class, $availability);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $availability->setCoach($this->getUser()->$this->getCoach());
+            $entityManager->persist($availability);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('coach_availability_index');
+        }
+
+        return $this->render('profile_coach_availability/new.html.twig', [
+            'availability' => $availability,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/profile/coach/availability/{id}", name="coach_availability_show", methods={"GET"})
+     */
+    public function showAvailability(Availability $availability): Response
+    {
+        return $this->render('profile_coach_availability/show.html.twig', [
+            'availability' => $availability,
+        ]);
+    }
+
+    /**
+     * @Route("/profile/coach/availability/{id}/edit", name="coach_availability_edit", methods={"GET","POST"})
+     */
+    public function editAvailability(Request $request, AvailabilityRepository $availability): Response
+    {
+        $form =  $this->createForm(CoachAvailabilityType::class, $availability);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('coach_availability_index');
+        }
+
+        return $this->render('profile_coach_availability/edit.html.twig', [
+            'availability' => $availability,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/profile/coach/availability/{id}", name="coach_availability_delete", methods={"POST"})
+     */
+    public function deleteAvailability(Request $request, Availability $availability): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $availability->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($availability);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('coach_availability_index');
     }
 }

@@ -1,0 +1,32 @@
+{% extends 'layout_profile.html.twig' %}
+
+{% block title %}Availability{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Availability</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ availability.id }}</td>
+            </tr>
+            <tr>
+                <th>StartTime</th>
+                <td>{{ availability.startTime ? availability.startTime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndTime</th>
+                <td>{{ availability.endTime ? availability.endTime|date('H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('coach_availability_index') }}" class="btn btn-success">back to list</a>
+
+    <a href="{{ path('coach_availability_edit', {'id': availability.id}) }}" class="btn btn-success">edit</a>
+
+    {{ include('profile_coach_availability/_delete_form.html.twig') }}
+</div>
+{% endblock %}
