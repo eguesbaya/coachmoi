@@ -9,9 +9,8 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nom de l'espace</th>
                 <th>Photo</th>
+                <th>Nom de l'espace</th>
                 <th>Description</th>
                 <th>Adresse</th>
                 <th>Actions</th>
@@ -20,9 +19,8 @@
         <tbody>
         {% for training_space in training_spaces %}
             <tr>
-                <td>{{ loop.index }}</td>
+                <td><img src="{{ vich_uploader_asset(training_space) }}" width="100vh"></td>
                 <td>{{ training_space.name }}</td>
-                <td>{{ training_space.photo }}</td>
                 <td>{{ training_space.description }}</td>
                 <td>{{ training_space.address }}</td>
                 <td class="d-flex">

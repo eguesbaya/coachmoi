@@ -6,10 +6,18 @@
 
     <h1 class="my-5">Tous les Coachs</h1>
 
+    <div class="mt-2 mb-2 d-flex justify-content-end">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="mt-2 mb-2 d-flex justify-content-end">
+            <button class="btn btn-success text-white">Rechercher</button>
+        {{ form_end(form) }}
+        </div>
+    </div>
+
     <table class="table text-center bg-light">
         <thead>
             <tr>
-                <th scope="col">Id</th>
                 <th scope="col">Coachs</th>
                 <th scope="col">Activité</th>
                 <th scope="col">Budget</th>
@@ -20,7 +28,6 @@
         <tbody>
             {% for coach in coachs %}
                 <tr>
-                    <td scope="row">{{ coach.id }}</td>
                     <td>{{ coach.user.firstname }} {{ coach.user.lastname }}</td>
                     {% for activity in coach.activities %}
                         <td>{{ activity.name }}</td>

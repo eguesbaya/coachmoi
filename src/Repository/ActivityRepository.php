@@ -19,6 +19,11 @@ class ActivityRepository extends ServiceEntityRepository
         parent::__construct($registry, Activity::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy([], ['name' => 'ASC']);
+    }
+
     // /**
     //  * @return Activity[] Returns an array of Activity objects
     //  */

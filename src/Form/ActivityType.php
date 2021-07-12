@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ActivityType extends AbstractType
 {
@@ -26,6 +27,16 @@ class ActivityType extends AbstractType
                     'actif' => true,
                     'inactif' => false
                 ]
+            ])
+            ->add('photoFile', VichImageType::class, [
+                'label' => 'Image :',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'required' => false,
             ])
         ;
     }

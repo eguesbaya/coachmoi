@@ -2,14 +2,20 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeImmutable;
 use App\Repository\TrainingSpaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\SpaceCategory;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=TrainingSpaceRepository::class)
+ * @Vich\Uploadable
  */
 class TrainingSpace
 {
@@ -22,14 +28,34 @@ class TrainingSpace
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
      */
     private ?string $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $photo;
+    private ?string $photo = null;
 
+    /**
+    * @Vich\UploadableField(mapping="spacetrainings", fileNameProperty="photo")
+    * @Assert\File(
+    *      maxSize = "2M",
+    *      mimeTypes = {
+    *              "image/jpg", "image/jpg",
+    *              "image/jpeg", "image/jpeg",
+    *              "image/png", "image/webp"},
+    * )
+    * @var File|null
+    */
+    private $photoFile;
+
+   /**
+    * @ORM\Column(type="datetime", nullable="true")
+    * @var \DateTimeInterface|null
+    */
+    private $updatedAt;
     /**
      * @ORM\Column(type="text", nullable=true)
      */
@@ -37,6 +63,8 @@ class TrainingSpace
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
      */
     private string $address;
 
@@ -77,18 +105,6 @@ class TrainingSpace
         $this->name = $name;
 
         return $this;
-    }
-
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
     }
 
     public function getDescription(): ?string
@@ -177,6 +193,41 @@ class TrainingSpace
     public function removeActivity(Activity $activity): self
     {
         $this->activity->removeElement($activity);
+
+        return $this;
+    }
+
+    public function setPhotoFile(?File $photo): self
+    {
+        $this->photoFile = $photo;
+        $this->updatedAt = new DateTimeImmutable('now');
+        return $this;
+    }
+
+    public function getPhotoFile(): ?File
+    {
+        return $this->photoFile;
+    }
+
+
+    public function setPhoto(?string $photo): void
+    {
+        $this->photo = $photo;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTime $updatedAt = null): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

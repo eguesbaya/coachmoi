@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class TrainingSpaceType extends AbstractType
 {
@@ -17,7 +18,6 @@ class TrainingSpaceType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => "Nom de l'espace"
             ])
-            ->add('photo')
             ->add('description', TextType::class, [
                 'label' => "Description"
             ])
@@ -33,6 +33,16 @@ class TrainingSpaceType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'by_reference' => true,
+            ])
+            ->add('photoFile', VichImageType::class, [
+                'label' => 'Image :',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'required' => false,
             ])
         ;
     }

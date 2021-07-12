@@ -83,3 +83,4 @@ final class Version20210708190341 extends AbstractMigration
         $this->addSql('DROP TABLE weekday');
     }
 }
+
