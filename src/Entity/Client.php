@@ -2,7 +2,11 @@
 
 namespace App\Entity;
 
+use DateTime;
+use App\Entity\User;
 use DateTimeInterface;
+use App\Entity\Activity;
+use App\Entity\Availability;
 use App\Entity\CoachBooking;
 use App\Entity\PracticeLevel;
 use Doctrine\ORM\Mapping as ORM;
@@ -81,7 +85,7 @@ class Client
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private ?\DateTimeInterface $createdAt = null;
+    private ?DateTimeInterface $createdAt;
 
     /**
      * @ORM\OneToOne(targetEntity=CoachBooking::class, mappedBy="client", cascade={"persist", "remove"})
@@ -91,6 +95,7 @@ class Client
     public function __construct()
     {
         $this->availabilities = new ArrayCollection();
+        $this->createdAt = new DateTime();
     }
 
     public function getId(): ?int

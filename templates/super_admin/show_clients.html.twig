@@ -15,6 +15,7 @@
                 <th scope="col">Budget</th>
                 <th scope="col">Disponibilités</th>
                 <th scope="col">Coachs</th>
+                <th scope="col">Rôle</th>
             </tr>
         </thead>
         <tbody>
@@ -31,6 +32,11 @@
                         </ul>
                         {% endfor %}
                     </td>
+                    {% if client.coachbooking is null or client.coachbooking.coach is null %}
+                    <td>Aucun coach</td>
+                    {% else %}
+                    <td> {{ client.coachbooking.coach.user.firstname }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
