@@ -26,4 +26,26 @@ class ProfileClientController extends AbstractController
     {
         return $this->render('profile_client/index.html.twig');
     }
+
+    /**
+     * @Route("/profile/client/edit", name="client_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request): Response
+    {
+        /** @var User */
+        $user = $this->getUser();
+        $client = $user->getClient();
+        $form = $this->createForm(ClientType::class, $client);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('profile_client');
+        }
+
+        return $this->render('profile_client/edit.html.twig', [
+            'formClient' => $form->createView(),
+        ]);
+    }
 }
