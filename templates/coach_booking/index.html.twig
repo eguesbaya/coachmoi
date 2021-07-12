@@ -27,12 +27,12 @@
                 <th scope="col">Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="">
         {% for coach_booking in coach_bookings %}
             <tr>
                 <td scope="row">{{ coach_booking.id }}</td>
-                <td>{{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</td>
-                 <td>{{ coach_booking.createdAt|date("d/m/Y") }}</td>
+                <td class="my-auto">{{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</td>
+                <td>{{ coach_booking.createdAt|date("d/m/Y") }}</td>
                 <td>{{ coach_booking.client.activity.name }}</td>
                 <td>{{ coach_booking.client.budget }}</td>
                 <td>
@@ -55,7 +55,8 @@
                     </form>
                 </td>
                 <td>
-                    <a href="{{ path("coach_booking_show", {"id": coach_booking.id}) }}" class="btn bg-success text-light fs-6">Gérer la demande</a>
+
+                    <a href="{{ path("coach_booking_show", {"id": coach_booking.id}) }}" class="btn bg-success text-light fs-6 mt-4">Voir la demande</a>
                 </td>
             </tr>
         {% endfor %}
