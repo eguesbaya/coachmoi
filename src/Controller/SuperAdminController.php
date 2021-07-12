@@ -75,7 +75,7 @@ class SuperAdminController extends AbstractController
      */
     public function showUsers(UserRepository $userRepository): Response
     {
-        return $this->render('user/index.html.twig', [
+        return $this->render('super_admin/show_users.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
     }

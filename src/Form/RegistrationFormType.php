@@ -61,10 +61,13 @@ class RegistrationFormType extends AbstractType
                 'label' => false,
                 'choices' => [
                     'Je souhaite m\'inscrire en tant que coach' => 'ROLE_COACH',
+                    'Je souhaite m\'inscrire en tant qu\'adhérent' => 'ROLE_CLIENT',
                 ],
-                'multiple' => true,
+                'multiple' => false,
                 'expanded' => true,
-                'required' => true,
+                'by_reference' => true,
+                'placeholder' => false,
+                'required' => false
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => 'Accepter les conditions d\'utilisation',
