@@ -1,3 +1,7 @@
-<div class="container-fluid col-md-5 border border-dark rounded">
-     <img src="{{ vich_uploader_asset(app.user.coach, 'photoFile') }}" class="img-fluid" alt="avatar">
+<div class="container-fluid col-md-5 border border-dark rounded p-2">
+     {% if app.user.coach.photo == "" %} 
+          <img src="https://bit.ly/36tqcf6" class="img-fluid" alt="coach">
+     {% else %}
+          <img src="{{ vich_uploader_asset(app.user.coach, 'photoFile') }}" class="img-fluid" alt="avatar">
+     {% endif %}
 </div>
