@@ -103,6 +103,7 @@ class ProfileCoachController extends AbstractController
             $availability->setCoach($this->getUser()->$this->getCoach());
             $entityManager->persist($availability);
             $entityManager->flush();
+            $this->addFlash('success', 'Nouvelle disponibilité ajouté');
 
             return $this->redirectToRoute('coach_availability_index');
         }
