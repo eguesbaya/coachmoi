@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\CoachBooking;
+use App\Entity\Client;
+use App\Entity\SearchBooking;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -18,33 +20,12 @@ class CoachBookingRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, CoachBooking::class);
     }
-
-    // /**
-    //  * @return CoachBooking[] Returns an array of CoachBooking objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findBySearch(SearchBooking $searchBooking): array
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('o')
+                    ->andWhere('o.bookingStatus = :bookingStatus')
+                ->setParameter('bookingStatus', $searchBooking->getStatus());
+        return $qb->getQuery()
+            ->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?CoachBooking
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

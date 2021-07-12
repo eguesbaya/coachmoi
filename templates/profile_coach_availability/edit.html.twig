@@ -1,0 +1,13 @@
+{% extends 'layout_profile.html.twig' %}
+
+{% block title %}Modifier une nouvelle disponibilités{% endblock %}
+
+{% block body %}
+    <h1>Modifier une nouvelle disponibilités</h1>
+
+    {{ include('coach_profile/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('coach_profile_index') }}" class="btn btn-success">back to list</a>
+
+    {{ include('coach_profile/_delete_form.html.twig') }}
+{% endblock %}
