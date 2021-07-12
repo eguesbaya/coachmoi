@@ -23,7 +23,6 @@ class CoachBooking
      */
     private int $id;
 
-
     /**
      * @ORM\OneToOne(targetEntity=Client::class, inversedBy="coachBooking", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)

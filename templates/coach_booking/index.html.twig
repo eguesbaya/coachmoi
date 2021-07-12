@@ -25,7 +25,7 @@
             <tr>
                 <td scope="row">{{ coach_booking.id }}</td>
                 <td class="my-auto">{{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</td>
-                 <td>{{ coach_booking.client.createdAt|date("d/m/Y") }}</td>
+                <td>{{ coach_booking.createdAt|date("d/m/Y") }}</td>
                 <td>{{ coach_booking.client.activity.name }}</td>
                 <td>{{ coach_booking.client.budget }}</td>
                 <td>
