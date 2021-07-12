@@ -21,7 +21,6 @@ class BookingStatus
     private int $id;
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Choice(callback="getStatus")
      */
     private ?string $status;
 
