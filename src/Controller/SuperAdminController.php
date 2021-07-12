@@ -2,15 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\SearchClient;
+use App\Form\SearchClientType;
+use App\Repository\UserRepository;
 use App\Entity\SearchCoach;
 use App\Form\SearchCoachType;
 use App\Repository\CoachRepository;
 use App\Repository\ClientRepository;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/superadmin", name="superadmin_")
@@ -50,10 +53,20 @@ class SuperAdminController extends AbstractController
     /**
      * @Route("/clients", name="show_clients")
      */
-    public function showClient(ClientRepository $clientRepository): Response
+    public function showClient(ClientRepository $clientRepository, Request $request): Response
     {
+        $searchClient = new SearchClient();
+        $form = $this->createForm(SearchClientType::class, $searchClient);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $clients = $clientRepository->findBySearch($searchClient);
+        }
+
         return $this->render('super_admin/show_clients.html.twig', [
-            'clients' => $clientRepository->findAll(),
+            'clients' => $clients ??  $clientRepository->findAll(),
+            'form' => $form->createView(),
         ]);
     }
 }
