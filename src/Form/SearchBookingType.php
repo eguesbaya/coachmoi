@@ -31,7 +31,7 @@ class SearchBookingType extends AbstractType
             ],
             'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('s')
-                    ->orderBy('s.id', 'ASC');
+                    ->orderBy('s.status', 'ASC');
             },
             'required' => false,
         ]);
