@@ -1,0 +1,36 @@
+{% extends 'layout_superadmin.html.twig' %}
+
+{% block title %}Liste d'espaces {% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1>Liste des espaces d'entrainements</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>Nom de l'espace</th>
+                <th>Description</th>
+                <th>Adresse</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for training_space in training_spaces %}
+            <tr>
+                <td><img src="{{ vich_uploader_asset(training_space) }}" width="100vh"></td>
+                <td>{{ training_space.name }}</td>
+                <td>{{ training_space.description }}</td>
+                <td>{{ training_space.address }}</td>
+                <td class="d-flex">
+                    <a class="btn bg-success text-light me-3" href="{{ path('admin_space_show', {'id': training_space.id}) }}">show</a>
+                    <a class="btn bg-success text-light" href="{{ path('admin_space_edit', {'id': training_space.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn bg-success text-light" href="{{ path('admin_space_new') }}">Ajouter un espace</a>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        coaches:
+            uri_prefix: /uploads/coaches
+            upload_destination: '%kernel.project_dir%/public/uploads/coaches'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        activities:
+            uri_prefix: /uploads/activities
+            upload_destination: '%kernel.project_dir%/public/uploads/activities'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            
+        spacetrainings:
+            uri_prefix: /uploads/spacetrainings
+            upload_destination: '%kernel.project_dir%/public/uploads/spacetrainings'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

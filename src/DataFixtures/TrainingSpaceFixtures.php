@@ -9,7 +9,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
 {
-    private const TRAINING_SPACE = [
+    public const TRAINING_SPACE = [
         [
             'name' => 'GIGAFIT ORLEANS SUD',
             'address' => '30 Rue Gustave Flaubert 45100 Orléans',
@@ -41,10 +41,12 @@ class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
     {
         foreach (self::TRAINING_SPACE as $key => $trainingSpaceDetails) {
             $trainingSpaces = new TrainingSpace();
+            $trainingSpaces->addActivity($this->getReference('activity_' .
+                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
+            $manager->persist($trainingSpaces);
             $trainingSpaces->setName($trainingSpaceDetails['name']);
             $trainingSpaces->setAddress($trainingSpaceDetails['address']);
             $trainingSpaces->setSpaceCategory($this->getReference('space_category0'));
-            $manager->persist($trainingSpaces);
             $this->addReference('training_space_' . $key, $trainingSpaces);
         }
         $manager->flush();
@@ -54,6 +56,7 @@ class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             SpaceCategoryFixtures::class,
+            ActivityFixtures::class
         ];
     }
 }

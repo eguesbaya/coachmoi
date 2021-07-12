@@ -1,0 +1,41 @@
+{% extends 'layout_superadmin.html.twig' %}
+
+{% block title %}Activity index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Activity index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>IsFeatured</th>
+                <th class="text-center">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for activity in activities %}
+            <tr>
+                <td><img src="{{ vich_uploader_asset(activity) }}" width="100vh"></td>
+                <td>{{ activity.name }}</td>
+                <td>{{ activity.description }}</td>
+                <td>{{ activity.isFeatured ? 'Yes' : 'No' }}</td>
+                <td class="d-flex">
+                    <a href="{{ path('admin_activity_show', {'id': activity.id}) }}" class="btn btn-success text-light me-3">show</a>
+                    <a href="{{ path('admin_activity_edit', {'id': activity.id}) }}" class="btn btn-success text-light">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <a href="{{ path('admin_activity_new') }}">Create new</a>
+{% endblock %}

@@ -1,19 +1,27 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <div class="row p-5 m-0">
-        <h1>Mon espace Coach</h1>
-        {% block information %}
-            {% include 'profile_coach/_information.html.twig' %}
-        {% endblock %}
-        {% block photo %}
-            {% include "profile_coach/_photo.html.twig" %}
-        {% endblock %}
-        {% block preferences %}
-            {% include 'profile_coach/_preferences.html.twig' %}
-        {% endblock %}
-        {% block availabilitites %}
-            {% include 'profile_coach/_availability.html.twig' %}
-        {% endblock %}
+<main class="container-fluid col-11">
+    <h1>Mon espace Coach</h1>
+    <div class="d-flex justify-content-end">
+        <a href="{{ path('coach_edit') }}" class="btn btn-success m-2">Changer informations</a>
     </div>
+    <section class="row">
+        <div class="col-lg-6 col-md-12 mt-4">
+            {% include 'profile_coach/_information.html.twig' %}
+        </div>
+        <div class="col-lg-6 col-md-12">
+                {% include "profile_coach/_photo.html.twig" %}
+            <div class="pt-4">
+                    {% include 'profile_coach/_preferences.html.twig' %}
+            </div>
+            <div class="pt-4">
+                    {% include 'profile_coach/_coachmoi.html.twig' %}
+            </div>
+        </div>
+    </section>
+    <section>
+            {% include 'profile_coach/_availability.html.twig' %}
+    </section>
+</main>
 {% endblock %}

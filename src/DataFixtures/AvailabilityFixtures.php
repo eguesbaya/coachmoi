@@ -37,6 +37,19 @@ class AvailabilityFixtures extends Fixture implements DependentFixtureInterface
                 $manager->persist($availability);
             }
         }
+
+        for ($j = 0; $j < count(TrainingSpaceFixtures::TRAINING_SPACE); $j++) {
+            for ($i = 0; $i < self::MAX_AVAILABILITY; $i++) {
+                $availability = new Availability();
+                $availability->setStartTime(\DateTime::createFromFormat('H:i', "08:00"));
+                $availability->setEndTime(\DateTime::createFromFormat('H:i', "09:00"));
+                $availability->setWeekday($this->getReference('weekday' .
+                    rand(0, count(WeekdayFixtures::WEEKDAYS) - 1)));
+                $availability->setTrainingSpace($this->getReference('training_space_' . $j));
+                $manager->persist($availability);
+            }
+        }
+
         // Fixture for client's demo account: client@gmail.com
         $availability = new Availability();
         $availability->setStartTime(\DateTime::createFromFormat('H:i', "18:00"));
@@ -62,6 +75,7 @@ class AvailabilityFixtures extends Fixture implements DependentFixtureInterface
             WeekdayFixtures::class,
             ClientFixtures::class,
             CoachFixtures::class,
+            TrainingSpaceFixtures::class,
         ];
     }
 }
