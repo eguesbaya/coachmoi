@@ -6,9 +6,12 @@ use App\Entity\CoachBooking;
 use App\Entity\Client;
 use App\Entity\Activity;
 use App\Entity\Coach;
+use App\Entity\SearchBooking;
+use App\Form\SearchBookingType;
 use App\Repository\CoachBookingRepository;
 use App\Repository\TrainingSpaceRepository;
 use App\Repository\CoachRepository;
+use App\Repository\BookingStatusRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,16 +23,27 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
  * @Route("/superadmin/demandes")
  * @isGranted("ROLE_SUPERADMIN")
  */
+
 class CoachBookingController extends AbstractController
 {
     /**
      * @Route("/", name="coach_booking_index", methods={"GET"})
      * @isGranted("ROLE_SUPERADMIN")
      */
-    public function index(CoachBookingRepository $coachBookingRepo): Response
+    public function index(CoachBookingRepository $book, BookingStatusRepository $status, Request $request): Response
     {
+        $searchBooking = new SearchBooking();
+        $form = $this->createForm(SearchBookingType::class, $searchBooking);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $bookings = $book->findBySearch($searchBooking);
+        }
+
         return $this->render('coach_booking/index.html.twig', [
-            'coach_bookings' => $coachBookingRepo->findBy([], ['createdAt' => 'DESC']),
+            'coach_bookings' => $bookings ?? $book->findBy([], ['createdAt' => 'DESC']),
+            'bookingStatus' => $status->findAll(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -103,5 +117,19 @@ class CoachBookingController extends AbstractController
         return $this->redirectToRoute('coach_booking_show', [
         'id' => $booking->getId(),
         ]);
+    }
+
+    /**
+     * @Route("/update-status/{id}", name="cb_update_status", methods={"POST"})
+     */
+    public function updateStatus(Request $request, CoachBooking $booking, BookingStatusRepository $statusRepo): Response
+    {
+        if ($this->isCsrfTokenValid('cb_update_status' . $booking->getId(), $request->request->get('_token'))) {
+            $status = $statusRepo->find($request->request->get('bookingStatus'));
+            $booking->setBookingStatus($status);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        return $this->redirectToRoute('coach_booking_index');
     }
 }
