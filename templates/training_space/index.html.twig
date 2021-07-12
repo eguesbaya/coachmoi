@@ -40,29 +40,35 @@
                 data-bs-parent="#training-space">
                 <div class="row col-lg-11 mx-auto">
                     <div
-                        class="col-lg-6 m-auto d-flex flex-column justify-content-center align-center d-none d-lg-block">
-                        {# Display a map - for now , it only shows the position of the first room => TODO: affiche the
-                        position of selected room #}
-                        <iframe class="container-fluid p-0" height="500" frameborder="0" scrolling="no" marginheight="0"
-                            marginwidth="0"
-                            src="https://www.openstreetmap.org/export/embed.html?bbox=1.9287925958633425%2C47.823166638534445%2C1.9321399927139284%2C47.824764004685505&amp;layer=mapnik&amp;marker=47.82396532775434%2C1.9304662942886353"
-                            style="border: 1px solid black"></iframe><br /><small><a
-                                href="https://www.openstreetmap.org/?mlat=47.82397&amp;mlon=1.93047#map=19/47.82397/1.93047">Afficher
-                                une carte plus grande</a></small>
+                        class="col-lg-6 m-auto d-flex flex-column justify-content-center align-center">
+                        <!--Carousel: showing photo corresponding to each space card -->
+                        <div id="carousel-training-space" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                            <div class="carousel-inner">
+                               {% for training_space in training_spaces %}
+                                <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+                                    <img src="{{ training_space.photo }}"
+                                        class="d-block mw-100 border border-success border-3 rounded"
+                                        alt="{{ training_space.name }}">
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    <!--Carousel-->
                     </div>
                     <div class="col-lg-1">
                         <p class="my-5"></p>
                     </div>
-                    {# section cards #}
                     <div class="cards-indoor col-lg-5 mb-5 rounded overflow-auto">
+                    <!--Section: cards -->
                         {% for training_space in training_spaces %}
-                        <div class="text-center my-3 m-auto bg-dark rounded">
-                            <div class="space-card card-body btn">
+                            <div class="space-card text-center my-3 m-auto border border-light bg-dark rounded" height="300px" data-bs-target="#carousel-training-space"
+                                data-bs-slide-to="{{ loop.index - 1 }}" class="{{ loop.first ? 'active' : '' }}"
+                                aria-current="{{ loop.first ? 'true' : '' }}" aria-label="Slide {{ loop.index }}">
                                 <h3 class="card-title text-light"> {{ training_space.name }}</h3>
                                 <p class="card-text text-center text-light"> {{ training_space.address }} </p>
                             </div>
-                        </div>
                         {% endfor %}
+                    <!--end-->
                     </div>
                 </div>
             </div>
