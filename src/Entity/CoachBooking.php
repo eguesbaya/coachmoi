@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\CoachBookingRepository;
+use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -36,11 +39,20 @@ class CoachBooking
      */
     private ?Coach $coach;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private ?DateTimeInterface $createdAt;
+
     public function __sleep(): array
     {
         return [];
     }
 
+    public function __construct()
+    {
+        $this->setCreatedAt(new DateTime());
+    }
 
     public function getId(): ?int
     {
@@ -79,6 +91,18 @@ class CoachBooking
     public function setCoach(?Coach $coach): self
     {
         $this->coach = $coach;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
