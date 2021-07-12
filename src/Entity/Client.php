@@ -36,22 +36,22 @@ class Client
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private ?string $goal;
+    private ?string $goal = null;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private ?int $budget;
+    private ?int $budget = null;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private ?int $groupSize;
+    private ?int $groupSize = 1;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private ?bool $isApt;
+    private ?bool $isApt = true ;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -67,30 +67,30 @@ class Client
      * @ORM\ManyToOne(targetEntity=PracticeLevel::class, inversedBy="clients")
      * @ORM\JoinColumn(nullable=true)
      */
-    private ?PracticeLevel $practiceLevel;
+    private ?PracticeLevel $practiceLevel = null;
 
     /**
      * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="client")
      */
     private Collection $availabilities;
 
-
     /**
      * @ORM\ManyToOne(targetEntity=Activity::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
 
-    private Activity $activity;
+    private ?Activity $activity = null;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="date", nullable=false)
      */
-    private ?DateTimeInterface $createdAt;
+    private DateTimeInterface $createdAt;
 
     /**
      * @ORM\OneToOne(targetEntity=CoachBooking::class, mappedBy="client", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
-    private ?CoachBooking $coachBooking;
+    private ?CoachBooking $coachBooking = null;
 
     public function __construct()
     {
@@ -118,7 +118,7 @@ class Client
         return $this->goal;
     }
 
-    public function setGoal(string $goal): void
+    public function setGoal(?string $goal): void
     {
         $this->goal = $goal;
     }
@@ -128,7 +128,7 @@ class Client
         return $this->birthdate;
     }
 
-    public function setBirthdate(\DateTimeInterface $birthdate): self
+    public function setBirthdate(?\DateTimeInterface $birthdate): self
     {
         $this->birthdate = $birthdate;
 
@@ -140,7 +140,7 @@ class Client
         return $this->budget;
     }
 
-    public function setBudget(int $budget): self
+    public function setBudget(?int $budget): self
     {
         $this->budget = $budget;
 
@@ -152,7 +152,7 @@ class Client
         return $this->groupSize;
     }
 
-    public function setGroupSize(int $groupSize): self
+    public function setGroupSize(?int $groupSize): self
     {
         $this->groupSize = $groupSize;
 
@@ -164,7 +164,7 @@ class Client
         return $this->isApt;
     }
 
-    public function setIsApt(bool $isApt): void
+    public function setIsApt(?bool $isApt): void
     {
         $this->isApt = $isApt;
     }
@@ -174,7 +174,7 @@ class Client
         return $this->address;
     }
 
-    public function setAddress(string $address): self
+    public function setAddress(?string $address): self
     {
         $this->address = $address;
 
@@ -196,7 +196,7 @@ class Client
     /**
      * @return Collection|Availability[]
      */
-    public function getAvailabilities(): Collection
+    public function getAvailabilities(): ?Collection
     {
         return $this->availabilities;
     }
@@ -223,24 +223,24 @@ class Client
         return $this;
     }
 
-    public function getActivity(): Activity
+    public function getActivity(): ?Activity
     {
         return $this->activity;
     }
 
-    public function setActivity(Activity $activity): self
+    public function setActivity(?Activity $activity): self
     {
         $this->activity = $activity;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
