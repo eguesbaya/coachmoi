@@ -1,0 +1,13 @@
+{% extends 'layout_profile.html.twig' %}
+
+{% block title %}Créer une nouvelle disponibilités{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Créer une nouvelle disponibilités</h1>
+
+    {{ include('profile_coach_availability/_form.html.twig') }}
+
+    <a href="{{ path('coach_availability_index') }}" class="btn btn-success">back to list</a>
+</div>
+{% endblock %}
