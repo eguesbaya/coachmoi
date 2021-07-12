@@ -30,6 +30,7 @@ class CoachBookingController extends AbstractController
      * @Route("/", name="coach_booking_index", methods={"GET"})
      * @isGranted("ROLE_SUPERADMIN")
      */
+
     public function index(CoachBookingRepository $book, BookingStatusRepository $status, Request $request): Response
     {
         $searchBooking = new SearchBooking();
