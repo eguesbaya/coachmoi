@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\SearchClient;
 use App\Form\SearchClientType;
 use App\Repository\UserRepository;
@@ -10,7 +9,6 @@ use App\Entity\SearchCoach;
 use App\Form\SearchCoachType;
 use App\Repository\CoachRepository;
 use App\Repository\ClientRepository;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;

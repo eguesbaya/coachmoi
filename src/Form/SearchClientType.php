@@ -14,7 +14,7 @@ class SearchClientType extends AbstractType
         $builder
             ->setMethod('GET')
             ->add('user', null, [
-                'label' => false,
+                'label' => 'Recherche par nom ou prénom',
             ])
         ;
     }
