@@ -18,6 +18,7 @@ class BookingStatus
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+    
     private int $id;
 
     /**
