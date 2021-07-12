@@ -69,4 +69,14 @@ class SuperAdminController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/users", name="show_users", methods={"GET"})
+     */
+    public function showUsers(UserRepository $userRepository): Response
+    {
+        return $this->render('user/index.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
+    }
 }
