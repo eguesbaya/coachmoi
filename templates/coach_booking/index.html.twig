@@ -5,7 +5,14 @@
 
 {% block content %}
 
-    <h1 class="my-5">GÉRER LES DEMANDES</h1>
+    <h1 class="mt-5">GÉRER LES DEMANDES</h1>
+
+    <div class="mb-5 col-md-4 offset-md-8 d-flex justify-content-end">
+			{{ form_start(form) }}
+			{{ form_widget(form) }}
+			<button class="btn bg-success text-light float-end mt-3">Search</button>
+			{{ form_end(form) }}
+	</div>
 
     <table class="table text-center bg-light">
         <thead>
@@ -48,6 +55,7 @@
                     </form>
                 </td>
                 <td>
+
                     <a href="{{ path("coach_booking_show", {"id": coach_booking.id}) }}" class="btn bg-success text-light fs-6 mt-4">Voir la demande</a>
                 </td>
             </tr>
