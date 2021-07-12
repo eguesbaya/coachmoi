@@ -21,6 +21,8 @@ class CoachBookingFixtures extends Fixture implements DependentFixtureInterface
                 'training_space_' . rand(0, count(TrainingSpaceFixtures::TRAINING_SPACE) - 1)
             ));
             $booking->setCreatedAt($faker->dateTimeThisCentury());
+            $booking->setBookingStatus($this->getReference('status_' .
+            rand(0, count(BookingStatusFixtures::STATUS) - 1)));
             $manager->persist($booking);
             $this->addReference('booking_' . $i, $booking);
         }
@@ -29,6 +31,7 @@ class CoachBookingFixtures extends Fixture implements DependentFixtureInterface
         $booking->setClient($this->getReference('client_admin'));
         $booking->setTrainingSpace($this->getReference('training_space_0'));
         $booking->setCreatedAt($faker->dateTimeThisCentury());
+        $booking->setBookingStatus($this->getReference('status_0'));
         $manager->persist($booking);
         $this->addReference('booking_demo', $booking);
 
@@ -40,6 +43,7 @@ class CoachBookingFixtures extends Fixture implements DependentFixtureInterface
         return [
             ClientFixtures::class,
             TrainingSpaceFixtures::class,
+            BookingStatusFixtures::class,
         ];
     }
 }
