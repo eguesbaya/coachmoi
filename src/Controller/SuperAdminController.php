@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+
 use App\Entity\SearchClient;
 use App\Form\SearchClientType;
+use App\Repository\UserRepository;
+use App\Entity\SearchCoach;
+use App\Form\SearchCoachType;
 use App\Repository\CoachRepository;
 use App\Repository\ClientRepository;
-use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -32,10 +36,19 @@ class SuperAdminController extends AbstractController
     /**
      * @Route("/coachs", name="show_coachs")
      */
-    public function showCoachs(CoachRepository $coachRepository): Response
+    public function showCoachs(CoachRepository $coachRepository, Request $request): Response
     {
+        $searchCoach = new SearchCoach();
+        $form = $this->createForm(SearchCoachType::class, $searchCoach);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $coachs = $coachRepository->findBySearch($searchCoach);
+        }
         return $this->render('super_admin/show_coachs.html.twig', [
-            'coachs' => $coachRepository->findAll(),
+            'coachs' => $coachs ??  $coachRepository->findAll(),
+            'form' => $form->createView(),
         ]);
     }
 

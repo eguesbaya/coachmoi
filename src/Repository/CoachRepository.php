@@ -4,8 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Coach;
 use App\Entity\Activity;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\SearchCoach;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Coach|null find($id, $lockMode = null, $lockVersion = null)
@@ -27,6 +28,22 @@ class CoachRepository extends ServiceEntityRepository
            ->andWhere('a.id = :id')
            ->setParameter('id', $activity)
            ->getQuery()
+           ->getResult()
+        ;
+    }
+
+    public function findBySearch(SearchCoach $searchCoach): array
+    {
+        return $this->createQueryBuilder('c')
+            ->innerJoin('c.user', 'u')
+            ->andWhere('u.lastname LIKE :lastname')
+            ->setParameter('lastname', '%' . $searchCoach->getUser() . '%')
+            ->orWhere('u.firstname LIKE :firstname')
+            ->setParameter('firstname', '%' . $searchCoach->getUser() . '%')
+            ->leftJoin('c.activities', 'a')
+            ->andWhere('a.id = :id')
+            ->setParameter('id', $searchCoach->getActivity())
+            ->getQuery()
             ->getResult()
         ;
     }

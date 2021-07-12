@@ -3,9 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\CoachBookingRepository;
+use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CoachBookingRepository::class)
@@ -18,7 +22,6 @@ class CoachBooking
      * @ORM\Column(type="integer")
      */
     private int $id;
-
 
     /**
      * @ORM\OneToOne(targetEntity=Client::class, inversedBy="coachBooking", cascade={"persist", "remove"})
@@ -36,11 +39,27 @@ class CoachBooking
      */
     private ?Coach $coach;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private ?DateTimeInterface $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=BookingStatus::class, inversedBy="coachBookings")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\Choice(callback={"App\Entity\BookingStatus", "getBookingStatus"})
+     */
+    private ?BookingStatus $bookingStatus;
+
     public function __sleep(): array
     {
         return [];
     }
 
+    public function __construct()
+    {
+        $this->setCreatedAt(new DateTime());
+    }
 
     public function getId(): ?int
     {
@@ -79,6 +98,30 @@ class CoachBooking
     public function setCoach(?Coach $coach): self
     {
         $this->coach = $coach;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getBookingStatus(): ?BookingStatus
+    {
+        return $this->bookingStatus;
+    }
+
+    public function setBookingStatus(?BookingStatus $bookingStatus): self
+    {
+        $this->bookingStatus = $bookingStatus;
 
         return $this;
     }
