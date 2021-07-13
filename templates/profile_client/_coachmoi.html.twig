@@ -5,10 +5,10 @@
     <div class="my-2">
         <div class="bg-light m-3">
             <p>Coach</p>
-                {% if app.user.client %}
-                    <h3>{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
-                {% else %}
+                {% if app.user.client is null or app.user.client.coachbooking is null %}
                     <h3>Vous n'avez pas encore de coach</h3>
+                {% else %}
+                    <h3>{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
                 {% endif %}
         </div>
     </div>
@@ -16,10 +16,10 @@
     <div class="my-2">
         <div class="bg-light m-3">
             <p>Espace d'entrainement</p>
-                {% if app.user.client %}
-                    <h3>{{ app.user.client.coachbooking.trainingSpace.name }}</h3>
-                {% else %}
+                {% if app.user.client is null or app.user.client.coachbooking is null %}
                     <h3>Vous n'avez pas encore d'espace d'entrainement</h3>
+                {% else %}
+                    <h3>{{ app.user.client.coachbooking.trainingSpace.name }}</h3>
                 {% endif %}
         </div>
     </div>
