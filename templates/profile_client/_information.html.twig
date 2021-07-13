@@ -30,7 +30,9 @@
         <div class="my-2">
             <div class="bg-light m-3">
                 <p>Date de naissance :</p>
+                {% if app.user.client.birthDate is defined %}
                 <h3 class="mx-3">{{ app.user.client.birthDate|date("d/m/Y") }}</h3>
+                {% endif %}
             </div>
         </div>
         <div class="my-2">
