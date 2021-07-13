@@ -79,7 +79,9 @@ class ProfileClientController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
 
-            $availability->setClient($this->getUser()->$this->getClient());
+            /** @var User */
+            $user = $this->getUser();
+            $availability->setClient($user->getClient());
             $entityManager->persist($availability);
             $entityManager->flush();
             $this->addFlash('success', 'Nouvelle disponibilité ajouté');
@@ -106,7 +108,7 @@ class ProfileClientController extends AbstractController
     /**
      * @Route("/profile/client/availability/{id}/edit", name="client_availability_edit", methods={"GET","POST"})
      */
-    public function editAvailability(Request $request, AvailabilityRepository $availability): Response
+    public function editAvailability(Request $request, Availability $availability): Response
     {
         $form =  $this->createForm(ClientAvailabilityType::class, $availability);
         $form->handleRequest($request);
