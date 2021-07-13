@@ -57,7 +57,7 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'coachmoi@gmail.com',
                 ]
             ])
-            ->add('roles', ChoiceType::class, [
+            ->add('registrationRole', ChoiceType::class, [
                 'label' => false,
                 'choices' => [
                     'Je souhaite m\'inscrire en tant que coach' => 'ROLE_COACH',
@@ -65,9 +65,9 @@ class RegistrationFormType extends AbstractType
                 ],
                 'multiple' => false,
                 'expanded' => true,
-                'by_reference' => true,
                 'placeholder' => false,
-                'required' => false
+                'required' => false,
+                'mapped' => false
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => 'Accepter les conditions d\'utilisation',
