@@ -79,7 +79,9 @@ class ProfileClientController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
 
-            $availability->setClient($this->getUser()->$this->getClient());
+            /** @var User */
+            $user = $this->getUser();
+            $availability->setClient($user->getClient());
             $entityManager->persist($availability);
             $entityManager->flush();
             $this->addFlash('success', 'Nouvelle disponibilité ajouté');
