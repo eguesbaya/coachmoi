@@ -10,16 +10,7 @@
 					<a class="nav-link text-center mx-5 fw-bold fst-italic" aria-current="page" href="{{ path('superadmin_index') }}">Accueil</a>
 				</li>
 				<li class="nav-item text-center mx-5 fw-bold fst-italic">
-					<a class="nav-link" href="{{ path('admin_activity_index') }}">Activités</a>
-				</li>
-				<li class="nav-item text-center mx-5 fw-bold fst-italic">
-					<a class="nav-link" href="{{ path('admin_space_index') }}">Espaces d'entrainements</a>
-				</li>
-				<li class="nav-item text-center mx-5 fw-bold fst-italic">
-					<a class="nav-link" href="{{ path('superadmin_show_clients') }}">Clients</a>
-				</li>
-				<li class="nav-item text-center mx-5 fw-bold fst-italic">
-					<a class="nav-link" href="{{ path('superadmin_show_coachs') }}">Coachs</a>
+					<a class="nav-link" href="{{ path('superadmin_show_users') }}">Nouvelles inscriptions</a>
 				</li>
 				<li class="nav-item text-center mx-5 fw-bold fst-italic">
 					<a class="nav-link" href="{{ path('coach_booking_index') }}">Réservations</a>
@@ -45,22 +36,18 @@
 							    	<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_index') }}">
 									Mon espace admin</a>
 								</li>
-                                <li>
-                                    <a class="dropdown-item text-wrap text-warning py-2" href="{{ path('coach_booking_index') }}">
-                                        Gérer les demandes</a>
-                                </li>
 								<li>
 							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_show_clients') }}">
-                                    	Nos clients</a>
+                                    	Gérer tous les clients</a>
                             	</li>
 								<li>
 							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_show_coachs') }}">
-                                    	Nos coachs</a>
+                                    	Gérer tous les coachs</a>
                             	</li>
 
 								<li>
 							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('admin_space_index') }}">
-                                    	Nos salles</a>
+                                    	Gérer toutes les salles</a>
                             	</li>
                             {% elseif is_granted('ROLE_COACH') %}
 								<li>
