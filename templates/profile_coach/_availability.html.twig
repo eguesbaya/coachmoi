@@ -18,14 +18,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for availability in app.user.coach.availabilities %}
-                    <tr class="fs-5">
-                        <th scope="row">{{ loop.index }}</th>
-                        <td>{{ availability.weekday.name }}</td>
-                        <td>{{ availability.startTime|format_time() }}</td>
-                        <td>{{ availability.endTime|format_time() }}</td>
-                    </tr>
-                    {% endfor %}
+                    {% if app.user.coach is null %}
+                        <h3>Vous n'avez pas encore de disponibilités</h3>
+                    {% else %}
+                        {% for availability in app.user.coach.availabilities %}
+                        <tr class="fs-5">
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ availability.weekday.name }}</td>
+                            <td>{{ availability.startTime|format_time() }}</td>
+                            <td>{{ availability.endTime|format_time() }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
         </div>

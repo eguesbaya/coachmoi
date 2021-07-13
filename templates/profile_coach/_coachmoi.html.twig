@@ -11,12 +11,16 @@
                 </tr>
             </thead>
             <tbody>
-            {% for booking in app.user.coach.coachbookings %}
-                <tr scope="row">
-                    <td>{{ booking.client.user.firstname }} {{ booking.client.user.lastname }}</td>
-                    <td>{{ booking.trainingSpace.name }}</td>
-                </tr>
-            {% endfor %}
+            {% if app.user.coach is null %}
+                <h3>Vous n'avez pas encore de clients</h3>
+            {% else %}
+                {% for booking in app.user.coach.coachbookings %}
+                    <tr scope="row">
+                        <td>{{ booking.client.user.firstname }} {{ booking.client.user.lastname }}</td>
+                        <td>{{ booking.trainingSpace.name }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
             </tbody>
         </table>
 </div>
