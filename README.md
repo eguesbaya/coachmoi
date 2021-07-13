@@ -1,37 +1,4 @@
-# Project 3 - Starter Kit - Symfony 5.*
-
-![Wild Code School](https://wildcodeschool.fr/wp-content/uploads/2019/01/logo_pink_176x60.png)
-
-This starter kit is here to easily start a repository for your students.
-
-It's symfony website-skeleton project with some additional tools to validate code standards.
-
-* GrumPHP, as pre-commit hook, will run 2 tools when `git commit` is run :
-  
-    * PHP_CodeSniffer to check PSR12 
-    * PHPStan focuses on finding errors in your code (without actually running it)
-    * PHPmd will check if you follow PHP best practices
-     
-  If tests fail, the commit is canceled and a warning message is displayed to developper.
-
-* Github Action as Continuous Integration will be run when a branch with active pull request is updated on github. It will run :
-
-    * Tasks to check if vendor, .idea, env.local are not versionned,
-    * PHP_CodeSniffer, PHPStan and PHPmd with same configuration as GrumPHP.
- 
-
-### Trainers instructions
-
-1. Add your students team as contributor .
-2. Disallow both on 'dev' and 'master' branches your students writing credentials. 
-3. Disallow merge available while one approbation is not submitted on PR.
-
-> You can watch this very tiny short video : (Loom : verrouillage branches GitHub)[https://www.loom.com/share/ad0c641d0b9447be9e40fa38a499953b]
-4. For deploying on caprover : add two repository secrets (settings -> secrets)
-    - CAPROVER_APP_NAME with the caprover app name as value
-    - CAPROVER_PASSWORD with the caprover password
-
-## Getting Started for Students
+## Getting Started for Developers
 
 ### Prerequisites
 
@@ -44,6 +11,13 @@ It's symfony website-skeleton project with some additional tools to validate cod
 2. Run `composer install`
 3. Run `yarn install`
 4. Run `yarn encore dev` to build assets
+
+
+## Database
+1. Copy .env and rename it to .env.local. Configure it with your personnal information.
+2. Create the database by running `symfony console d:d:c`
+3. Run `symfony console d:m:m`
+4. Load the fixtures with `symfony console d:f:l`
 
 ### Working
 
@@ -130,4 +104,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Acknowledgments
+Thank you to Thuy Dieu, Khadim Bousso, Serdar Vural, Loic Pinguet and Emma Guesbaya. The best team!
+
+## Getting Started for the Client
+
+1. 
 
