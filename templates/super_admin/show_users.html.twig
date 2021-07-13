@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveaux utilisateurs{% endblock %}
+
+{% block body %}
+    <h1>Nouveaux utilisateurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Telephone</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.firstname }} {{ user.lastname }}</td>
+                <td>{{ user.telephone }}</td>
+                <td>
+                {% for role in user.roles %}
+                    {{ role }}
+                {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('superadmin_edit_user', {'id': user.id}) }}">Éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun utilisateur trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   <a href="{{ path('user_new') }}">Create new</a>
+{% endblock %}
