@@ -10,7 +10,7 @@
     <div class="mb-5 col-md-4 offset-md-8 d-flex justify-content-end">
 			{{ form_start(form) }}
 			{{ form_widget(form) }}
-			<button class="btn bg-success text-light float-end mt-3">Search</button>
+			<button class="btn bg-success text-light float-end mt-3">Rechercher</button>
 			{{ form_end(form) }}
 	</div>
 
@@ -62,4 +62,6 @@
         {% endfor %}
         </tbody>
     </table>
+
+     <p class= "text-uppercase fw-bold fst-italic mt-5"><a href="{{ path('superadmin_index') }}">Retour à mon espace admin</a></p>
 {% endblock %}
