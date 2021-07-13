@@ -40,6 +40,17 @@
                         </ul>
                         {% endfor %}
                     </td>
+                    <td>
+                    {% if coach.coachBookings is empty %}
+                         Aucun client
+                    {% else %}
+                        {% for booking in coach.coachBookings %}
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"> {{ booking.client.user.firstname }} {{ booking.client.user.lastname }}</li>
+                            </ul>
+                        {% endfor %}
+                    {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
