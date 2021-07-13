@@ -106,7 +106,17 @@ SOFTWARE.
 ## Acknowledgments
 Thank you to Thuy Dieu, Khadim Bousso, Serdar Vural, Loic Pinguet and Emma Guesbaya. The best team!
 
-## Getting Started for the Client
+## Login details
 
-1. 
+* [Superadmin]
+1. Email: franck@gmail.com
+2. Password: coachmoi
 
+* [Coach]
+1. Email: coach@gmail.com
+2. Password: coach
+
+
+* [Client]
+1. Email: client0@gmail.com
+2. Password: client
