@@ -6,6 +6,8 @@ use App\Entity\SearchClient;
 use App\Form\SearchClientType;
 use App\Repository\UserRepository;
 use App\Entity\SearchCoach;
+use App\Entity\User;
+use App\Form\EditUserType;
 use App\Form\SearchCoachType;
 use App\Repository\CoachRepository;
 use App\Repository\ClientRepository;
@@ -67,6 +69,37 @@ class SuperAdminController extends AbstractController
         return $this->render('super_admin/show_clients.html.twig', [
             'clients' => $clients ??  $clientRepository->findAll(),
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/users", name="show_users")
+     */
+    public function showUser(UserRepository $users): Response
+    {
+        return $this->render('super_admin/show_users.html.twig', [
+            'users' => $users->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/users/edit/{id}", name="edit_user")
+     */
+    public function editUser(User $user, Request $request): Response
+    {
+        $form = $this->createForm(EditUserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('message', 'Utilisateur modifié avec succès');
+            return $this->redirectToRoute('superadmin_show_users');
+        }
+        return $this->render('super_admin/edit_user.html.twig', [
+            'userForm' => $form->createView(),
         ]);
     }
 }
