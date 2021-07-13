@@ -30,6 +30,10 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('registrationRole')->getData() == 'ROLE_CLIENT') {
                 $user->setRoles(['ROLE_CLIENT']);
+                $this->addFlash('success', 'Votre inscription a bien été prise en compte.');
+            } else {
+                $this->addFlash('warning', 'Votre inscription a bien été prise en compte. 
+                L\'administrateur la validera dans les plus brefs délais.');
             }
             // encode the plain password
             $user->setPassword(
