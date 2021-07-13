@@ -27,17 +27,17 @@ class Coach
     private int $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private \DateTimeInterface $birthdate;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private ?bool $hasVehicle;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private string $qualification;
 
@@ -47,12 +47,12 @@ class Coach
     private ?string $equipment;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private string $biography;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private ?int $hourlyRate;
 
@@ -70,7 +70,7 @@ class Coach
     private $photoFile;
 
    /**
-    * @ORM\Column(type="string", length=255)
+    * @ORM\Column(type="string", length=255, nullable=true)
     * @var string
     */
     private ?string $photo = "";
@@ -90,16 +90,19 @@ class Coach
 
     /**
      * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="coaches")
+     * @ORM\JoinColumn(nullable=true)
      */
     private Collection $activities;
 
     /**
      * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="coach")
+     * @ORM\JoinColumn(nullable=true)
      */
     private Collection $availabilities;
 
     /**
      * @ORM\OneToMany(targetEntity=CoachBooking::class, mappedBy="coach")
+     * @ORM\JoinColumn(nullable=true)
      */
     private Collection $coachBookings;
 
@@ -137,7 +140,7 @@ class Coach
         return $this->hasVehicle;
     }
 
-    public function setHasVehicle(bool $hasVehicle): self
+    public function setHasVehicle(?bool $hasVehicle): self
     {
         $this->hasVehicle = $hasVehicle;
 
@@ -185,7 +188,7 @@ class Coach
         return $this->hourlyRate;
     }
 
-    public function setHourlyRate(int $hourlyRate): self
+    public function setHourlyRate(?int $hourlyRate): self
     {
         $this->hourlyRate = $hourlyRate;
 
@@ -207,12 +210,12 @@ class Coach
     /**
      * @return Collection|Activity[]
      */
-    public function getActivities(): Collection
+    public function getActivities(): ?Collection
     {
         return $this->activities;
     }
 
-    public function addActivity(Activity $activity): self
+    public function addActivity(?Activity $activity): self
     {
         if (!$this->activities->contains($activity)) {
             $this->activities[] = $activity;
@@ -221,7 +224,7 @@ class Coach
         return $this;
     }
 
-    public function removeActivity(Activity $activity): self
+    public function removeActivity(?Activity $activity): self
     {
         $this->activities->removeElement($activity);
 
@@ -231,7 +234,7 @@ class Coach
     /**
      * @return Collection|Availability[]
      */
-    public function getAvailabilities(): Collection
+    public function getAvailabilities(): ?Collection
     {
         return $this->availabilities;
     }
@@ -261,7 +264,7 @@ class Coach
     /**
      * @return Collection|CoachBooking[]
      */
-    public function getCoachBookings(): Collection
+    public function getCoachBookings(): ?Collection
     {
         return $this->coachBookings;
     }
@@ -316,7 +319,7 @@ class Coach
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(DateTime $updatedAt = null): self
+    public function setUpdatedAt(?DateTime $updatedAt = null): self
     {
         $this->updatedAt = $updatedAt;
 
