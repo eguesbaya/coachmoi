@@ -10,24 +10,77 @@
 					<a class="nav-link text-center mx-5 fw-bold fst-italic" aria-current="page" href="{{ path('superadmin_index') }}">Accueil</a>
 				</li>
 				<li class="nav-item text-center mx-5 fw-bold fst-italic">
-					<a class="nav-link" href="{{ path('admin_activity_index') }}">Activités</a>
-				</li>
-				<li class="nav-item text-center mx-5 fw-bold fst-italic">
-					<a class="nav-link" href="{{ path('admin_space_index') }}">Espaces d'entrainements</a>
-				</li>
-				<li class="nav-item text-center mx-5 fw-bold fst-italic">
-					<a class="nav-link" href="{{ path('superadmin_show_clients') }}">Clients</a>
-				</li>
-				<li class="nav-item text-center mx-5 fw-bold fst-italic">
-					<a class="nav-link" href="{{ path('superadmin_show_coachs') }}">Coachs</a>
+					<a class="nav-link" href="{{ path('superadmin_show_users') }}">Nouvelles inscriptions</a>
 				</li>
 				<li class="nav-item text-center mx-5 fw-bold fst-italic">
 					<a class="nav-link" href="{{ path('coach_booking_index') }}">Réservations</a>
 				</li>
-				<li class="nav-item text-center mx-5 fw-bold fst-italic">
-					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_logout') }}">Déconnexion</a>
-				</li>
 			</ul>
+
+			{#} dropdown {#}
+			<div class="d-flex justify-content-center align-items-center">
+				<div class="navbar-nav">
+                {% if not app.user %}
+                    <a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_register') }}">S'inscrire</a>
+					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_login') }}">Se connecter</a>
+                {% endif %}
+				{% if app.user %}
+				<div class="dropdown btn btn-success">
+                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                           Bienvenue
+                            <span class="text-warning">{{ app.user.firstname }}</span>
+                        </a>
+                        <ul class="dropdown-menu shadow-lg w-100" aria-labelledby="dropdownMenuLink">
+                            {% if is_granted('ROLE_SUPERADMIN') %}
+								<li>
+							    	<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_index') }}">
+									Mon espace admin</a>
+								</li>
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_show_clients') }}">
+                                    	Gérer tous les clients</a>
+                            	</li>
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_show_coachs') }}">
+                                    	Gérer tous les coachs</a>
+                            	</li>
+
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('admin_space_index') }}">
+                                    	Gérer toutes les salles</a>
+                            	</li>
+                            {% elseif is_granted('ROLE_COACH') %}
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('profile_coach') }}">
+                                    	Voir mon profil</a>
+                            	</li>
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('coach_edit') }}">
+                                    	Éditer mon profil</a>
+                            	</li>
+							{% elseif is_granted('ROLE_CLIENT') %}
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('profile_client') }}">
+                                    	Voir mon profil</a>
+                            	</li>
+								<li>
+							   		<a class="dropdown-item text-wrap text-dark py-2" href="">
+                                    	Éditer mon profil</a>
+                            	</li>
+								{% endif %}
+                            <li>
+                                <a class="dropdown-item text-wrap text-danger py-2" href="{{ path('app_logout') }}">
+                                    Déconnexion
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
+			</div>
+		</div>
+	</div>
+</nav>
+{#}end of dropdown{#}
 		</div>
 	</div>
 </nav>

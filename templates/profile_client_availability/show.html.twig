@@ -1,0 +1,32 @@
+{% extends 'layout_profile.html.twig' %}
+
+{% block title %}Availability{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Mes disponibilités</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Jour</th>
+                <td>{{ availability.weekday.name }}</td>
+            </tr>
+            <tr>
+                <th>StartTime</th>
+                <td>{{ availability.startTime ? availability.startTime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndTime</th>
+                <td>{{ availability.endTime ? availability.endTime|date('H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('client_availability_index') }}" class="btn btn-success">Retour à la liste</a>
+
+    <a href="{{ path('client_availability_edit', {'id': availability.id}) }}" class="btn btn-success">Modifier </a>
+
+    {{ include('profile_client_availability/_delete_form.html.twig') }}
+</div>
+{% endblock %}

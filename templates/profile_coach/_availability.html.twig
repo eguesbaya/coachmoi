@@ -3,6 +3,9 @@
     <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
         <h2 class="m-2">Mes disponibilités</h2>
     </div>
+        <div class="d-flex justify-content-end">
+        <a href="{{ path('coach_availability_index') }}" class="btn btn-success m-2">Changer mes disponibilités</a>
+    </div>
     <div>
         <div class="bg-light my-2">
             <table class="table text-center">
@@ -15,14 +18,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for availability in app.user.coach.availabilities %}
-                    <tr class="fs-5">
-                        <th scope="row">{{ loop.index }}</th>
-                        <td>{{ availability.weekday.name }}</td>
-                        <td>{{ availability.startTime|format_time() }}</td>
-                        <td>{{ availability.endTime|format_time() }}</td>
-                    </tr>
-                    {% endfor %}
+                    {% if app.user.coach is null %}
+                        <h3>Vous n'avez pas encore de disponibilités</h3>
+                    {% else %}
+                        {% for availability in app.user.coach.availabilities %}
+                        <tr class="fs-5">
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ availability.weekday.name }}</td>
+                            <td>{{ availability.startTime|format_time() }}</td>
+                            <td>{{ availability.endTime|format_time() }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
         </div>

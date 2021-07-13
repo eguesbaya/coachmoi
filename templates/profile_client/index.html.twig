@@ -3,29 +3,25 @@
 {% block body %}
     <main class="container-fluid col-11">
         <h1>Mon espace Client</h1>
-        <div class="col-11">
-            <a class="btn btn-primary m-2" href="#" role="button">Mettre à jour</a>
+        <div class="d-flex justify-content-end">
+            <a class="btn btn-primary m-2" href="{{ path('client_edit') }}" role="button">Mettre à jour</a>
         </div>
 
         <section class="row">
-            <div class="col-6">
-                {% block information %}
+            <div class="col-lg-6 col-md-12 mt-5">
                     {% include 'profile_client/_information.html.twig' %}
-                {% endblock %}
             </div>
-            <div class="col-6">
-                {% block preferences %}
+            <div class="col-lg-6 col-md-12 mt-4">
+                <div class="pt-4">
                     {% include 'profile_client/_preferences.html.twig' %}
-                {% endblock %}
-                {% block coachmoi %}
+                </div>
+                <div class="mt-3 pt-4">
                     {% include 'profile_client/_coachmoi.html.twig' %}
-                {% endblock %}
+                </div>
             </div>
         </section>
         <section>
-            {% block availabilitites %}
                 {% include 'profile_client/_availability.html.twig' %}
-            {% endblock %}
         </section>
     </main>
 {% endblock %}

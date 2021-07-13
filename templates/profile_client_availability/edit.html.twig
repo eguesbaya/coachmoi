@@ -1,0 +1,13 @@
+{% extends 'layout_profile.html.twig' %}
+
+{% block title %}Modifier une nouvelle disponibilités{% endblock %}
+
+{% block body %}
+    <h1>Modifier une nouvelle disponibilités</h1>
+
+    {{ include('profile_client_availability/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('client_availability_index') }}" class="btn btn-success">Retour à la liste</a>
+
+    {{ include('profile_client_availability/_delete_form.html.twig') }}
+{% endblock %}

@@ -6,6 +6,8 @@ use App\Entity\CoachBooking;
 use App\Entity\Client;
 use App\Entity\Activity;
 use App\Entity\Coach;
+use App\Entity\SearchBooking;
+use App\Form\SearchBookingType;
 use App\Repository\CoachBookingRepository;
 use App\Repository\TrainingSpaceRepository;
 use App\Repository\CoachRepository;
@@ -21,17 +23,28 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
  * @Route("/superadmin/demandes")
  * @isGranted("ROLE_SUPERADMIN")
  */
+
 class CoachBookingController extends AbstractController
 {
     /**
      * @Route("/", name="coach_booking_index", methods={"GET"})
      * @isGranted("ROLE_SUPERADMIN")
      */
-    public function index(CoachBookingRepository $coachBookingRepo, BookingStatusRepository $statusRepo): Response
+
+    public function index(CoachBookingRepository $book, BookingStatusRepository $status, Request $request): Response
     {
+        $searchBooking = new SearchBooking();
+        $form = $this->createForm(SearchBookingType::class, $searchBooking);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $bookings = $book->findBySearch($searchBooking);
+        }
+
         return $this->render('coach_booking/index.html.twig', [
-            'coach_bookings' => $coachBookingRepo->findBy([], ['createdAt' => 'DESC']),
-            'bookingStatus' => $statusRepo->findAll(),
+            'coach_bookings' => $bookings ?? $book->findBy([], ['createdAt' => 'DESC']),
+            'bookingStatus' => $status->findAll(),
+            'form' => $form->createView(),
         ]);
     }
 

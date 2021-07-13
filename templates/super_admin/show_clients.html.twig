@@ -3,13 +3,22 @@
 {% block title %}Tous les Clients{% endblock %}
 
 {% block content %}
+<div class="container">
 
     <h1 class="my-5">Tous les Clients</h1>
+
+        <div class="mt-2 mb-2 d-flex justify-content-end">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <div class="mt-2 mb-2 d-flex justify-content-end">
+                <button class="btn btn-success text-white">Rechercher</button>
+            {{ form_end(form) }}
+            </div>
+        </div>
 
     <table class="table text-center bg-light">
         <thead>
             <tr>
-                <th scope="col">Id</th>
                 <th scope="col">Clients</th>
                 <th scope="col">Activité</th>
                 <th scope="col">Budget</th>
@@ -20,7 +29,6 @@
         <tbody>
             {% for client in clients %}
                 <tr>
-                    <td scope="row">{{ client.id }}</td>
                     <td>{{ client.user.firstname }} {{ client.user.lastname }}</td>
                     <td>{{ client.activity.name }}</td>
                     <td>{{ client.budget }} €</td>
@@ -31,8 +39,19 @@
                         </ul>
                         {% endfor %}
                     </td>
+                    {% if client.coachbooking is null or client.coachbooking.coach is null %}
+                    <td>Aucun coach</td>
+                    {% else %}
+                    <td> {{ client.coachbooking.coach.user.firstname }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+</div>
+
+ <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}">Retour à mon espace admin</a></p>
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
 {% endblock %}

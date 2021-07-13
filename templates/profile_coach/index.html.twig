@@ -4,14 +4,16 @@
 <main class="container-fluid col-11">
     <h1>Mon espace Coach</h1>
     <div class="d-flex justify-content-end">
-        <a href="{{ path('coach_edit') }}" class="btn btn-success m-2">Changer informations</a>
+        <a href="{{ path('coach_edit') }}" class="btn btn-success m-2">Mettre à jour</a>
     </div>
     <section class="row">
         <div class="col-lg-6 col-md-12 mt-4">
             {% include 'profile_coach/_information.html.twig' %}
         </div>
         <div class="col-lg-6 col-md-12">
+            <div class="my-3">
                 {% include "profile_coach/_photo.html.twig" %}
+            </div>
             <div class="pt-4">
                     {% include 'profile_coach/_preferences.html.twig' %}
             </div>

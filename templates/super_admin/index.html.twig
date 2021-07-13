@@ -10,5 +10,77 @@
 
     <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('home') }}">Retour au site</a></p>
 
+    <div class="container-fluid">
+            <div class="row align-items-center w-100">
+
+                <div class="col-md-5 col-lg-4 p-2 mx-auto">
+                    <div class="card h-100">
+                        <div class="card-body">
+                             <div class="d-flex justify-content-center">
+                                <a href="{{ path('superadmin_show_users') }}" class="btn btn-admin">Gestion des utilisateurs</a>
+                            </div>
+                            <p class="card-text description">Consulter la liste des utilisateurs, éditer et attribuer les rôles</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-lg-4 p-2 mx-auto">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center">
+                                <a href="{{ path('superadmin_show_clients') }}" class="btn btn-admin">Gestion des clients</a>
+                            </div>
+                            <p class="card-text description">Consulter la liste des clients.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-lg-4 p-2 mx-auto">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center">
+                                <a href="{{ path('superadmin_show_coachs') }}" class="btn btn-admin">Gestion des coachs</a>
+                            </div>
+                            <p class="card-text description">Consulter la liste des coachs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <div class="row align-items-center w-100">
+
+                <div class="col-md-5 col-lg-4 p-2 mx-auto">
+                    <div class="card h-100">
+                        <div class="card-body">
+                             <div class="d-flex justify-content-center">
+                                <a href="{{ path('admin_activity_index') }}" class="btn btn-admin">Gestion des activités</a>
+                            </div>
+                            <p class="card-text description">Consulter la liste des activités, éditer et supprimer.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-lg-4 p-2 mx-auto">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center">
+                                <a href="{{ path('admin_space_index') }}" class="btn btn-admin">Gestion des espaces</a>
+                            </div>
+                            <p class="card-text description">Consulter la liste des clients, éditer et supprimer.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-lg-4 p-2 mx-auto">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center">
+                                <a href="{{ path('coach_booking_index') }}" class="btn btn-admin">Gestion des réservations</a>
+                            </div>
+                            <p class="card-text description">Consulter la liste des demandes, attribuer les coachs et espaces.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
 </main>
 {% endblock %}

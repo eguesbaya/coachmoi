@@ -3,27 +3,45 @@
         <h2 class="m-2 text-truncate">Mes préférences</h2>
     </div>
     <div>
-        <div class="bg-light my-2">
-            <h3>Activité</h3>
-            <p>{{ app.user.client.activity.name }}</p>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Activité</p>
+                {% if app.user.client.activity is defined %}
+                <h3 class="mx-3">{{ app.user.client.activity.name }}</h3>
+                {% endif %}
+            </div>
         </div>
-        <div class="bg-light my-2">
-            <h3>Niveau</h3>
-            {% if app.user.client.practicelevel.level is defined %}
-            <p>{{ app.user.client.practicelevel.level }}</p>
-            {% endif %}
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Niveau</p>
+                {% if app.user.client.practicelevel.level is defined %}
+                    <h3 class="mx-3">{{ app.user.client.practicelevel.level }}</h3>
+                {% endif %}
+            </div>
         </div>
-        <div class="bg-light my-2">
-            <h3>Budget</h3>
-            <p>{{ app.user.client.budget }} €/mois</p>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Budget</p>
+                {% if app.user.client.budget is defined %}
+                <h3 class="mx-3">{{ app.user.client.budget }} €/mois</h3>
+                {% endif %}
+            </div>
         </div>
-        <div class="bg-light my-2">
-            <h3>Groupe</h3>
-            <p>{{ app.user.client.groupsize }} personnes</p>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Groupe</p>
+                {% if app.user.client.groupsize is defined %}
+                <h3 class="mx-3">{{ app.user.client.groupsize }} personne(s)</h3>
+                {% endif %}
+            </div>
         </div>
-        <div class="bg-light my-2">
-            <h3>Objectif sportif</h3>
-            <p>{{ app.user.client.goal }}</p>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Objectif sportif</p>
+                {% if app.user.client.goal is defined %}
+                <h3 class="mx-3">{{ app.user.client.goal }}</h3>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
