@@ -27,9 +27,12 @@ class Coach
     private int $id;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
-     */
-    private \DateTimeInterface $birthdate;
+    * @ORM\Column(type="date", nullable=true)
+    * @Assert\Date
+    * @var \DateTimeInterface|null
+    */
+
+    private ?\DateTimeInterface $birthdate;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -53,6 +56,7 @@ class Coach
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Positive
      */
     private ?int $hourlyRate;
 
@@ -77,6 +81,7 @@ class Coach
 
    /**
     * @ORM\Column(type="datetime", nullable="true")
+    * @Assert\Date
     * @var \DateTimeInterface|null
     */
     private $updatedAt;
