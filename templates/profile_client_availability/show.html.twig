@@ -4,13 +4,13 @@
 
 {% block body %}
 <div class="container">
-    <h1>Availability</h1>
+    <h1>Mes disponibilités</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ availability.id }}</td>
+                <th>Jour</th>
+                <td>{{ availability.weekday.name }}</td>
             </tr>
             <tr>
                 <th>StartTime</th>
