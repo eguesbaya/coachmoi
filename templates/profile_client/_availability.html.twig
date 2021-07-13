@@ -15,14 +15,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for availability in app.user.client.availabilities %}
-                    <tr class="fs-5">
-                        <th scope="row">{{ loop.index }}</th>
-                        <td>{{ availability.weekday.name }}</td>
-                        <td>{{ availability.startTime|format_time() }}</td>
-                        <td>{{ availability.endTime|format_time() }}</td>
-                    </tr>
-                    {% endfor %}
+                    {% if app.user.client %}
+                        {% for availability in app.user.client.availabilities %}
+                            <tr class="fs-5">
+                                <th scope="row">{{ loop.index }}</th>
+                                <td>{{ availability.weekday.name }}</td>
+                                <td>{{ availability.startTime|format_time() }}</td>
+                                <td>{{ availability.endTime|format_time() }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
         </div>

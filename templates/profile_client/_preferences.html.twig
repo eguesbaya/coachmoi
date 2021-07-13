@@ -6,7 +6,9 @@
         <div class="my-2">
             <div class="bg-light m-3">
                 <p>Activité</p>
+                {% if app.user.client.activity is defined %}
                 <h3 class="mx-3">{{ app.user.client.activity.name }}</h3>
+                {% endif %}
             </div>
         </div>
         <div class="my-2">
@@ -20,19 +22,25 @@
         <div class="my-2">
             <div class="bg-light m-3">
                 <p>Budget</p>
+                {% if app.user.client.budget is defined %}
                 <h3 class="mx-3">{{ app.user.client.budget }} €/mois</h3>
+                {% endif %}
             </div>
         </div>
         <div class="my-2">
             <div class="bg-light m-3">
                 <p>Groupe</p>
+                {% if app.user.client.groupsize is defined %}
                 <h3 class="mx-3">{{ app.user.client.groupsize }} personne(s)</h3>
+                {% endif %}
             </div>
         </div>
         <div class="my-2">
             <div class="bg-light m-3">
                 <p>Objectif sportif</p>
+                {% if app.user.client.goal is defined %}
                 <h3 class="mx-3">{{ app.user.client.goal }}</h3>
+                {% endif %}
             </div>
         </div>
     </div>
