@@ -39,7 +39,11 @@
                         </ul>
                         {% endfor %}
                     </td>
-                    <td> </td>
+                    {% if client.coachbooking is null or client.coachbooking.coach is null %}
+                    <td>Aucun coach</td>
+                    {% else %}
+                    <td> {{ client.coachbooking.coach.user.firstname }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
