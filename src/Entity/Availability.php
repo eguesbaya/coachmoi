@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 
 /**
- * @ORM\Entity(repositoryClass=AvailabilityRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\AvailabilityRepository")
  */
 class Availability
 {

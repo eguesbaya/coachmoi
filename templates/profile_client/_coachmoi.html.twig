@@ -1,22 +1,26 @@
 <div class="border border-dark rounded m-1">
-    <div class="d-flex align-items-center border border-dark title bg-light col-md-8 col-lg-6">
+    <div class="profile-h2 d-flex align-items-center border border-dark title bg-light col-md-8 col-lg-6">
         <h2 class="m-2 text-truncate">Coach Moi</h2>
     </div>
-    <div class="bg-light my-2 px-3 py-2">
-        <p>Coach</p>
-            {% if app.user.client.coachbooking is null %}
-                <h3>{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
-            {% else %}
-                <h3>Vous n'avez pas encore de coach</h3>
-            {% endif %}
+    <div class="my-2">
+        <div class="bg-light m-3">
+            <p>Coach</p>
+                {% if app.user.client.coachbooking is null %}
+                    <h3>{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
+                {% else %}
+                    <h3>Vous n'avez pas encore de coach</h3>
+                {% endif %}
+        </div>
     </div>
 
-    <div class="bg-light my-2 px-3 py-2">
-        <p>Espace d'entrainement</p>
-            {% if app.user.client.coachbooking is null %}
-                <h3>{{ app.user.client.coachbooking.trainingSpace.name }}</h3>
-            {% else %}
-                <h3>Vous n'avez pas encore d'espace d'entrainement</h3>
-            {% endif %}
+    <div class="my-2">
+        <div class="bg-light m-3">
+            <p>Espace d'entrainement</p>
+                {% if app.user.client.coachbooking is null %}
+                    <h3>{{ app.user.client.coachbooking.trainingSpace.name }}</h3>
+                {% else %}
+                    <h3>Vous n'avez pas encore d'espace d'entrainement</h3>
+                {% endif %}
+        </div>
     </div>
 </div>

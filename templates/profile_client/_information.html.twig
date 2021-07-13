@@ -3,40 +3,48 @@
         <h2 class="m-2 text-truncate">Mes informations</h2>
     </div>
     <div>
-        <div class="bg-light my-2">
-            <h3>Nom</h3>
-            <p>{{ app.user.lastname }}</p>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Nom :</p>
+                <h3 class="mx-3">{{ app.user.lastname }}</h3>
+            </div>
         </div>
-        <div class="bg-light my-2">
-            <h3>Prénom</h3>
-            <p>{{ app.user.firstname }}</p>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Prénom :</p>
+                <h3 class="mx-3">{{ app.user.firstname }}</h3>
+            </div>
         </div>
-        <div class="bg-light my-2">
-            <h3>Téléphone</h3>
-            <p>{{ app.user.telephone }}</p>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Téléphone :</p>
+                <h3 class="mx-3">{{ app.user.telephone }}</h3>
+            </div>
         </div>
-        <div class="bg-light my-2">
-            <h3>Email</h3>
-            <p class="text-truncate">{{ app.user.email }}</p>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Email :</p>
+                <h3 class="mx-3">{{ app.user.email }}</h3>
+            </div>
         </div>
-        <div class="bg-light my-2">
-            <h3>Adresse</h3>
-            <p>{{ app.user.client.address }}</p>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <p>Date de naissance :</p>
+                <h3 class="mx-3">{{ app.user.client.birthDate|date("d/m/Y") }}</h3>
+            </div>
         </div>
-        <div class="bg-light my-2">
-            <h3>Date de naissance</h3>
-            <p>{{ app.user.client.birthdate|date("d/m/Y") }}</p>
-        </div>
-        <div class="bg-light my-2">
-            <h3>Mes documents</h3>
-            <div class= "documents d-flex flex-row">
-                <div class= "d-flex flex-column align-items-center">
-                    <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>
-                    <p>CGU</p>
-                </div>
-                <div class= "d-flex flex-column align-items-center">
-                    <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>
-                    <p>Contrat</p>
+        <div class="my-2">
+            <div class="bg-light m-3">
+                <h3>Mes documents</h3>
+                <div class= "documents d-flex flex-row">
+                    <div class= "d-flex flex-column align-items-center">
+                        <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>
+                        <p>CGU</p>
+                    </div>
+                    <div class= "d-flex flex-column align-items-center">
+                        <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>
+                        <p>Contrat</p>
+                    </div>
                 </div>
             </div>
         </div>
