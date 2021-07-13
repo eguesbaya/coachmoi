@@ -108,7 +108,7 @@ class ProfileClientController extends AbstractController
     /**
      * @Route("/profile/client/availability/{id}/edit", name="client_availability_edit", methods={"GET","POST"})
      */
-    public function editAvailability(Request $request, AvailabilityRepository $availability): Response
+    public function editAvailability(Request $request, Availability $availability): Response
     {
         $form =  $this->createForm(ClientAvailabilityType::class, $availability);
         $form->handleRequest($request);
