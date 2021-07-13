@@ -1,0 +1,46 @@
+{% extends 'layout_profile.html.twig' %}
+
+{% block title %}Liste de mes disponibilités{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Liste de mes disponibilités</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>StartTime</th>
+                <th>EndTime</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for availability in app.user.client.availabilities %}
+            <tr>
+                <td>{{ availability.weekday.name }}</td>
+                <td>{{ availability.startTime ? availability.startTime|date('H:i:s') : '' }}</td>
+                <td>{{ availability.endTime ? availability.endTime|date('H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('client_availability_show', {'id': availability.id}) }}" class="btn btn-success">Voir </a>
+                    <a href="{{ path('client_availability_edit', {'id': availability.id}) }}" class="btn btn-success">Modifier </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-6">
+            <a href="{{ path('client_availability_new') }}" class="btn btn-success">Ajouter nouvelle disponibilité</a>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+            <a href="{{ path('profile_client') }}" class="btn btn-success m-2">Retour Profile</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
