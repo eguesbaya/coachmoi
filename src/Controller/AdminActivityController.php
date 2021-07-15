@@ -83,10 +83,10 @@ class AdminActivityController extends AbstractController
      */
     public function delete(Request $request, Activity $activity): Response
     {
-        $condition1 = $activity->getClients()->isEmpty();
-        $condition2 = $activity->getCoaches()->isEmpty();
-        $condition3 = $activity->getTrainingSpaces()->isEmpty();
-        if ($condition1 && $condition2 && $condition3) {
+        $isClientEmpty = $activity->getClients()->isEmpty();
+        $isCoachEmpty = $activity->getCoaches()->isEmpty();
+        $isSpaceEmpty = $activity->getTrainingSpaces()->isEmpty();
+        if ($isClientEmpty &&  $isCoachEmpty && $isSpaceEmpty) {
             if ($this->isCsrfTokenValid('delete' . $activity->getId(), $request->request->get('_token'))) {
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->remove($activity);
