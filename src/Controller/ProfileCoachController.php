@@ -22,7 +22,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProfileCoachController extends AbstractController
 {
     /**
-     * @Route("/profile/coach", name="profile_coach")
+     * @Route("/profil/coach", name="profile_coach")
      */
     public function index(CoachRepository $coach): Response
     {
@@ -33,7 +33,7 @@ class ProfileCoachController extends AbstractController
 
 
     /**
-     * @Route("/profile/coach/new", name="edit_coach_new", methods={"GET","POST"})
+     * @Route("/profil/coach/new", name="edit_coach_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -56,7 +56,7 @@ class ProfileCoachController extends AbstractController
 
 
     /**
-     * @Route("/profile/coach/edit", name="coach_edit", methods={"GET","POST"})
+     * @Route("/profil/coach/modifier", name="coach_edit", methods={"GET","POST"})
      */
     public function edit(Request $request): Response
     {
@@ -78,7 +78,7 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/coach-disponibilite", name="coach_availability_index", methods={"GET"})
+     * @Route("/profil/coach/disponibilite", name="coach_availability_index", methods={"GET"})
      */
     public function indexAvailability(AvailabilityRepository $availabilites): Response
     {
@@ -88,7 +88,7 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/profile/coach/coach-disponibilite/new", name="coach_availability_new", methods={"GET","POST"})
+     * @Route("/profil/coach/disponibilite/nouveau", name="coach_availability_new", methods={"GET","POST"})
      */
     public function newAvailability(Request $request): Response
     {
@@ -116,7 +116,7 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/profile/coach/coach-disponibilite/{id}", name="coach_availability_show", methods={"GET"})
+     * @Route("/profil/coach/disponibilite/{id}", name="coach_availability_show", methods={"GET"})
      */
     public function showAvailability(Availability $availability): Response
     {
@@ -126,7 +126,7 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/profile/coach/coach-disponibilite/{id}/edit", name="coach_availability_edit", methods={"GET","POST"})
+     * @Route("/profil/coach/disponibilite/{id}/modifier", name="coach_availability_edit", methods={"GET","POST"})
      */
     public function editAvailability(Request $request, Availability $availability): Response
     {
@@ -146,7 +146,7 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/profile/coach/coach-disponibilite/{id}", name="coach_availability_delete", methods={"POST"})
+     * @Route("/profil/coach/disponibilite/{id}", name="coach_availability_delete", methods={"POST"})
      */
     public function deleteAvailability(Request $request, Availability $availability): Response
     {
