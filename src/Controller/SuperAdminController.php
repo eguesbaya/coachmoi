@@ -2,20 +2,22 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Entity\Coach;
+use App\Form\EditUserType;
+use App\Entity\SearchCoach;
 use App\Entity\SearchClient;
+use App\Form\SearchCoachType;
 use App\Form\SearchClientType;
 use App\Repository\UserRepository;
-use App\Entity\SearchCoach;
-use App\Entity\User;
-use App\Form\EditUserType;
-use App\Form\SearchCoachType;
 use App\Repository\CoachRepository;
 use App\Repository\ClientRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/superadmin", name="superadmin_")
@@ -85,17 +87,30 @@ class SuperAdminController extends AbstractController
     /**
      * @Route("/users/edit/{id}", name="edit_user")
      */
-    public function editUser(User $user, Request $request): Response
+    public function editUser(User $user, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(EditUserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $newRole = $form->get('roles')->getData();
+
+            //Si le ROLE_COACH est attribué
+            if ($newRole == 'ROLE_COACH') {
+                //Si le User a déjà le ROLE_COACH, je retourne un message d'erreur
+                if (is_null($user->getCoach())) {
+                    $coach = new Coach();
+                    $user->setCoach($coach);
+                    $entityManager->persist($coach);
+                }
+            }
+
+            $user->setRoles([$newRole]);
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('message', 'Utilisateur modifié avec succès');
+            $this->addFlash('success', $form->get('roles')->getData() . ' a bien été attribué à cet utilisateur ');
+
             return $this->redirectToRoute('superadmin_show_users');
         }
         return $this->render('super_admin/edit_user.html.twig', [
