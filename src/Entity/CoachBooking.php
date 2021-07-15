@@ -31,6 +31,7 @@ class CoachBooking
 
     /**
      * @ORM\ManyToOne(targetEntity=TrainingSpace::class)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private ?TrainingSpace $trainingSpace;
 
