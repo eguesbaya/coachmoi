@@ -1,6 +1,6 @@
 {% extends 'layout_profile.html.twig' %}
 
-{% block title %}Availability{% endblock %}
+{% block title %}Mes disponibilités{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -13,11 +13,11 @@
                 <td>{{ availability.weekday.name }}</td>
             </tr>
             <tr>
-                <th>StartTime</th>
+                <th>Heure de début</th>
                 <td>{{ availability.startTime ? availability.startTime|date('H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>EndTime</th>
+                <th>Heure de fin</th>
                 <td>{{ availability.endTime ? availability.endTime|date('H:i:s') : '' }}</td>
             </tr>
         </tbody>
