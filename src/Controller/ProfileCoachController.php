@@ -78,7 +78,7 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/availabilityCoach", name="coach_availability_index", methods={"GET"})
+     * @Route("/coach-disponibilite", name="coach_availability_index", methods={"GET"})
      */
     public function indexAvailability(AvailabilityRepository $availabilites): Response
     {
