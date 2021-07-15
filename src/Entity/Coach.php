@@ -32,33 +32,33 @@ class Coach
     * @var \DateTimeInterface|null
     */
 
-    private ?\DateTimeInterface $birthdate;
+    private ?\DateTimeInterface $birthdate = null;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private ?bool $hasVehicle;
+    private ?bool $hasVehicle = null;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private string $qualification;
+    private ?string $qualification = null;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private ?string $equipment;
+    private ?string $equipment = null;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private string $biography;
+    private ?string $biography = null;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Positive
      */
-    private ?int $hourlyRate;
+    private ?int $hourlyRate = null;
 
     /**
     * @Vich\UploadableField(mapping="coaches", fileNameProperty="photo")

@@ -97,7 +97,7 @@ class SuperAdminController extends AbstractController
 
             //Si le ROLE_COACH est attribué
             if ($newRole == 'ROLE_COACH') {
-                //Si le User a déjà le ROLE_COACH, je retourne un message d'erreur
+                //Si le User n'est pas lié à un coach, je le lie à un nouvel objet coach et je persiste
                 if (is_null($user->getCoach())) {
                     $coach = new Coach();
                     $user->setCoach($coach);
