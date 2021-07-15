@@ -13,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\LessThan;
+use Symfony\Component\Validator\Constraints\Positive;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
@@ -40,21 +44,24 @@ class Client
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Positive
      */
     private ?int $budget = null;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Positive
      */
     private ?int $groupSize = 1;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private ?bool $isApt = true ;
+    private ?bool $isApt = false;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\LessThan("today UTC")
      */
     private ?\DateTimeInterface $birthdate = null;
 
