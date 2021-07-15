@@ -88,7 +88,7 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/profile/coach/availability/new", name="coach_availability_new", methods={"GET","POST"})
+     * @Route("/profile/coach/coach-disponibilite/new", name="coach_availability_new", methods={"GET","POST"})
      */
     public function newAvailability(Request $request): Response
     {
@@ -99,8 +99,9 @@ class ProfileCoachController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-
-            $availability->setCoach($this->getUser()->$this->getCoach());
+            /** @var User */
+            $user = $this->getUser();
+            $availability->setCoach($user->getCoach());
             $entityManager->persist($availability);
             $entityManager->flush();
             $this->addFlash('success', 'Nouvelle disponibilité ajouté');
@@ -115,7 +116,7 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/profile/coach/availability/{id}", name="coach_availability_show", methods={"GET"})
+     * @Route("/profile/coach/coach-disponibilite/{id}", name="coach_availability_show", methods={"GET"})
      */
     public function showAvailability(Availability $availability): Response
     {
@@ -125,9 +126,9 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/profile/coach/availability/{id}/edit", name="coach_availability_edit", methods={"GET","POST"})
+     * @Route("/profile/coach/coach-disponibilite/{id}/edit", name="coach_availability_edit", methods={"GET","POST"})
      */
-    public function editAvailability(Request $request, AvailabilityRepository $availability): Response
+    public function editAvailability(Request $request, Availability $availability): Response
     {
         $form =  $this->createForm(CoachAvailabilityType::class, $availability);
         $form->handleRequest($request);
@@ -145,7 +146,7 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/profile/coach/availability/{id}", name="coach_availability_delete", methods={"POST"})
+     * @Route("/profile/coach/coach-disponibilite/{id}", name="coach_availability_delete", methods={"POST"})
      */
     public function deleteAvailability(Request $request, Availability $availability): Response
     {
@@ -153,6 +154,7 @@ class ProfileCoachController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($availability);
             $entityManager->flush();
+            $this->addFlash('success', 'Disponibilité supprimée');
         }
 
         return $this->redirectToRoute('coach_availability_index');
