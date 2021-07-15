@@ -184,8 +184,9 @@ class User implements UserInterface
         return $this->client;
     }
 
-    public function setClient(?Client $client): self
+    public function setClient(Client $client): self
     {
+        $client->setUser($this);
         $this->client = $client;
 
         return $this;

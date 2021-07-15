@@ -6,7 +6,7 @@
         <div class="my-2">
             <div class="bg-light m-3">
                 <p>Activité</p>
-                {% if app.user.client.activity is defined %}
+                {% if app.user.client.activity in not null %}
                 <h3 class="mx-3">{{ app.user.client.activity.name }}</h3>
                 {% endif %}
             </div>
@@ -14,7 +14,7 @@
         <div class="my-2">
             <div class="bg-light m-3">
                 <p>Niveau</p>
-                {% if app.user.client.practicelevel.level is defined %}
+                {% if app.user.client.practicelevel is not null %}
                     <h3 class="mx-3">{{ app.user.client.practicelevel.level }}</h3>
                 {% endif %}
             </div>
@@ -22,7 +22,7 @@
         <div class="my-2">
             <div class="bg-light m-3">
                 <p>Budget</p>
-                {% if app.user.client.budget is defined %}
+                {% if app.user.client.budget is not null %}
                 <h3 class="mx-3">{{ app.user.client.budget }} €/mois</h3>
                 {% endif %}
             </div>
@@ -30,7 +30,7 @@
         <div class="my-2">
             <div class="bg-light m-3">
                 <p>Groupe</p>
-                {% if app.user.client.groupsize is defined %}
+                {% if app.user.client.groupsize is not null %}
                 <h3 class="mx-3">{{ app.user.client.groupsize }} personne(s)</h3>
                 {% endif %}
             </div>
@@ -38,7 +38,7 @@
         <div class="my-2">
             <div class="bg-light m-3">
                 <p>Objectif sportif</p>
-                {% if app.user.client.goal is defined %}
+                {% if app.user.client.goal is not null %}
                 <h3 class="mx-3">{{ app.user.client.goal }}</h3>
                 {% endif %}
             </div>
