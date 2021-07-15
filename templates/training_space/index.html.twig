@@ -34,7 +34,7 @@
             </div>
         </div>
         {# Elements show according to selected option #}
-        <div class="accordion-group">
+        <div class="accordion-group mt-5">
             {# Option 1: Indoor: Display the map + list of cards: show by default #}
             <div class="accordion-collapse collapse show container-fluid" id="indoor" aria-labelledby="btn-indoor"
                 data-bs-parent="#training-space">
@@ -58,14 +58,14 @@
                     <div class="col-lg-1">
                         <p class="my-5"></p>
                     </div>
-                    <div class="cards-indoor col-lg-5 mb-5 rounded overflow-auto">
+                    <div class="cards-indoor col-lg-5 rounded overflow-auto">
                     <!--Section: cards -->
                         {% for training_space in training_spaces %}
-                            <div class="space-card text-center my-3 m-auto border border-light bg-dark rounded" height="300px" data-bs-target="#carousel-training-space"
+                            <div class="space-card text-center my-3 m-auto border border-light bg-dark rounded w-75" data-bs-target="#carousel-training-space"
                                 data-bs-slide-to="{{ loop.index - 1 }}" class="{{ loop.first ? 'active' : '' }}"
                                 aria-current="{{ loop.first ? 'true' : '' }}" aria-label="Slide {{ loop.index }}">
                                 <h3 class="card-title text-light"> {{ training_space.name }}</h3>
-                                <p class="card-text text-center text-light"> {{ training_space.address }} </p>
+                                <p class="card-text text-center text-light mb-4"> {{ training_space.address }} </p>
                             </div>
                         {% endfor %}
                     <!--end-->
