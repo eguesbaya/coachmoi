@@ -135,6 +135,7 @@ class ProfileCoachController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Disponibilité modifiée');
 
             return $this->redirectToRoute('coach_availability_index');
         }
