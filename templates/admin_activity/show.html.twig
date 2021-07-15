@@ -30,9 +30,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('admin_activity_index') }}">back to list</a>
+    <a href="{{ path('admin_activites_index') }}">back to list</a>
 
-    <a href="{{ path('admin_activity_edit', {'id': activity.id}) }}">edit</a>
+    <a href="{{ path('admin_edit_activite', {'id': activity.id}) }}">edit</a>
 
     {{ include('admin_activity/_delete_form.html.twig') }}
 {% endblock %}

@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/superadmin/activity")
+ * @Route("/superadmin/activites")
  */
 class AdminActivityController extends AbstractController
 {
     /**
-     * @Route("/", name="admin_activity_index", methods={"GET"})
+     * @Route("/", name="admin_activites_index", methods={"GET"})
      */
     public function index(ActivityRepository $activityRepository): Response
     {
@@ -26,7 +26,7 @@ class AdminActivityController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="admin_activity_new", methods={"GET","POST"})
+     * @Route("/new", name="admin_ajout_acitivite", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -39,7 +39,7 @@ class AdminActivityController extends AbstractController
             $entityManager->persist($activity);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_activity_index');
+            return $this->redirectToRoute('admin_activites_index');
         }
 
         return $this->render('admin_activity/new.html.twig', [
@@ -49,7 +49,7 @@ class AdminActivityController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="admin_activity_show", methods={"GET"})
+     * @Route("/{id}", name="admin_afficher_activite", methods={"GET"})
      */
     public function show(Activity $activity): Response
     {
@@ -59,7 +59,7 @@ class AdminActivityController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="admin_activity_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="admin_edit_activite", methods={"GET","POST"})
      */
     public function edit(Request $request, Activity $activity): Response
     {
@@ -69,7 +69,7 @@ class AdminActivityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_activity_index');
+            return $this->redirectToRoute('admin_activites_index');
         }
 
         return $this->render('admin_activity/edit.html.twig', [
@@ -79,7 +79,7 @@ class AdminActivityController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="admin_activity_delete", methods={"POST"})
+     * @Route("/{id}", name="admin_supprimer_activite", methods={"POST"})
      */
     public function delete(Request $request, Activity $activity): Response
     {
@@ -89,6 +89,6 @@ class AdminActivityController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('admin_activity_index');
+        return $this->redirectToRoute('admin_activites_index');
     }
 }

@@ -24,8 +24,8 @@
                 <td>{{ activity.description }}</td>
                 <td>{{ activity.isFeatured ? 'Yes' : 'No' }}</td>
                 <td class="d-flex">
-                    <a href="{{ path('admin_activity_show', {'id': activity.id}) }}" class="btn btn-success text-light me-3">show</a>
-                    <a href="{{ path('admin_activity_edit', {'id': activity.id}) }}" class="btn btn-success text-light">edit</a>
+                    <a href="{{ path('admin_afficher_activite', {'id': activity.id}) }}" class="btn btn-success text-light me-3">show</a>
+                    <a href="{{ path('admin_edit_activite', {'id': activity.id}) }}" class="btn btn-success text-light">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -37,7 +37,7 @@
     </table>
 </div>
 
-    <a href="{{ path('admin_activity_new') }}">Create new</a>
+    <a href="{{ path('admin_ajout_acitivite') }}">Create new</a>
 
      <p class= "text-uppercase fw-bold fst-italic mt-5"><a href="{{ path('superadmin_index') }}">Retour à mon espace admin</a></p>
 {% endblock %}
