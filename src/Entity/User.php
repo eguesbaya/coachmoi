@@ -104,7 +104,6 @@ class User implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -197,8 +196,9 @@ class User implements UserInterface
         return $this->coach;
     }
 
-    public function setCoach(?Coach $coach): self
+    public function setCoach(Coach $coach): self
     {
+        $coach->setUser($this);
         $this->coach = $coach;
 
         return $this;
