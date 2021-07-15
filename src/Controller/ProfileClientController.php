@@ -57,7 +57,7 @@ class ProfileClientController extends AbstractController
         ]);
     }
     /**
-     * @Route("/availability", name="client_availability_index", methods={"GET"})
+     * @Route("/client-disponibilite", name="client_availability_index", methods={"GET"})
      */
     public function indexAvailability(AvailabilityRepository $availabilites): Response
     {
