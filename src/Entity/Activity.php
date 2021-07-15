@@ -67,9 +67,14 @@ class Activity
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable="true")
      */
     private bool $isFeatured;
+
+    /**
+    * @ORM\OneToMany(targetEntity=Client::class, mappedBy="activity")
+    */
+    private Collection $clients;
 
     /**
      * @ORM\ManyToMany(targetEntity=Coach::class, mappedBy="activities")
@@ -129,6 +134,36 @@ class Activity
     public function setIsFeatured(bool $isFeatured): self
     {
         $this->isFeatured = $isFeatured;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Client[]
+     */
+    public function getClients(): Collection
+    {
+        return $this->clients;
+    }
+
+    public function addClient(Client $client): self
+    {
+        if (!$this->clients->contains($client)) {
+            $this->clients[] = $client;
+            $client->setActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClient(Client $client): self
+    {
+        if ($this->clients->removeElement($client)) {
+            // set the owning side to null (unless already changed)
+            if ($client->getActivity() === $this) {
+                $client->setActivity(null);
+            }
+        }
 
         return $this;
     }
