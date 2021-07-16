@@ -25,7 +25,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProfileClientController extends AbstractController
 {
     /**
-     * @Route("/profile/client", name="profile_client")
+     * @Route("/profil/client", name="profile_client")
      */
     public function index(): Response
     {
@@ -33,7 +33,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profile/client/edit", name="client_edit", methods={"GET","POST"})
+     * @Route("/profil/client/editer", name="client_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -67,7 +67,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profile/client/availability/new", name="client_availability_new", methods={"GET","POST"})
+     * @Route("/profil/client/disponibilite/nouveau", name="client_availability_new", methods={"GET","POST"})
      */
     public function newAvailability(Request $request): Response
     {
@@ -96,7 +96,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profile/client/availability/{id}", name="client_availability_show", methods={"GET"})
+     * @Route("/profil/client/disponibilite/{id}", name="client_availability_show", methods={"GET"})
      */
     public function showAvailability(Availability $availability): Response
     {
@@ -106,7 +106,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profile/client/availability/{id}/edit", name="client_availability_edit", methods={"GET","POST"})
+     * @Route("/profil/client/disponibilite/{id}/editer", name="client_availability_edit", methods={"GET","POST"})
      */
     public function editAvailability(Request $request, Availability $availability): Response
     {
@@ -126,7 +126,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profile/client/availability/{id}", name="client_availability_delete", methods={"POST"})
+     * @Route("/profil/client/disponibilite/{id}", name="client_availability_delete", methods={"POST"})
      */
     public function deleteAvailability(Request $request, Availability $availability): Response
     {

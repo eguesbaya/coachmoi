@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/superadmin/activity")
+ * @Route("/superadmin/activite")
  */
 class AdminActivityController extends AbstractController
 {
@@ -26,7 +26,7 @@ class AdminActivityController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="admin_activity_new", methods={"GET","POST"})
+     * @Route("/nouvelle", name="admin_activity_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -59,7 +59,7 @@ class AdminActivityController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="admin_activity_edit", methods={"GET","POST"})
+     * @Route("/{id}/editer", name="admin_activity_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Activity $activity): Response
     {
