@@ -3,19 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Coach;
+use App\Entity\Client;
 use App\Form\RegistrationFormType;
-use App\Security\LoginFormAuthentificatorAuthenticator;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Security\LoginFormAuthentificatorAuthenticator;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/inscription", name="app_register")
      */
     public function register(
         Request $request,
@@ -26,10 +28,15 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+        $entityManager = $this->getDoctrine()->getManager();
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('registrationRole')->getData() == 'ROLE_CLIENT') {
                 $user->setRoles(['ROLE_CLIENT']);
+                $client = new Client();
+                $user->setClient($client);
+                $entityManager->persist($client);
+
                 $this->addFlash('success', 'Votre inscription a bien été prise en compte.');
             } else {
                 $this->addFlash('warning', 'Votre inscription a bien été prise en compte. 
@@ -43,7 +50,6 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email

@@ -17,9 +17,10 @@ class SearchCoachType extends AbstractType
         $builder
             ->setMethod('GET')
             ->add('user', null, [
-                'label' => 'Rercherche par nom ou prénom',
+                'label' => 'Recherche par nom ou prénom',
             ])
             ->add('activity', EntityType::class, [
+                'label' => 'Recherche par activité',
                 'class' => Activity::class,
                 'choice_label' => 'name',
                 'query_builder' => function (EntityRepository $er) {

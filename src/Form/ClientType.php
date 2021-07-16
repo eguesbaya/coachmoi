@@ -43,7 +43,7 @@ class ClientType extends AbstractType
                 'label' => "Êtes-vous apte à la pratique sportive?",
                 'required' => false
             ])
-            // ->add('createdAt')
+
             ->add('practiceLevel', EntityType::class, [
                  'label' => 'Niveau de pratique sportive',
                  'class' => PracticeLevel::class,

@@ -1,16 +1,19 @@
 {% extends 'layout_superadmin.html.twig' %}
 
-{% block title %}Edit Activity{% endblock %}
+{% block title %} Éditer une activité {% endblock %}
 
-{% block body %}
-    <h1>Edit Activity</h1>
+{% block content %}
+<div class="container my-5">
+    <h1>Éditer une activité</h1>
 
-    <div class="container border border-1 border-dark mt-3">
-        {{ include('admin_activity/_form.html.twig', {'button_label': 'Update'}) }}
-
-        <a href="{{ path('admin_activity_index') }}">back to list</a>
-
+    <div class="container border border-1 border-dark rounded my-5">
+        {{ include('admin_activity/_form.html.twig', {'button_label': 'Valider'}) }}
+        
         {{ include('admin_activity/_delete_form.html.twig') }}
-    </div>
 
+    </div>
+    </br>
+    <a class="fw-bold fs-5" href="{{ path('admin_activity_index') }}">Retour à la liste des  activités</a>
+
+</div>
 {% endblock %}

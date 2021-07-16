@@ -29,13 +29,13 @@ class EditUserType extends AbstractType
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'Utilisateur' => 'ROLE_USER',
                     'Client' => 'ROLE_CLIENT',
                     'Coach' => 'ROLE_COACH',
                     'SuperAdmin' => 'ROLE_SUPERADMIN',
                 ],
                 'expanded' => true,
-                'multiple' => true,
+                'mapped' => false,
+                'multiple' => false,
                 'label' => 'Rôles'
             ])
             ->add('Valider', SubmitType::class)

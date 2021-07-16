@@ -1,8 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout_superadmin.html.twig' %}
 
-{% block title %}Nouveaux utilisateurs{% endblock %}
+{% block title %}Edit utilisateur{% endblock %}
 
-{% block body %}
-    <h1>Nouveaux utilisateurs</h1>
+{% block content %}
+<main class="container">
+    <h1>Attribuer les rôles</h1>
     {{ form(userForm) }}
+</main>
 {% endblock %}

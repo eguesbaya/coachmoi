@@ -89,7 +89,7 @@ class CoachBookingController extends AbstractController
     }
 
     /**
-     * @Route("/add-coach/{id}/", name="cb_update_coach", methods={"POST"})
+     * @Route("/ajout-coach/{id}/", name="cb_update_coach", methods={"POST"})
      */
     public function updateCoach(Request $request, CoachBooking $booking, CoachRepository $coachRepo): Response
     {
@@ -105,7 +105,7 @@ class CoachBookingController extends AbstractController
     }
 
     /**
-     * @Route("/add-space/{id}/", name="cb_update_space", methods={"POST"})
+     * @Route("/ajout-espace/{id}/", name="cb_update_space", methods={"POST"})
      */
     public function updateSpace(Request $request, CoachBooking $booking, TrainingSpaceRepository $spaceRepo): Response
     {
@@ -121,7 +121,7 @@ class CoachBookingController extends AbstractController
     }
 
     /**
-     * @Route("/update-status/{id}", name="cb_update_status", methods={"POST"})
+     * @Route("/modifier-status/{id}", name="cb_update_status", methods={"POST"})
      */
     public function updateStatus(Request $request, CoachBooking $booking, BookingStatusRepository $statusRepo): Response
     {

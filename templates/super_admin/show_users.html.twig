@@ -1,11 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout_superadmin.html.twig' %}
 
-{% block title %}Nouveaux utilisateurs{% endblock %}
+{% block title %}Utilisateurs{% endblock %}
 
-{% block body %}
-    <h1>Nouveaux utilisateurs</h1>
+{% block content %}
 
-    <table class="table">
+    <h1>Gestion des utilisateurs</h1>
+
+    <table class="table text-center bg-light">
         <thead>
             <tr>
                 <th>Id</th>
@@ -39,8 +40,7 @@
         {% endfor %}
         </tbody>
     </table>
-
   <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}">Retour à mon espace admin</a></p>
-    <a href="{{ path('user_new') }}">Create new</a>
+
 {% endblock %}
 

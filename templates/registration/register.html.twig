@@ -19,9 +19,13 @@
 				{{ form_row(registrationForm.lastname) }}
 				{{ form_row(registrationForm.telephone) }}
 				{{ form_row(registrationForm.registrationRole) }}
-				<div class=" m-1 d-flex justify-content-end">
-					{{ form_row(registrationForm.agreeTerms) }}
+				<div class="m-1 d-flex justify-content-end">
+					{{ form_row(registrationForm.agreeTerms, {'label': 'Accepter les '}) }}
+					<a class="ms-1" href="{{ path('cgu') }}">conditions générales d'utilisation</a>
 				</div>
+
+
+
 				<div class="m-1 d-flex justify-content-end">
 					<button type="submit" class="btn btn-success d-flex justify-content-center">S'inscrire</button>
 				</div>

@@ -1,10 +1,10 @@
 {% extends 'layout_superadmin.html.twig' %}
 
-{% block title %}Liste d'espaces {% endblock %}
+{% block title %}Espaces d'entrainement {% endblock %}
 
 {% block content %}
 <div class="container my-5">
-    <h1>Liste des espaces d'entrainements</h1>
+    <h1>Gestion des espaces d'entrainements</h1>
 
     <table class="table">
         <thead>
@@ -24,8 +24,8 @@
                 <td>{{ training_space.description }}</td>
                 <td>{{ training_space.address }}</td>
                 <td class="d-flex">
-                    <a class="btn bg-success text-light me-3" href="{{ path('admin_space_show', {'id': training_space.id}) }}">show</a>
-                    <a class="btn bg-success text-light" href="{{ path('admin_space_edit', {'id': training_space.id}) }}">edit</a>
+                    <a class="btn bg-success text-light me-3" href="{{ path('admin_space_show', {'id': training_space.id}) }}">Afficher</a>
+                    <a class="btn bg-success text-light" href="{{ path('admin_space_edit', {'id': training_space.id}) }}">Éditer</a>
                 </td>
             </tr>
         {% endfor %}
