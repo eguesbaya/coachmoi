@@ -9,10 +9,8 @@ use App\Entity\Activity;
 use App\Repository\ActivityRepository;
 
 /**
- * @Route("/activity", name="activity")
+ * @Route("/activite", name="activity")
  */
-
-
 class ActivityController extends AbstractController
 {
     /**

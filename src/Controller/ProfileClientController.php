@@ -33,7 +33,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profil/client/modifier", name="client_edit", methods={"GET","POST"})
+     * @Route("/profil/client/editer", name="client_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -67,7 +67,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profil/client/disponibilite/nouvelle", name="client_availability_new", methods={"GET","POST"})
+     * @Route("/profil/client/disponibilite/nouveau", name="client_availability_new", methods={"GET","POST"})
      */
     public function newAvailability(Request $request): Response
     {
@@ -106,7 +106,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profil/client/disponibilite/{id}/modifier", name="client_availability_edit", methods={"GET","POST"})
+     * @Route("/profil/client/disponibilite/{id}/editer", name="client_availability_edit", methods={"GET","POST"})
      */
     public function editAvailability(Request $request, Availability $availability): Response
     {

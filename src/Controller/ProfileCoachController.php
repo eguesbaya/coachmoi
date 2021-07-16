@@ -33,7 +33,7 @@ class ProfileCoachController extends AbstractController
 
 
     /**
-     * @Route("/profil/coach/new", name="edit_coach_new", methods={"GET","POST"})
+     * @Route("/profil/coach/nouveau", name="edit_coach_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -56,7 +56,7 @@ class ProfileCoachController extends AbstractController
 
 
     /**
-     * @Route("/profil/coach/modifier", name="coach_edit", methods={"GET","POST"})
+     * @Route("/profil/coach/editer", name="coach_edit", methods={"GET","POST"})
      */
     public function edit(Request $request): Response
     {
@@ -126,7 +126,7 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/profil/coach/disponibilite/{id}/modifier", name="coach_availability_edit", methods={"GET","POST"})
+     * @Route("/profil/coach/disponibilite/{id}/editer", name="coach_availability_edit", methods={"GET","POST"})
      */
     public function editAvailability(Request $request, Availability $availability): Response
     {
