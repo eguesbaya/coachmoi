@@ -11,8 +11,6 @@ use App\Repository\ActivityRepository;
 /**
  * @Route("/activite", name="activity")
  */
-
-
 class ActivityController extends AbstractController
 {
     /**
