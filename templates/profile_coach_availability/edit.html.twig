@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Modifier une nouvelle disponibilité</h1>
 
-    {{ include('coach_profile/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('profile_coach_availability/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('coach_profile_index') }}" class="btn btn-success">Retour à la liste</a>
+    <a href="{{ path('coach_availability_index') }}" class="btn btn-success">Retour à la liste</a>
 
-    {{ include('coach_profile/_delete_form.html.twig') }}
+    {{ include('profile_coach_availability/_delete_form.html.twig') }}
 {% endblock %}
