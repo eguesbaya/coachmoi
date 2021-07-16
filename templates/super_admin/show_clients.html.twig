@@ -1,57 +1,110 @@
 {% extends 'layout_superadmin.html.twig' %}
 
+<<<<<<< HEAD
 {% block title %}Clients{% endblock %}
 
 {% block content %}
 <div class="container">
 
     <h1 class="my-5">Gestion des Clients</h1>
+=======
+{% block title %}
+  Tous les Clients
+{% endblock %}
 
-        <div class="mt-2 mb-2 d-flex justify-content-end">
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <div class="mt-2 mb-2 d-flex justify-content-end">
-                <button class="btn btn-success text-white">Rechercher</button>
-            {{ form_end(form) }}
-            </div>
-        </div>
+{% block content %}
+  <div class="container">
+    <h1 class="my-5">
+      Tous les Clients
+    </h1>
+>>>>>>> fe09c2ac6b24165c1915fc5ebe02d7149c640dce
+
+    <div class="mt-2 mb-2 d-flex justify-content-end">
+      {{ form_start(form) }}
+      {{ form_widget(form) }}
+      <div class="mt-2 mb-2 d-flex justify-content-end">
+        <button class="btn btn-success text-white">Rechercher</button>
+        {{ form_end(form) }}
+      </div>
+    </div>
 
     <table class="table text-center bg-light">
-        <thead>
-            <tr>
-                <th scope="col">Clients</th>
-                <th scope="col">Activité</th>
-                <th scope="col">Budget</th>
-                <th scope="col">Disponibilités</th>
-                <th scope="col">Coachs</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for client in clients %}
-                <tr>
-                    <td>{{ client.user.firstname }} {{ client.user.lastname }}</td>
-                    <td>{{ client.activity.name }}</td>
-                    <td>{{ client.budget }} €</td>
-                    <td>
-                        {% for availability in client.availabilities %}
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ availability.weekday.name }} {{ availability.startTime|format_time() }} - {{ availability.endTime|format_time() }} </li>
-                        </ul>
-                        {% endfor %}
-                    </td>
-                    {% if client.coachbooking is null or client.coachbooking.coach is null %}
-                    <td>Aucun coach</td>
-                    {% else %}
-                    <td> {{ client.coachbooking.coach.user.firstname }}</td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-        </tbody>
+      <thead>
+        <tr>
+          <th scope="col">
+            Clients
+          </th>
+          <th scope="col">
+            Activité
+          </th>
+          <th scope="col">
+            Budget
+          </th>
+          <th scope="col">
+            Disponibilités
+          </th>
+          <th scope="col">
+            Coachs
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for client in clients %}
+          <tr>
+            <td>
+              {{ client.user.firstname }} {{ client.user.lastname }}
+            </td>
+            {% if client.activity is not null %}
+              <td>
+                {{ client.activity.name }}
+              </td>
+            {% else %}
+              <td>
+                Aucune
+              </td>
+            {% endif %}
+            {% if client.budget is not null %}
+              <td>
+                {{ client.budget }} €
+              </td>
+            {% else %}
+              <td>
+                Aucun
+              </td>
+            {% endif %}
+            <td>
+              {% if client.availabilities is not null %}
+                {% for availability in client.availabilities %}
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      {{ availability.weekday.name }}
+                      {{ availability.startTime|format_time }} - {{ availability.endTime|format_time }}
+                    </li>
+                  </ul>
+                {% endfor %}
+              {% else %}
+                Aucune
+              {% endif %}
+            </td>
+            {% if client.coachbooking is null or client.coachbooking.coach is null %}
+              <td class = "fw-bold">
+                Aucun coach
+              </td>
+            {% else %}
+              <td>
+                {{ client.coachbooking.coach.user.firstname }}
+              </td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
     </table>
-</div>
+  </div>
 
- <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}">Retour à mon espace admin</a></p>
-{% block javascripts %}
+  <p class="text-uppercase fw-bold fst-italic">
+    <a href="{{ path('superadmin_index') }}">Retour à mon espace admin</a>
+  </p>
+  {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
-{% endblock %}
+  {% endblock %}
 {% endblock %}

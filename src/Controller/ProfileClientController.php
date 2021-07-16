@@ -25,7 +25,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProfileClientController extends AbstractController
 {
     /**
-     * @Route("/profile/client", name="profile_client")
+     * @Route("/profil/client", name="profile_client")
      */
     public function index(): Response
     {
@@ -33,7 +33,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profile/client/edit", name="client_edit", methods={"GET","POST"})
+     * @Route("/profil/client/modifier", name="client_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -57,7 +57,7 @@ class ProfileClientController extends AbstractController
         ]);
     }
     /**
-     * @Route("/client-disponibilite", name="client_availability_index", methods={"GET"})
+     * @Route("/profil/client/disponibilite", name="client_availability_index", methods={"GET"})
      */
     public function indexAvailability(AvailabilityRepository $availabilites): Response
     {
@@ -67,7 +67,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profile/client/availability/new", name="client_availability_new", methods={"GET","POST"})
+     * @Route("/profil/client/disponibilite/nouvelle", name="client_availability_new", methods={"GET","POST"})
      */
     public function newAvailability(Request $request): Response
     {
@@ -96,7 +96,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profile/client/availability/{id}", name="client_availability_show", methods={"GET"})
+     * @Route("/profil/client/disponibilite/{id}", name="client_availability_show", methods={"GET"})
      */
     public function showAvailability(Availability $availability): Response
     {
@@ -106,7 +106,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profile/client/availability/{id}/edit", name="client_availability_edit", methods={"GET","POST"})
+     * @Route("/profil/client/disponibilite/{id}/modifier", name="client_availability_edit", methods={"GET","POST"})
      */
     public function editAvailability(Request $request, Availability $availability): Response
     {
@@ -115,6 +115,7 @@ class ProfileClientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Disponibilité modifiée');
 
             return $this->redirectToRoute('client_availability_index');
         }
@@ -126,7 +127,7 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profile/client/availability/{id}", name="client_availability_delete", methods={"POST"})
+     * @Route("/profil/client/disponibilite/{id}", name="client_availability_delete", methods={"POST"})
      */
     public function deleteAvailability(Request $request, Availability $availability): Response
     {
@@ -134,6 +135,7 @@ class ProfileClientController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($availability);
             $entityManager->flush();
+            $this->addFlash('success', 'Disponibilité supprimée');
         }
 
         return $this->redirectToRoute('client_availability_index');
