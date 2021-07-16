@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/superadmin/space")
+ * @Route("/superadmin/espace")
  */
 class AdminSpaceController extends AbstractController
 {
@@ -25,7 +25,7 @@ class AdminSpaceController extends AbstractController
         ]);
     }
     /**
-     * @Route("/new", name="admin_space_new", methods={"GET","POST"})
+     * @Route("/nouvelle", name="admin_space_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -58,7 +58,7 @@ class AdminSpaceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="admin_space_edit", methods={"GET","POST"})
+     * @Route("/{id}/editer", name="admin_space_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, TrainingSpace $trainingSpace): Response
     {

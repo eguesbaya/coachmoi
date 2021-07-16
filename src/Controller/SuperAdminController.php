@@ -85,7 +85,7 @@ class SuperAdminController extends AbstractController
     }
 
     /**
-     * @Route("/users/edit/{id}", name="edit_user")
+     * @Route("/users/editer/{id}", name="edit_user")
      */
     public function editUser(User $user, Request $request, EntityManagerInterface $entityManager): Response
     {
