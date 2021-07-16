@@ -78,7 +78,7 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/coach-disponibilite", name="coach_availability_index", methods={"GET"})
+     * @Route("/profil/coach/disponibilite", name="coach_availability_index", methods={"GET"})
      */
     public function indexAvailability(AvailabilityRepository $availabilites): Response
     {
@@ -88,7 +88,7 @@ class ProfileCoachController extends AbstractController
     }
 
     /**
-     * @Route("/profil/coach/disponibilite/new", name="coach_availability_new", methods={"GET","POST"})
+     * @Route("/profil/coach/disponibilite/nouveau", name="coach_availability_new", methods={"GET","POST"})
      */
     public function newAvailability(Request $request): Response
     {
@@ -99,8 +99,9 @@ class ProfileCoachController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-
-            $availability->setCoach($this->getUser()->$this->getCoach());
+            /** @var User */
+            $user = $this->getUser();
+            $availability->setCoach($user->getCoach());
             $entityManager->persist($availability);
             $entityManager->flush();
             $this->addFlash('success', 'Nouvelle disponibilité ajouté');
@@ -127,13 +128,14 @@ class ProfileCoachController extends AbstractController
     /**
      * @Route("/profil/coach/disponibilite/{id}/editer", name="coach_availability_edit", methods={"GET","POST"})
      */
-    public function editAvailability(Request $request, AvailabilityRepository $availability): Response
+    public function editAvailability(Request $request, Availability $availability): Response
     {
         $form =  $this->createForm(CoachAvailabilityType::class, $availability);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Disponibilité modifiée');
 
             return $this->redirectToRoute('coach_availability_index');
         }
@@ -153,6 +155,7 @@ class ProfileCoachController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($availability);
             $entityManager->flush();
+            $this->addFlash('success', 'Disponibilité supprimée');
         }
 
         return $this->redirectToRoute('coach_availability_index');

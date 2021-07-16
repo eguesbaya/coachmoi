@@ -57,7 +57,7 @@ class ProfileClientController extends AbstractController
         ]);
     }
     /**
-     * @Route("/client-disponibilite", name="client_availability_index", methods={"GET"})
+     * @Route("/profil/client/disponibilite", name="client_availability_index", methods={"GET"})
      */
     public function indexAvailability(AvailabilityRepository $availabilites): Response
     {
@@ -115,6 +115,7 @@ class ProfileClientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Disponibilité modifiée');
 
             return $this->redirectToRoute('client_availability_index');
         }
@@ -134,6 +135,7 @@ class ProfileClientController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($availability);
             $entityManager->flush();
+            $this->addFlash('success', 'Disponibilité supprimée');
         }
 
         return $this->redirectToRoute('client_availability_index');
