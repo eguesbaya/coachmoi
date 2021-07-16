@@ -3,13 +3,15 @@ $secondary: #cac4c4;
 $light: #FFFFFF;
 $success: #6bd736;
 $dark:#000000;
+$danger: rgb(177, 21, 21);
 
 $theme-colors: (
     "primary":    $primary,
     "secondary":  $secondary,
     "success":    $success,
     "light":      $light,
-    "dark":       $dark
+    "dark":       $dark,
+    "danger":     $danger,
 );
 
 $display-font-sizes: (
