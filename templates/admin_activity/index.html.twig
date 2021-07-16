@@ -1,12 +1,12 @@
 {% extends 'layout_superadmin.html.twig' %}
 
-{% block title %}Toutes les activités{% endblock %}
+{% block title %}Liste des activités{% endblock %}
 
-{% block body %}
+{% block content %}
 <div class="container">
-    <h1>Toutes les activités</h1>
 
-    <table class="table">
+    <h1>Liste des activités</h1>
+    <table class="table text-center bg-light border rounded">
         <thead>
             <tr>
                 <th>Photo</th>
@@ -14,6 +14,7 @@
                 <th>Description</th>
                 <th>Mis en avant</th>
                 <th class="text-center">Actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -22,22 +23,19 @@
                 <td><img src="{{ vich_uploader_asset(activity) }}" width="100vh"></td>
                 <td>{{ activity.name }}</td>
                 <td>{{ activity.description }}</td>
-                <td>{{ activity.isFeatured ? 'Yes' : 'No' }}</td>
                 <td class="d-flex">
-                    <a href="{{ path('admin_activity_show', {'id': activity.id}) }}" class="btn btn-success text-light me-3">Voir</a>
-                    <a href="{{ path('admin_activity_edit', {'id': activity.id}) }}" class="btn btn-success text-light">Modifier</a>
+                     <a href="{{ path('admin_activity_show', {'id': activity.id}) }}" class="btn btn-success text-light fs-6 me-3">Afficher</a>
+                    <a href="{{ path('admin_activity_edit', {'id': activity.id}) }}" class="btn btn-success text-light fs-6">Éditer</a>
                 </td>
             </tr>
-        {% else %}
+            {% else %}
             <tr>
                 <td colspan="6">Aucune activité trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <a class= "btn btn-success text-light my-5" href="{{ path('admin_activity_new') }}">Ajouter une nouvelle activité</a>
+    <p class="text-uppercase fw-bold fst-italic mb-5"><a href="{{ path('superadmin_index') }}">Retour à mon espace admin</a></p>
 </div>
-
-    <a href="{{ path('admin_activity_new') }}" class="m-3 btn btn-success text-light">Créer une nouvelle activité</a>
-
-     <p class= "text-uppercase fw-bold fst-italic mt-5 m-3"><a href="{{ path('superadmin_index') }}">Retour à mon espace admin</a></p>
 {% endblock %}

@@ -83,12 +83,19 @@ class AdminActivityController extends AbstractController
      */
     public function delete(Request $request, Activity $activity): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $activity->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($activity);
-            $entityManager->flush();
+        $isClientEmpty = $activity->getClients()->isEmpty();
+        $isCoachEmpty = $activity->getCoaches()->isEmpty();
+        $isSpaceEmpty = $activity->getTrainingSpaces()->isEmpty();
+        if ($isClientEmpty &&  $isCoachEmpty && $isSpaceEmpty) {
+            if ($this->isCsrfTokenValid('delete' . $activity->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($activity);
+                $entityManager->flush();
+                $this->addFlash('success', 'L\'activité a été supprimée avec succès.');
+            }
+        } else {
+            $this->addFlash('warning', 'Vous ne pouvez pas supprimer cette activité.');
         }
-
         return $this->redirectToRoute('admin_activity_index');
     }
 }

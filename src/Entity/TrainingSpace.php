@@ -75,7 +75,7 @@ class TrainingSpace
     private ?SpaceCategory $spaceCategory;
 
     /**
-     * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="trainingSpace")
+     * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="trainingSpace", orphanRemoval=true)
      */
     private Collection $availabilities;
 

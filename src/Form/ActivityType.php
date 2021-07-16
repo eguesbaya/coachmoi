@@ -21,13 +21,6 @@ class ActivityType extends AbstractType
             ->add('description', TextType::class, [
                 'label' => "Description :"
             ])
-            ->add('isFeatured', ChoiceType::class, [
-                'label' => 'Actif',
-                'choices' => [
-                    'actif' => true,
-                    'inactif' => false
-                ]
-            ])
             ->add('photoFile', VichImageType::class, [
                 'label' => 'Image :',
                 'attr' => [

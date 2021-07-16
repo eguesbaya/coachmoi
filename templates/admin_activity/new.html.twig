@@ -1,11 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout_superadmin.html.twig' %}
+
 
 {% block title %}Nouvelle activité{% endblock %}
 
-{% block body %}
-    <h1>Créer une nouvelle activité</h1>
+{% block content %}
+<div class="container my-5">
+    <h1>Ajouter une nouvelle activité</h1>
 
     {{ include('admin_activity/_form.html.twig') }}
 
-    <a href="{{ path('admin_activity_index') }}">Retour à la liste</a>
+    <a class="text-success fst-italic fw-bold fs-5 mt-5" href="{{ path('admin_activity_index') }}">Retour à la liste des activités</a>
 {% endblock %}

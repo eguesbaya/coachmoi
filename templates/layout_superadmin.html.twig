@@ -8,5 +8,10 @@
     <main class="container-fluid col-md-11">
         {% block content %}
         {% endblock %}
+        {# Le lien pour retouner à la page accueil #}
+        <div class="d-flex align-items-baseline mt-5">
+            <i class="bi bi-caret-left-fill text-primary"></i>
+            <p class="text-uppercase fw-bold fst-italic"><a href="{{ path('home') }}">Retour au site</a></p>
+        </div>
     </main>
 {% endblock %}
