@@ -6,7 +6,7 @@
 <div class="container">
     <h1>Activité {{ activity.name }}</h1>
 
-    <table class="table">
+    <table class="table m-3">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -22,6 +22,7 @@
             </tr>
             <tr>
                 <th>Photo</th>
+
                 <td><img src="{{ vich_uploader_asset(activity) }}" width="100vh"></td>
             </tr>
         </tbody>
