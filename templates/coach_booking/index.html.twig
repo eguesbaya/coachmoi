@@ -5,26 +5,33 @@
 
 {% block content %}
 
-    <h1 class="mt-5">Gestion des réservations</h1>
-
-    <div class="mb-5 col-md-4 offset-md-8 d-flex justify-content-end">
-			{{ form_start(form) }}
-			{{ form_widget(form) }}
-			<button class="btn bg-success text-light float-end mt-3">Rechercher</button>
-			{{ form_end(form) }}
-	</div>
+    <div class="container">
+        <div class="row mt-2 mb-2">
+            <div class="col-10"><i class="bi bi-exclamation-circle-fill"></i> Recherche par statut :
+            </div>
+        </div>
+        <div class="row mt-2 mb-2">
+            <div class="col-3">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+            </div>
+            <div class="col-7">
+                <button class="btn bg-success text-light"><i class="bi bi-search text-white"></i> Rechercher</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
 
     <table class="table text-center bg-light">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Client</th>
-                <th scope="col">Date</th>
-                <th scope="col">Activité</th>
-                <th scope="col">Budget</th>
-                <th scope="col">Contact</th>
-                <th scope="col">Statut</th>
-                <th scope="col">Actions</th>
+                <th scope="col" class="bg-dark text-white">N°</th>
+                <th scope="col" class="bg-dark text-white">Client</th>
+                <th scope="col" class="bg-dark text-white">Date</th>
+                <th scope="col" class="bg-dark text-white">Activité</th>
+                <th scope="col" class="bg-dark text-white">Budget</th>
+                <th scope="col" class="bg-dark text-white">Contact</th>
+                <th scope="col" class="bg-dark text-white">Statut</th>
+                <th scope="col" class="bg-dark text-white">Actions</th>
             </tr>
         </thead>
         <tbody class="">
@@ -62,6 +69,6 @@
         {% endfor %}
         </tbody>
     </table>
-
-     <p class= "text-uppercase fw-bold fst-italic mt-5"><a href="{{ path('superadmin_index') }}">Retour à mon espace admin</a></p>
+        <p class= "text-uppercase fw-bold fst-italic mt-5"><a href="{{ path('superadmin_index') }}">Retour à mon espace admin</a></p>
+    </div>
 {% endblock %}
