@@ -10,32 +10,38 @@
       Gestion des Clients
     </h1>
 
-    <div class="mt-2 mb-2 d-flex justify-content-end">
-      {{ form_start(form) }}
-      {{ form_widget(form) }}
-      <div class="mt-2 mb-2 d-flex justify-content-end">
-        <button class="btn btn-success text-white">Rechercher</button>
-        {{ form_end(form) }}
-      </div>
+    <div class="row mt-2 mb-2">
+        <div class="col-10"><i class="bi bi-exclamation-circle-fill"></i> Recherche par nom ou prénom :
+        </div>
+    </div>
+    <div class="row mt-2 mb-2">
+        <div class="col-6">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        </div>
+        <div class="col-4">
+          <button class="btn btn-success text-white"><i class="bi bi-search text-white"></i> Rechercher</button>
+          {{ form_end(form) }}
+        </div>
     </div>
 
     <table class="table text-center bg-light">
       <thead>
         <tr>
-          <th scope="col">
-            Clients
+          <th scope="col" class=" bg-dark text-white">
+            Client
           </th>
-          <th scope="col">
+          <th scope="col" class=" bg-dark text-white">
             Activité
           </th>
-          <th scope="col">
+          <th scope="col" class=" bg-dark text-white">
             Budget
           </th>
-          <th scope="col">
-            Disponibilités
+          <th scope="col" class=" bg-dark text-white">
+            Disponibilité
           </th>
-          <th scope="col">
-            Coachs
+          <th scope="col" class=" bg-dark text-white">
+            Coach
           </th>
         </tr>
       </thead>
