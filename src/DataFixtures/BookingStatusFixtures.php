@@ -8,7 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class BookingStatusFixtures extends Fixture
 {
-    public const STATUS = ['A faire', 'En cours', 'Réalisé', 'Annulé'];
+    public const STATUS = ['À faire', 'En cours', 'Réalisée', 'Annulée'];
 
     public function load(ObjectManager $manager)
     {
