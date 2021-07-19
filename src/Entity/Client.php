@@ -82,7 +82,7 @@ class Client
     private Collection $availabilities;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Activity::class)
+     * @ORM\ManyToOne(targetEntity=Activity::class, inversedBy="clients")
      * @ORM\JoinColumn(nullable=true)
      */
 
