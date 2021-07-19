@@ -36,3 +36,10 @@
     box-shadow: none;
 }
 
+.dropdown-item:hover {
+    background-color: $darklight;
+}
+
+.dropdown-menu {
+    background-color: $dark;
+}
