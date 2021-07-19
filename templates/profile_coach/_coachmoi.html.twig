@@ -1,8 +1,8 @@
 <div class="border border-dark rounded m-1">
-    <div class="profile-h2 d-flex align-items-center border border-dark title bg-light col-md-8 col-lg-6">
-        <h2 class="m-2 text-truncate">Coach Moi</h2>
+    <div class="profile-h2 d-flex align-items-center border border-dark rounded title w-75 bg-dark col-md-8 col-lg-6">
+        <h2 class="m-2 text-truncate text-light"><i class="bi bi-trophy-fill text-success"></i> Coach Moi</h2>
     </div>
-    <div class="bg-light my-2 px-3 py-2">
+    <div class="bg-light my-2 px-3 py-2 m-3 border rounded">
         <table class="table text-center">
             <thead>
                 <tr class="fs-4">
@@ -12,7 +12,7 @@
             </thead>
             <tbody>
             {% if app.user.coach is null %}
-                <h3>Vous n'avez pas encore de clients</h3>
+                <h5>Vous n'avez pas encore de clients</h5>
             {% else %}
                 {% for booking in app.user.coach.coachbookings %}
                     <tr scope="row">
