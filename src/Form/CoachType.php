@@ -31,6 +31,7 @@ class CoachType extends AbstractType
                     return $er->createQueryBuilder('activity')
                     ->orderBy('activity.name', 'ASC');
                 },
+                'attr' => ['class' => 'd-flex'],
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
