@@ -85,7 +85,6 @@ class Client
      * @ORM\ManyToOne(targetEntity=Activity::class, inversedBy="clients")
      * @ORM\JoinColumn(nullable=true)
      */
-
     private ?Activity $activity = null;
 
     /**
