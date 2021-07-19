@@ -11,7 +11,7 @@
                         <h5>Aucune activité</h5>
                     {% else %}
                         {% for activity in app.user.coach.activities %}
-                            {{ activity.name }}
+                            {{ activity.name }} <br>
                         {% endfor %}
                     {% endif %}
                 </h5>
