@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container">
-    <h1>Activité {{ activity.name }}</h1>
+    <h1>{{ activity.name }}</h1>
 
     <table class="table m-3">
         <tbody>
@@ -21,8 +21,16 @@
                 <td>{{ activity.description }}</td>
             </tr>
             <tr>
+                <th>Affichée sur la page d'accueil ?</th>
+                <td>
+                {% if activity.isfeatured == 1 %}
+                    &nbsp; <i class="bi bi-check-circle-fill"></i>
+                {% else %}
+                    &nbsp; <i class="bi bi-x-circle-fill"></i>
+                {% endif %}
+            </tr>
+            <tr>
                 <th>Photo</th>
-
                 <td><img src="{{ vich_uploader_asset(activity) }}" width="100vh"></td>
             </tr>
         </tbody>

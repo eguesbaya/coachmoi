@@ -33,7 +33,7 @@ class CoachType extends AbstractType
                 ]
             ])
             ->add('qualification', TextType::class, [
-                'label' => 'Qualitification :'
+                'label' => 'Qualification :'
             ])
             ->add('equipment', TextType::class, [
                 'label' => 'Equipement :'
