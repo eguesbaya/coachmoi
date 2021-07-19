@@ -1,10 +1,10 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-<main class="container-fluid col-11">
+<main class="container-fluid col-11 profile">
     <h1>Mon espace Coach</h1>
     <div class="d-flex justify-content-end">
-        <a href="{{ path('coach_edit') }}" class="btn btn-success m-2">Mettre à jour</a>
+        <a href="{{ path('coach_edit') }}" class="btn btn-success m-2 text-white"><i class="bi bi-pencil-square text-success text-white"></i> &nbsp; Mettre à jour</a>
     </div>
     <section class="row">
         <div class="col-lg-6 col-md-12 mt-4">
@@ -22,8 +22,10 @@
             </div>
         </div>
     </section>
-    <section>
+    <section class="row">
+        <div class="col-md-12 my-5">
             {% include 'profile_coach/_availability.html.twig' %}
+        </div>
     </section>
 </main>
 {% endblock %}
