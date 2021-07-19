@@ -3,9 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Coach;
+use App\Form\UserType;
+use App\Entity\Activity;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -21,6 +25,18 @@ class CoachType extends AbstractType
             ->add('user', UserType::class, [
                 'label' => false,
             ])
+            ->add('activities', EntityType::class, [
+                'class' => Activity::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('activity')
+                    ->orderBy('activity.name', 'ASC');
+                },
+                'attr' => ['class' => 'd-flex'],
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+
+            ])
             ->add('birthdate', BirthdayType::class, [
             'label' => 'Date de naissance',
             'widget' => 'single_text',
@@ -33,7 +49,7 @@ class CoachType extends AbstractType
                 ]
             ])
             ->add('qualification', TextType::class, [
-                'label' => 'Qualitification :'
+                'label' => 'Qualification :'
             ])
             ->add('equipment', TextType::class, [
                 'label' => 'Equipement :'
