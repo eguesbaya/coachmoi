@@ -23,11 +23,7 @@
                 <td>{{ activity.name }}</td>
                 <td>{{ activity.description }}</td>
                 <td>
-                    {% if activity.isfeatured == true %}
-                        &nbsp; <i class="bi bi-check-circle-fill"></i>
-                    {% elseif activity.isfeatured == false %}
-                        &nbsp; <i class="bi bi-x-circle-fill"></i>
-                    {% endif %}
+                    <i class="bi bi-{{ activity.isfeatured ? 'check' : 'x' }}-circle-fill"></i>
                 </td>
                 <td class="d-flex">
                      <a href="{{ path('admin_activity_show', {'id': activity.id}) }}" class="btn btn-success text-light fs-6 me-3">Afficher</a>
