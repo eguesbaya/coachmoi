@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/superadmin/activite")
+ * @isGranted("ROLE_SUPERADMIN")
  */
 class AdminActivityController extends AbstractController
 {

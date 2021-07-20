@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/superadmin/espace")
+ * @isGranted("ROLE_SUPERADMIN")
  */
 class AdminSpaceController extends AbstractController
 {
