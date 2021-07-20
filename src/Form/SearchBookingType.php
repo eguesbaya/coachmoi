@@ -22,7 +22,7 @@ class SearchBookingType extends AbstractType
             'class' => BookingStatus::class,
             'empty_data' => 'Tous',
             'choice_label' => 'status',
-            'label' => 'Statut des réservations',
+            'label' => false,
             'attr' => [
                 'class' => 'form-control',
             ],

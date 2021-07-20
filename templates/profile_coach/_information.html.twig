@@ -1,78 +1,78 @@
 <div class="mes-informations border border-dark rounded m-1">
-    <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-        <h2 class="m-2">Mes informations</h2>
+    <div class="profile-h2 border border-dark d-flex align-items-center bg-dark rounded w-75 p-0">
+        <h2 class="m-2 text-light"><i class="bi bi-person-lines-fill text-success"></i> Mes informations</h2>
     </div>
     <div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Nom :</p>
-                <h3 class="mx-3">{{ app.user.lastname }}</h3>
+            <div class="bg-light m-3 border rounded">
+                <p> Nom :</p>
+                <h5 class="text-start mx-5">{{ app.user.lastname }}</h5>
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Prénom :</p>
-                <h3 class="mx-3">{{ app.user.firstname }}</h3>
+            <div class="bg-light m-3 border rounded">
+                <p> Prénom :</p>
+                <h5 class="text-start mx-5">{{ app.user.firstname }}</h5>
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Téléphone :</p>
-                <h3 class="mx-3">{{ app.user.telephone }}</h3>
+            <div class="bg-light m-3 border rounded">
+                <p> Téléphone :</p>
+                <h5 class="text-start mx-5">{{ app.user.telephone }}</h5>
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Email :</p>
-                <h3 class="mx-3">{{ app.user.email }}</h3>
+            <div class="bg-light m-3 border rounded">
+                <p> Email :</p>
+                <h5 class="text-start mx-5">{{ app.user.email }}</h5>
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Date de naissance :</p>
+            <div class="bg-light m-3 border rounded">
+                <p> Date de naissance :</p>
                 {% if app.user.coach %}
-                    <h3 class="mx-3">{{ app.user.coach.birthDate|date("d/m/Y") }}</h3>
+                    <h5 class="text-start mx-5">{{ app.user.coach.birthDate|date("d/m/Y") }}</h5>
                 {% endif %}
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Diplôme :</p>
+            <div class="bg-light m-3 border rounded">
+                <p> Diplôme :</p>
                 {% if app.user.coach %}
-                    <h3 class="mx-3">{{ app.user.coach.qualification }}</h3>
+                    <h5 class="text-start mx-5">{{ app.user.coach.qualification }}</h5>
                 {% endif %}
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Équipement :</p>
+            <div class="bg-light m-3 border rounded">
+                <p> Équipement :</p>
                 {% if app.user.coach %}
-                    <h3 class="mx-3">{{ app.user.coach.equipment }}</h3>
+                    <h5 class="text-start mx-5">{{ app.user.coach.equipment }}</h5>
                 {% endif %}
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Biographie :</p>
+            <div class="bg-light m-3 border rounded">
+                <p> Biographie :</p>
                 {% if app.user.coach %}
-                    <h3 class="mx-3">{{ app.user.coach.biography }}</h3>
+                    <h5 class="text-start mx-5">{{ app.user.coach.biography }}</h5>
                 {% endif %}
             </div>
         </div>
             <p class="d-flex justify-content-end mx-5">Possède un véhicule ?
                 {% if app.user.coach %}
                     {% if app.user.coach.hasVehicle %}
-                        &nbsp; <i class="bi bi-check-circle-fill"></i>
+                        &nbsp; <i class="bi bi-check-circle-fill text-success"></i>
                     {% else %}
-                        &nbsp; <i class="bi bi-x-circle-fill"></i>
+                        &nbsp; <i class="bi bi-x-circle-fill text-dark"></i>
                     {% endif %}
                 {% endif %}
             </p>
-            <div class="my-2">
-            <div class="bg-light m-3">
-                <h3>Mes documents</h3>
-                <div class= "documents d-flex flex-row">
-                    <a class= "d-flex flex-column align-items-center" href="{{ path('cgu') }}">
+        <div class="my-2">
+             <div class="bg-light m-3 border rounded">
+                <p>Mes documents :</p>
+                <div class= "documents d-flex flex-row mx-5">
+                    <a class= "d-flex flex-column align-items-center text-dark" href="{{ path('cgu') }}">
                         <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>
                         <p>CGU</p>
                     </a>

@@ -1,29 +1,31 @@
 <div class="mes-preferences border border-dark rounded m-1 mb-3">
-    <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-        <h2 class="m-2 text-truncate">Mes préférences</h2>
+    <div class="profile-h2 border border-dark rounded d-flex align-items-center bg-dark w-75 p-0">
+        <h2 class="m-2 text-truncate text-light"><i class="bi bi-heart-fill text-success"></i> Mes préférences</h2>
     </div>
     <div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Activité :</p>
-                <h3 class="client d-flex justify-content-end mx-5">
+            <div class="bg-light m-3 border rounded">
+                <p >Activité :</p>
+                <h5 class="text-start mx-5">
+                <ul>
                     {% if app.user.coach is null %}
-                        <h3>Aucune activité</h3>
+                       <li> <h5>Aucune activité</h5> </li>
                     {% else %}
                         {% for activity in app.user.coach.activities %}
-                            {{ activity.name }}
+                            <li> {{ activity.name }} </li>
                         {% endfor %}
                     {% endif %}
-                </h3>
+                </ul>
+                </h5>
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
+            <div class="bg-light m-3 border rounded">
                 <p>Tarif Horaire :</p>
                 {% if app.user.coach is null %}
-                    <h3>Aucun tarif horaire</h3>
+                    <h5 class="text-start mx-5">>Aucun tarif horaire</h5>
                 {% else %}
-                    <h3 class="client d-flex justify-content-end mx-5">{{ app.user.coach.hourlyRate }}</h3>
+                    <h5 class="text-start mx-5">{{ app.user.coach.hourlyRate }}</h5>
                 {% endif %}
             </div>
         </div>

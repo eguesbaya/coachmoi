@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-xl navbar-light bg-dark">
 	<div class="container-fluid">
-		<img class="logo" src="{{ asset('build/images/coachmoi.png') }}" alt="logo-coach-moi">
+		<a href="{{ path('home') }}"><img class="logo" src="{{ asset('build/images/coachmoi.png') }}" alt="logo-coach-moi"></a>
 		<button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<ul class="navbar-nav me-auto my-2 my-lg-0 mx-auto">
 				<li class="nav-item mx-5">
-					<a class="nav-link text-center mx-5 fw-bold fst-italic" aria-current="page" href="{{ path('superadmin_index') }}">Accueil</a>
+					<a class="nav-link text-center mx-5 fw-bold fst-italic" aria-current="page" href="{{ path('superadmin_index') }}">Accueil Superadmin</a>
 				</li>
 				<li class="nav-item text-center mx-5 fw-bold fst-italic">
 					<a class="nav-link" href="{{ path('superadmin_show_users') }}">Gestion des utilisateurs</a>
