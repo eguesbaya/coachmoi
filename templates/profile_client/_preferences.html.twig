@@ -1,45 +1,45 @@
 <div class="mes-preferences border border-dark rounded m-1">
-    <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-        <h2 class="m-2 text-truncate">Mes préférences</h2>
+    <div class="profile-h2 border border-dark rounded d-flex align-items-center bg-dark w-75 p-0">
+        <h2 class="m-2 text-truncate text-light"><i class="bi bi-heart-fill text-success"></i> Mes préférences</h2>
     </div>
     <div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Activité</p>
-                {% if app.user.client.activity in not null %}
-                <h3 class="mx-3">{{ app.user.client.activity.name }}</h3>
+            <div class="bg-light m-3 border rounded">
+                <p>Activité :</p>
+                {% if app.user.client.activity is not null %}
+                <h5 class="text-start mx-5">{{ app.user.client.activity.name }}</h5>
                 {% endif %}
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Niveau</p>
+            <div class="bg-light m-3 border rounded">
+                <p>Niveau :</p>
                 {% if app.user.client.practicelevel is not null %}
-                    <h3 class="mx-3">{{ app.user.client.practicelevel.level }}</h3>
+                    <h5 class="text-start mx-5">{{ app.user.client.practicelevel.level }}</h5>
                 {% endif %}
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Budget</p>
+              <div class="bg-light m-3 border rounded">
+                <p>Budget :</p>
                 {% if app.user.client.budget is not null %}
-                <h3 class="mx-3">{{ app.user.client.budget }} €/mois</h3>
+                 <h5 class="text-start mx-5">{{ app.user.client.budget }} €/mois</h5>
                 {% endif %}
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Groupe</p>
+            <div class="bg-light m-3 border rounded">
+                <p>Groupe :</p>
                 {% if app.user.client.groupsize is not null %}
-                <h3 class="mx-3">{{ app.user.client.groupsize }} personne(s)</h3>
+                <h5 class="text-start mx-5">{{ app.user.client.groupsize }} personne(s)</h5>
                 {% endif %}
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Objectif sportif</p>
+             <div class="bg-light m-3 border rounded">
+                <p>Objectif sportif :</p>
                 {% if app.user.client.goal is not null %}
-                <h3 class="mx-3">{{ app.user.client.goal }}</h3>
+                <h5 class="text-start mx-5">{{ app.user.client.goal }}</h5>
                 {% endif %}
             </div>
         </div>

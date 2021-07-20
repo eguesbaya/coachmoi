@@ -1,26 +1,25 @@
 <div class="border border-dark rounded m-1">
-    <div class="profile-h2 d-flex align-items-center border border-dark title bg-light col-md-8 col-lg-6">
-        <h2 class="m-2 text-truncate">Coach Moi</h2>
+     <div class="profile-h2 d-flex align-items-center border border-dark rounded title w-75 bg-dark col-md-8 col-lg-6">
+        <h2 class="m-2 text-truncate text-light"><i class="bi bi-trophy-fill text-success"></i> Coach Moi</h2>
     </div>
     <div class="my-2">
-        <div class="bg-light m-3">
-            <p>Coach</p>
-                {% if app.user.client is null or app.user.client.coachbooking is null %}
-                    <h3>Vous n'avez pas encore de coach</h3>
-                {% else %}
-                    <h3>{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
-                {% endif %}
+        <div class="bg-light m-3 border rounded">
+            <p>Coach :</p>
+            {% if app.user.client is null or app.user.client.coachbooking is null %}
+                <h5 class="text-start mx-5">Vous n'avez pas encore de coach</p>
+            {% else %}
+                <h5 class="text-start mx-5">{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h5>
+            {% endif %}
         </div>
     </div>
-
     <div class="my-2">
-        <div class="bg-light m-3">
-            <p>Espace d'entrainement</p>
-                {% if app.user.client is null or app.user.client.coachbooking is null %}
-                    <h3>Vous n'avez pas encore d'espace d'entrainement</h3>
-                {% else %}
-                    <h3>{{ app.user.client.coachbooking.trainingSpace.name }}</h3>
-                {% endif %}
+        <div class="bg-light m-3 border rounded">
+            <p>Espace d'entrainement :</p>
+            {% if app.user.client is null or app.user.client.coachbooking is null %}
+            <h5 class="text-start mx-5">Vous n'avez pas encore d'espace d'entrainement</h5>
+            {% else %}
+            <h5 class="text-start mx-5">{{ app.user.client.coachbooking.trainingSpace.name }}</h5>
+            {% endif %}
         </div>
     </div>
 </div>
