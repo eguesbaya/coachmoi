@@ -62,6 +62,8 @@ class CoachType extends AbstractType
             ])
             ->add('photoFile', VichImageType::class, [
                 'label' => 'Photo :',
+                'delete_label' => 'Supprimer l\'image ?',
+                'download_label' => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],
