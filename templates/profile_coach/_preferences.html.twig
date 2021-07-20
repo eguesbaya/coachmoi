@@ -7,13 +7,15 @@
             <div class="bg-light m-3 border rounded">
                 <p >Activité :</p>
                 <h5 class="text-start mx-5">
+                <ul>
                     {% if app.user.coach is null %}
-                        <h5>Aucune activité</h5>
+                       <li> <h5>Aucune activité</h5> </li>
                     {% else %}
                         {% for activity in app.user.coach.activities %}
-                            {{ activity.name }} <br>
+                            <li> {{ activity.name }} </li>
                         {% endfor %}
                     {% endif %}
+                </ul>
                 </h5>
             </div>
         </div>
