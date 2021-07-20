@@ -22,6 +22,13 @@
                 <td><img src="{{ vich_uploader_asset(activity) }}" width="100vh"></td>
                 <td>{{ activity.name }}</td>
                 <td>{{ activity.description }}</td>
+                <td>
+                    {% if activity.isfeatured == true %}
+                        &nbsp; <i class="bi bi-check-circle-fill"></i>
+                    {% elseif activity.isfeatured == false %}
+                        &nbsp; <i class="bi bi-x-circle-fill"></i>
+                    {% endif %}
+                </td>
                 <td class="d-flex">
                      <a href="{{ path('admin_activity_show', {'id': activity.id}) }}" class="btn btn-success text-light fs-6 me-3">Afficher</a>
                     <a href="{{ path('admin_activity_edit', {'id': activity.id}) }}" class="btn btn-success text-light fs-6">Éditer</a>
