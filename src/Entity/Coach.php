@@ -28,7 +28,7 @@ class Coach
 
     /**
     * @ORM\Column(type="date", nullable=true)
-    * @Assert\Date
+    * @Assert\Type("\DateTimeInterface")
     * @var \DateTimeInterface|null
     */
 
