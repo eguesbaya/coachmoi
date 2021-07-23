@@ -11,7 +11,6 @@
             <tr>
                 <th>Photo</th>
                 <th>Nom de l'espace</th>
-                <th>Description</th>
                 <th>Adresse</th>
                 <th>Actions</th>
             </tr>
@@ -21,7 +20,6 @@
             <tr>
                 <td><img src="{{ vich_uploader_asset(training_space) }}" width="100vh"></td>
                 <td>{{ training_space.name }}</td>
-                <td>{{ training_space.description }}</td>
                 <td>{{ training_space.address }}</td>
                 <td class="d-flex">
                     <a class="btn bg-success text-light" href="{{ path('admin_space_edit', {'id': training_space.id}) }}">Éditer</a>
