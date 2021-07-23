@@ -46,7 +46,9 @@ class CoachType extends AbstractType
                 'choices' => [
                     'Oui' => true,
                     'Non' => false
-                ]
+                ],
+                'expanded' => true ,
+                'multiple' => false ,
             ])
             ->add('qualification', TextType::class, [
                 'label' => 'Qualification :'
