@@ -51,16 +51,6 @@ class AdminActivityController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="admin_activity_show", methods={"GET"})
-     */
-    public function show(Activity $activity): Response
-    {
-        return $this->render('admin_activity/show.html.twig', [
-            'activity' => $activity,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/editer", name="admin_activity_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Activity $activity): Response
