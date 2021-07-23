@@ -50,16 +50,6 @@ class AdminSpaceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="admin_space_show", methods={"GET"})
-     */
-    public function show(TrainingSpace $trainingSpace): Response
-    {
-        return $this->render('admin_space/show.html.twig', [
-            'training_space' => $trainingSpace,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/editer", name="admin_space_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, TrainingSpace $trainingSpace): Response
