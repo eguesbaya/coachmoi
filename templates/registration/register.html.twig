@@ -13,15 +13,18 @@
 		<div class="row d-flex justify-content-center">
 			<div class="col-8 border border-1 border-dark shadow mb-5 m-3 p-4 bg-light">
 				{{ form_start(registrationForm) }}
-				{{ form_row(registrationForm.email) }}
+				{# {{ form_row(registrationForm.email, {'attr': {'placeholder': 'Jason'}}) }} #}
+				{{ form_row(registrationForm.email, {'attr': {'placeholder': 'coachmoi@gmail.com'}}) }}
 				{{ form_row(registrationForm.plainPassword) }}
-				{{ form_row(registrationForm.firstname) }}
-				{{ form_row(registrationForm.lastname) }}
-				{{ form_row(registrationForm.telephone) }}
+				{{ form_row(registrationForm.firstname, {'attr': {'placeholder': 'Jason'}}) }}
+				{{ form_row(registrationForm.lastname, {'attr': {'placeholder': 'Statham'}}) }}
+				{{ form_row(registrationForm.telephone, {'attr': {'placeholder': '0607080910'}}) }}
+				<div class="my-3">
 				{{ form_row(registrationForm.registrationRole) }}
+				</div>
 				<div class="m-1 d-flex justify-content-end">
 					{{ form_row(registrationForm.agreeTerms, {'label': 'Accepter les '}) }}
-					<a class="ms-1" href="{{ path('cgu') }}">conditions générales d'utilisation</a>
+					<a class="ms-1 my-3" href="{{ path('cgu') }}">conditions générales d'utilisation</a>
 				</div>
 
 

@@ -26,8 +26,8 @@ class RegistrationFormType extends AbstractType
                 'label_attr' => [
                     'class' => 'h5',
                 ],
-                'attr' => [
-                    'placeholder' => 'Jason',
+                'row_attr' => [
+                    'class' => 'my-3',
                 ]
             ])
             ->add('lastname', TextType::class, [
@@ -35,8 +35,8 @@ class RegistrationFormType extends AbstractType
                 'label_attr' => [
                     'class' => 'h5',
                 ],
-                'attr' => [
-                    'placeholder' => 'Statham',
+                'row_attr' => [
+                    'class' => 'my-3',
                 ]
             ])
             ->add('telephone', TelType::class, [
@@ -44,8 +44,8 @@ class RegistrationFormType extends AbstractType
                 'label_attr' => [
                     'class' => 'h5',
                 ],
-                'attr' => [
-                    'placeholder' => '0607080910',
+                'row_attr' => [
+                    'class' => 'my-3',
                 ]
             ])
             ->add('email', EmailType::class, [
@@ -53,8 +53,8 @@ class RegistrationFormType extends AbstractType
                 'label_attr' => [
                     'class' => 'h5',
                 ],
-                'attr' => [
-                    'placeholder' => 'coachmoi@gmail.com',
+                'row_attr' => [
+                    'class' => 'my-3',
                 ]
             ])
             ->add('registrationRole', ChoiceType::class, [
@@ -67,16 +67,21 @@ class RegistrationFormType extends AbstractType
                 'expanded' => true,
                 'placeholder' => false,
                 'required' => false,
-                'mapped' => false
+                'mapped' => false,
+                'row_attr' => [
+                    'class' => 'my-3',
+                ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'Accepter les ',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Veuillez accepter les conditions d\'utilisation',
                     ]),
                 ],
+                'row_attr' => [
+                    'class' => 'my-3',
+                ]
             ])
 
             ->add('plainPassword', PasswordType::class, [
@@ -85,6 +90,9 @@ class RegistrationFormType extends AbstractType
                     'class' => 'h5',
                 ],
                 'mapped' => false,
+                'row_attr' => [
+                    'class' => 'my-3',
+                ],
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
