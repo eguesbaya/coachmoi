@@ -36,6 +36,8 @@ class TrainingSpaceType extends AbstractType
             ])
             ->add('photoFile', VichImageType::class, [
                 'label' => 'Image :',
+                'delete_label' => 'Supprimer l\'image ?',
+                'download_label' => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],

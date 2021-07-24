@@ -9,9 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/superadmin/espace")
+ * @isGranted("ROLE_SUPERADMIN")
  */
 class AdminSpaceController extends AbstractController
 {
@@ -44,16 +46,6 @@ class AdminSpaceController extends AbstractController
         return $this->render('admin_space/new.html.twig', [
             'training_space' => $trainingSpace,
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="admin_space_show", methods={"GET"})
-     */
-    public function show(TrainingSpace $trainingSpace): Response
-    {
-        return $this->render('admin_space/show.html.twig', [
-            'training_space' => $trainingSpace,
         ]);
     }
 
