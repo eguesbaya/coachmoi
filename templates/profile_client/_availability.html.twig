@@ -1,14 +1,14 @@
 {# Section: Mes disponibilités: afficher tous les disponibilités du client #}
-<div class="mes-availabilities container-fluid border col-lg-12 col-md-10 border-dark mt-5 rounded mb-5 ">
-    <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-        <h2 class="m-2">Mes disponibilités</h2>
+<div class="mes-availabilities border border-dark rounded m-1">
+    <div class="profile-h2 border border-dark rounded d-flex align-items-center bg-dark w-75 p-0">
+        <h2 class="m-2 text-light"><i class="bi bi-calendar3 text-success me-2"></i> Mes disponibilités</h2>
     </div>
     <div class="d-flex justify-content-end">
-        <a href="{{ path('client_availability_index') }}" class="btn btn-success m-2">Changer mes disponibilités</a>
+        <a href="{{ path('client_availability_index') }}" class="btn btn-success m-3 text-light"><i class="bi bi-pencil-square text-white me-2"></i> Changer mes disponibilités</a>
     </div>
     <div>
     <div>
-        <div class="bg-light my-2">
+          <div class="bg-light m-3 border rounded">
             <table class="table text-center">
                 <thead>
                     <tr class="fs-4">

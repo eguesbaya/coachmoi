@@ -1,17 +1,16 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <main class="container-fluid col-11">
+     <main class="container-fluid col-lg-11 profile">
         <h1>Mon espace Client</h1>
         <div class="d-flex justify-content-end">
-            <a class="btn btn-primary m-2" href="{{ path('client_edit') }}" role="button">Editer mon profil</a>
+            <a href="{{ path('client_edit') }}" class="btn btn-success m-2 text-white"><i class="bi bi-pencil-square text-white me-2"></i> Mettre à jour</a>
         </div>
-
         <section class="row">
-            <div class="col-lg-6 col-md-12 mt-5">
+            <div class="col-lg-6 col-md-12 mt-4">
                     {% include 'profile_client/_information.html.twig' %}
             </div>
-            <div class="col-lg-6 col-md-12 mt-4">
+            <div class="col-lg-6 col-md-12">
                 <div class="pt-4">
                     {% include 'profile_client/_preferences.html.twig' %}
                 </div>
@@ -20,8 +19,10 @@
                 </div>
             </div>
         </section>
-        <section>
+        <section class="row">
+            <div class="col-md-12 my-5">
                 {% include 'profile_client/_availability.html.twig' %}
+            </div>
         </section>
     </main>
 {% endblock %}
