@@ -1,10 +1,17 @@
 {% extends 'layout_superadmin.html.twig' %}
 
-{% block title %}Edit utilisateur{% endblock %}
+{% block title %}Attribuer un rôle{% endblock %}
 
 {% block content %}
-<main class="container">
-    <h1>Attribuer les rôles</h1>
-    {{ form(userForm) }}
+<main class="container my-5">
+    <div class="container border border-1 border-dark rounded my-5">
+        <h1>Attribuer les rôles</h1>
+        <div class="my-3">
+            {{ form(userForm) }}
+        </div>
+    </div>
 </main>
+
+<p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_show_users') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour liste des utilisateurs</a></p>
+
 {% endblock %}
