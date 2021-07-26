@@ -7,8 +7,9 @@
             <p>Coach :</p>
             {% if app.user.client is null or app.user.client.coachbooking is null %}
                 <h3 class="text-start mx-5">Vous n'avez pas encore de coach</h3>
+                <p class="text-start mx-5 fst-italic text-danger">Veuillez choisir une activité afin de nous aider à identifier le coach le mieux adapté à vos attentes.</p>
             {% else %}
-                <h3 class="text-start mx-5">{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
+                <h3 class="text-start mx-5 ">{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
             {% endif %}
         </div>
     </div>
@@ -18,6 +19,7 @@
             <p>Espace d'entrainement :</p>
             {% if app.user.client is null or app.user.client.coachbooking is null %}
             <h3 class="text-start mx-5">Vous n'avez pas encore d'espace d'entrainement</h3>
+                            <p class="text-start mx-5 fst-italic text-danger">Veuillez choisir une activité afin de nous aider à identifier l'espace le mieux adapté à vos attentes.</p>
             {% else %}
             <h3 class="text-start mx-5">{{ app.user.client.coachbooking.trainingSpace.name }}</h3>
             {% endif %}
