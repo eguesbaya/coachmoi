@@ -3,14 +3,26 @@
         <h2 class="m-2 text-truncate text-light"><i class="bi bi-heart-fill text-success me-2"></i> Mes préférences</h2>
    </div>
     <div>
+
+        {% if app.user.client.activity is null %}
+            <div class="my-2">
+                <div class="bg-light m-3 border border-3 rounded border-danger">
+                    <p>Activité :</p>
+                    <h3 class="text-start mx-5 text-danger">Veuillez choisir votre activité.</h3>
+                    <p class="text-start mx-5 text-danger">Pour indiquer l'activité que vous souhaitez pratiquer, cliquez sur le bouton "Mettre à jour" en haut à droite.</p>
+            </div>
+        </div>
+        {% else %}
         <div class="my-2">
            <div class="bg-light m-3 border rounded">
                 <p>Activité :</p>
-                {% if app.user.client.activity is not null %}
                 <h3 class="text-start mx-5">{{ app.user.client.activity.name }}</h3>
-                {% endif %}
             </div>
         </div>
+        {% endif %}
+
+
+
         <div class="my-2">
              <div class="bg-light m-3 border rounded">
                 <p>Niveau :</p>
