@@ -86,7 +86,7 @@ class AdminActivityController extends AbstractController
                 $this->addFlash('success', 'L\'activité a été supprimée avec succès.');
             }
         } else {
-            $this->addFlash('warning', 'Vous ne pouvez pas supprimer cette activité.');
+            $this->addFlash('danger', 'Vous ne pouvez pas supprimer cette activité.');
         }
         return $this->redirectToRoute('admin_activity_index');
     }
