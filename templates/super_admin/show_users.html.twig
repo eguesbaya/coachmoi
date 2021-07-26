@@ -1,46 +1,49 @@
 {% extends 'layout_superadmin.html.twig' %}
 
-{% block title %}Utilisateurs{% endblock %}
+{% block title %}Utilisateurs
+{% endblock %}
 
 {% block content %}
 
-    <h1>Gestion des utilisateurs</h1>
+	<h1>Gestion des utilisateurs</h1>
 
-    <table class="table text-center bg-light">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Nom</th>
-                <th>Telephone</th>
-                <th>Roles</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.firstname }} {{ user.lastname }}</td>
-                <td>{{ user.telephone }}</td>
-                <td>
-                {% for role in user.roles %}
-                    {{ role }}
-                {% endfor %}
-                </td>
-                <td>
-                    <a href="{{ path('superadmin_edit_user', {'id': user.id}) }}" class="btn btn-success text-light fs-6">Éditer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">Aucun utilisateur trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a></p>
+	<table class="table text-center bg-light">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Email</th>
+				<th>Nom</th>
+				<th>Telephone</th>
+				<th>Roles</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.id }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.firstname }}
+						{{ user.lastname }}</td>
+					<td>{{ user.telephone }}</td>
+					<td>
+                        {{ user.mainRole }}
+					</td>
+					<td>
+						<a href="{{ path('superadmin_edit_user', {'id': user.id}) }}" class="btn btn-success text-light fs-6">Éditer</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">Aucun utilisateur trouvé</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<p class="text-uppercase fw-bold fst-italic">
+		<a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark">
+			<i class="bi bi-arrow-counterclockwise text-dark"></i>
+			Retour espace admin</a>
+	</p>
 
 {% endblock %}
-
