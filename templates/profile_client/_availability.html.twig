@@ -24,8 +24,8 @@
                             <tr class="fs-5">
                                 <th scope="row">{{ loop.index }}</th>
                                 <td>{{ availability.weekday.name }}</td>
-                                <td>{{ availability.startTime|format_time() }}</td>
-                                <td>{{ availability.endTime|format_time() }}</td>
+                                <td>{{ availability.startTime|format_time('short') }}</td>
+                                <td>{{ availability.endTime|format_time('short') }}</td>
                             </tr>
                         {% endfor %}
                     {% endif %}
