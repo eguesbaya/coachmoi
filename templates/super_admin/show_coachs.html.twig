@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <table class="table text-center bg-light">
+    <table class="table text-left bg-light">
         <thead>
             <tr>
                 <th scope="col" class=" bg-dark text-white">Coach</th>
@@ -38,10 +38,16 @@
             {% for coach in coachs %}
                 <tr>
                     <td>{{ coach.user.firstname }} {{ coach.user.lastname }}</td>
-                    {% for activity in coach.activities %}
-                        <td>{{ activity.name }}</td>
-                    {% endfor %}
-                    <td>{{ coach.hourlyrate }}€/h</td>
+                    <td>
+                        <ul class="list-group list-group-flush">
+                            {% for activity in coach.activities %}
+                                <li class="list-group-item">{{ activity.name }}</li>
+                            {% else %}
+                                Aucune activité
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>{{ coach.hourlyrate }}</td>
                     <td>
                         {% for availability in coach.availabilities %}
                         <ul class="list-group list-group-flush">
