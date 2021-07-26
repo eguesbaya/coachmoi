@@ -5,12 +5,14 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="row mt-2 mb-2">
-            <div class="col-10"><i class="bi bi-exclamation-circle-fill"></i> Recherche par statut :
-            </div>
+    <h1 class="my-5">
+        Gestion des réservations
+    </h1>
+    <div class="row mt-2 mb-2">
+        <div class="col-10"><i class="bi bi-exclamation-circle-fill"></i> Recherche par statut :
         </div>
-        <div class="row mt-2 mb-2">
+    </div>
+    <div class="row mt-2 mb-2">
             <div class="col-3">
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
@@ -20,8 +22,7 @@
                 {{ form_end(form) }}
             </div>
         </div>
-
-    <table class="table text-center bg-light">
+    <table class="table text-center bg-light mt-5">
         <thead>
             <tr>
                 <th scope="col" class="bg-dark text-white">N°</th>
@@ -29,7 +30,7 @@
                 <th scope="col" class="bg-dark text-white">Date</th>
                 <th scope="col" class="bg-dark text-white">Activité</th>
                 <th scope="col" class="bg-dark text-white">Budget</th>
-                <th scope="col" class="bg-dark text-white">Contact</th>
+                <th scope="col" class="bg-dark text-white">Disponibilité</th>
                 <th scope="col" class="bg-dark text-white">Statut</th>
                 <th scope="col" class="bg-dark text-white">Actions</th>
             </tr>
@@ -43,10 +44,18 @@
                 <td>{{ coach_booking.client.activity.name }}</td>
                 <td>{{ coach_booking.client.budget }}</td>
                 <td>
+                {% if coach_booking.client.availabilities is not null %}
+                    {% for availability in coach_booking.client.availabilities %}
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ coach_booking.client.user.email }} </li>
-                        <li class="list-group-item">{{ coach_booking.client.user.telephone }} </li>
+                        <li class="list-group-item">
+                        {{ availability.weekday.name }}
+                        {{ availability.startTime|format_time }} - {{ availability.endTime|format_time }}
+                        </li>
                     </ul>
+                    {% endfor %}
+                {% else %}
+                    Aucune
+                {% endif %}
                 </td>
                 <td class="align-self-center">
                     <p class="d-inline-flex text-success border border-success p-2 m-1">{{ coach_booking.bookingStatus.status }}</p>
@@ -70,5 +79,5 @@
         </tbody>
     </table>
     <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a></p>
-</div>
+
 {% endblock %}
