@@ -27,16 +27,7 @@
 						{{ user.lastname }}</td>
 					<td>{{ user.telephone }}</td>
 					<td>
-						{% if user.roles == ["ROLE_CLIENT",
-                                                    "ROLE_USER"] %}
-							<span class="text-primary">Client</span>
-						{% elseif user.roles == ["ROLE_COACH",
-                                                    "ROLE_USER"] %}
-							<span class="text-darklight">Coach</span>
-						{% elseif user.roles == ["ROLE_SUPERADMIN",
-                                                    "ROLE_USER"] %}
-                            <span class="text-danger">Administrateur</span>
-						{% endif %}
+                        {{ user.mainRole }}
 					</td>
 					<td>
 						<a href="{{ path('superadmin_edit_user', {'id': user.id}) }}" class="btn btn-success text-light fs-6">Éditer</a>
