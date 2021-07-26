@@ -18,9 +18,6 @@ class TrainingSpaceType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => "Nom de l'espace"
             ])
-            ->add('description', TextType::class, [
-                'label' => "Description"
-            ])
             ->add('address', TextType::class, [
                 'label' => "Adresse"
             ])
