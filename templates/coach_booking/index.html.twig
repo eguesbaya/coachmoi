@@ -67,7 +67,7 @@
                             {% endfor %}
                         </select>
                         <input type="hidden" name="_token" value="{{ csrf_token('cb_update_status' ~ coach_booking.id) }}">
-                        <button class="btn bg-success text-light fs-6">Valider</button>
+                        <button class="btn bg-success text-light fs-6"><i class="bi bi-check-lg"></i> Modifier</button>
                     </form>
                 </td>
                 <td>
@@ -82,12 +82,13 @@
                 </td>
 
                 <td>
-                    <a href="{{ path("coach_booking_show", {"id": coach_booking.id}) }}" class="btn bg-success text-light fs-6">Voir la demande</a>
+                    <a href="{{ path("coach_booking_show", {"id": coach_booking.id}) }}" class="btn bg-success text-light fs-6"><i class="bi bi-eye-fill"></i> Voir la demande</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a></p>
-
+    <div class="d-flex justify-content-end">
+        <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a></p>
+    </div>
 {% endblock %}

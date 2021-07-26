@@ -20,7 +20,6 @@ class SearchBookingType extends AbstractType
         ->setMethod('GET')
         ->add('status', EntityType::class, [
             'class' => BookingStatus::class,
-            'empty_data' => 'Tous',
             'choice_label' => 'status',
             'label' => false,
             'attr' => [
@@ -42,5 +41,10 @@ class SearchBookingType extends AbstractType
             // Configure your form options here
             'data_class' => SearchBooking::class,
         ]);
+    }
+
+    public function getBlockPrefix()
+    {
+        return parent::getBlockPrefix();
     }
 }

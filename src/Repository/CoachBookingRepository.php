@@ -22,10 +22,11 @@ class CoachBookingRepository extends ServiceEntityRepository
     }
     public function findBySearch(SearchBooking $searchBooking): array
     {
-        $qb = $this->createQueryBuilder('o')
-                    ->andWhere('o.bookingStatus = :bookingStatus')
-                ->setParameter('bookingStatus', $searchBooking->getStatus());
-        return $qb->getQuery()
-            ->getResult();
+        $qb = $this->createQueryBuilder('o');
+        if ($searchBooking->getStatus()) {
+                   $qb->andWhere('o.bookingStatus = :bookingStatus')
+                   ->setParameter('bookingStatus', $searchBooking->getStatus());
+        }
+        return $qb->getQuery()->getResult();
     }
 }
