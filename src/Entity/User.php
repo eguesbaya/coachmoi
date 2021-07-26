@@ -62,6 +62,12 @@ class User implements UserInterface
      */
     private ?Coach $coach;
 
+    public const ROLES = [
+        'ROLE_SUPERADMIN' => 'Administrateur',
+        'ROLE_CLIENT' => 'Client',
+        'ROLE_COACH' => 'Coach',
+    ];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -202,5 +208,16 @@ class User implements UserInterface
         $this->coach = $coach;
 
         return $this;
+    }
+
+    public function getMainRole(): string
+    {
+        foreach (self::ROLES as $roleCode => $roleLabel) {
+            if (in_array($roleCode, $this->getRoles())) {
+                return $roleLabel;
+            }
+        }
+
+        return '';
     }
 }
