@@ -32,10 +32,10 @@
 							<span class="text-primary">Client</span>
 						{% elseif user.roles == ["ROLE_COACH",
                                                     "ROLE_USER"] %}
-							<span class="text-primary">Coach</span>
-						{% elseif user.roles == ["ROLE_SUPERADMIN", 
+							<span class="text-darklight">Coach</span>
+						{% elseif user.roles == ["ROLE_SUPERADMIN",
                                                     "ROLE_USER"] %}
-                            <span class="text-primary">Administrateur</span>
+                            <span class="text-danger">Administrateur</span>
 						{% endif %}
 					</td>
 					<td>
