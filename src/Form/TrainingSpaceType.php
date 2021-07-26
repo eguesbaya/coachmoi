@@ -22,7 +22,7 @@ class TrainingSpaceType extends AbstractType
                 'label' => "Adresse"
             ])
             ->add('spaceCategory', null, [
-                'label' => "Type de l'espace",
+                'label' => "Type d'espace",
                 'choice_label' => 'name'
             ])
             ->add('activity', null, [
