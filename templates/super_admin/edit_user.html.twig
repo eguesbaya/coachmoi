@@ -4,8 +4,8 @@
 
 {% block content %}
 <main class="container my-5">
+    <h1>Attribuer un rôle à {{ user.firstname }} {{ user.lastname }}</h1>
     <div class="container border border-1 border-dark rounded my-5">
-        <h1>Attribuer les rôles</h1>
         <div class="my-3">
             {{ form(userForm) }}
         </div>
