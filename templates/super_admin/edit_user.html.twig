@@ -1,13 +1,23 @@
 {% extends 'layout_superadmin.html.twig' %}
 
-{% block title %}Attribuer un rôle{% endblock %}
+{% block title %}Attribuer les rôles{% endblock %}
 
 {% block content %}
 <main class="container my-5">
     <h1>Attribuer un rôle à {{ user.firstname }} {{ user.lastname }}</h1>
     <div class="container border border-1 border-dark rounded my-5">
         <div class="my-3">
-            {{ form(userForm) }}
+            {{ form_start(userForm) }}
+                {# Email field #}
+                {{ form_errors(userForm.email) }}
+                {{ form_label(userForm.email, 'Email:') }}
+                {{ form_widget(userForm.email) }}
+
+                {# Role field #}
+                {{ form_errors(userForm.roles) }}
+                {{ form_label(userForm.roles, 'Rôles:') }}
+                {{ form_widget(userForm.roles) }}
+            {{ form_end(userForm) }}
         </div>
     </div>
 </main>
