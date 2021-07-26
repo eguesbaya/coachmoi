@@ -38,9 +38,13 @@
             {% for coach in coachs %}
                 <tr>
                     <td>{{ coach.user.firstname }} {{ coach.user.lastname }}</td>
-                    {% for activity in coach.activities %}
-                        <td>{{ activity.name }}</td>
-                    {% endfor %}
+                    <td>
+                        <ul>
+                        {% for activity in coach.activities %}
+                            <li>{{ activity.name }}</li>
+                        {% endfor %}
+                        </ul>
+                    </td>
                     <td>{{ coach.hourlyrate }}</td>
                     <td>
                         {% for availability in coach.availabilities %}
