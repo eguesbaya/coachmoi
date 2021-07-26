@@ -1,10 +1,14 @@
 @import 'variables.scss';
 
 .profile h3{
-    margin: 0px;
+    font-weight: 700;
+    font-style: italic;
+    margin:  0.5rem;
+    text-transform: uppercase;
+    font-size: 1.3rem;
 }
 
-.profile-h2 {
+.profile h2 {
     margin-top: -2rem;
     margin-left: 1rem;
 }
@@ -20,4 +24,5 @@
 
 .profile p{
     margin:0px;
+    padding: 10px;
 }
