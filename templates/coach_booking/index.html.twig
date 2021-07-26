@@ -4,6 +4,7 @@
 {% block title %}Réservations{% endblock %}
 
 {% block content %}
+
     <h1 class="my-5">
         Gestion des réservations
     </h1>
@@ -24,22 +25,20 @@
     <table class="table text-center bg-light mt-5">
         <thead>
             <tr>
-                <th scope="col" class="bg-dark text-white">N°</th>
                 <th scope="col" class="bg-dark text-white">Client</th>
-                <th scope="col" class="bg-dark text-white">Date de demande</th>
                 <th scope="col" class="bg-dark text-white">Activité</th>
                 <th scope="col" class="bg-dark text-white">Budget</th>
                 <th scope="col" class="bg-dark text-white">Disponibilité</th>
                 <th scope="col" class="bg-dark text-white">Statut</th>
+                <th scope="col" class="bg-dark text-white">Coach</th>
+                <th scope="col" class="bg-dark text-white">Salle</th>
                 <th scope="col" class="bg-dark text-white">Actions</th>
             </tr>
         </thead>
         <tbody class="">
         {% for coach_booking in coach_bookings %}
-            <tr>
-                <td scope="row">{{ coach_booking.id }}</td>
-                <td class="my-auto">{{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</td>
-                <td>{{ coach_booking.createdAt|date("d/m/Y") }}</td>
+            <tr class="align-middle">
+                <td>{{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</td>
                 <td>{{ coach_booking.client.activity.name }}</td>
                 <td>{{ coach_booking.client.budget }} €</td>
                 <td>
@@ -56,13 +55,15 @@
                     Aucune
                 {% endif %}
                 </td>
-                <td class="align-self-center">
-                    <p class="d-inline-flex text-success border border-success p-2 m-1">{{ coach_booking.bookingStatus.status }}</p>
-                    <form method="post" action="{{ path('cb_update_status', {"id": coach_booking.id}) }}">
+                <td>
+                   <form method="post" action="{{ path('cb_update_status', {"id": coach_booking.id}) }}">
                         <select name="bookingStatus" id="bookingStatus" class="bg-secondary p-1 m-1">
-                            <option value="">Mettre à jour</option>
                             {% for status_detail in bookingStatus %}
-                            <option {% if coach_booking.bookingStatus.status == status_detail %} selected {% endif %} value="{{ status_detail.id }}">{{ status_detail.status }}</option>
+                                {% if coach_booking.bookingStatus.status == status_detail.status %}
+                                    <option value="{{ status_detail.id }}" selected>{{ status_detail.status }}</option>
+                                {% else %}
+                                    <option value="{{ status_detail.id }}">{{ status_detail.status }}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                         <input type="hidden" name="_token" value="{{ csrf_token('cb_update_status' ~ coach_booking.id) }}">
@@ -70,8 +71,18 @@
                     </form>
                 </td>
                 <td>
+                    {% if coach_booking.coach %}
+                       {{ coach_booking.coach.user.firstname }} {{ coach_booking.coach.user.lastname }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if coach_booking.trainingSpace %}
+                        {{ coach_booking.trainingSpace.name }}
+                    {% endif %}
+                </td>
 
-                    <a href="{{ path("coach_booking_show", {"id": coach_booking.id}) }}" class="btn bg-success text-light fs-6 mt-4">Voir la demande</a>
+                <td>
+                    <a href="{{ path("coach_booking_show", {"id": coach_booking.id}) }}" class="btn bg-success text-light fs-6">Voir la demande</a>
                 </td>
             </tr>
         {% endfor %}
