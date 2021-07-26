@@ -96,16 +96,6 @@ class ProfileClientController extends AbstractController
     }
 
     /**
-     * @Route("/profil/client/disponibilite/{id}", name="client_availability_show", methods={"GET"})
-     */
-    public function showAvailability(Availability $availability): Response
-    {
-        return $this->render('profile_client_availability/show.html.twig', [
-            'availability' => $availability,
-        ]);
-    }
-
-    /**
      * @Route("/profil/client/disponibilite/{id}/editer", name="client_availability_edit", methods={"GET","POST"})
      */
     public function editAvailability(Request $request, Availability $availability): Response
