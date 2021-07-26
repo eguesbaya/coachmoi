@@ -40,7 +40,7 @@ class ClientType extends AbstractType
                 'label' => 'Nombre de personnes'
             ])
             ->add('isApt', CheckboxType::class, [
-                'label' => "Êtes-vous apte à la pratique sportive?",
+                'label' => "Le client certifie être APTE à la pratique sportive",
                 'required' => false
             ])
 
