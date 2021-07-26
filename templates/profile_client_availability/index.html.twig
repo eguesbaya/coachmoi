@@ -22,13 +22,12 @@
                 <td>{{ availability.startTime ? availability.startTime|date('H:i:s') : '' }}</td>
                 <td>{{ availability.endTime ? availability.endTime|date('H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('client_availability_show', {'id': availability.id}) }}" class="btn btn-success">Voir </a>
                     <a href="{{ path('client_availability_edit', {'id': availability.id}) }}" class="btn btn-success">Modifier </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">Aucun enregistrement trouvé</td>
+                <td colspan="4">Aucune disponibilité</td>
             </tr>
         {% endfor %}
         </tbody>
