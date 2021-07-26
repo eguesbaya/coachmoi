@@ -3,11 +3,21 @@
 {% block title %}Modifier une nouvelle disponibilité{% endblock %}
 
 {% block body %}
-    <h1>Modifier une nouvelle disponibilité</h1>
+<div class="container">
+    <h1>Modifier une disponibilité</h1>
 
-    {{ include('profile_client_availability/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('client_availability_index') }}" class="btn btn-success">Retour à la liste</a>
-
-    {{ include('profile_client_availability/_delete_form.html.twig') }}
+    <div class="row border border-1 rounded shadow bg-light p-3">
+        <div class="col">
+            {{ include('profile_client_availability/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-6">
+            {{ include('profile_client_availability/_delete_form.html.twig') }}
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+            <a href="{{ path('client_availability_index') }}" class="btn btn-success"><i class="bi bi-arrow-counterclockwise"></i> Retour à la liste</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
