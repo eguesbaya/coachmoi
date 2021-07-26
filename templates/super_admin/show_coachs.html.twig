@@ -29,7 +29,7 @@
             <tr>
                 <th scope="col" class=" bg-dark text-white">Coach</th>
                 <th scope="col" class=" bg-dark text-white">Activité</th>
-                <th scope="col" class=" bg-dark text-white">Budget</th>
+                <th scope="col" class=" bg-dark text-white">Tarif</th>
                 <th scope="col" class=" bg-dark text-white">Disponibilité</th>
                 <th scope="col" class=" bg-dark text-white">Client</th>
             </tr>
@@ -41,7 +41,7 @@
                     {% for activity in coach.activities %}
                         <td>{{ activity.name }}</td>
                     {% endfor %}
-                    <td>{{ coach.hourlyrate }}</td>
+                    <td>{{ coach.hourlyrate }}€/h</td>
                     <td>
                         {% for availability in coach.availabilities %}
                         <ul class="list-group list-group-flush">
