@@ -25,8 +25,9 @@
                 <td>
                     <i class="bi bi-{{ activity.isfeatured ? 'check' : 'x' }}-circle-fill"></i>
                 </td>
-                <td class="d-flex">
+                <td>
                     <a href="{{ path('admin_activity_edit', {'id': activity.id}) }}" class="btn btn-success text-light fs-6">Éditer</a>
+                    {{ include('admin_activity/_delete_form.html.twig') }}
                 </td>
             </tr>
             {% else %}
