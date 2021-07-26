@@ -4,7 +4,6 @@
 {% block title %}Réservations{% endblock %}
 
 {% block content %}
-
     <h1 class="my-5">
         Gestion des réservations
     </h1>
@@ -27,7 +26,7 @@
             <tr>
                 <th scope="col" class="bg-dark text-white">N°</th>
                 <th scope="col" class="bg-dark text-white">Client</th>
-                <th scope="col" class="bg-dark text-white">Date</th>
+                <th scope="col" class="bg-dark text-white">Date de demande</th>
                 <th scope="col" class="bg-dark text-white">Activité</th>
                 <th scope="col" class="bg-dark text-white">Budget</th>
                 <th scope="col" class="bg-dark text-white">Disponibilité</th>
@@ -42,7 +41,7 @@
                 <td class="my-auto">{{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</td>
                 <td>{{ coach_booking.createdAt|date("d/m/Y") }}</td>
                 <td>{{ coach_booking.client.activity.name }}</td>
-                <td>{{ coach_booking.client.budget }}</td>
+                <td>{{ coach_booking.client.budget }} €</td>
                 <td>
                 {% if coach_booking.client.availabilities is not null %}
                     {% for availability in coach_booking.client.availabilities %}
