@@ -52,7 +52,10 @@ class ClientType extends AbstractType
             ->add('activity', EntityType::class, [
                 'label' => 'Activité',
                 'class' => Activity::class,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'attr' => [
+                    'class' => 'border border-3 rounded border-primary'
+                ]
             ])
         ;
     }
