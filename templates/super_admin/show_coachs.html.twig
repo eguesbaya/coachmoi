@@ -41,11 +41,9 @@
                     <td>
                         <ul class="list-group list-group-flush">
                             {% for activity in coach.activities %}
-                                {% if activity is null %}
-                                    Aucune activité
-                                {% else %}
-                                    <li class="list-group-item">{{ activity.name }}</li>
-                                {% endif %}
+                                <li class="list-group-item">{{ activity.name }}</li>
+                            {% else %}
+                                Aucune activité
                             {% endfor %}
                         </ul>
                     </td>
