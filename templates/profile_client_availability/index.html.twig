@@ -6,12 +6,12 @@
 <div class="container">
     <h1>Liste de mes disponibilités</h1>
 
-      <table class="table border border-2 rounded shadow">
+      <table class="table border border-2 rounded shadow text-center">
         <thead>
             <tr>
                  <th class="bg-dark text-white w-25">Jour</th>
-                <th class="bg-dark text-white w-25">Heure de début</th>
-                <th class="bg-dark text-white w-25">Heure de fin</th>
+                <th class="bg-dark text-white w-25">De</th>
+                <th class="bg-dark text-white w-25">À</th>
                 <th class="bg-dark text-white w-25 text-center">Actions</th>
             </tr>
         </thead>
@@ -19,10 +19,10 @@
         {% for availability in app.user.client.availabilities %}
             <tr>
                 <td class="bg-light">{{ availability.weekday.name }}</td>
-                <td class="bg-light">{{ availability.startTime ? availability.startTime|date('H:i:s') : '' }}</td>
-                <td class="bg-light">{{ availability.endTime ? availability.endTime|date('H:i:s') : '' }}</td>
+                <td class="bg-light">{{ availability.startTime ? availability.startTime|format_time('short') }}</td>
+                <td class="bg-light">{{ availability.endTime ? availability.endTime|format_time('short') }}</td>
                 <td class="bg-light text-center">
-                    <a href="{{ path('client_availability_edit', {'id': availability.id}) }}" class="btn btn-success text-white mx-2"><i class="bi bi-pencil-square text-success text-white"></i> Modifier</a>
+                    <a href="{{ path('client_availability_edit', {'id': availability.id}) }}" class="btn btn-success text-white"><i class="bi bi-pencil-square text-success text-white"></i> Modifier</a>
                 </td>
             </tr>
         {% else %}

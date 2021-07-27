@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('client_availability_delete', {'id': availability.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ availability.id) }}">
-     <button  class="btn btn-danger text-light mt-1"><i class="bi bi-trash-fill text-white me-2"></i>Supprimer</button>
+     <button  class="btn btn-danger text-light mr-3"><i class="bi bi-trash-fill text-white me-2"></i>Supprimer</button>
 
 </form>
