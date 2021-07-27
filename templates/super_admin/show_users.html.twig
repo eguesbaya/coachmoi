@@ -4,24 +4,22 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="container">
 	<h1>Gérer les utilisateurs</h1>
 
-	<table class="table text-center bg-light">
+	<table class="table table-striped text-center bg-light">
 		<thead>
 			<tr>
-				<th>Id</th>
-				<th>Email</th>
-				<th>Nom</th>
-				<th>Telephone</th>
-				<th>Roles</th>
-				<th>Actions</th>
+				<th class="bg-dark text-white">Email</th>
+				<th class="bg-dark text-white">Nom</th>
+				<th class="bg-dark text-white">Telephone</th>
+				<th class="bg-dark text-white">Roles</th>
+				<th class="bg-dark text-white">Actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for user in users %}
 				<tr>
-					<td>{{ user.id }}</td>
 					<td>{{ user.email }}</td>
 					<td>{{ user.firstname }}
 						{{ user.lastname }}</td>
@@ -30,7 +28,7 @@
                         {{ user.mainRole }}
 					</td>
 					<td>
-						<a href="{{ path('superadmin_edit_user', {'id': user.id}) }}" class="btn btn-success text-light fs-6">Éditer</a>
+						<a href="{{ path('superadmin_edit_user', {'id': user.id}) }}" class="btn btn-success text-light fs-6"><i class="bi bi-pencil-square text-white me-2"></i> Éditer</a>
 					</td>
 				</tr>
 			{% else %}
@@ -40,10 +38,9 @@
 			{% endfor %}
 		</tbody>
 	</table>
-	<p class="text-uppercase fw-bold fst-italic">
-		<a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark">
-			<i class="bi bi-arrow-counterclockwise text-dark"></i>
-			Retour espace admin</a>
-	</p>
 
+	<div class="text-uppercase fw-bold fst-italic d-flex justify-content-end">
+		<a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a>
+	</div>
+</div>
 {% endblock %}

@@ -75,7 +75,7 @@ class SuperAdminController extends AbstractController
     }
 
     /**
-     * @Route("/users", name="show_users")
+     * @Route("/utilisateurs", name="show_users")
      */
     public function showUser(UserRepository $users): Response
     {
