@@ -1,45 +1,53 @@
-    <div class="row row-cols-md-3 g-4 my-4">
-        <!--CARD: start-->
-        {% for activity in activities %}
-        <div class="col-md-6 col-lg-4">
-            <div class="card card-activity bg-dark h-100 d-md-flex flex-row">
-                        <img src="{{ activity.photo }}" class="card-img-top rounded w-50 mh-100 align-self-center" alt="{{ activity.name }}">
-                        <div class="card-body d-flex flex-column justify-content-between w-50">
-                            <h4 class="card-title w-100">{{ activity.name }}</h4>
-                            <p class="card-text text-light w-100">{{ activity.description }}</p>
-                            {% if is_granted('ROLE_CLIENT') %}
-                                <a class="btn btn-primary text-light" href="{{ path('client_edit') }}" role="button">Choisir</a>
-                            {% else %}
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary text-light" data-bs-toggle="modal" data-bs-target="#activityModal">
-                                        Choisir
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="activityModal" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                            <h3 class="modal-title text-uppercase" id="activityModalLabel">Choisir une activité</h3>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <ul class="fs-4">
-                                                    <li>Connecte toi sinon <a href="{{ path('app_register') }}">Crée un compte</a></li>
-                                                    <li>Tu pourras ensuite choisir ton activité favorite</li>
-                                                    <li>Nous te contacterons pour faire un point ensemble</li>
-                                                    <li>Enfin nous t'attribuerons un Coach !</li>
-                                                </ul>
-                                            </div>
-                                            <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                            {% endif %}
+<div class="row">
+    <!--CARD: start-->
+    {% for activity in activities %}
+    <div class="col-md-6 col-lg-3 my-4">
+        <div class="card card-activity bg-dark h-100 d-md-flex flex-row">
+            <img src="{{ activity.photo }}" class="card-img-top rounded w-50 mh-100 align-self-center"
+                alt="{{ activity.name }}">
+            <div class="card-body d-flex flex-column justify-content-between w-50">
+                <h4 class="card-title w-100">{{ activity.name }}</h4>
+                <p class="card-text text-light w-100">{{ activity.description }}</p>
+                {% if is_granted('ROLE_CLIENT') %}
+                    <a class="btn btn-primary text-light" href="{{ path('client_edit') }}" role="button">Choisir</a>
+                {% elseif is_granted('ROLE_COACH') %}
+                    <a class="btn btn-primary text-light" href="{{ path('coach_edit') }}" role="button">Choisir</a>
+                {% elseif is_granted('ROLE_SUPERADMIN') %}
+                    <a class="btn btn-primary text-light" href="{{ path('admin_activity_edit', {'id': activity.id}) }}" role="button">Modifier</a>
+                {% else %}
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary text-light" data-bs-toggle="modal"
+                        data-bs-target="#activityModal">
+                        Choisir
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="activityModal" tabindex="-1" aria-labelledby="activityModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title text-uppercase" id="activityModalLabel">Choisir une activité</h3>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="fs-4">
+                                        <li>Connecte toi sinon <a href="{{ path('app_register') }}">Crée un compte</a></li>
+                                        <li>Tu pourras ensuite choisir ton activité favorite</li>
+                                        <li>Nous te contacterons pour faire un point ensemble</li>
+                                        <li>Enfin nous t'attribuerons un Coach !</li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
-        {% endfor %}
-        <!--CARD: end-->
     </div>
+    {% endfor %}
+    <!--CARD: end-->
+</div>

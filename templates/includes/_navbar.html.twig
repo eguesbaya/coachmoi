@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-xl navbar-light bg-dark">
 	<div class="container-fluid">
-		<img class="logo" src="{{ asset('build/images/coachmoi.png') }}" alt="logo-coach-moi">
+		<a href="{{ path('home') }}"><img class="logo" src="{{ asset('build/images/coachmoi.png') }}" alt="logo-coach-moi"></a>
 		<button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -34,48 +34,56 @@
                         <ul class="dropdown-menu shadow-lg w-100" aria-labelledby="dropdownMenuLink">
                             {% if is_granted('ROLE_SUPERADMIN') %}
 								<li>
-							    	<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_index') }}">
-									Mon espace admin</a>
+							    	<a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('superadmin_index') }}">
+									<i class="bi bi-person-lines-fill text-success"></i> &nbsp; Espace admin</a>
 								</li>
-                                <li>
-                                    <a class="dropdown-item text-wrap text-warning py-2" href="{{ path('coach_booking_index') }}">
-                                        Gérer les demandes</a>
-                                </li>
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_show_clients') }}">
-                                    	Nos clients</a>
+							   		<a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('superadmin_show_users') }}">
+                                    <i class="bi bi-people-fill text-success"></i> &nbsp; Gérer role</a>
                             	</li>
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_show_coachs') }}">
-                                    	Nos coachs</a>
+                                    <a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('coach_booking_index') }}">
+                                    <i class="bi bi-journal-richtext text-success"></i> &nbsp; Gérer demande</a>
+                                </li>
+								<li>
+							   		<a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('superadmin_show_clients') }}">
+                                    <i class="bi bi-file-earmark-person-fill text-success"></i> &nbsp; Gérer client</a>
+                            	</li>
+								<li>
+							   		<a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('superadmin_show_coachs') }}">
+                                    <i class="bi bi-trophy-fill text-success"></i> &nbsp; Gérer coach</a>
                             	</li>
 
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('admin_space_index') }}">
-                                    	Nos salles</a>
+							   		<a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('admin_space_index') }}">
+                                    <i class="bi bi-geo-alt-fill text-success"></i> &nbsp; Gérer espace</a>
+                            	</li>
+								<li>
+							   		<a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('admin_activity_index') }}">
+                                    <i class="bi bi-palette2 text-success"></i> &nbsp; Gérer activité</a>
                             	</li>
                             {% elseif is_granted('ROLE_COACH') %}
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('profile_coach') }}">
-                                    	Voir mon profil</a>
+							   		<a class="dropdown-item text-wrap text-dark py-2 text-white fw-bold" href="{{ path('profile_coach') }}">
+                                    <i class="bi bi-person-lines-fill text-success"></i> &nbsp; Voir mon profil</a>
                             	</li>
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('coach_edit') }}">
-                                    	Éditer mon profil</a>
+							   		<a class="dropdown-item text-wrap text-dark py-2 text-white fw-bold" href="{{ path('coach_edit') }}">
+                                    <i class="bi bi-pencil-square text-success"></i> &nbsp; Éditer mon profil</a>
                             	</li>
 							{% elseif is_granted('ROLE_CLIENT') %}
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('profile_client') }}">
-                                    	Voir mon profil</a>
+							   		<a class="dropdown-item text-wrap text-dark py-2 text-white fw-bold" href="{{ path('profile_client') }}">
+                                    <i class="bi bi-person-lines-fill text-success"></i> &nbsp; Voir mon profil</a>
                             	</li>
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('client_edit') }}">
-                                    	Éditer mon profil</a>
+							   		<a class="dropdown-item text-wrap text-dark py-2 text-white fw-bold" href="{{ path('client_edit') }}">
+                                    <i class="bi bi-pencil-square text-success"></i> &nbsp; Éditer mon profil</a>
                             	</li>
 								{% endif %}
                             <li>
-                                <a class="dropdown-item text-wrap text-danger py-2" href="{{ path('app_logout') }}">
-                                    Déconnexion
+                                <a class="dropdown-item text-wrap text-danger py-2 fw-bold" href="{{ path('app_logout') }}">
+                                <i class="bi bi-power text-danger"></i>&nbsp; Déconnexion
                                 </a>
                             </li>
                         </ul>

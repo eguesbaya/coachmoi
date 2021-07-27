@@ -9,9 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/superadmin/activite")
+ * @isGranted("ROLE_SUPERADMIN")
  */
 class AdminActivityController extends AbstractController
 {
@@ -45,16 +47,6 @@ class AdminActivityController extends AbstractController
         return $this->render('admin_activity/new.html.twig', [
             'activity' => $activity,
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="admin_activity_show", methods={"GET"})
-     */
-    public function show(Activity $activity): Response
-    {
-        return $this->render('admin_activity/show.html.twig', [
-            'activity' => $activity,
         ]);
     }
 
@@ -94,7 +86,7 @@ class AdminActivityController extends AbstractController
                 $this->addFlash('success', 'L\'activité a été supprimée avec succès.');
             }
         } else {
-            $this->addFlash('warning', 'Vous ne pouvez pas supprimer cette activité.');
+            $this->addFlash('danger', 'Vous ne pouvez pas supprimer cette activité.');
         }
         return $this->redirectToRoute('admin_activity_index');
     }

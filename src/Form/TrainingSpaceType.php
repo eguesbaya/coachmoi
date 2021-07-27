@@ -18,14 +18,11 @@ class TrainingSpaceType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => "Nom de l'espace"
             ])
-            ->add('description', TextType::class, [
-                'label' => "Description"
-            ])
             ->add('address', TextType::class, [
                 'label' => "Adresse"
             ])
             ->add('spaceCategory', null, [
-                'label' => "Type de l'espace",
+                'label' => "Type d'espace",
                 'choice_label' => 'name'
             ])
             ->add('activity', null, [
@@ -36,6 +33,8 @@ class TrainingSpaceType extends AbstractType
             ])
             ->add('photoFile', VichImageType::class, [
                 'label' => 'Image :',
+                'delete_label' => 'Supprimer l\'image ?',
+                'download_label' => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],

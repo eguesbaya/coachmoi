@@ -22,9 +22,16 @@
                 <td><img src="{{ vich_uploader_asset(activity) }}" width="100vh"></td>
                 <td>{{ activity.name }}</td>
                 <td>{{ activity.description }}</td>
-                <td class="d-flex">
-                     <a href="{{ path('admin_activity_show', {'id': activity.id}) }}" class="btn btn-success text-light fs-6 me-3">Afficher</a>
+                <td>
+                    <i class="bi bi-{{ activity.isfeatured ? 'check' : 'x' }}-circle-fill"></i>
+                </td>
+                <td class="fst-italic">
                     <a href="{{ path('admin_activity_edit', {'id': activity.id}) }}" class="btn btn-success text-light fs-6">Éditer</a>
+                            {% if activity.clients|length > 0 %}
+                                </br>Cette activité est actuellement pratiquée par un ou plusieurs clients
+                            {% else %}
+                                 {{ include('admin_activity/_delete_form.html.twig') }}
+                            {% endif %}
                 </td>
             </tr>
             {% else %}
@@ -35,6 +42,6 @@
         </tbody>
     </table>
     <a class= "btn btn-success text-light my-5" href="{{ path('admin_activity_new') }}">Ajouter une nouvelle activité</a>
-    <p class="text-uppercase fw-bold fst-italic mb-5"><a href="{{ path('superadmin_index') }}">Retour à mon espace admin</a></p>
+    <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a></p>
 </div>
 {% endblock %}

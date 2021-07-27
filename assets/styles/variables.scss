@@ -3,6 +3,7 @@ $secondary: #cac4c4;
 $light: #FFFFFF;
 $success: #6bd736;
 $dark:#000000;
+$darklight:#444444;
 $danger: rgb(177, 21, 21);
 
 $theme-colors: (
@@ -12,6 +13,7 @@ $theme-colors: (
     "light":      $light,
     "dark":       $dark,
     "danger":     $danger,
+    "darklight":  $darklight,
 );
 
 $display-font-sizes: (

@@ -5,37 +5,41 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container">
+
     <h1 class="my-5">
       Gestion des Clients
     </h1>
-
-    <div class="mt-2 mb-2 d-flex justify-content-end">
-      {{ form_start(form) }}
-      {{ form_widget(form) }}
-      <div class="mt-2 mb-2 d-flex justify-content-end">
-        <button class="btn btn-success text-white">Rechercher</button>
-        {{ form_end(form) }}
-      </div>
+    <div class="row mt-2 mb-2">
+        <div class="col-10"><i class="bi bi-exclamation-circle-fill"></i> Recherche par nom ou prénom :
+        </div>
     </div>
-
-    <table class="table text-center bg-light">
+    <div class="row mt-2 mb-2">
+        <div class="col-6">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        </div>
+        <div class="col-4">
+          <button class="btn btn-success text-white"><i class="bi bi-search text-white"></i> Rechercher</button>
+          {{ form_end(form) }}
+        </div>
+    </div>
+    <table class="table text-center bg-light mt-5">
       <thead>
         <tr>
-          <th scope="col">
-            Clients
+          <th scope="col" class=" bg-dark text-white">
+            Client
           </th>
-          <th scope="col">
+          <th scope="col" class=" bg-dark text-white">
+            Date de naissance
+          </th>
+          <th scope="col" class=" bg-dark text-white">
             Activité
           </th>
-          <th scope="col">
-            Budget
+          <th scope="col" class=" bg-dark text-white">
+            Contact
           </th>
-          <th scope="col">
-            Disponibilités
-          </th>
-          <th scope="col">
-            Coachs
+          <th scope="col" class=" bg-dark text-white">
+            Coach
           </th>
         </tr>
       </thead>
@@ -45,37 +49,23 @@
             <td>
               {{ client.user.firstname }} {{ client.user.lastname }}
             </td>
+            <td>
+              {{ client.birthdate|date("d/m/Y") }}
+            </td>
             {% if client.activity is not null %}
-              <td>
+            <td>
                 {{ client.activity.name }}
               </td>
             {% else %}
               <td>
                 Aucune
-              </td>
-            {% endif %}
-            {% if client.budget is not null %}
-              <td>
-                {{ client.budget }} €
-              </td>
-            {% else %}
-              <td>
-                Aucun
-              </td>
+            </td>
             {% endif %}
             <td>
-              {% if client.availabilities is not null %}
-                {% for availability in client.availabilities %}
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                      {{ availability.weekday.name }}
-                      {{ availability.startTime|format_time }} - {{ availability.endTime|format_time }}
-                    </li>
-                  </ul>
-                {% endfor %}
-              {% else %}
-                Aucune
-              {% endif %}
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ client.user.email }} </li>
+                <li class="list-group-item">{{ client.user.telephone }} </li>
+              </ul>
             </td>
             {% if client.coachbooking is null or client.coachbooking.coach is null %}
               <td class = "fw-bold">
@@ -90,12 +80,8 @@
         {% endfor %}
       </tbody>
     </table>
-  </div>
-
-  <p class="text-uppercase fw-bold fst-italic">
-    <a href="{{ path('superadmin_index') }}">Retour à mon espace admin</a>
-  </p>
-  {% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-  {% endblock %}
+    <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a></p>
+    {% block javascripts %}
+      {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 {% endblock %}

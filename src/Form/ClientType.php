@@ -39,20 +39,22 @@ class ClientType extends AbstractType
             ->add('groupSize', NumberType::class, [
                 'label' => 'Nombre de personnes'
             ])
-            ->add('isApt', CheckboxType::class, [
-                'label' => "Êtes-vous apte à la pratique sportive?",
-                'required' => false
-            ])
-
             ->add('practiceLevel', EntityType::class, [
-                 'label' => 'Niveau de pratique sportive',
-                 'class' => PracticeLevel::class,
-                 'choice_label' => 'level'
-            ])
+                'label' => 'Niveau de pratique sportive',
+                'class' => PracticeLevel::class,
+                'choice_label' => 'level'
+                ])
             ->add('activity', EntityType::class, [
                 'label' => 'Activité',
                 'class' => Activity::class,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'attr' => [
+                    'class' => 'border border-3 rounded border-primary'
+                    ]
+                ])
+            ->add('isApt', CheckboxType::class, [
+                'label' => "Le client certifie être APTE à la pratique sportive",
+                'required' => false
             ])
         ;
     }

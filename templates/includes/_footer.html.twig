@@ -4,15 +4,13 @@
             <img src="{{ asset('build/images/coachmoi.png') }}" class="logo text-center" alt="logo"/>
         </div>
         <div class="col-lg-5 col-sm-12 d-flex justify-content-center align-items-center flex-column mt-3">
-            <p> <a href="{{ path('coachs_index') }}" class="text-white fw-bold text-uppercase">Coach</a> </p>
-            <p> <a href="{{ path('training_space') }}" class="text-white fw-bold text-uppercase">Espaces d'entrainements</a> </p>
-            <p> <a href="{{ path('contact') }}" class="text-white fw-bold text-uppercase">Contact</a> </p>
+            <p> <a href="{{ path('coachs_index') }}" class="text-white fw-bold text-uppercase text-decoration-none">Coach</a> </p>
+            <p> <a href="{{ path('training_space') }}" class="text-white fw-bold text-uppercase text-decoration-none">Espaces d'entrainements</a> </p>
+            <p> <a href="{{ path('contact') }}" class="text-white fw-bold text-uppercase text-decoration-none">Contact</a> </p>
         </div>
         <div class="col-lg-5 col-sm-12 mt-4 d-flex text-center">
             <div class="col-12 d-flex align-items-lg-end flex-column fw-bold text-white px-3 ">
-            <p>Mentions légales </p>
-            <p>Politique de confidentialité </p>
-            <p>Tout droit reservés CoachMoi.com&copy; 2021</p>
+            <p><a class="ms-1 text-reset text-decoration-none" href="{{ path('cgu') }}">Conditions générales d'utilisation</a></p>
             </div>
         </div>
     </div>

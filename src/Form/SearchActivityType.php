@@ -17,7 +17,8 @@ class SearchActivityType extends AbstractType
         $builder
             ->setMethod('GET')
             ->add('activity', EntityType::class, [
-                'label' => false,
+                'placeholder' => 'Toutes les activités',
+                'label' => 'Recherche par activité',
                 'class' => Activity::class,
                 'choice_label' => 'name',
                 'query_builder' => function (EntityRepository $er) {

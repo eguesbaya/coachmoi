@@ -4,29 +4,35 @@
 
 {% block body %}
 <div class="container">
-    <h1>Mes Disponibilités</h1>
-
-    <table class="table">
+    <h1>Disponibilité </h1>
+    <div class="d-flex justify-content-center">
+    <table class="table border border-2 rounded shadow w-75">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ availability.id }}</td>
+                <th class="bg-dark text-white w-50">Jour</th>
+                <td class="bg-light text-dark w-50">{{ availability.weekday.name }}</td>
             </tr>
             <tr>
-                <th>Heure de début</th>
-                <td>{{ availability.startTime ? availability.startTime|date('H:i:s') : '' }}</td>
+                <th class="bg-dark text-white">Heure de début</th>
+                <td class="bg-light text-dark">{{ availability.startTime ? availability.startTime|date('H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Heure de fin</th>
-                <td>{{ availability.endTime ? availability.endTime|date('H:i:s') : '' }}</td>
+                <th class="bg-dark text-white">Heure de fin</th>
+                <td class="bg-light text-dark">{{ availability.endTime ? availability.endTime|date('H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('coach_availability_index') }}" class="btn btn-success">Retour à la liste</a>
-
-    <a href="{{ path('coach_availability_edit', {'id': availability.id}) }}" class="btn btn-success">Modifier</a>
-
-    {{ include('profile_coach_availability/_delete_form.html.twig') }}
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col d-flex justify-content-center">
+            <a href="{{ path('coach_availability_edit', {'id': availability.id}) }}" class="btn btn-success text-white"><i class="bi bi-pencil-square text-success text-white"></i> &nbsp; Modifier</a>
+        </div>
+        <div class="col d-flex justify-content-center">
+            {{ include('profile_coach_availability/_delete_form.html.twig') }}
+        </div>
+    </div>
+    <div class="d-flex justify-content-end mt-5 mx-5">
+    <a href="{{ path('coach_availability_index') }}" class="btn btn-success"><i class="bi bi-arrow-counterclockwise"></i> &nbsp; Retour à la liste</a>
+    </div>
 </div>
 {% endblock %}

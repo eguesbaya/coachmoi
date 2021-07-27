@@ -1,45 +1,57 @@
 <div class="mes-preferences border border-dark rounded m-1">
-    <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-        <h2 class="m-2 text-truncate">Mes préférences</h2>
-    </div>
+   <div class="profile-h2 border border-dark rounded d-flex align-items-center bg-dark w-75 p-0">
+        <h2 class="m-2 text-truncate text-light"><i class="bi bi-heart-fill text-success me-2"></i> Mes préférences</h2>
+   </div>
     <div>
+
+        {% if app.user.client.activity is null %}
+            <div class="my-2">
+                <div class="bg-light m-3 border border-3 rounded border-danger">
+                    <p>Activité :</p>
+                    <h3 class="text-start mx-5 text-danger">Veuillez choisir votre activité.</h3>
+                    <p class="text-start mx-5 text-danger">Pour indiquer l'activité que vous souhaitez pratiquer, cliquez sur le bouton "Mettre à jour" en haut à droite.</p>
+            </div>
+        </div>
+        {% else %}
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Activité</p>
-                {% if app.user.client.activity in not null %}
-                <h3 class="mx-3">{{ app.user.client.activity.name }}</h3>
+           <div class="bg-light m-3 border rounded">
+                <p>Activité :</p>
+                <h3 class="text-start mx-5">{{ app.user.client.activity.name }}</h3>
+            </div>
+        </div>
+        {% endif %}
+
+
+
+        <div class="my-2">
+             <div class="bg-light m-3 border rounded">
+                <p>Niveau :</p>
+             {% if app.user.client.practicelevel is not null %}
+                 <h3 class="text-start mx-5">{{ app.user.client.practicelevel.level }}</h3>
                 {% endif %}
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Niveau</p>
-                {% if app.user.client.practicelevel is not null %}
-                    <h3 class="mx-3">{{ app.user.client.practicelevel.level }}</h3>
-                {% endif %}
-            </div>
-        </div>
-        <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Budget</p>
+            <div class="bg-light m-3 border rounded">
+                <p>Budget :</p>
                 {% if app.user.client.budget is not null %}
-                <h3 class="mx-3">{{ app.user.client.budget }} €/mois</h3>
+                <h3 class="text-start mx-5">{{ app.user.client.budget }} €/mois</h3>
                 {% endif %}
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Groupe</p>
-                {% if app.user.client.groupsize is not null %}
-                <h3 class="mx-3">{{ app.user.client.groupsize }} personne(s)</h3>
-                {% endif %}
+             <div class="bg-light m-3 border rounded">
+                <p>Groupe :</p>
+                 {% if app.user.client.groupsize is not null %}
+                    <h3 class="text-start mx-5">{{ app.user.client.groupsize }} personne(s)</h3>
+                 {% endif %}
             </div>
         </div>
         <div class="my-2">
-            <div class="bg-light m-3">
-                <p>Objectif sportif</p>
-                {% if app.user.client.goal is not null %}
-                <h3 class="mx-3">{{ app.user.client.goal }}</h3>
+             <div class="bg-light m-3 border rounded">
+                <p>Objectif sportif :</p>
+                  {% if app.user.client.goal is not null %}
+                 <h3 class="text-start mx-5">{{ app.user.client.goal }}</h3>
                 {% endif %}
             </div>
         </div>

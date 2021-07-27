@@ -1,8 +1,7 @@
-  <div class="row my-4 g-4">
+  <div class="row">
     {% for coach in coachs %}
-    <div class="col col-md-6 col-lg-3">
+    <div class="col-md-6 col-lg-3 my-4">
       <div class="card bg-dark">
-
         {% if coach.photo == "" %}
             <img src="{{ asset('build/images/defaut-yoga.webp') }}" class="card-img-top" alt="coach">
         {% else %}

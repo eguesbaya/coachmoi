@@ -1,19 +1,19 @@
 <nav class="navbar navbar-expand-xl navbar-light bg-dark">
 	<div class="container-fluid">
-		<img class="logo" src="{{ asset('build/images/coachmoi.png') }}" alt="logo-coach-moi">
+		<a href="{{ path('home') }}"><img class="logo" src="{{ asset('build/images/coachmoi.png') }}" alt="logo-coach-moi"></a>
 		<button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<ul class="navbar-nav me-auto my-2 my-lg-0 mx-auto">
 				<li class="nav-item mx-5">
-					<a class="nav-link text-center mx-5 fw-bold fst-italic" aria-current="page" href="{{ path('superadmin_index') }}">Accueil</a>
+					<a class="nav-link text-center mx-5 fw-bold fst-italic" aria-current="page" href="{{ path('superadmin_index') }}">Accueil Superadmin</a>
 				</li>
 				<li class="nav-item text-center mx-5 fw-bold fst-italic">
-					<a class="nav-link" href="{{ path('superadmin_show_users') }}">Gestion des utilisateurs</a>
+					<a class="nav-link" href="{{ path('superadmin_show_users') }}">Gérer les utilisateurs</a>
 				</li>
 				<li class="nav-item text-center mx-5 fw-bold fst-italic">
-					<a class="nav-link" href="{{ path('coach_booking_index') }}">Gestion des réservations</a>
+					<a class="nav-link" href="{{ path('coach_booking_index') }}">Gérer les réservations</a>
 				</li>
 			</ul>
 
@@ -33,57 +33,37 @@
                         <ul class="dropdown-menu shadow-lg w-100" aria-labelledby="dropdownMenuLink">
                             {% if is_granted('ROLE_SUPERADMIN') %}
 								<li>
-							    	<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_index') }}">
-									Accueil superadmin</a>
+							    	<a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('superadmin_index') }}">
+									<i class="bi bi-person-lines-fill text-success"></i> &nbsp; Espace admin</a>
 								</li>
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_show_users') }}">
-                                    	Gestion des utilisateurs</a>
+							   		<a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('superadmin_show_users') }}">
+                                    <i class="bi bi-people-fill text-success"></i> &nbsp; Gérer roles</a>
                             	</li>
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('coach_booking_index') }}">
-                                    	Gestion des réservations</a>
+                                    <a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('coach_booking_index') }}">
+                                    <i class="bi bi-journal-richtext text-success"></i> &nbsp; Gérer demandes</a>
+                                </li>
+								<li>
+							   		<a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('superadmin_show_clients') }}">
+                                    <i class="bi bi-file-earmark-person-fill text-success"></i> &nbsp; Gérer clients</a>
                             	</li>
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_show_clients') }}">
-                                    	Gestion des clients</a>
+							   		<a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('superadmin_show_coachs') }}">
+                                    <i class="bi bi-trophy-fill text-success"></i> &nbsp; Gérer coachs</a>
                             	</li>
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('superadmin_show_coachs') }}">
-                                    	Gestion des coachs</a>
-                            	</li>
-
-								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('admin_space_index') }}">
-                                    	Gestion des espaces</a>
+							   		<a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('admin_space_index') }}">
+                                    <i class="bi bi-geo-alt-fill text-success"></i> &nbsp; Gérer espaces</a>
                             	</li>
 								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('admin_activity_index') }}">
-                                    	Gestion des activités</a>
-                            	</li>
-                            {% elseif is_granted('ROLE_COACH') %}
-								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('profile_coach') }}">
-                                    	Voir mon profil</a>
-                            	</li>
-								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('coach_edit') }}">
-                                    	Éditer mon profil</a>
-                            	</li>
-							{% elseif is_granted('ROLE_CLIENT') %}
-								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="{{ path('profile_client') }}">
-                                    	Voir mon profil</a>
-                            	</li>
-								<li>
-							   		<a class="dropdown-item text-wrap text-dark py-2" href="">
-                                    	Éditer mon profil</a>
+							   		<a class="dropdown-item text-wrap text-white py-2 fw-bold" href="{{ path('admin_activity_index') }}">
+                                    <i class="bi bi-palette2 text-success"></i> &nbsp; Gérer activités</a>
                             	</li>
 								{% endif %}
                             <li>
-                                <a class="dropdown-item text-wrap text-danger py-2" href="{{ path('app_logout') }}">
-                                    Déconnexion
-                                </a>
+								<a class="dropdown-item text-wrap text-danger py-2 fw-bold" href="{{ path('app_logout') }}">
+								<i class="bi bi-layer-backward text-danger"></i> &nbsp; Déconnexion</a>
                             </li>
                         </ul>
                     </div>

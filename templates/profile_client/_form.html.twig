@@ -1,4 +1,31 @@
 {{ form_start(formClient) }}
-    {{ form_row(formClient) }}
-    <button class="btn btn-success m-2">{{ button_label|default('Save') }}</button>
+<div class="mes-informations border border-dark rounded m-1">
+    <div class="profile-h2 border border-dark d-flex align-items-center bg-dark rounded w-75 p-0">
+        <h2 class="m-2 text-light text-truncate"><i class="bi bi-heart-fill text-success me-2"></i> Mes préférences</h2>
+   </div>
+    <div class="m-3">
+        {{ form_row(formClient.activity) }}
+        {{ form_row(formClient.practiceLevel) }}
+        {{ form_row(formClient.isApt) }}
+        {{ form_row(formClient.goal) }}
+        {{ form_row(formClient.budget) }}
+        {{ form_row(formClient.groupSize) }}
+    </div>
+</div>
+<div class="d-flex justify-content-end">
+    <button class="btn btn-success text-light mb-5 m-2"><i class="bi bi-check-square-fill text-white"></i> {{ button_label|default('Save') }}</button>
+</div>
+<div class="mes-informations border border-dark rounded m-1">
+    <div class="profile-h2 border border-dark d-flex align-items-center bg-dark rounded w-75 p-0">
+        <h2 class="m-2 text-light text-truncate"><i class="bi bi-person-lines-fill text-success me-2"></i> Mes informations</h2>
+   </div>
+   <div class="m-3">
+        {{ form_row(formClient.user, {'label': false}) }}
+        {{ form_row(formClient.birthdate) }}
+        {{ form_row(formClient.address) }}
+    </div>
+</div>
+<div class="d-flex justify-content-end mb-5">
+    <button class="btn btn-success text-light m-2"><i class="bi bi-check-square-fill text-white"></i> {{ button_label|default('Save') }}</button>
+</div>
 {{ form_end(formClient) }}

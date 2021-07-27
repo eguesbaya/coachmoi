@@ -28,7 +28,7 @@ class Coach
 
     /**
     * @ORM\Column(type="date", nullable=true)
-    * @Assert\Date
+    * @Assert\Type("\DateTimeInterface")
     * @var \DateTimeInterface|null
     */
 
@@ -81,7 +81,6 @@ class Coach
 
    /**
     * @ORM\Column(type="datetime", nullable="true")
-    * @Assert\Date
     * @var \DateTimeInterface|null
     */
     private $updatedAt;
