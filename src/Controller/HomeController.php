@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Coach;
 use App\Entity\Client;
 use App\Entity\Activity;
@@ -36,7 +37,7 @@ class HomeController extends AbstractController
             'activities' => $activities,
             'space_categories' => $spaceCategoryRepo->findAll(),
             'coachs' => $coachs,
-            ]);
+        ]);
     }
 
 
@@ -45,30 +46,26 @@ class HomeController extends AbstractController
      */
     public function editActivity(Request $request, EntityManagerInterface $entityManager, Activity $activity): Response
     {
-
         /** @var User */
         $user = $this->getUser();
         $role = $user->getRoles();
 
-        if (( $role == ['ROLE_CLIENT', 'ROLE_USER'])){
+        if (($role == ['ROLE_CLIENT', 'ROLE_USER'])) {
             /** @var Client */
             $client = $user->getClient();
             $client->setActivity($activity);
             $entityManager->persist($client);
-       }
-
-       elseif (( $role == ['ROLE_COACH', 'ROLE_USER'])){
-        /** @var Coach */
-        $coach = $user->getCoach();
-        $coach->addActivity($activity);
-        $entityManager->persist($coach);
-   }
+        } elseif (($role == ['ROLE_COACH', 'ROLE_USER'])) {
+            /** @var Coach */
+            $coach = $user->getCoach();
+            $coach->addActivity($activity);
+            $entityManager->persist($coach);
+        }
 
         $entityManager->flush();
 
         $this->addFlash('message', 'votre modification a bien été prise en compte!');
 
         return $this->redirectToRoute('home');
-        
     }
 }
