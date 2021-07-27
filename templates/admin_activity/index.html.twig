@@ -3,16 +3,25 @@
 {% block title %}Activités{% endblock %}
 
 {% block content %}
+
 <div class="container">
-    <h1>Liste des activités</h1>
+
+    <h1>Gérer les activités</h1>
+    <div class="d-flex justify-content-end">
+            <a class= "btn btn-success text-light my-2" href="{{ path('admin_activity_new') }}"><i class="bi bi-calendar2-plus text-white"></i> Ajouter nouvelle activité</a>
+    </div>
+    <table class="table table-striped text-center bg-light border rounded">
+
+
     <table class="table text-center bg-light border rounded">
+
         <thead>
             <tr>
-                <th>Photo</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Mis en avant</th>
-                <th class="text-center">Actions</th>
+                <th class="bg-dark text-white">Photo</th>
+                <th class="bg-dark text-white">Nom</th>
+                <th class="bg-dark text-white">Description</th>
+                <th class="bg-dark text-white">Mis en avant</th>
+                <th class="bg-dark text-white text-center">Actions</th>
 
             </tr>
         </thead>
@@ -26,7 +35,7 @@
                     <i class="bi bi-{{ activity.isfeatured ? 'check' : 'x' }}-circle-fill"></i>
                 </td>
                 <td class="fst-italic">
-                    <a href="{{ path('admin_activity_edit', {'id': activity.id}) }}" class="btn btn-success text-light fs-6">Éditer</a>
+                    <a href="{{ path('admin_activity_edit', {'id': activity.id}) }}" class="btn btn-success text-light fs-6"><i class="bi bi-pencil-square text-white me-2"></i> Éditer</a>
                             {% if activity.clients|length > 0 %}
                                 </br>Cette activité est actuellement pratiquée par un ou plusieurs clients
                             {% else %}
@@ -41,7 +50,8 @@
         {% endfor %}
         </tbody>
     </table>
-    <a class= "btn btn-success text-light my-5" href="{{ path('admin_activity_new') }}">Ajouter une nouvelle activité</a>
-    <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a></p>
+    <div class="d-flex justify-content-end">
+        <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a></p>
+    </div>
 </div>
 {% endblock %}

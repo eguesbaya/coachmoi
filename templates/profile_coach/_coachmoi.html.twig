@@ -3,24 +3,36 @@
         <h2 class="m-2 text-truncate text-light"><i class="bi bi-trophy-fill text-success"></i> Coach Moi</h2>
     </div>
     <div class="bg-light my-2 px-3 py-2 m-3 border rounded">
-        <table class="table text-center">
+
+        <table class="table">
             <thead>
                 <tr class="fs-4">
                     <th scope="col">Clients</th>
                     <th scope="col">Salles</th>
                 </tr>
             </thead>
+
             <tbody>
-            {% if app.user.coach is null %}
-                <h5>Vous n'avez pas encore de clients</h5>
-            {% else %}
                 {% for booking in app.user.coach.coachbookings %}
                     <tr scope="row">
                         <td>{{ booking.client.user.firstname }} {{ booking.client.user.lastname }}</td>
                         <td>{{ booking.trainingSpace.name }}</td>
                     </tr>
+                {% else %}
+                    <tr scope="row">
+                        <td>
+                            <h5>Vous n'avez pas encore de clients</h5>
+                            {% if app.user.coach.activities is empty %}
+                                <p class="text-start fst-italic">Veuillez renseigner les activités sportives que vous enseignez pour nous aider à vous trouver des clients.</p>
+                            {% else %}
+                                <p class="text-start fst-italic">Nous sommes en train de travailler dur afin de vous trouver des clients.</p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <h5>Vous n'avez pas encore de salle</h5>
+                        </td>
+                    </tr>
                 {% endfor %}
-            {% endif %}
             </tbody>
         </table>
 </div>

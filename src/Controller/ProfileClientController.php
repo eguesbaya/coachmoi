@@ -84,7 +84,7 @@ class ProfileClientController extends AbstractController
             $availability->setClient($user->getClient());
             $entityManager->persist($availability);
             $entityManager->flush();
-            $this->addFlash('success', 'Nouvelle disponibilité ajouté');
+            $this->addFlash('success', 'Nouvelle disponibilité ajoutée');
 
             return $this->redirectToRoute('client_availability_index');
         }
