@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <table class="table text-left text-center bg-light mt-5">
+    <table class="table table-striped text-left text-center bg-light mt-5">
         <thead>
             <tr>
                 <th scope="col" class=" bg-dark text-white">Coach</th>
@@ -51,7 +51,7 @@
                     <td>
                         {% for availability in coach.availabilities %}
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ availability.weekday.name }} {{ availability.startTime|format_time() }} - {{ availability.endTime|format_time() }} </li>
+                            <li class="list-group-item">{{ availability.weekday.name }} {{ availability.startTime|format_time('short') }} - {{ availability.endTime|format_time('short') }} </li>
                         </ul>
                         {% endfor %}
                     </td>
@@ -70,6 +70,7 @@
             {% endfor %}
         </tbody>
     </table>
-
-     <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a></p>
+    <div class="d-flex justify-content-end">
+        <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a></p>
+    </div>
 {% endblock %}
