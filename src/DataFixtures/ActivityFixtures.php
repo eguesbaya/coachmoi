@@ -2,11 +2,13 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 use App\Entity\Activity;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
-class ActivityFixtures extends Fixture
+class ActivityFixtures extends Fixture implements FixtureGroupInterface
 {
     public const FEATURED_ACTIVITY = [
         [
@@ -56,10 +58,12 @@ class ActivityFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $faker = Factory::create('fr_FR');
+
         foreach (self::FEATURED_ACTIVITY as $key => $data) {
             $activity = new Activity();
             $activity->setName($data['name']);
-            $activity->setPhoto($data['photo']);
+            $activity->setPhoto($faker->imageUrl(640, 480, 'sport', true));
             $activity->setDescription($data['description']);
             $activity->setIsFeatured(true);
             $manager->persist($activity);
@@ -67,5 +71,10 @@ class ActivityFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+         return ['activity'];
     }
 }

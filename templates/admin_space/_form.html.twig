@@ -1,6 +1,12 @@
+<div class="mes-informations rounded m-2">
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-
-        <button class="btn btn-sm btn-success text-light my-3">{{ button_label|default('Valider') }}</button>
-
+    {{ form_row(form.activity, {'label': 'Activité :', 'attr': {'label': false, 'class': 'form-group'}}) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.address) }}
+    {{ form_row(form.spaceCategory) }}
+    {{ form_row(form.photoFile) }}
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-success text-white m-2"><i class="bi bi-check-square-fill text-white"></i> {{ button_label|default('Valider') }}</button>
+    </div>
 {{ form_end(form) }}
+</div>

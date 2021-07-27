@@ -27,7 +27,7 @@ class AdminSpaceController extends AbstractController
         ]);
     }
     /**
-     * @Route("/nouvelle", name="admin_space_new", methods={"GET","POST"})
+     * @Route("/nouvel", name="admin_space_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
