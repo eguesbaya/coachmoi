@@ -8,12 +8,6 @@
     <div class="container border border-1 border-dark rounded my-5">
         <div class="my-3">
             {{ form_start(userForm) }}
-                {# Email field #}
-                {{ form_errors(userForm.email) }}
-                {{ form_label(userForm.email, 'Email:') }}
-                {{ form_widget(userForm.email) }}
-
-                {# Role field #}
                 {{ form_errors(userForm.roles) }}
                 {{ form_label(userForm.roles, 'Rôles:') }}
                 {{ form_widget(userForm.roles) }}

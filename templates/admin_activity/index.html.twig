@@ -3,12 +3,18 @@
 {% block title %}Activités{% endblock %}
 
 {% block content %}
+
 <div class="container">
-    <h1>Liste des activités</h1>
+
+    <h1>Gérer les activités</h1>
     <div class="d-flex justify-content-end">
             <a class= "btn btn-success text-light my-2" href="{{ path('admin_activity_new') }}"><i class="bi bi-calendar2-plus text-white"></i> Ajouter nouvelle activité</a>
     </div>
     <table class="table table-striped text-center bg-light border rounded">
+
+
+    <table class="table text-center bg-light border rounded">
+
         <thead>
             <tr>
                 <th class="bg-dark text-white">Photo</th>
