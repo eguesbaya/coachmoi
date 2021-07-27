@@ -10,12 +10,13 @@
         <div class="col">
             {{ include('profile_coach_availability/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
         </div>
-        <div class="row mt-4">
-        <div class="col-6">
-            {{ include('profile_coach_availability/_delete_form.html.twig') }}
-        </div>
-        <div class="col-6 d-flex justify-content-end">
-            <a href="{{ path('coach_availability_index') }}" class="btn btn-success"><i class="bi bi-arrow-counterclockwise me-2"></i> Retour à la liste</a>
+        <div class="mt-4 d-flex flex-row justify-content-between">
+            <div >
+                {{ include('profile_coach_availability/_delete_form.html.twig') }}
+            </div>
+            <div>
+                <a href="{{ path('coach_availability_index') }}" class="btn btn-success ms-3"><i class="bi bi-arrow-counterclockwise me-2"></i>Retour à la liste</a>
+            </div>
         </div>
     </div>
 </div>
