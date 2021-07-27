@@ -9,9 +9,9 @@
                 <h4 class="card-title w-100">{{ activity.name }}</h4>
                 <p class="card-text text-light w-100">{{ activity.description }}</p>
                 {% if is_granted('ROLE_CLIENT') %}
-                    <a class="btn btn-primary text-light" href="{{ path('client_edit') }}" role="button">Choisir</a>
+                    <a class="btn btn-primary text-light" href="{{ path('choice_lesson', {activity: activity.id}) }}" role="button">Choisir</a>
                 {% elseif is_granted('ROLE_COACH') %}
-                    <a class="btn btn-primary text-light" href="{{ path('coach_edit') }}" role="button">Choisir</a>
+                    <a class="btn btn-primary text-light" href="{{ path('choice_lesson', {activity: activity.id}) }}" role="button">Choisir</a>
                 {% elseif is_granted('ROLE_SUPERADMIN') %}
                     <a class="btn btn-primary text-light" href="{{ path('admin_activity_edit', {'id': activity.id}) }}" role="button">Modifier</a>
                 {% else %}
