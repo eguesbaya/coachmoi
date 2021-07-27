@@ -19,16 +19,6 @@
         </thead>
         <tbody>
         {% for activity in activities %}
-        {# Is this activity currently being practiced #}
-            {# {% for client in activity.clients %}
-                {% if client is empty %}
-                    {{ include('admin_activity/_delete_form.html.twig') }}
-                {% else %}
-                    </br>Cette activité est actuellement pratiquée par un ou plusieurs clients
-                {% endif %}
-            {% endfor %} #}
-        {# End of logic block #}
-
             <tr>
                 <td><img src="{{ vich_uploader_asset(activity) }}" width="100vh"></td>
                 <td>{{ activity.name }}</td>
