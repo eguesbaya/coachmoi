@@ -6,40 +6,40 @@
 <div class="container">
     <h1>Liste de mes disponibilités</h1>
 
-    <table class="table">
+      <table class="table border border-2 rounded shadow">
         <thead>
             <tr>
-                <th>Jour</th>
-                <th>Heure de début</th>
-                <th>Heure de fin</th>
-                <th>Actions</th>
+                 <th class="bg-dark text-white w-25">Jour</th>
+                <th class="bg-dark text-white w-25">Heure de début</th>
+                <th class="bg-dark text-white w-25">Heure de fin</th>
+                <th class="bg-dark text-white w-25 text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for availability in app.user.client.availabilities %}
             <tr>
-                <td>{{ availability.weekday.name }}</td>
-                <td>{{ availability.startTime ? availability.startTime|date('H:i:s') : '' }}</td>
-                <td>{{ availability.endTime ? availability.endTime|date('H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('client_availability_edit', {'id': availability.id}) }}" class="btn btn-success">Modifier </a>
+                <td class="bg-light">{{ availability.weekday.name }}</td>
+                <td class="bg-light">{{ availability.startTime ? availability.startTime|date('H:i:s') : '' }}</td>
+                <td class="bg-light">{{ availability.endTime ? availability.endTime|date('H:i:s') : '' }}</td>
+                <td class="bg-light text-center">
+                    <a href="{{ path('client_availability_edit', {'id': availability.id}) }}" class="btn btn-success text-white mx-2"><i class="bi bi-pencil-square text-success text-white"></i> Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">Aucune disponibilité</td>
+                <td colspan="4" class="bg-light">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
     <div class="row">
         <div class="col-6">
-            <a href="{{ path('client_availability_new') }}" class="btn btn-success">Ajouter nouvelle disponibilité</a>
+           <a href="{{ path('client_availability_new') }}" class="btn btn-success m-2 text-white"><i class="bi bi-calendar2-plus text-white"></i> Ajouter disponibilité</a>
         </div>
         <div class="col-6 d-flex justify-content-end">
-            <a href="{{ path('profile_client') }}" class="btn btn-success m-2">Retour Profil</a>
+            <a href="{{ path('profile_client') }}" class="btn btn-success m-2"> <i class="bi bi-arrow-counterclockwise me-2"></i> Retour Profil</a>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}

@@ -4,32 +4,35 @@
 
 {% block content %}
 <div class="container my-5">
-    <h1>Gestion des espaces d'entrainements</h1>
+    <h1>Gestion des espaces d'entrainement</h1>
 
-    <table class="table">
+    <div class="d-flex justify-content-end">
+        <a class="btn bg-success text-light my-3" href="{{ path('admin_space_new') }}"><i class="bi bi-calendar2-plus text-white"></i> Ajouter un espace</a>
+    </div>
+    <table class="table table-striped bg-light">
         <thead>
             <tr>
-                <th>Photo</th>
-                <th>Nom de l'espace</th>
-                <th>Adresse</th>
-                <th>Actions</th>
+                <th class="bg-dark text-white">Photo</th>
+                <th class="bg-dark text-white">Nom de l'espace</th>
+                <th class="bg-dark text-white">Adresse</th>
+                <th class="bg-dark text-white text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for training_space in training_spaces %}
-            <tr>
+            <tr class=" align-middle">
                 <td><img src="{{ vich_uploader_asset(training_space) }}" width="100vh"></td>
                 <td>{{ training_space.name }}</td>
                 <td>{{ training_space.address }}</td>
-                <td class="d-flex">
-                    <a class="btn bg-success text-light" href="{{ path('admin_space_edit', {'id': training_space.id}) }}">Éditer</a>
+                <td class="text-center">
+                    <a class="btn bg-success text-light" href="{{ path('admin_space_edit', {'id': training_space.id}) }}"><i class="bi bi-pencil-square text-white me-2"></i> Éditer</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <a class="btn bg-success text-light my-3" href="{{ path('admin_space_new') }}">Ajouter un espace</a>
-
-    <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a></p>
+    <div class="d-flex justify-content-end">
+        <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('superadmin_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour espace admin</a></p>
+    </div>
 </div>
 {% endblock %}

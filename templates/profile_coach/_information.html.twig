@@ -61,12 +61,12 @@
         </div>
         <div class="my-2">
             <div class="bg-light m-3 border rounded">
-                <p class="mx-5 p-2">Possède un véhicule ?
+                <p class="mx-5 p-2">
                     {% if app.user.coach %}
                         {% if app.user.coach.hasVehicle %}
-                            &nbsp; <i class="bi bi-check-circle-fill text-success"></i>
+                            <i class="bi bi-check-circle-fill text-success"></i> Possède un véhicule !
                         {% else %}
-                            &nbsp; <i class="bi bi-x-circle-fill text-dark"></i>
+                            <i class="bi bi-x-circle-fill text-danger"></i>Ne possède pas de véhicule !!
                         {% endif %}
                     {% endif %}
                 </p>
