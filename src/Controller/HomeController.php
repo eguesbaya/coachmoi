@@ -2,14 +2,18 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\User;
+use App\Entity\Coach;
+use App\Entity\Client;
+use App\Entity\Activity;
+use App\Repository\CoachRepository;
+use App\Repository\ActivityRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\SpaceCategoryRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Coach;
-use App\Repository\CoachRepository;
-use App\Entity\Activity;
-use App\Repository\ActivityRepository;
-use App\Repository\SpaceCategoryRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
@@ -33,6 +37,34 @@ class HomeController extends AbstractController
             'activities' => $activities,
             'space_categories' => $spaceCategoryRepo->findAll(),
             'coachs' => $coachs,
-            ]);
+        ]);
+    }
+
+
+    /**
+     * @Route("/choisir/cours/{activity}", name="choice_lesson", methods={"GET","POST"})
+     */
+    public function editActivity(Request $request, EntityManagerInterface $entityManager, Activity $activity): Response
+    {
+        /** @var User */
+        $user = $this->getUser();
+
+        if (in_array('ROLE_CLIENT', $user->getRoles())) {
+            /** @var Client */
+            $client = $user->getClient();
+            $client->setActivity($activity);
+            $entityManager->persist($client);
+        } elseif (in_array('ROLE_COACH', $user->getRoles())) {
+            /** @var Coach */
+            $coach = $user->getCoach();
+            $coach->addActivity($activity);
+            $entityManager->persist($coach);
+        }
+
+        $entityManager->flush();
+
+        $this->addFlash('message', 'votre modification a bien été prise en compte!');
+
+        return $this->redirectToRoute('home');
     }
 }
