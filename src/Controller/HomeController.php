@@ -48,14 +48,13 @@ class HomeController extends AbstractController
     {
         /** @var User */
         $user = $this->getUser();
-        $role = $user->getRoles();
 
-        if (($role == ['ROLE_CLIENT', 'ROLE_USER'])) {
+        if ( in_array('ROLE_CLIENT', $user->getRoles())) {
             /** @var Client */
             $client = $user->getClient();
             $client->setActivity($activity);
             $entityManager->persist($client);
-        } elseif (($role == ['ROLE_COACH', 'ROLE_USER'])) {
+        } elseif ( in_array('ROLE_COACH', $user->getRoles())) {
             /** @var Coach */
             $coach = $user->getCoach();
             $coach->addActivity($activity);
