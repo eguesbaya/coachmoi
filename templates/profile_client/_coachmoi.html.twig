@@ -8,12 +8,12 @@
             {% if app.user.client is null or app.user.client.coachbooking is null %}
                 <h3 class="text-start mx-5">Vous n'avez pas encore de coach</h3>
                 {% if app.user.client.activity is null %}
-                <p class="text-start mx-5 fst-italic">Veuillez choisir une activité afin de nous aider à identifier le coach le mieux adapté à vos attentes.</p>
+                <p class="text-start fst-italic">Veuillez choisir une activité afin de nous aider à identifier le coach le mieux adapté à vos attentes.</p>
                 {% else %}
-                <p class="text-start mx-5 fst-italic">Nous travaillons dur afin de trouver le coach le mieux adapté à vos attentes. Merci pour votre patience!</p>
+                <p class="text-start fst-italic">Nous travaillons dur afin de trouver le coach le mieux adapté à vos attentes. Merci pour votre patience!</p>
                 {% endif %}
             {% else %}
-                <h3 class="text-start mx-5 ">{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
+                <h3 class="text-start ">{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
             {% endif %}
         </div>
     </div>
