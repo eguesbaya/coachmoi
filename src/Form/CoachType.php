@@ -27,6 +27,7 @@ class CoachType extends AbstractType
             ])
             ->add('activities', EntityType::class, [
                 'class' => Activity::class,
+                'label' => false,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('activity')
                     ->orderBy('activity.name', 'ASC');
