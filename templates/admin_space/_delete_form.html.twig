@@ -1,4 +1,4 @@
 <form method="post" action="{{ path('admin_space_delete', {'id': training_space.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ training_space.id) }}">
-    <button class="btn bg-success text-light">Supprimer</button>
+    <button class="btn bg-success text-light"><i class="bi bi-trash-fill text-white"></i> Supprimer</button>
 </form>
