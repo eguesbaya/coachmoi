@@ -63,7 +63,7 @@ class HomeController extends AbstractController
 
         $entityManager->flush();
 
-        $this->addFlash('message', 'votre modification a bien été prise en compte!');
+        $this->addFlash('success', $activity->getName() . ' a bien été ajouté à vos activités!');
 
         return $this->redirectToRoute('home');
     }
