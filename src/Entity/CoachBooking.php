@@ -27,7 +27,7 @@ class CoachBooking
      * @ORM\OneToOne(targetEntity=Client::class, inversedBy="coachBooking", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?Client $client;
+    private ?Client $client = null;
 
     /**
      * @ORM\ManyToOne(targetEntity=TrainingSpace::class)
@@ -43,14 +43,14 @@ class CoachBooking
     /**
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $createdAt;
+    private ?DateTimeInterface $createdAt = null;
 
     /**
      * @ORM\ManyToOne(targetEntity=BookingStatus::class, inversedBy="coachBookings")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\Choice(callback={"App\Entity\BookingStatus", "getBookingStatus"})
      */
-    private ?BookingStatus $bookingStatus;
+    private ?BookingStatus $bookingStatus = null;
 
     public function __sleep(): array
     {
@@ -59,7 +59,7 @@ class CoachBooking
 
     public function __construct()
     {
-        $this->setCreatedAt(new DateTime('now'));
+        $this->setCreatedAt(new DateTime());
     }
 
     public function getId(): ?int
