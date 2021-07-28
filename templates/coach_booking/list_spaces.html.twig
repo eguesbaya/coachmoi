@@ -3,18 +3,19 @@
 {% block title %} Spaces for {{ activity.name }} {% endblock %}
 
 {% block content %}
-    <h1 class="mt-5 mb-3"> LISTE DES ESPACES TROUVÉS </h1>
-    <p class="text-center text-success fw-bold">Liste des espaces pour l'activité {{ activity.name }} de la Réservation No {{ coach_booking.id }} </p>
-    <h3 class="text-left">Client: {{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</h3>
-    <table class="table text-center bg-light border border-4">
+    <h1 class="mt-5 mb-3"> LISTE DES ESPACES </h1>
+    <p class="text-center text-dark fw-bold text-uppercase">Pour l'activité <span class="text-success"> {{ activity.name }}</span> de la Réservation  <span class="text-success">N° {{ coach_booking.id }} </span></p>
+    <h3 class="text-left text-uppercase"><i class="bi bi-trophy-fill"></i> Coach : <span class="text-success">{{ coach_booking.coach.user.firstname }} {{ coach_booking.coach.user.lastname }} </span> </h3>
+    <h3 class="text-left text-uppercase"><i class="bi bi-people-fill"></i> Client : <span class="text-success">{{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</span></h3>
+    <table class="table table-striped text-center bg-light border border-4">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Espace</th>
-                <th scope="col">Type d'espace</th>
-                <th scope="col">Adresse</th>
-                <th scope="col">Disponibilités</th>
-                <th scope="col">Actions</th>
+                <th scope="col" class=" bg-dark text-white"></th>
+                <th scope="col" class=" bg-dark text-white">Espace</th>
+                <th scope="col" class=" bg-dark text-white">Type d'espace</th>
+                <th scope="col" class=" bg-dark text-white">Adresse</th>
+                <th scope="col" class=" bg-dark text-white">Disponibilités</th>
+                <th scope="col" class=" bg-dark text-white">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +28,7 @@
                 <td>
                     <ul class="list-group list-group-flush">
                     {% for availability in space.availabilities %}
-                        <li class="list-group-item">{{ availability.weekday.name }} {{ availability.startTime|format_time() }} - {{ availability.endTime|format_time() }}</li>
+                        <li class="list-group-item">{{ availability.weekday.name }} {{ availability.startTime|format_time('short') }} - {{ availability.endTime|format_time('short') }}</li>
                     {% endfor %}
                     </ul>
                 </td>
@@ -35,11 +36,14 @@
                     <form method="post" action="{{ path("cb_update_space", {"id": coach_booking.id}) }}">
                         <input type="hidden" name="_token" value="{{ csrf_token('cb_update_space' ~ coach_booking.id) }}">
                         <input type="hidden" name="trainingSpace" value="{{ space.id }}">
-                        <button class="btn bg-success text-light fs-6">Choisir</button>
+                        <button class="btn bg-success text-light fs-6">Choisir <i class="bi bi-hand-index-thumb"></i></button>
                         </form>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <div class="d-flex justify-content-end">
+      <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path("coach_booking_show", {"id": coach_booking.id}) }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour réservation N° {{ coach_booking.id }} </a></p>
+    </div>
 {% endblock %}
