@@ -22,6 +22,7 @@
 			<div class="d-flex justify-content-center align-items-center">
 				<div class="navbar-nav">
                 {% if not app.user %}
+				<div class="m-2">
                     <a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_register') }}">S'inscrire</a>
 					<a class="btn btn-success mx-1 button-login text-light" href="{{ path('app_login') }}">Se connecter</a>
                 {% endif %}
