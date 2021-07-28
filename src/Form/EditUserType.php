@@ -28,7 +28,6 @@ class EditUserType extends AbstractType
                 'multiple' => false,
                 'data' => $builder->getData()->getRoles()[0]
             ])
-            ->add('Valider', SubmitType::class);
         ;
     }
 

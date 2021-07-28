@@ -3,18 +3,18 @@
 {% block title %} Coachs for {{ activity.name }} {% endblock %}
 
 {% block content %}
-    <h1 class="mt-5 mb-3"> LISTE DE COACHS TROUVÉS </h1>
-    <p class="text-center text-success fw-bold">Liste des coachs pour l'activité {{ activity.name }} de la Réservation No {{ coach_booking.id }} </p>
-    <h3 class="text-left">Client : {{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</h3>
-    <table class="table text-center bg-light border border-4">
+    <h1 class="mt-5 mb-3"> LISTE DE COACHS </h1>
+    <p class="text-center text-dark fw-bold text-uppercase">Pour l'activité <span class="text-success"> {{ activity.name }} </span> <span class="text-center text-dark fw-bold"> de la Réservation</span> <span class="text-success">N° {{ coach_booking.id }} </span> </p>
+    <h3 class="text-left  text-uppercase"><i class="bi bi-people-fill"></i> Client :  <span class="text-success"> {{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }} </span></h3>
+    <table class="table table-striped text-center bg-light border border-4">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Coach</th>
-                <th scope="col">Tarif</th>
-                <th scope="col">Disponibilités</th>
-                 <th scope="col">Contact</th>
-                <th scope="col">Actions</th>
+                <th scope="col" class=" bg-dark text-white"></th>
+                <th scope="col" class=" bg-dark text-white">Coach</th>
+                <th scope="col" class=" bg-dark text-white">Tarif</th>
+                <th scope="col" class=" bg-dark text-white">Disponibilités</th>
+                <th scope="col" class=" bg-dark text-white">Contact</th>
+                <th scope="col" class=" bg-dark text-white">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
                 <td>
                     <ul class="list-group list-group-flush">
                     {% for availability in coach.availabilities %}
-                        <li class="list-group-item">{{ availability.weekday.name }} {{ availability.startTime|format_time() }} - {{ availability.endTime|format_time() }}</li>
+                        <li class="list-group-item">{{ availability.weekday.name }} : {{ availability.startTime|format_time('short') }} - {{ availability.endTime|format_time('short') }}</li>
                     {% endfor %}
                     </ul>
                 </td>
@@ -40,7 +40,7 @@
                  <form method="post" action="{{ path("cb_update_coach", {"id": coach_booking.id}) }}">
                     <input type="hidden" name="_token" value="{{ csrf_token('cb_update_coach' ~ coach_booking.id) }}">
                    <input type="hidden" name="coach" value="{{ coach.id }}">
-                    <button class="btn bg-success text-light fs-6">Choisir</button>
+                    <button class="btn bg-success text-light fs-6">Choisir <i class="bi bi-hand-index-thumb"></i></button>
                 </form>
                 </td>
             </tr>
@@ -49,4 +49,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="d-flex justify-content-end">
+      <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path("coach_booking_show", {"id": coach_booking.id}) }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour réservation N° {{ coach_booking.id }} </a></p>
+    </div>
 {% endblock %}

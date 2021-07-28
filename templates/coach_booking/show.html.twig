@@ -2,41 +2,41 @@
 
 {% block title %} Détail de la réservation {% endblock %}
 {% block content %}
-    <h1>Réservation {{ coach_booking.id }}</h1>
+    <h1 class="pb-3">Réservation <span class="text-success"> N° {{ coach_booking.id }}</span> </h1>
     {# ROW 1 - Section Infos + Préférence + coach-moi #}
     <div class="row d-flex justify-content-around">
         {# COLUMN 1 - Section Informations #}
         <div class="mes-informations col-md-5 border border-dark rounded">
-            <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-                <h2 class="m-2 text-truncate">Informations client</h2>
+            <div class="profile-h2 border border-dark d-flex align-items-center bg-dark rounded w-75 p-0">
+                <h2 class="m-2 text-light text-truncate"><i class="bi bi-person-lines-fill text-success me-2"></i> Informations client</h2>
             </div>
             <div>
                 <div class="bg-light my-2">
-                    <h3>Nom</h3>
-                    <p>{{ coach_booking.client.user.lastname }}</p>
+                    <p>Nom</p>
+                    <h3 class="text-start mx-5">{{ coach_booking.client.user.lastname }}</h3>
                 </div>
                 <div class="bg-light my-2">
-                    <h3>Prénom</h3>
-                    <p>{{ coach_booking.client.user.firstname }}</p>
+                    <p>Prénom</p>
+                    <h3 class="text-start mx-5">{{ coach_booking.client.user.firstname }}</h3>
                 </div>
                 <div class="bg-light my-2">
-                    <h3>Téléphone</h3>
-                    <p>{{ coach_booking.client.user.telephone }}</p>
+                    <p>Téléphone</p>
+                    <h3 class="text-start mx-5">{{ coach_booking.client.user.telephone }}</h3>
                 </div>
                 <div class="bg-light my-2">
-                    <h3>Email</h3>
-                    <p class="text-truncate">{{ coach_booking.client.user.email }}</p>
+                    <p>Email</p>
+                    <h3 class="text-start mx-5">{{ coach_booking.client.user.email }}</h3>
                 </div>
                 <div class="bg-light my-2">
-                    <h3>Adresse</h3>
-                    <p>{{ coach_booking.client.address }}</p>
+                    <p>Adresse</p>
+                    <h3 class="text-start mx-5">{{ coach_booking.client.address }}</h3>
                 </div>
                 <div class="bg-light my-2">
-                    <h3>Date de naissance</h3>
-                    <p>{{ coach_booking.client.birthdate|date("d/m/Y") }}</p>
+                    <p>Date de naissance</p>
+                    <h3 class="text-start mx-5">{{ coach_booking.client.birthdate|date("d/m/Y") }}</h3>
                 </div>
                 <div class="bg-light my-2">
-                    <h3>Documents</h3>
+                    <p>Documents</p>
                     <div class= "documents d-flex flex-row">
                         <div class= "d-flex flex-column align-items-center">
                             <i class="h1 m-1 bi bi-file-earmark-text-fill"></i>
@@ -54,54 +54,53 @@
         <div class="container-fluid col-md-5 row">
             {# Section préférences #}
             <div class="mes-preferences container-fluid border border-dark rounded">
-                <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-                    <h2 class="m-2 text-truncate">Préférences client</h2>
+            <div class="profile-h2 border border-dark d-flex align-items-center bg-dark rounded w-75 p-0">
+                <h2 class="m-2 text-light text-truncate"><i class="bi bi-heart-fill text-success me-2"></i>Préférences client</h2>
                 </div>
                 <div>
                     <div class="bg-light my-2">
-                        <h3>Activité</h3>
-                        <p>{{ coach_booking.client.activity.name }}</p>
+                        <p>Activité</p>
+                        <h3 class="text-start mx-5">{{ coach_booking.client.activity.name }}</h3>
                     </div>
                     <div class="bg-light my-2">
-                        <h3>Niveau</h3>
-                        <p>{{ coach_booking.client.practicelevel.level ?? 'Non défini' }}</p>
+                        <p>Niveau</h3p>
+                        <h3 class="text-start mx-5">{{ coach_booking.client.practicelevel.level ?? 'Non défini' }}</h3>
                     </div>
                     <div class="bg-light my-2">
-                        <h3>Budget</h3>
-                        <p>{{ coach_booking.client.budget }} €/mois</p>
+                        <p>Budget</p>
+                        <h3 class="text-start mx-5">{{ coach_booking.client.budget }} €/mois</h3>
                     </div>
                     <div class="bg-light my-2">
-                        <h3>Groupe</h3>
-                        <p>{{ coach_booking.client.groupsize }}</p>
+                        <p>Groupe</p>
+                        <h3 class="text-start mx-5">{{ coach_booking.client.groupsize }}</h3>
                     </div>
                     <div class="bg-light my-2">
-                        <h3>Objectif sportif</h3>
-                        <p>{{ coach_booking.client.goal }}</p>
+                        <p>Objectif sportif</p>
+                        <h3 class="text-start mx-5">{{ coach_booking.client.goal }}</h3>
                     </div>
                 </div>
             </div>
             {# Section coach-moi: Matching coach & training space #}
             <div class="coach-moi container-fluid border border-dark rounded mt-5">
-                <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-                    <h2 class="m-2 text-truncate">Coach moi</h2>
+                <div class="profile-h2 d-flex align-items-center border border-dark rounded title w-75 bg-dark col-md-8 col-lg-6">
+                    <h2 class="m-2 text-truncate text-light"><i class="bi bi-trophy-fill text-success me-2"></i> Coach moi</h2>
                 </div>
                 <div>
-                    <div class="bg-light my-2 p-2">
-                        <h3>Coach</h3>
-
+                    <div class="bg-light my-2 p-1">
+                        <p>Coach</p>
                         {% if coach_booking.coach %}
-                            <p class="text-center"> {{ coach_booking.coach.user.firstname }} {{ coach_booking.coach.user.lastname }}</p>
+                            <h3 class="text-center"> {{ coach_booking.coach.user.firstname }} {{ coach_booking.coach.user.lastname }}</p>
                         {% endif %}
-                        <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_coachs_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}">Coach disponible</a></p>
+                        <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_coachs_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}"><i class="bi bi-search"></i> Coachs disponibles</a></p>
 
                     </div>
                     <div class="bg-light my-2 p-2">
-                        <h3>Salle</h3>
+                        <p>Salle</p>
 
                         {% if coach_booking.trainingSpace %}
-                              <p class="text-center"> {{ coach_booking.trainingSpace.name }}</p>
+                              <h3 class="text-center"> {{ coach_booking.trainingSpace.name }}</h3>
                         {% endif %}
-                        <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_spaces_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}">Espace disponible</a></p>
+                        <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_spaces_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}"><i class="bi bi-search"></i> Espaces disponibles</a></p>
 
                     </div>
                 </div>
@@ -111,8 +110,8 @@
     {# ROW 2 - Section availabilities #}
     <div class="row">
         <div class="mes-availabilities container-fluid border col-md-11 border-dark mt-5 rounded">
-            <div class="profile-h2 border border-dark d-flex align-items-center bg-light w-75 p-0">
-                <h2 class="m-2">Disponibilités</h2>
+            <div class="profile-h2 border border-dark rounded d-flex align-items-center bg-dark w-75 p-0">
+                <h2 class="m-2 text-light"><i class="bi bi-calendar3 text-success me-2"></i> Disponibilités</h2>
             </div>
             <div>
                 <div class="bg-light my-2">
@@ -121,8 +120,8 @@
                             <tr class="fs-4">
                                 <th scope="col">#</th>
                                 <th scope="col">Jour</th>
-                                <th scope="col">Heure de début</th>
-                                <th scope="col">Heure de fin</th>
+                                <th scope="col">De</th>
+                                <th scope="col">&Agrave;</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -130,8 +129,8 @@
                             <tr class="fs-5">
                                 <th scope="row">{{ loop.index }}</th>
                                 <td>{{ availability.weekday.name }}</td>
-                                <td>{{ availability.startTime|format_time() }}</td>
-                                <td>{{ availability.endTime|format_time() }}</td>
+                                <td>{{ availability.startTime|format_time('short') }}</td>
+                                <td>{{ availability.endTime|format_time('short') }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -140,9 +139,8 @@
             </div>
         </div>
         {# Link return the page of booking list #}
-        <div class="container-fluid border col-md-11 d-flex align-items-baseline mt-5">
-            <i class="bi bi-caret-left-fill text-primary"></i>
-            <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('coach_booking_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour liste des demandes</a></p>
-        </div>
     </div>
+        <div class="d-flex justify-content-end m-2">
+            <p class= "text-uppercase fw-bold fst-italic"><a href="{{ path('coach_booking_index') }}" class="btn btn-success text-dark"><i class="bi bi-arrow-counterclockwise text-dark"></i> Retour liste demandes</a></p>
+        </div>
 {% endblock %}

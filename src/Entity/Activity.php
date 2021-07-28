@@ -48,7 +48,7 @@ class Activity
     private ?string $photo = null;
 
     /**
-    * @Vich\UploadableField(mapping="coaches", fileNameProperty="photo")
+    * @Vich\UploadableField(mapping="activities", fileNameProperty="photo")
     * @Assert\File(
     *      maxSize = "2M",
     *      mimeTypes = {

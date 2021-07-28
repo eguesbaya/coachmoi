@@ -45,11 +45,11 @@
                         <div id="carousel-training-space" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
                             <div class="carousel-inner">
                                {% for training_space in training_spaces %}
-                                <div class="carousel-item {{ loop.first ? 'active' : '' }}">
-                                    <img src="{{ training_space.photo }}"
-                                        class="d-block mw-100 border border-success border-3 rounded"
-                                        alt="{{ training_space.name }}">
-                                </div>
+                                    <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+                                            <img src="{{ vich_uploader_asset(training_space) }}"
+                                                class="d-block mw-100 border border-success border-3 rounded"
+                                                alt="{{ training_space.name }}">
+                                    </div>
                                 {% endfor %}
                             </div>
                         </div>
