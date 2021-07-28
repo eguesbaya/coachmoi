@@ -50,7 +50,7 @@ class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
                 rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
             $manager->persist($trainingSpaces);
             $trainingSpaces->setName($trainingSpaceDetails['name']);
-            copy( $trainingSpaceDetails['photo'], "public/uploads/spacetrainings/spacetraining" . $key . '.webp');
+            copy($trainingSpaceDetails['photo'], "public/uploads/spacetrainings/spacetraining" . $key . '.webp');
             $trainingSpaces->setPhoto("spacetraining" . $key . ".webp");
             $trainingSpaces->setAddress($trainingSpaceDetails['address']);
             $trainingSpaces->setSpaceCategory($this->getReference('space_category0'));
