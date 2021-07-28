@@ -3,14 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\Availability;
 use App\Entity\Client;
 use App\Form\ClientType;
-use App\Form\ClientAvailabilityType;
+use App\Entity\Availability;
+use App\Entity\CoachBooking;
 use App\Repository\UserRepository;
+use App\Form\ClientAvailabilityType;
 use App\Repository\ClientRepository;
-use App\Repository\AvailabilityRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\AvailabilityRepository;
+use App\Repository\BookingStatusRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,7 +37,7 @@ class ProfileClientController extends AbstractController
     /**
      * @Route("/profil/client/editer", name="client_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, EntityManagerInterface $emi, BookingStatusRepository $statusRepo): Response
     {
         /** @var User */
         $user = $this->getUser();
@@ -45,9 +47,17 @@ class ProfileClientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $client->setUser($user);
-            $entityManager->persist($client);
+            $emi->persist($client);
 
-            $entityManager->flush();
+            if ($client->getActivity() && $client->getCoachBooking() === null) {
+                $coachBooking = new CoachBooking();
+                $toDoStatus = $statusRepo->findOneBy(['status' => 'À faire']);
+                $coachBooking->setBookingStatus($toDoStatus);
+                $coachBooking->setClient($client);
+                $emi->persist($coachBooking);
+            }
+
+            $emi->flush();
 
             return $this->redirectToRoute('profile_client');
         }
