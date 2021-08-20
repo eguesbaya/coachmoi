@@ -62,8 +62,8 @@ class ActivityFixtures extends Fixture implements FixtureGroupInterface
         foreach (self::FEATURED_ACTIVITY as $key => $data) {
             $activity = new Activity();
             $activity->setName($data['name']);
-            copy($data['photo'], "public/uploads/activities/activity" . $key . '.webp');
-            $activity->setPhoto("activity" . $key . ".webp");
+            /*copy($data['photo'], "public/uploads/activities/activity" . $key . '.webp');*/
+            /*$activity->setPhoto("activity" . $key . ".webp");*/
             $activity->setDescription($data['description']);
             $activity->setIsFeatured(true);
             $manager->persist($activity);
@@ -75,6 +75,6 @@ class ActivityFixtures extends Fixture implements FixtureGroupInterface
 
     public static function getGroups(): array
     {
-         return ['activity'];
+         return ['client', 'trainingspace'];
     }
 }
