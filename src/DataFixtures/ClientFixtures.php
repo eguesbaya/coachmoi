@@ -9,9 +9,10 @@ use App\DataFixtures\ActivityFixtures;
 use Doctrine\Persistence\ObjectManager;
 use App\DataFixtures\PracticeLevelFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class ClientFixtures extends Fixture implements DependentFixtureInterface
+class ClientFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
 
     public const MAX_CLIENTS = 10;
@@ -29,11 +30,11 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
             $client->setBudget($faker->numberBetween(50, 200));
             $client->setGroupSize($faker->randomDigit());
             $client->setIsApt(rand(0, 1));
-            $client->setPracticeLevel($this->getReference(
+            /*$client->setPracticeLevel($this->getReference(
                 rand(0, count(PracticeLevelFixtures::LEVELS) - 1)
             ));
             $client->setActivity($this->getReference('activity_' .
-                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
+                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));*/
             $manager->persist($client);
             $this->addReference('client_' . $i, $client);
         }
@@ -48,19 +49,19 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
         $client->setBudget($faker->numberBetween(50, 200));
         $client->setGroupSize($faker->randomDigit());
         $client->setIsApt(rand(0, 1));
-        $client->setPracticeLevel($this->getReference(
+        /*$client->setPracticeLevel($this->getReference(
             rand(0, count(PracticeLevelFixtures::LEVELS) - 1)
         ));
         $client->setActivity($this->getReference('activity_' .
-                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
+                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));*/
         $manager->persist($client);
         $this->addReference('client_admin', $client);
 
         // New client test
         $client = new Client();
         $client->setUser($this->getReference('client_new', $client));
-        $client->setActivity($this->getReference('activity_' .
-                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
+        /*$client->setActivity($this->getReference('activity_' .
+                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));*/
         $manager->persist($client);
         $this->addReference('new_client', $client);
 
@@ -73,5 +74,10 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface
             UserFixtures::class,
             ActivityFixtures::class,
         ];
+    }
+
+    public static function getGroups(): array
+    {
+        return ['client'];
     }
 }

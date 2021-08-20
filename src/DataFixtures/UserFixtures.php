@@ -3,12 +3,13 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserFixtures extends Fixture
+class UserFixtures extends Fixture implements FixtureGroupInterface
 {
     public const MAX_USERS = 10;
     private $passwordEncoder;
@@ -118,5 +119,10 @@ class UserFixtures extends Fixture
         $manager->persist($superAdmin);
 
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['client'];
     }
 }

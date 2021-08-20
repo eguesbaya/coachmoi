@@ -3,11 +3,12 @@
 namespace App\DataFixtures;
 
 use App\Entity\TrainingSpace;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
+class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
     public const TRAINING_SPACE = [
         [
@@ -65,5 +66,10 @@ class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
             SpaceCategoryFixtures::class,
             ActivityFixtures::class
         ];
+    }
+
+    public static function getGroups(): array
+    {
+        return ['trainingspace'];
     }
 }

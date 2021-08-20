@@ -3,10 +3,11 @@
 namespace App\DataFixtures;
 
 use App\Entity\SpaceCategory;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
-class SpaceCategoryFixtures extends Fixture
+class SpaceCategoryFixtures extends Fixture implements FixtureGroupInterface
 {
     public const SPACE_CATEGORIES = [
         [
@@ -37,5 +38,10 @@ class SpaceCategoryFixtures extends Fixture
             $this->addReference('space_category' . $index, $spaceCategory);
         }
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['trainingspace'];
     }
 }
