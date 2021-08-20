@@ -4,11 +4,12 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use App\Entity\CoachBooking;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class CoachBookingFixtures extends Fixture implements DependentFixtureInterface
+class CoachBookingFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
     public const MAX_BOOKINGS = 10;
     public function load(ObjectManager $manager)
@@ -45,5 +46,10 @@ class CoachBookingFixtures extends Fixture implements DependentFixtureInterface
             TrainingSpaceFixtures::class,
             BookingStatusFixtures::class,
         ];
+    }
+
+    public static function getGroups(): array
+    {
+        return ['booking'];
     }
 }

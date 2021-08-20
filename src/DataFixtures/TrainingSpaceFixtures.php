@@ -70,6 +70,6 @@ class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
 
     public static function getGroups(): array
     {
-        return ['trainingspace'];
+        return ['trainingspace', 'booking'];
     }
 }

@@ -3,10 +3,11 @@
 namespace App\DataFixtures;
 
 use App\Entity\BookingStatus;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
-class BookingStatusFixtures extends Fixture
+class BookingStatusFixtures extends Fixture implements FixtureGroupInterface
 {
     public const STATUS = ['À faire', 'En cours', 'Réalisée', 'Annulée'];
 
@@ -20,5 +21,10 @@ class BookingStatusFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['booking'];
     }
 }

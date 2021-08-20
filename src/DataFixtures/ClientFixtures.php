@@ -78,6 +78,6 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface, Fixtu
 
     public static function getGroups(): array
     {
-        return ['client'];
+        return ['client', 'booking'];
     }
 }
