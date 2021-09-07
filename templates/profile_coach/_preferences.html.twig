@@ -5,27 +5,25 @@
     <div>
         <div class="my-2">
             <div class="bg-light m-3 border rounded">
-                <p >Activité :</p>
-                <h5 class="text-start mx-5">
-                <ul>
-                    {% if app.user.coach is null %}
-                       <li> <h5>Aucune activité</h5> </li>
+                <p >Activités :</p>
+                    {% for activity in app.user.coach.activities %}
+                        <h5 class="text-start mx-5"> <li> {{ activity.name }} </li>
                     {% else %}
-                        {% for activity in app.user.coach.activities %}
-                            <li> {{ activity.name }} </li>
-                        {% endfor %}
-                    {% endif %}
-                </ul>
-                </h5>
+                        <div class="alert alert-danger mx-3" role="alert">
+                            Veuillez <a href="{{ path('coach_edit') }}" class="alert-link">choisir</a> les activités que vous enseignez.
+                        </div>
+                    {% endfor %}
             </div>
         </div>
         <div class="my-2">
             <div class="bg-light m-3 border rounded">
                 <p>Tarif Horaire :</p>
-                {% if app.user.coach is null %}
-                    <h5 class="text-start mx-5">>Aucun tarif horaire</h5>
+                {% if app.user.coach.hourlyRate is null %}
+                    <div class="alert alert-danger mx-3" role="alert">
+                         Veuillez <a href="{{ path('coach_edit') }}" class="alert-link">indiquer</a> votre tarif/horaire.
+                     </div>
                 {% else %}
-                    <h5 class="text-start mx-5">{{ app.user.coach.hourlyRate }}</h5>
+                    <h5 class="text-start mx-5">{{ app.user.coach.hourlyRate }}€</h5>
                 {% endif %}
             </div>
         </div>
