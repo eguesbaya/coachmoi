@@ -31,7 +31,11 @@
              <div class="bg-light m-3 border rounded">
                 <p>Date de naissance :</p>
                 {% if app.user.client.birthDate is defined %}
-                 <h3 class="text-start mx-5">{{ app.user.client.birthDate|date("d/m/Y") }}</h3>
+                    <h3 class="text-start mx-5">{{ app.user.client.birthDate|date("d/m/Y") }}</h3>
+                {% else %}
+                    <div class="alert alert-danger mx-3" role="alert">
+                        Veuillez <a href="{{ path('client_edit') }}" class="alert-link">indiquer</a> votre date de naissance.
+                    </div>
                 {% endif %}
             </div>
         </div>
