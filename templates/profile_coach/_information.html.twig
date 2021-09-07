@@ -30,15 +30,23 @@
         <div class="my-2">
             <div class="bg-light m-3 border rounded">
                 <p> Date de naissance :</p>
-                {% if app.user.coach %}
+                {% if app.user.coach.birthDate is defined %}
                     <h5 class="text-start mx-5">{{ app.user.coach.birthDate|date("d/m/Y") }}</h5>
+                {% else %}
+                    <div class="alert alert-danger mx-3" role="alert">
+                        Veuillez <a href="{{ path('coach_edit') }}" class="alert-link">indiquer</a> votre date de naissance.
+                    </div>
                 {% endif %}
             </div>
         </div>
         <div class="my-2">
             <div class="bg-light m-3 border rounded">
                 <p> Diplôme :</p>
-                {% if app.user.coach %}
+                {% if app.user.coach.qualification is null %}
+                    <div class="alert alert-danger mx-3" role="alert">
+                         Veuillez <a href="{{ path('coach_edit') }}" class="alert-link">renseigner</a> vos diplômes.
+                     </div>
+                {% else %}
                     <h5 class="text-start mx-5">{{ app.user.coach.qualification }}</h5>
                 {% endif %}
             </div>
@@ -46,7 +54,11 @@
         <div class="my-2">
             <div class="bg-light m-3 border rounded">
                 <p> Équipement :</p>
-                {% if app.user.coach %}
+                {% if app.user.coach.equipment is null %}
+                    <div class="alert alert-danger mx-3" role="alert">
+                         Veuillez <a href="{{ path('coach_edit') }}" class="alert-link">indiquer</a> le matériel dont vous disposez <small>(tapis, medicine ball...)</small>.
+                     </div>
+                {% else %}
                     <h5 class="text-start mx-5">{{ app.user.coach.equipment }}</h5>
                 {% endif %}
             </div>
@@ -54,19 +66,23 @@
         <div class="my-2">
             <div class="bg-light m-3 border rounded">
                 <p> Biographie :</p>
-                {% if app.user.coach %}
+                {% if app.user.coach.biography is null %}
+                    <div class="alert alert-danger mx-3" role="alert">
+                         Veuillez <a href="{{ path('coach_edit') }}" class="alert-link">rédiger</a> une courte biographie.
+                     </div>
+                {% else %}
                     <h5 class="text-start mx-5">{{ app.user.coach.biography }}</h5>
                 {% endif %}
             </div>
         </div>
         <div class="my-2">
             <div class="bg-light m-3 border rounded">
-                <p class="mx-5 p-2">
+                <p class="mx-3 p-2">
                     {% if app.user.coach %}
                         {% if app.user.coach.hasVehicle %}
-                            <i class="bi bi-check-circle-fill text-success"></i> Possède un véhicule !
+                            <i class="bi bi-check-circle-fill text-success"></i> Je possède un véhicule
                         {% else %}
-                            <i class="bi bi-x-circle-fill text-danger"></i>Ne possède pas de véhicule !!
+                            <i class="bi bi-x-circle-fill text-danger"></i> Je ne possède pas de véhicule
                         {% endif %}
                     {% endif %}
                 </p>
