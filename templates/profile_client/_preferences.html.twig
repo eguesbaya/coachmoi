@@ -2,14 +2,13 @@
    <div class="profile-h2 border border-dark rounded d-flex align-items-center bg-dark w-75 p-0">
         <h2 class="m-2 text-truncate text-light"><i class="bi bi-heart-fill text-success me-2"></i> Mes préférences</h2>
    </div>
-    <div>
-
+<div>
+        {# Activity #}
         {% if app.user.client.activity is null %}
             <div class="my-2">
                 <div class="bg-light m-3 border border-3 rounded border-danger">
                     <p>Activité :</p>
-                    <h3 class="text-start mx-5 text-danger">Veuillez choisir votre activité.</h3>
-                    <p class="text-start mx-5 text-danger">Pour indiquer l'activité que vous souhaitez pratiquer, cliquez sur le bouton "Mettre à jour" en haut à droite.</p>
+                    <div class="alert alert-danger mx-3" role="alert">Veuillez choisir votre activité.</div>
             </div>
         </div>
         {% else %}
@@ -21,39 +20,62 @@
         </div>
         {% endif %}
 
-
-
+        {# Practice Level #}
         <div class="my-2">
-             <div class="bg-light m-3 border rounded">
-                <p>Niveau :</p>
-             {% if app.user.client.practicelevel is not null %}
-                 <h3 class="text-start mx-5">{{ app.user.client.practicelevel.level }}</h3>
-                {% endif %}
-            </div>
+            {% if app.user.client.practicelevel is null %}
+                <div class="bg-light m-3 border border-3 rounded border-danger">
+                    <p>Niveau :</p>
+                    <div class="alert alert-danger mx-3" role="alert">Veuillez indiquer votre niveau.</div>
+                </div>
+            {% else %}
+                <div class="bg-light m-3 border rounded">
+                    <p>Niveau :</p>
+                    <h3 class="text-start mx-5">{{ app.user.client.practicelevel.level }}</h3>
+                </div>
+            {% endif %}
         </div>
+
+        {# Budget #}
         <div class="my-2">
-            <div class="bg-light m-3 border rounded">
-                <p>Budget :</p>
-                {% if app.user.client.budget is not null %}
-                <h3 class="text-start mx-5">{{ app.user.client.budget }} €/mois</h3>
-                {% endif %}
-            </div>
+            {% if app.user.client.budget is null %}
+                <div class="bg-light m-3 border border-3 rounded border-danger">
+                    <p>Budget :</p>
+                    <div class="alert alert-danger mx-3" role="alert">Veuillez indiquer votre budget.</div>
+                </div>
+            {% else %}
+                <div class="bg-light m-3 border rounded">
+                        <p>Budget :</p>
+                        <h3 class="text-start mx-5">{{ app.user.client.budget }} €/mois</h3>
+                </div>
+            {% endif %}
         </div>
+
+        {# Groupe #}
         <div class="my-2">
-             <div class="bg-light m-3 border rounded">
-                <p>Groupe :</p>
-                 {% if app.user.client.groupsize is not null %}
+            {% if app.user.client.budget is null %}
+                <div class="bg-light m-3 border border-3 rounded border-danger">
+                    <p>Groupe :</p>
+                    <div class="alert alert-danger mx-3" role="alert">Veuillez indiquer le nombre de personnes à inscrire.</div>
+                </div>
+            {% else %}
+                <div class="bg-light m-3 border border-3 rounded border-danger">
+                    <p>Groupe :</p>
                     <h3 class="text-start mx-5">{{ app.user.client.groupsize }} personne(s)</h3>
-                 {% endif %}
-            </div>
+                </div>  
+            {% endif %}
         </div>
+
+        {# Objectif #}
         <div class="my-2">
-             <div class="bg-light m-3 border rounded">
+            {% if app.user.client.budget is null %}
+                <div class="bg-light m-3 border border-3 rounded border-danger">
+                    <p>Objectif sportif :</p>
+                    <div class="alert alert-danger mx-3" role="alert">Veuillez indiquer votre objectif.</div>
+                </div>
+            {% else %}
                 <p>Objectif sportif :</p>
-                  {% if app.user.client.goal is not null %}
-                 <h3 class="text-start mx-5">{{ app.user.client.goal }}</h3>
-                {% endif %}
-            </div>
+                <h3 class="text-start mx-5">{{ app.user.client.goal }}</h3>
+            {% endif %}
         </div>
     </div>
 </div>
