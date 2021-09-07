@@ -8,7 +8,7 @@
             <div class="my-2">
                 <div class="bg-light m-3 border border-3 rounded border-danger">
                     <p>Activité :</p>
-                    <div class="alert alert-danger mx-3" role="alert">Veuillez choisir votre activité.</div>
+                    <div class="alert alert-danger mx-3" role="alert">Veuillez <a href="{{ path('client_edit') }}" class="alert-link">choisir</a> votre activité.</div>
             </div>
         </div>
         {% else %}
@@ -25,7 +25,7 @@
             {% if app.user.client.practicelevel is null %}
                 <div class="bg-light m-3 border border-3 rounded border-danger">
                     <p>Niveau :</p>
-                    <div class="alert alert-danger mx-3" role="alert">Veuillez indiquer votre niveau.</div>
+                    <div class="alert alert-danger mx-3" role="alert">Veuillez <a href="{{ path('client_edit') }}" class="alert-link">indiquer</a> votre niveau.</div>
                 </div>
             {% else %}
                 <div class="bg-light m-3 border rounded">
@@ -40,7 +40,7 @@
             {% if app.user.client.budget is null %}
                 <div class="bg-light m-3 border border-3 rounded border-danger">
                     <p>Budget :</p>
-                    <div class="alert alert-danger mx-3" role="alert">Veuillez indiquer votre budget.</div>
+                    <div class="alert alert-danger mx-3" role="alert">Veuillez <a href="{{ path('client_edit') }}" class="alert-link">indiquer</a> votre budget.</div>
                 </div>
             {% else %}
                 <div class="bg-light m-3 border rounded">
@@ -55,13 +55,13 @@
             {% if app.user.client.budget is null %}
                 <div class="bg-light m-3 border border-3 rounded border-danger">
                     <p>Groupe :</p>
-                    <div class="alert alert-danger mx-3" role="alert">Veuillez indiquer le nombre de personnes à inscrire.</div>
+                    <div class="alert alert-danger mx-3" role="alert">Veuillez <a href="{{ path('client_edit') }}" class="alert-link">indiquer</a> le nombre de personnes à inscrire.</div>
                 </div>
             {% else %}
                 <div class="bg-light m-3 border border-3 rounded border-danger">
                     <p>Groupe :</p>
                     <h3 class="text-start mx-5">{{ app.user.client.groupsize }} personne(s)</h3>
-                </div>  
+                </div
             {% endif %}
         </div>
 
@@ -70,7 +70,7 @@
             {% if app.user.client.budget is null %}
                 <div class="bg-light m-3 border border-3 rounded border-danger">
                     <p>Objectif sportif :</p>
-                    <div class="alert alert-danger mx-3" role="alert">Veuillez indiquer votre objectif.</div>
+                    <div class="alert alert-danger mx-3" role="alert">Veuillez <a href="{{ path('client_edit') }}" class="alert-link">indiquer</a> votre objectif.</div>
                 </div>
             {% else %}
                 <p>Objectif sportif :</p>
