@@ -20,16 +20,16 @@
                     </tr>
                 {% else %}
                     <tr scope="row">
-                        <td>
-                            <h5>Vous n'avez pas encore de clients</h5>
-                            {% if app.user.coach.activities is empty %}
-                                <p class="text-start fst-italic">Veuillez renseigner les activités sportives que vous enseignez pour nous aider à vous trouver des clients.</p>
-                            {% else %}
-                                <p class="text-start fst-italic">Nous sommes en train de travailler dur afin de vous trouver des clients.</p>
-                            {% endif %}
-                        </td>
-                        <td>
-                            <h5>Vous n'avez pas encore de salle</h5>
+                        <td colspan="2">
+                            <div class="alert alert-danger m-3" role="alert">
+                                <b>Vous n'avez pas encore de clients</b>
+                                </br>
+                                {% if app.user.coach.activities is empty %}
+                                    <small>Veuillez renseigner les activités sportives que vous enseignez pour nous aider à vous trouver des clients.</small>
+                                {% else %}
+                                    <small>Nous sommes en train de travailler dur afin de vous trouver des clients. Mercipour votre patience !</small>
+                                {% endif %}
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}
