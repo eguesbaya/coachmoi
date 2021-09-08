@@ -18,18 +18,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% if app.user.coach is null %}
-                        <h5>Vous n'avez pas encore de disponibilités</h5>
-                    {% else %}
-                        {% for availability in app.user.coach.availabilities %}
+                    {% for availability in app.user.coach.availabilities %}
                         <tr class="fs-5">
                             <th scope="row" class="d-none d-md-block">{{ loop.index }}</th>
                             <td>{{ availability.weekday.name }}</td>
                             <td>{{ availability.startTime|format_time('short') }}</td>
                             <td>{{ availability.endTime|format_time('short') }}</td>
                         </tr>
-                        {% endfor %}
-                    {% endif %}
+                    {% else %}
+                        <td colspan="4">
+                            <div class="alert alert-danger m-3" role="alert">
+                                Veuillez <a href="{{ path('coach_availability_new') }}" class="alert-link">renseigner vos disponibilités</a>.
+                            </div>
+                        </td>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
