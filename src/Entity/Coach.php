@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CoachRepository::class)
- *  @Vich\Uploadable
+ * @Vich\Uploadable
  */
 class Coach
 {
@@ -64,10 +64,7 @@ class Coach
     * @Vich\UploadableField(mapping="coaches", fileNameProperty="photo")
     * @Assert\File(
     *      maxSize = "2M",
-    *      mimeTypes = {
-    *              "image/jpg", "image/jpg",
-    *              "image/jpeg", "image/jpeg",
-    *              "image/png", "image/webp"},
+    *      mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/webp"},
     * )
     * @var File|null
     */
@@ -75,7 +72,7 @@ class Coach
 
    /**
     * @ORM\Column(type="string", length=255, nullable=true)
-    * @var string
+    * @var string|null
     */
     private ?string $photo = "";
 

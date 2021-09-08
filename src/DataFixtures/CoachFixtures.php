@@ -37,13 +37,13 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
 
         //Coach for Demo (linked to Coach Demo User)
         $coach = new Coach();
-        // $coach->setPhotoFile(null, 640, 480, 'animals', true, true, null, false);
+        $photo = $faker->image('public/uploads/coaches', 640, 480, 'sport', false, true, null, false);
+        $coach->setPhoto($photo);
         $coach->setBirthdate($faker->dateTimeThisCentury());
         $coach->setHasVehicle($faker->boolean());
         $coach->setQualification('BP');
         $coach->setEquipment('tapis, haltères et medecine ball');
         $coach->setHourlyRate(25);
-        // Replaced the function rand() by the id of the user to avoid the error of duplicated user ids
         $coach->setUser($this->getReference('demo_coach'));
         $coach->addActivity($this->getReference('activity_0'));
         $coach->setBiography('Jeune coach orléanais, je suis attentif à mes clients et m\'adapte à leur  
