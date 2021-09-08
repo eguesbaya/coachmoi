@@ -29,7 +29,7 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
             $coach->setHourlyRate($faker->numberBetween(5, 100));
             $coach->setUser($this->getReference('user_coach_' . $i));
             $coach->addActivity($this->getReference('activity_' .
-                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
+                rand(0, count(ActivityFixtures::ACTIVITY) - 1)));
 
             $manager->persist($coach);
             $this->addReference('coach_' . $i, $coach);

@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use Faker\Factory;
 use App\Entity\TrainingSpace;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -45,16 +46,18 @@ class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
+        $faker = Factory::create('fr_FR');
+
         foreach (self::TRAINING_SPACE as $key => $trainingSpaceDetails) {
             $trainingSpaces = new TrainingSpace();
+            $photo = $faker->image('public/uploads/training_spaces', 640, 480, 'training space', false, true, null, false);
+            $trainingSpaces->setPhoto($photo);
             $trainingSpaces->addActivity($this->getReference('activity_' .
-                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
-            $manager->persist($trainingSpaces);
+                rand(0, count(ActivityFixtures::ACTIVITY) - 1)));
             $trainingSpaces->setName($trainingSpaceDetails['name']);
-            /*copy($trainingSpaceDetails['photo'], "public/uploads/spacetrainings/spacetraining" . $key . '.webp');*/
-            /*$trainingSpaces->setPhoto("spacetraining" . $key . ".webp");*/
             $trainingSpaces->setAddress($trainingSpaceDetails['address']);
             $trainingSpaces->setSpaceCategory($this->getReference('space_category0'));
+            $manager->persist($trainingSpaces);
             $this->addReference('training_space_' . $key, $trainingSpaces);
         }
         $manager->flush();
