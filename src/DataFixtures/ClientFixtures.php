@@ -20,6 +20,7 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface, Fixtu
     {
         $faker = Factory::create('fr_FR');
 
+        // Random Clients linked to random Client Users
         for ($i = 0; $i < self::MAX_CLIENTS; $i++) {
             $client = new Client();
             $client->setUser($this->getReference('user_client_' . $i, $client));
@@ -29,17 +30,17 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface, Fixtu
             $client->setGoal($faker->sentence(3));
             $client->setBudget($faker->numberBetween(50, 200));
             $client->setGroupSize($faker->randomDigit());
-            $client->setIsApt(rand(0, 1));
-            /*$client->setPracticeLevel($this->getReference(
+            $client->setIsApt($faker->boolean());
+            $client->setPracticeLevel($this->getReference(
                 rand(0, count(PracticeLevelFixtures::LEVELS) - 1)
             ));
-            $client->setActivity($this->getReference('activity_' .
-                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));*/
+            // $client->setActivity($this->getReference('activity_' .
+            //     rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));
             $manager->persist($client);
             $this->addReference('client_' . $i, $client);
         }
 
-        //Client for Demo
+        //Client for Demo (linked to Client Demo User)
         $client = new Client();
         $client->setUser($this->getReference('demo_client'));
         $client->setBirthdate($faker->dateTimeThisCentury());
@@ -48,7 +49,7 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface, Fixtu
         $client->setGoal($faker->sentence(3));
         $client->setBudget($faker->numberBetween(50, 200));
         $client->setGroupSize($faker->randomDigit());
-        $client->setIsApt(rand(0, 1));
+        $client->setIsApt($faker->boolean());
         /*$client->setPracticeLevel($this->getReference(
             rand(0, count(PracticeLevelFixtures::LEVELS) - 1)
         ));

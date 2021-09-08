@@ -72,7 +72,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
                 'coach'
             ));
             $manager->persist($coach);
-            $this->addReference('usercoach_' . $i, $coach); // Trace back ref
+            $this->addReference('user_coach_' . $i, $coach); // Trace back ref
         }
 
         //Coach for Demo
@@ -87,7 +87,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
             'coach'
         ));
         $manager->persist($coach);
-        $this->addReference('coach', $coach);
+        $this->addReference('demo_coach', $coach);
 
         //Superadmin
         $superAdmin = new User();
