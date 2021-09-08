@@ -37,7 +37,7 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
 
         //Coach for Demo (linked to Coach Demo User)
         $coach = new Coach();
-        $photo = $faker->image('public/uploads/coaches', 640, 480, 'sport', false, true, null, false);
+        $photo = $faker->image('public/uploads/coaches', 640, 480, 'coach', false, true, null, false);
         $coach->setPhoto($photo);
         $coach->setBirthdate($faker->dateTimeThisCentury());
         $coach->setHasVehicle($faker->boolean());

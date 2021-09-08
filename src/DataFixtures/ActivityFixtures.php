@@ -58,10 +58,13 @@ class ActivityFixtures extends Fixture implements FixtureGroupInterface
 
     public function load(ObjectManager $manager)
     {
+        $faker = Factory::create('fr_FR');
 
         foreach (self::FEATURED_ACTIVITY as $key => $data) {
             $activity = new Activity();
             $activity->setName($data['name']);
+            $photo = $faker->image('public/uploads/activities', 640, 480, 'sport', false, true, null, false);
+            $activity->setPhoto($photo);
             /*copy($data['photo'], "public/uploads/activities/activity" . $key . '.webp');*/
             /*$activity->setPhoto("activity" . $key . ".webp");*/
             $activity->setDescription($data['description']);
