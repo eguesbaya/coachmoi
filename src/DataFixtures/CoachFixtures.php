@@ -13,6 +13,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class CoachFixtures extends Fixture implements DependentFixtureInterface
 {
     public const MAX_COACH = UserFixtures::MAX_USERS;
+
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
@@ -36,6 +37,7 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
 
         //Coach for Demo (linked to Coach Demo User)
         $coach = new Coach();
+        // $coach->setPhotoFile(null, 640, 480, 'animals', true, true, null, false);
         $coach->setBirthdate($faker->dateTimeThisCentury());
         $coach->setHasVehicle($faker->boolean());
         $coach->setQualification('BP');
@@ -44,7 +46,8 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface
         // Replaced the function rand() by the id of the user to avoid the error of duplicated user ids
         $coach->setUser($this->getReference('demo_coach'));
         $coach->addActivity($this->getReference('activity_0'));
-        $coach->setBiography('Jeune coach orléanais, je suis attentif à mes clients et m\'adapte à leur  psychologie afin de les pousser à donner le meilleur d\'eux-mêmes!');
+        $coach->setBiography('Jeune coach orléanais, je suis attentif à mes clients et m\'adapte à leur  
+        psychologie afin de les pousser à donner le meilleur d\'eux-mêmes!');
         for ($i = 0; $i < CoachBookingFixtures::MAX_BOOKINGS; $i++) {
             $coach->addCoachBooking($this->getReference('booking_' . $i));
         }

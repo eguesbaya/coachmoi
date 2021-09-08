@@ -6,12 +6,15 @@
          <div class="bg-light m-3 border rounded">
             <p>Coach :</p>
             {% if app.user.client is null or app.user.client.coachbooking is null %}
-                <h3 class="text-start mx-5">Vous n'avez pas encore de coach</h3>
-                {% if app.user.client.activity is null %}
-                <p class="text-start fst-italic">Veuillez choisir une activité afin de nous aider à identifier le coach le mieux adapté à vos attentes.</p>
-                {% else %}
-                <p class="text-start fst-italic">Nous travaillons dur afin de trouver le coach le mieux adapté à vos attentes. Merci pour votre patience!</p>
-                {% endif %}
+                <div class="alert alert-danger mx-3" role="alert">
+                    <b>Vous n'avez pas encore de coach.</b>
+                    </br>
+                    {% if app.user.client.activity is null %}
+                        <small>Veuillez <a href="{{ path('client_edit') }}" class="alert-link">choisir une activité</a> afin de nous aider à identifier le coach le mieux adapté à vos attentes.</small>
+                    {% else %}
+                        <small>Nous travaillons dur afin de trouver le coach le mieux adapté à vos attentes. Merci pour votre patience!</small>
+                    {% endif %}
+                </div>
             {% else %}
                 <h3 class="text-start ">{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
             {% endif %}
@@ -22,12 +25,15 @@
          <div class="bg-light m-3 border rounded">
             <p>Espace d'entrainement :</p>
             {% if app.user.client is null or app.user.client.coachbooking is null %}
-            <h3 class="text-start mx-5">Vous n'avez pas encore d'espace d'entrainement</h3>
-                {% if app.user.client.activity is null %}
-                <p class="text-start mx-5 fst-italic">Veuillez choisir une activité afin de nous aider à identifier l'espace le mieux adapté à vos attentes.</p>
-                {% else %}
-                <p class="text-start mx-5 fst-italic">Nous travaillons dur afin de trouver l'espace d'entrainement le mieux adapté à vos attentes. Merci pour votre patience!</p>
-                {% endif %}
+                <div class="alert alert-danger mx-3" role="alert">
+                    <b>Vous n'avez pas encore d'espace d'entrainement.</b>
+                    </br>
+                    {% if app.user.client.activity is null %}
+                        <small>Veuillez choisir <a href="{{ path('client_edit') }}" class="alert-link">choisir une activité</a> afin de nous aider à identifier l'espace le mieux adapté à vos attentes.</small>
+                    {% else %}
+                        <small>Nous travaillons dur afin de trouver l'espace d'entrainement le mieux adapté à vos attentes. Merci pour votre patience!</small>
+                    {% endif %}
+                </div>
             {% else %}
             <h3 class="text-start mx-5">{{ app.user.client.coachbooking.trainingSpace.name }}</h3>
             {% endif %}

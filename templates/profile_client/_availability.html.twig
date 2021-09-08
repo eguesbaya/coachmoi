@@ -7,7 +7,6 @@
         <a href="{{ path('client_availability_index') }}" class="btn btn-success m-3 text-light"><i class="bi bi-pencil-square text-white me-2"></i> Changer mes disponibilités</a>
     </div>
     <div>
-    <div>
           <div class="bg-light m-3 border rounded">
             <table class="table text-center">
                 <thead>
@@ -20,17 +19,24 @@
                 </thead>
                 <tbody>
                     {% if app.user.client %}
-                        {% for availability in app.user.client.availabilities %}
-                            <tr class="fs-5">
+                        <tr class="fs-5">
+                            {% for availability in app.user.client.availabilities %}
                                 <th scope="row" class="d-none d-md-block">{{ loop.index }}</th>
                                 <td>{{ availability.weekday.name }}</td>
                                 <td>{{ availability.startTime|format_time('short') }}</td>
                                 <td>{{ availability.endTime|format_time('short') }}</td>
-                            </tr>
+                            {% else %}
+                                <td colspan="4">
+                                    <div class="alert alert-danger m-3" role="alert">
+                                        Veuillez <a href="{{ path('client_availability_new') }}" class="alert-link">renseigner vos disponibilités</a>.
+                                    </div>
+                                </td>
+                        </tr>
                         {% endfor %}
-                    {% endif %}
                 </tbody>
             </table>
+
+            {% endif %}
         </div>
     </div>
 </div>
