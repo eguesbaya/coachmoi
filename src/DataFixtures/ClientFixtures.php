@@ -15,14 +15,14 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class ClientFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
 
-    public const MAX_CLIENTS = 10;
+    public const MAX_CLIENTS = UserFixtures::MAX_USERS;
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
 
         for ($i = 0; $i < self::MAX_CLIENTS; $i++) {
             $client = new Client();
-            $client->setUser($this->getReference('user_' . $i, $client));
+            $client->setUser($this->getReference('user_client_' . $i, $client));
             $client->setAddress($faker->address());
             $client->setCreatedAt($faker->dateTimeThisCentury());
             $client->setBirthdate($faker->dateTimeThisCentury());
@@ -39,9 +39,9 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface, Fixtu
             $this->addReference('client_' . $i, $client);
         }
 
-        // Client admin
+        //Client for Demo
         $client = new Client();
-        $client->setUser($this->getReference('client'));
+        $client->setUser($this->getReference('demo_client'));
         $client->setBirthdate($faker->dateTimeThisCentury());
         $client->setAddress($faker->address());
         $client->setCreatedAt($faker->dateTimeThisCentury());
@@ -55,15 +55,7 @@ class ClientFixtures extends Fixture implements DependentFixtureInterface, Fixtu
         $client->setActivity($this->getReference('activity_' .
                 rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));*/
         $manager->persist($client);
-        $this->addReference('client_admin', $client);
-
-        // New client test
-        $client = new Client();
-        $client->setUser($this->getReference('client_new', $client));
-        /*$client->setActivity($this->getReference('activity_' .
-                rand(0, count(ActivityFixtures::FEATURED_ACTIVITY) - 1)));*/
-        $manager->persist($client);
-        $this->addReference('new_client', $client);
+        $this->addReference('client', $client);
 
         $manager->flush();
     }

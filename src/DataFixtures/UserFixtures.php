@@ -29,7 +29,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
     {
         $faker = Factory::create('fr_FR');
 
-        //Users
+        //Random clients
         for ($i = 0; $i <= self::MAX_USERS; $i++) {
             $client = new User();
             $client->setFirstname($faker->firstName());
@@ -39,41 +39,27 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
             $client->setEmail('client' . $i . '@gmail.com');
             $client->setPassword($this->passwordEncoder->encodePassword(
                 $client,
-                'usercoachmoi'
+                'client'
             ));
             $manager->persist($client);
-            $this->addReference('user_' . $i, $client);
+            $this->addReference('user_client_' . $i, $client);
         }
 
-        //Client
+        //Client for Demo
         $client = new User();
-        $client->setFirstname('Mystère');
+        $client->setFirstname('Demo');
         $client->setLastname('Client');
         $client->setRoles([self::ROLES[2]]);
-        $client->setTelephone('020304099');
-        $client->setEmail('client@gmail.com');
+        $client->setTelephone('02030400506');
+        $client->setEmail('demo.client@gmail.com');
         $client->setPassword($this->passwordEncoder->encodePassword(
             $client,
             'client'
         ));
         $manager->persist($client);
-        $this->addReference('client', $client);
+        $this->addReference('demo_client', $client);
 
-        //New client
-        $newClient = new User();
-        $newClient->setFirstname('New');
-        $newClient->setLastname('Client');
-        $newClient->setRoles([self::ROLES[2]]);
-        $newClient->setTelephone('020304099');
-        $newClient->setEmail('client.new@gmail.com');
-        $newClient->setPassword($this->passwordEncoder->encodePassword(
-            $newClient,
-            'new'
-        ));
-        $manager->persist($newClient);
-        $this->addReference('client_new', $newClient);
-
-        // Fixture for coach's demo account
+        // Random coaches
         for ($i = 0; $i <= CoachFixtures::MAX_COACH; $i++) {
             $coach = new User();
             $coach->setFirstname($faker->firstName());
@@ -83,19 +69,19 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
             $coach->setEmail('coach' . $i . '@gmail.com');
             $coach->setPassword($this->passwordEncoder->encodePassword(
                 $coach,
-                'admincoachmoi'
+                'coach'
             ));
             $manager->persist($coach);
-            $this->addReference('usercoach_' . $i, $coach);
+            $this->addReference('usercoach_' . $i, $coach); // Trace back ref
         }
 
-        //Coach with several clients
+        //Coach for Demo
         $coach = new User();
         $coach->setFirstname($faker->firstName());
         $coach->setLastname($faker->lastName());
         $coach->setRoles([self::ROLES[1]]);
         $coach->setTelephone($faker->mobileNumber());
-        $coach->setEmail('coach@gmail.com');
+        $coach->setEmail('demo.coach@gmail.com');
         $coach->setPassword($this->passwordEncoder->encodePassword(
             $coach,
             'coach'
@@ -103,18 +89,16 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         $manager->persist($coach);
         $this->addReference('coach', $coach);
 
-
-
         //Superadmin
         $superAdmin = new User();
         $superAdmin->setFirstname('Franck');
-        $superAdmin->setLastname('Sangoku');
+        $superAdmin->setLastname('Amouroux');
         $superAdmin->setRoles([self::ROLES[0]]);
         $superAdmin->setTelephone($faker->mobileNumber());
-        $superAdmin->setEmail('franck@gmail.com');
+        $superAdmin->setEmail('superadmin@coachmoi.fr');
         $superAdmin->setPassword($this->passwordEncoder->encodePassword(
             $superAdmin,
-            'coachmoi'
+            'superadmin'
         ));
         $manager->persist($superAdmin);
 
