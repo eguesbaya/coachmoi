@@ -156,7 +156,7 @@ class Coach
         return $this->qualification;
     }
 
-    public function setQualification(string $qualification): self
+    public function setQualification(?string $qualification): self
     {
         $this->qualification = $qualification;
 
