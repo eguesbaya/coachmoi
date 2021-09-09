@@ -14,6 +14,7 @@
                     <a class="btn btn-primary text-light" href="{{ path('choice_lesson', {activity: activity.id}) }}" role="button">Choisir</a>
                 {% elseif is_granted('ROLE_SUPERADMIN') %}
                     <a class="btn btn-primary text-light" href="{{ path('admin_activity_edit', {'id': activity.id}) }}" role="button">Modifier</a>
+                {% elseif is_granted('ROLE_USER') %}
                 {% else %}
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary text-light" data-bs-toggle="modal"
