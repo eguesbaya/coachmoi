@@ -50,7 +50,16 @@ class TrainingSpaceFixtures extends Fixture implements DependentFixtureInterface
 
         foreach (self::TRAINING_SPACE as $key => $trainingSpaceDetails) {
             $trainingSpaces = new TrainingSpace();
-            $photo = $faker->image('public/uploads/training_spaces', 640, 480, 'training space', false, true, null, false);
+            $photo = $faker->image(
+                'public/uploads/training_spaces',
+                640,
+                480,
+                'training space',
+                false,
+                true,
+                null,
+                false
+            );
             $trainingSpaces->setPhoto($photo);
             $trainingSpaces->addActivity($this->getReference('activity_' .
                 rand(0, count(ActivityFixtures::ACTIVITY) - 1)));
