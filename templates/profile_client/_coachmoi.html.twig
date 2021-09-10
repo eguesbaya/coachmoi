@@ -5,18 +5,18 @@
     <div class="my-2">
          <div class="bg-light m-3 border rounded">
             <p>Coach :</p>
-            {% if app.user.client is null or app.user.client.coachbooking is null %}
+            {% if app.user.client is null or app.user.client.coachbooking is null or app.user.client.coachbooking.coach is null %}
                 <div class="alert alert-danger mx-3" role="alert">
                     <b>Vous n'avez pas encore de coach.</b>
                     </br>
                     {% if app.user.client.activity is null %}
                         <small>Veuillez <a href="{{ path('client_edit') }}" class="alert-link">choisir une activité</a> afin de nous aider à identifier le coach le mieux adapté à vos attentes.</small>
-                    {% else %}
+                    {% elseif app.user.client.coachbooking.coach is null %}
                         <small>Nous travaillons dur afin de trouver le coach le mieux adapté à vos attentes. Merci pour votre patience!</small>
                     {% endif %}
                 </div>
             {% else %}
-                <h3 class="text-start ">{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
+                <h3 class="text-start ">{{ app.user.client.coachbooking.coach.firstname }} {{ app.user.client.coachbooking.coach.lastname }}</h3>
             {% endif %}
         </div>
     </div>
@@ -24,13 +24,13 @@
     <div class="my-2">
          <div class="bg-light m-3 border rounded">
             <p>Espace d'entrainement :</p>
-            {% if app.user.client is null or app.user.client.coachbooking is null %}
+            {% if app.user.client is null or app.user.client.coachbooking is null or app.user.client.coachbooking.trainingSpace is null %}
                 <div class="alert alert-danger mx-3" role="alert">
                     <b>Vous n'avez pas encore d'espace d'entrainement.</b>
                     </br>
                     {% if app.user.client.activity is null %}
                         <small>Veuillez choisir <a href="{{ path('client_edit') }}" class="alert-link">choisir une activité</a> afin de nous aider à identifier l'espace le mieux adapté à vos attentes.</small>
-                    {% else %}
+                    {% elseif app.user.client.coachbooking.trainingSpace is null %}
                         <small>Nous travaillons dur afin de trouver l'espace d'entrainement le mieux adapté à vos attentes. Merci pour votre patience!</small>
                     {% endif %}
                 </div>

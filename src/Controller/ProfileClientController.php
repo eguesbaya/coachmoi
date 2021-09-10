@@ -46,18 +46,30 @@ class ProfileClientController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $client->setUser($user);
-            $emi->persist($client);
+            //---WHY IS THIS NECESSARY?---
+            // $client->setUser($user);
+            // $emi->persist($client);
 
-            if ($client->getActivity() && $client->getCoachBooking() === null) {
+            //Si le client n'est pas encore relié à un coachBooking:
+            if ($client->getCoachBooking() === null) {
+                //On créé un nouveau coachBooking...
                 $coachBooking = new CoachBooking();
+                //... que l'on lie au client
+                $coachBooking->setClient($client);
+                // On lui attribue le statut "A faire"
                 $toDoStatus = $statusRepo->findOneBy(['status' => 'À faire']);
                 $coachBooking->setBookingStatus($toDoStatus);
-                $coachBooking->setClient($client);
+                //... puis on attribue ce nouveau coachBooking au client
+                $client->setCoachBooking($coachBooking);
+
                 $emi->persist($coachBooking);
             }
 
             $emi->flush();
+            $this->addFlash(
+                'success',
+                'Vos informations ont bien été modifiées. Nous vous contacterons prochainement.'
+            );
 
             return $this->redirectToRoute('profile_client');
         }
