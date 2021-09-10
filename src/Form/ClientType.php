@@ -26,15 +26,19 @@ class ClientType extends AbstractType
             ->add('birthdate', BirthdayType::class, [
             'label' => 'Date de naissance',
             'widget' => 'single_text',
+            'required' => false,
             ])
             ->add('address', TextType::class, [
-                'label' => 'Adresse'
+                'label' => 'Adresse',
+                'required' => false,
             ])
             ->add('goal', TextType::class, [
-                'label' => 'Objectif sportif'
+                'label' => 'Objectif sportif',
+                'required' => false,
             ])
             ->add('budget', NumberType::class, [
-                'label' => 'Budget (€)'
+                'label' => 'Budget (€)',
+                'required' => false,
             ])
             ->add('groupSize', NumberType::class, [
                 'label' => 'Nombre de personnes'

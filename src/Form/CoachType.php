@@ -36,11 +36,13 @@ class CoachType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
+                'required' => false,
 
             ])
             ->add('birthdate', BirthdayType::class, [
             'label' => 'Date de naissance',
             'widget' => 'single_text',
+            'required' => false,
             ])
             ->add('hasVehicle', ChoiceType::class, [
                 'label' => 'Possède un véhicule :',
@@ -50,18 +52,23 @@ class CoachType extends AbstractType
                 ],
                 'expanded' => true ,
                 'multiple' => false ,
+                'required' => false,
             ])
             ->add('qualification', TextType::class, [
-                'label' => 'Qualification :'
+                'label' => 'Qualification :',
+                'required' => false,
             ])
             ->add('equipment', TextType::class, [
-                'label' => 'Equipement :'
+                'label' => 'Equipement :',
+                'required' => false,
             ])
             ->add('biography', TextType::class, [
-                'label' => 'Biographie'
+                'label' => 'Biographie',
+                'required' => false,
             ])
             ->add('hourlyRate', IntegerType::class, [
-                'label' => 'Taux horaire'
+                'label' => 'Taux horaire',
+                'required' => false,
             ])
             ->add('photoFile', VichImageType::class, [
                 'label' => 'Photo :',
