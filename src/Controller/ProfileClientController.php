@@ -66,7 +66,10 @@ class ProfileClientController extends AbstractController
             }
 
             $emi->flush();
-            $this->addFlash('success', 'Vos informations ont bien été enregistrées.');
+            $this->addFlash(
+                'success',
+                'Vos informations ont bien été modifiées. Nous vous contacterons prochainement.'
+            );
 
             return $this->redirectToRoute('profile_client');
         }
