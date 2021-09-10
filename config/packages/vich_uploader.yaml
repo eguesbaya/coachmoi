@@ -12,7 +12,7 @@ vich_uploader:
             upload_destination: '%kernel.project_dir%/public/uploads/activities'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
             
-        spacetrainings:
-            uri_prefix: /uploads/spacetrainings
-            upload_destination: '%kernel.project_dir%/public/uploads/spacetrainings'
+        training_spaces:
+            uri_prefix: /uploads/training_spaces
+            upload_destination: '%kernel.project_dir%/public/uploads/training_spaces'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

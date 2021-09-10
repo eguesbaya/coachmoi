@@ -29,7 +29,7 @@ class CoachBookingFixtures extends Fixture implements DependentFixtureInterface,
         }
 
         $booking = new CoachBooking();
-        $booking->setClient($this->getReference('client_admin'));
+        $booking->setClient($this->getReference('client'));
         $booking->setTrainingSpace($this->getReference('training_space_0'));
         $booking->setCreatedAt($faker->dateTimeThisCentury());
         $booking->setBookingStatus($this->getReference('status_0'));

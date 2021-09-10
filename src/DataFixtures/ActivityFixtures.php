@@ -10,7 +10,7 @@ use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
 class ActivityFixtures extends Fixture implements FixtureGroupInterface
 {
-    public const FEATURED_ACTIVITY = [
+    public const ACTIVITY = [
         [
             'name' => 'Perte de poids',
             'photo' => 'https://bit.ly/2VanXLb',
@@ -58,12 +58,13 @@ class ActivityFixtures extends Fixture implements FixtureGroupInterface
 
     public function load(ObjectManager $manager)
     {
+        $faker = Factory::create('fr_FR');
 
-        foreach (self::FEATURED_ACTIVITY as $key => $data) {
+        foreach (self::ACTIVITY as $key => $data) {
             $activity = new Activity();
             $activity->setName($data['name']);
-            /*copy($data['photo'], "public/uploads/activities/activity" . $key . '.webp');*/
-            /*$activity->setPhoto("activity" . $key . ".webp");*/
+            $photo = $faker->image('public/uploads/activities', 640, 480, 'sport', false, true, null, false);
+            $activity->setPhoto($photo);
             $activity->setDescription($data['description']);
             $activity->setIsFeatured(true);
             $manager->persist($activity);

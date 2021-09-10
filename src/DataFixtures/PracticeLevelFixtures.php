@@ -9,10 +9,10 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 class PracticeLevelFixtures extends Fixture
 {
     public const LEVELS = [
-        'débutant',
+        'Débutant',
         'intermédiaire',
-        'avancé',
-        'pro'
+        'Avancé',
+        'Professionnel'
     ];
 
     public function load(ObjectManager $manager)

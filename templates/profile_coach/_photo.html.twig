@@ -5,7 +5,7 @@
      {% elseif app.user.coach.photo == "" %}
           <img src="{{ asset('build/images/avatar.png') }}" class="img-fluid" width="250vh" alt="coach">
      {% else %}
-          <img src="{{ vich_uploader_asset(app.user.coach, 'photoFile') }}" class="img-fluid" alt="avatar">
+          <img src="{{ vich_uploader_asset(app.user.coach, 'photoFile') }}" class="img-fluid" alt="{{ app.user.firstname }} {{ app.user.lastname }}">
      {% endif %}
      </div>
 </div>

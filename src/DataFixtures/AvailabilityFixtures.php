@@ -55,7 +55,7 @@ class AvailabilityFixtures extends Fixture implements DependentFixtureInterface
         $availability->setStartTime(\DateTime::createFromFormat('H:i', "18:00"));
         $availability->setEndTime(\DateTime::createFromFormat('H:i', "19:00"));
         $availability->setWeekday($this->getReference('weekday1'));
-        $availability->setClient($this->getReference('client_admin'));
+        $availability->setClient($this->getReference('client'));
         $manager->persist($availability);
 
         // Fixture for coach's demo account: coach@gmail.com
