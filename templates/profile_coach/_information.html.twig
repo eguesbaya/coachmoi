@@ -30,12 +30,12 @@
         <div class="my-2">
             <div class="bg-light m-3 border rounded">
                 <p> Date de naissance :</p>
-                {% if app.user.coach.birthDate is defined %}
-                    <h5 class="text-start mx-5">{{ app.user.coach.birthDate|date("d/m/Y") }}</h5>
-                {% else %}
+                {% if app.user.coach.birthDate is null %}
                     <div class="alert alert-danger mx-3" role="alert">
                         Veuillez <a href="{{ path('coach_edit') }}" class="alert-link">indiquer</a> votre date de naissance.
                     </div>
+                {% else %}
+                    <h5 class="text-start mx-5">{{ app.user.coach.birthDate|date("d/m/Y") }}</h5>
                 {% endif %}
             </div>
         </div>

@@ -1,8 +1,8 @@
 <form method="post" action="{{ path('admin_activity_delete', {'id': activity.id}) }}" onsubmit="return confirm('Voulez vous supprimer cet élément ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ activity.id) }}">
-    {% for client in activity.clients %}
+    {% if activity.clients|length > 0  %}
         <button class="btn btn-danger text-light fs-6 mt-1 text-nowrap w-100" disabled><i class="bi bi-trash-fill text-white"></i> Supprimer</button>
     {% else %}
         <button class="btn btn-danger text-light fs-6 mt-1 text-nowrap w-100"><i class="bi bi-trash-fill text-white"></i> Supprimer</button>
-    {% endfor %}
+    {% endif %}
 </form>
