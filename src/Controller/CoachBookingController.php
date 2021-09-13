@@ -129,6 +129,12 @@ class CoachBookingController extends AbstractController
             $status = $statusRepo->find($request->request->get('bookingStatus'));
             $booking->setBookingStatus($status);
             $this->getDoctrine()->getManager()->flush();
+            if (!is_null($booking->getBookingStatus())) {
+                $this->addFlash(
+                    'success',
+                    'Le statut de cette réservation est maintenant: ' . $booking->getBookingStatus()->getStatus()
+                );
+            }
         }
 
         return $this->redirectToRoute('coach_booking_index');
