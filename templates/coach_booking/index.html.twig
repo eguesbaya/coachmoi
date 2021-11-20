@@ -39,7 +39,15 @@
         {% for coach_booking in coach_bookings %}
             <tr class="align-middle">
                 <td>{{ coach_booking.client.user.firstname }} {{ coach_booking.client.user.lastname }}</td>
-                <td>{{ coach_booking.client.activity.name }}</td>
+                {% if coach_booking.client.activity is null %}
+                    <td>
+                        <div class="alert alert-danger mx-3" role="alert">
+                            Aucune activité choisie
+                        </div>
+                    </td>
+                {% else %}
+                    <td>{{ coach_booking.client.activity.name }}</td>
+                {% endif %}
                 <td>{{ coach_booking.client.budget }} €</td>
                 <td>
                 {% if coach_booking.client.availabilities is not null %}
@@ -67,7 +75,7 @@
                             {% endfor %}
                         </select>
                         <input type="hidden" name="_token" value="{{ csrf_token('cb_update_status' ~ coach_booking.id) }}">
-                            <button class="btn bg-success text-white fs-6"><i class="bi bi-toggle-on"></i> Modifier</button>
+                            <button class="btn bg-success text-white fs-6"><i class="bi bi-check-circle-fill"></i></button>
                     </form>
                 </td>
                 <td>
