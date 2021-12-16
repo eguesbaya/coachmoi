@@ -60,7 +60,9 @@
                 <div>
                     <div class="bg-light my-2">
                         <p>Activité</p>
+                        {% if coach_booking.client.activity %}
                         <h3 class="text-start mx-5">{{ coach_booking.client.activity.name }}</h3>
+                        {% endif %}
                     </div>
                     <div class="bg-light my-2">
                         <p>Niveau</h3p>
@@ -91,8 +93,9 @@
                         {% if coach_booking.coach %}
                             <h3 class="text-center"> {{ coach_booking.coach.user.firstname }} {{ coach_booking.coach.user.lastname }}</p>
                         {% endif %}
-                        <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_coachs_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}"><i class="bi bi-search"></i> Coachs disponibles</a></p>
-
+                        {% if coach_booking.client.activity %}
+                            <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_coachs_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}"><i class="bi bi-search"></i> Coachs disponibles</a></p>
+                        {% endif %}
                     </div>
                     <div class="bg-light my-2 p-2">
                         <p>Salle</p>
@@ -100,8 +103,9 @@
                         {% if coach_booking.trainingSpace %}
                               <h3 class="text-center"> {{ coach_booking.trainingSpace.name }}</h3>
                         {% endif %}
-                        <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_spaces_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}"><i class="bi bi-search"></i> Espaces disponibles</a></p>
-
+                        {% if coach_booking.client.activity %}
+                            <p class="text-center"><a class="btn btn-success mx-1 button-login text-light" href="{{ path('show_spaces_byActivity', {'id': coach_booking.id, 'activity_id': coach_booking.client.activity.id}) }}"><i class="bi bi-search"></i> Espaces disponibles</a></p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
