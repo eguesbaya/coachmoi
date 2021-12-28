@@ -51,8 +51,10 @@ class ProfileClientController extends AbstractController
             // $emi->persist($client);
 
             //Si le client n'est pas encore relié à un coachBooking:
-            if ($client->getCoachBooking() === null) {
-                //On créé un nouveau coachBooking...
+            // a new coachbooking row is created only if it doesn't exist yet AND the client's activity is not selected
+            // Because coachbooking is created at the moment the client chooses his activity)
+            if (is_null($client->getCoachBooking()) && is_null($client->getActivity())) {
+                    //On créé un nouveau coachBooking...
                 $coachBooking = new CoachBooking();
                 //... que l'on lie au client
                 $coachBooking->setClient($client);

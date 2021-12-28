@@ -11,12 +11,12 @@
                     </br>
                     {% if app.user.client.activity is null %}
                         <small>Veuillez <a href="{{ path('client_edit') }}" class="alert-link">choisir une activité</a> afin de nous aider à identifier le coach le mieux adapté à vos attentes.</small>
-                    {% elseif app.user.client.coachbooking.coach is null %}
+                    {% elseif app.user.client.coachbooking is null or app.user.client.coachbooking.coach is null %}
                         <small>Nous travaillons dur afin de trouver le coach le mieux adapté à vos attentes. Merci pour votre patience!</small>
                     {% endif %}
                 </div>
             {% else %}
-                <h3 class="text-start mx-5">{{ app.user.client.coachbooking.coach.user.firstname }} {{ app.user.client.coachbooking.coach.user.lastname }}</h3>
+                <h3 class="text-start ">{{ app.user.client.coachbooking.coach.firstname }} {{ app.user.client.coachbooking.coach.lastname }}</h3>
             {% endif %}
         </div>
     </div>
@@ -30,7 +30,7 @@
                     </br>
                     {% if app.user.client.activity is null %}
                         <small>Veuillez choisir <a href="{{ path('client_edit') }}" class="alert-link">choisir une activité</a> afin de nous aider à identifier l'espace le mieux adapté à vos attentes.</small>
-                    {% elseif app.user.client.coachbooking.trainingSpace is null %}
+                    {% elseif app.user.client.coachbooking is null or app.user.client.coachbooking.trainingSpace is null %}
                         <small>Nous travaillons dur afin de trouver l'espace d'entrainement le mieux adapté à vos attentes. Merci pour votre patience!</small>
                     {% endif %}
                 </div>
